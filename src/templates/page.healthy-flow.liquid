@@ -1,0 +1,143 @@
+{% section 'healthy-page-flow' %}
+
+<style>
+  .promo-banner {
+    display: none !important;
+  }
+  
+  #shopify-section-healthy-page-flow {
+    background-color: #EfEfEf !important;
+  }
+  
+  @media (max-width: 500px) {
+    .step.active p {
+      font-size: 16px !important;
+    }
+  }
+</style>
+
+<script>
+    jQuery(document).ready(function(){
+        var email, 
+            wrapper = $('.healthy-flow-wrapper'),
+            currentStepEl,
+            nextButton,
+            nextStep;
+
+            currentStepEl = wrapper.find('.step.active');
+            nextStep = currentStepEl.next();
+            nextButton = wrapper.find('.next-button');
+
+        $('#subscription-form').submit(function(e) {
+            e.preventDefault();
+            email = $('#subscription-form #emailinputval').val();
+
+            $.ajax({
+                type: "POST",
+                url: 'https://www.publicgoods.com/a/memberships/drip_subscribe',
+                data: {email: email},
+                success: function(){
+                    currentStepEl.removeClass('active');
+                    nextStep.addClass('active');
+                    $('html,body').animate({scrollTop: 0}, 100);
+                    nextButton.addClass('active');
+                },
+                error: function() {
+                    $('#drip-errors-for-email').show();
+                }
+            });
+            
+        });
+        //$('#flow-subscription-form').submit(function(e) {
+        //    e.preventDefault();
+        //    email = $('#flow-subscription-form #contact_email').val();
+//
+        //    if($(this).find('input[type="email"]').val() !== ''){
+        //        var data = $(this).serialize();
+//
+        //        $.ajax({  
+        //            type: "POST",  
+        //            url: "/contact",  
+        //            data: data,  
+        //            success: function() { 
+        //                $('#drip-errors-for-email').hide();
+        //                currentStepEl.removeClass('active');
+        //                nextStep.addClass('active');
+        //                $('html,body').animate({scrollTop: 0}, 100);
+        //                nextButton.addClass('active');
+        //            },
+        //            error: function() {
+        //                $('#drip-errors-for-email').show();
+        //            }    
+        //        }); 
+        //    }
+        //    
+        //});
+
+        $('a.flow-next-step').on('click', function(){
+            $('html,body').animate({scrollTop: 0}, 600);
+            currentStepEl = wrapper.find('.step.active');
+            nextStep = currentStepEl.next();
+            currentStepEl.removeClass('active');
+            nextStep.addClass('active');
+
+            if ($('.step.step-6').hasClass('active')) {
+                nextButton.removeClass('active');
+                $('#shopify-section-healthy-page-flow').addClass('change-background');
+
+                setTimeout(function(){
+                    //$('.animation').hide();
+                    //$("a.site-header__cart-toggle.js-drawer-open-right").click();
+                    $.ajax({
+                        type: "POST",
+                        url: '/cart/clear.js',
+                        success: function(){
+//                             window.location.href='https://morgans-dont-run-out.myshopify.com/cart/17509116411955:1,17509106253875:1,17509103173683:1,17509109923891:1,15945755983923:1,17509115559987:1,7609748684851:1,12448496320563:1,15945684090931:1,10429747783:1,53698385159:1,17509119459379:1,17509107367987:1,15871071027251:1,31283484983434:1?checkout[email]=' + email + '&discount=XRDV17HJQSAK';
+                          window.location.href='https://www.publicgoods.com/a/memberships/checkout?line_items=17509116411955:1,17509106253875:1,17509103173683:1,17509109923891:1,15945755983923:1,17509115559987:1,7609748684851:1,12448496320563:1,15945684090931:1,10429747783:1,53698385159:1,17509119459379:1,17509107367987:1,15871071027251:1,31283484983434:1&discount=XRDV17HJQSAK'
+                        },
+                        dataType: 'json'
+                    });
+                }, 5000);
+
+                //var products_array = [
+                //        15945755983923, 
+                //        17509115559987, 
+                //        7609748684851, 
+                //        12448496320563, 
+                //        15945684090931, 
+                //        10429747783, 
+                //        53698385159,  
+                //        17509107367987, 
+                //        15871071027251, 
+                //        31283484983434
+                //    ],
+                //    ajax_calls = [],
+                //    length,
+                //    i;
+                    
+                //var addToCart = function(index) {
+                //    if (index >= products_array.length) return;
+//
+                //    $.ajax({
+                //    type:'POST',
+                //    url:'/cart/add',
+                //    data: { id: products_array[index] },
+                //    dataType: 'json',
+                //        success: function(data){
+                //            addToCart(index + 1);
+                //            console.log('added to cart', data);
+                //            //get_cart_items();
+                //            update_cart_count('plus');
+                //            setCartItem(variantId, {id: products_array[index], quantity: 1});
+                //            // checkout?discount=${discountCode}
+                //        }
+                //    });
+                //}
+//
+                //addToCart(0);
+            }
+        });
+      
+      $("#email-submit-footer").hide()
+    })
+</script>

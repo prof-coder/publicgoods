@@ -1,0 +1,312 @@
+<script>
+  
+  let clicked = false;
+  var showDesktop = false;
+  var showMobile = false;
+  
+  function ShowDesktop() {
+     $(".input-group-field").show();
+     $(".magnifying-glass").hide();
+     $(".magnifying-glass-2").show();
+
+     $(".border-around-search").show();
+     $(".input-group-btn").css("position", "absolute");
+    	showDesktop = true;
+  }
+  
+  function HideDesktop() {
+     $(".input-group-field").hide();
+     $(".magnifying-glass").show();
+     $(".magnifying-glass-2").hide();
+
+     $(".border-around-search").hide();
+     $(".input-group-btn").css("position", "relative");
+    showDesktop = false;
+  }
+  
+  function ShowTablet() {
+    console.log('show tablet');
+    $("#mobile-search-input").show();
+    $(".mobile-search-container").show();
+    $(".mobile-search-bar").show();
+    $("#mobile-search-exit-img").show();
+  }
+  
+  function ShowMobile() {
+    console.log('show mobile');
+    $("#mobile-search-input").show();
+    $(".mobile-search-container").show();
+    $(".mobile-search-bar").show();
+    $("#mobile-search-exit-img").show();
+    showMobile = true;
+  }
+  
+  function HideMobile() {
+    $("#mobile-search-input").hide();
+    $(".mobile-search-container").hide();
+    $(".mobile-search-bar").hide();
+    $("#mobile-search-exit-img").hide();
+    showMobile = false;
+  }
+  
+  $(".magnifying-glass-for-tablet").click(function(e) {
+    if(showMobile) {
+      HideMobile()
+    } else {
+      ShowMobile()
+    }
+  })
+ 
+  
+  $(".magnifying-glass").click(function(e){
+      	e.preventDefault()
+        if(showDesktop) {
+        	HideDesktop();
+        } else {
+        	ShowDesktop();
+        }
+    
+        setTimeout(function() {
+          $('.input-group-field').focus()
+        },500)
+  });
+  
+  
+  	$(".mobile-mag-icon").click(function(e){
+      	e.preventDefault()
+        
+        if(showMobile) {
+        	HideMobile();
+        } else {
+        	ShowMobile();
+        }	
+      
+      setTimeout(function() {
+   		$('.input-group-field').focus()
+        $('.mobile-search-bar').prop('autofocus');
+	  },500)
+    });
+  
+  	$(".mobile-search-exit").click(function(e){
+      	e.preventDefault()
+        HideMobile();
+      	HideDesktop();
+      $(".magnifying-glass-2").show();
+    });
+  
+  $(window).resize(function(){ 
+    if(window.innerWidth > 1159) {
+      HideMobile();
+      if(showMobile) {
+        ShowDesktop();
+      }
+    } else if(window.innerWidth < 960) {
+      if(showDesktop) {
+        HideDesktop();
+        ShowMobile();
+        $(".magnifying-glass-2").css("display", "inline")
+      }
+    } else {
+    	if(showMobile) {
+      	HideMobile();
+        ShowDesktop();
+      }
+    }
+  });
+  
+    
+</script>
+
+<style>
+  
+  input {
+    font-family: 'NB';
+    font-size: 13px;
+    letter-spacing: 1.5px;
+  }
+  
+  .desktop-search-li {
+    margin-top: -10px;
+  }
+
+  .input-group-field {
+    outline: none !important;
+    border: none !important;
+  }
+  
+  .input-group, .input-group-field, .input-group-btn{
+    display: inline;
+    border: none;
+    border-radius: none;
+  }                                      
+  
+  .input-group .input-group-field {
+    width: 72%;
+    height: 21px !important;
+  }
+  
+  .input-group-field {
+    border: none;
+  }
+  
+  .desktop-search-container {
+    padding-bottom: 6px;
+    padding-top: 3px;
+  }
+  
+  .desktop-search-btn {
+    margin-top: -8px;
+  }
+  
+  .icon-fallback-text {
+    padding: 6px 12px;
+    outline: none !important;
+  }
+  
+  .magnifying-glass-2, .magnifying-glass {
+    color: #000;
+    font-size: 16px;
+  }
+  
+  .magnifying-glass img {
+    width: 20px;
+  }
+  
+  .magnifying-glass-2 {
+    padding-right: 5px;
+  }
+  
+  .magnifying-glass-2 img {
+    padding-top: 10px;
+    padding-bottom: 5px;
+  }
+  
+  .magnifying-glass-2-desktop img {
+    padding-top: 10px !important;
+    padding-right: 5px !important;
+    padding-bottom: 0 !important;
+    margin-bottom: -5px;
+  }
+  
+  .mobile-search-icon img {
+    width: 20px;
+  }
+  
+  .border-around-search {
+    border: 1px solid black;
+  }
+  
+  #mobile-search-input {
+    display: none;
+    height: 50px;
+    text-align: center;
+  }
+  
+  .mobile-search-container {
+    display: inline-flex;
+    width: 75%;
+    margin: 0 auto;
+  }
+  .mobile-search-container button {
+    padding-left: 10px;
+  }
+  
+  .mobile-search-bar {
+    height: 30px !important;
+    padding-left: 10px;
+    padding-top: 15px;
+    font-size: 16px;
+  }
+  
+  .mobile-search-bar::-webkit-input-placeholder {
+    font-family: 'NB';
+  }
+
+  .mobile-search-bar:-ms-input-placeholder {
+    font-family: 'NB';
+  }
+
+  .mobile-search-bar:-moz-placeholder {
+    font-family: 'NB';
+  }
+
+  .mobile-search-bar::-moz-placeholder {
+    font-family: 'NB';
+  }
+  
+  .close-search-mobile {
+    display: inline-block;
+    position: absolute;
+    margin-left: -30px;
+    margin-top: 12px;
+    cursor: pointer;
+  }
+  
+  .mobile-search-exit {
+    padding-right: 10px;
+  }
+  
+  .mobile-search-exit img {
+    width: 20px;
+  }
+  
+  .mobile-mag-icon {
+    padding-right: 20px;
+  }
+  
+  .magnifying-glass-for-tablet {
+    cursor: pointer;
+  }
+  
+  .magnifying-glass-for-tablet img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  @media (max-width: 450px) {
+    .input-group .input-group-field {
+      height: 23px !important;
+    }
+  }
+  
+  @media (max-width: 1159px) {
+    .desktop-search-bar, .desktop-search-container {
+      display: none !important;
+    }
+    
+    .input-group .input-group-field {
+      height: 28px !important;
+    }
+  }
+  
+  @media (min-width: 1159px) {
+    #mobile-search-input {
+      display: none !important;
+    }
+  }
+  
+/*   @media (max-width: 1159px) { */
+    @media (max-width: 950px) {
+    .input-group-btn {
+      position: relative !important;
+    }
+  }
+  
+  @media (min-width: 950px) and (max-width: 1159px) {
+    .desktop-input-group-btn {
+      display: none;
+    }
+    
+    .magnifying-glass-for-tablet {
+      display: block !important;
+    }
+  }
+/*   
+  @media (min-width: 950px) and (max-width: 950px) {
+    .magnifying-glass-for-tablet {
+      display: block !important;
+    }
+  } */
+  
+  
+</style>

@@ -1,0 +1,599 @@
+<div id="popup1" class="overlay">
+  <div class="popup">
+    <h1 class="free-trial-header-dt">Try us today and get <br><span class="bold-coral">$10 off</span> your first order.</h1>
+    <div class="trial-popup-mobile">
+      <span class="close" aria-hidden="true">×</span>
+    </div>
+    <div class="step-one">
+      <div class="content">
+        <ul class="wrap-list wrap-list-step-one" id="wrap-list-32-45">
+          <li><img src="//cdn.shopify.com/s/files/1/0838/7991/files/ok-img-2.png?16988" alt="ok">Free two week trial, then only $59 / year.</li>
+          <li><img src="//cdn.shopify.com/s/files/1/0838/7991/files/ok-img-2.png?16988" alt="ok">All natural personal care.</li>
+          <li><img src="//cdn.shopify.com/s/files/1/0838/7991/files/ok-img-2.png?16988" alt="ok">Organic and fair trade groceries.</li>
+          <li><img src="//cdn.shopify.com/s/files/1/0838/7991/files/ok-img-2.png?16988" alt="ok">Eco-friendly and sustainable.</li>
+        </ul>
+      </div>
+      <div id="popup-bottom-content" class="step-one">
+        <form>
+          <div class="mail-wrapper">
+            <label for="popup-email">Enter email to receive discount code.</label>
+            <input class="popup-email" id="popup-email" name="stripeEmail" type="email" placeholder="Enter email" autocomplete="on" required="">
+            <p class="valid_message"></p>
+          </div>
+          <div class="already-a-member-section">
+            <p style="display: inline; color: black;">Already a member?</p> 
+            <a href="https://morgans-dont-run-out.myshopify.com/account/login">Sign-in to your account.</a>
+          </div>
+          <button type="button" class="btn-step-one">Submit</button>
+        </form>
+      </div>
+    </div>
+      <div class="step-two">
+        <div class="step-two-top"> 
+          <h1>Welcome! <br>Here’s your code for <span class="bold-coral">$10 off</span>.</h1>
+          <p>Use code <span class="bold">winter20</span> at checkout. Don’t know where to start? <br>Here’s some of our most popular categories.</p>
+        </div>
+          <div class="step-two-middle">
+            <div class="shop-by-category-popup">
+              <div class="main-categories-popup">
+                <div class="main-categories-tile-popup main-categories-pc-popup">
+                  <a class="no-decor" href="https://www.publicgoods.com/collections/personal-care">
+                    <div class="main-categories-words-popup">
+                      <h2>Personal Care</h2>
+                    </div>
+                  </a>
+                </div>
+                <div class="main-categories-tile-popup main-categories-household-popup">
+                  <a class="no-decor" href="https://www.publicgoods.com/collections/household">
+                    <div class="main-categories-words-popup">
+                      <h2>Home Essentials</h2>
+                    </div>
+                  </a>
+                </div>
+                <div class="main-categories-tile-popup main-categories-food-popup">
+                  <a class="no-decor" href="https://www.publicgoods.com/collections/grocery">
+                    <div class="main-categories-words-popup">
+                      <h2>Healthy Food</h2>
+                    </div>
+                  </a>
+                </div>
+                 <div class="main-categories-tile-popup main-categories-vitamins-popup">
+                   <a class="no-decor" href="https://www.publicgoods.com/collections/vitamins-and-supplements">
+                    <div class="main-categories-words-popup">
+                      <h2>Vitamins and Supplements</h2>
+                    </div>
+                   </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="step-two-bottom">
+            <a href="/collections/all-products">Shop All</a>
+          </div>
+        </div>
+  </div>
+</div>
+
+<style>
+  
+  html, body
+{
+    height: 100%;
+}
+  
+  .step-two {
+    display: none;
+  }
+  
+  /* form.membership_billing-form div.hidden {
+    display: none;
+  } */
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    transition: opacity 500ms;
+    display: none;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  .overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .popup {
+    background: #fff;
+    width: 50%;
+    position: relative;
+    flex-grow: 2;
+    max-width: 600px;
+    display: block;
+    margin: 50px auto;
+    padding: 50px;
+/*     top: 200px; */
+    height: 550px;
+    text-align: center;
+    width: 600px;
+  }
+  
+  .popup .close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 60px !important;
+    text-decoration: none;
+    color: #000 !important;
+    font-family: 'NB' !important;
+    opacity: 1;
+    font-weight: 100;
+  }
+  
+  .close:hover, .close:focus {
+    opacity: 1 !important;
+  }
+  
+  .popup h1 {
+    font-size: 32px;
+    line-height: 37px;
+  }
+      
+   .close:hover {
+     cursor: pointer !important;
+   }
+  
+  .wrap-list {
+    list-style-type: none;
+    margin: 40px 10px;
+  }
+  
+  .wrap-list li {
+    margin: 15px 0;
+    font-size: 16px;
+    font-family: 'NB';
+    line-height: 1.5;
+    padding-left: 125px;
+    text-align: left;
+  }
+  
+  .step-one {
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .mail-wrapper {
+    text-align: left;
+  }
+  
+  .mail-wrapper label {
+    font-size: 16px;
+    color: #010101;
+    padding: 5px 0;
+    font-family: 'NBH';
+  }
+  
+  .mail-wrapper input {
+    width: 100%;
+    height: 40px;
+    border: 0.8px solid #67837D;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 0;
+    margin: 5px 0 7px 0;
+  }
+  
+  .already-a-member-section {
+    text-align: left;
+  }
+  
+  .already-a-member-section p {
+    padding: 10px 0 0 0;
+    font-family: 'NBH' !important;
+    font-size: 14px;
+  }
+  
+  .step-one button {
+    background-color: #f5896b;
+    margin: 20px auto 0;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'NBH';
+    padding: 15px 50px;
+    letter-spacing: 0.5px;
+    height: 40px;
+    margin-top: 50px;
+  }
+  
+  .valid_message {
+    color: #ff6c6c;
+  }
+  
+  .step-two-top p {
+    padding: 10px 0;
+  }
+  
+  .step-two-bottom {
+    padding-top: 110px;
+  }
+  
+  .step-two-bottom a {
+    padding: 15px 40px;
+    background-color: #f5896b;
+    color: #fff;
+    font-family: 'NBH';
+  }
+  
+  .shop-by-category-popup {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .main-categories-popup {
+    display: flex;
+    height: 230px;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+  }
+
+  .main-categories-tile-popup {
+    width: 49%;
+    background-size: cover;
+    background-position-y: 100%;
+    cursor: default;
+    margin-top: 15px;
+  }
+  
+  .main-categories-tile-popup:hover {
+    opacity: 0.8;
+  }
+  
+  .main-categories-words-popup h2 {
+    color: #000;
+  }
+
+  .main-categories-pc-popup {
+    background-image: url("https://cdn.shopify.com/s/files/1/0838/7991/files/tile_personal_care.jpg?12413255820896601983")
+  }
+
+  .main-categories-household-popup {
+    background-image: url("https://cdn.shopify.com/s/files/1/0838/7991/files/tile_household.jpg?12413255820896601983")
+  }
+
+  .main-categories-food-popup {
+    background-image: url("https://cdn.shopify.com/s/files/1/0838/7991/files/tile_food.jpg?12413255820896601983")  
+  }
+
+  .main-categories-vitamins-popup {
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/tile_vitamins_retouch.jpg?41730);
+    background-position-x: 85%;
+  }
+
+  .main-categories-words-popup {
+    height: 160px;
+    margin-top: 0;
+  }
+
+  .main-categories-words-popup a {
+    color: #000;
+    text-decoration: underline;
+    margin-top: 5px;
+  }
+
+  .main-categories-words-popup h2 {
+    margin-bottom: 5px;
+    line-height: 24px;
+    padding-top: 73px;
+  }
+  
+  .no-decor {
+    text-decoration: none !important;
+  }
+  
+  .bold-coral {
+    font-family: 'NBH';
+    color: #f5896b;
+  }
+  
+  .bold {
+    font-family: 'NBH';
+  }
+
+  
+  
+  @media (max-width: 768px) {
+    
+        
+    .overlay {
+      z-index: 123;
+    }
+    
+   .popup {
+     width: 100%;
+     max-width: 100%;
+     height: 100%;
+     margin: 0;
+     padding: 0;
+     top: 85px;
+     background-color: #efefef;
+     position: relative;
+     z-index: 999999 ;
+   }
+    
+   .trial-popup-mobile {
+      padding: 25px;
+      padding-left: 0;
+      background-color: #fff;
+      right: unset;
+      float: none;
+      position: fixed;
+      display: block;
+      width: 100%;
+      text-align: center;
+      height: 35px;
+      top: 0 !important;
+      z-index: 999999;
+   }
+    
+   .trial-popup-mobile:hover {
+     cursor: pointer;
+   }
+
+    
+   .trial-popup-mobile:after {
+    content: " ";
+    background-image: url(//cdn.shopify.com/s/files/1/0838/7991/files/pgmpl.png?18223);
+    display: block !important;
+    height: 50px;
+    line-height: 1;
+    font-size: 17px;
+    text-align: center;
+    max-width: 180px;
+    width: 100%;
+    max-width: 180px;
+    max-height: 30px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+   }
+    
+    .step-two {
+      overflow: scroll;
+	  height: 100vh;
+    }
+    
+    .trial-popup-mobile {
+      overflow: hidden;
+    }
+    
+    .shop-by-category-popup {
+      padding-bottom: 100px !important;
+    }
+    
+   .close {
+     float: left !important;
+     position: relative !important;
+     right: -25px !important;
+     top: -14px !important;
+   }
+    
+    .popup h1 {
+      padding-top: 50px;
+    } 
+    
+    .step-one {
+      width: 80%;
+    }
+    
+    .main-categories-popup {
+      display: block;
+      height: auto;
+      text-align: -webkit-center;
+      text-align: -moz-center;
+      margin-bottom: 150px;
+    }
+
+/*     .main-categories-household-popup {
+      margin: 50px 0;
+    }
+ */
+    .main-categories-vitamins-popup {
+      margin-top: 50px;
+    }
+
+    .main-categories-words-popup {
+      margin-top: 0;
+      padding-top: 0px;
+    }
+    
+    .main-categories-tile-popup {
+      width: 75%;
+      height: 200px;
+      background-size: cover;
+      background-position-y: 100%;
+      cursor: default;
+      margin-top: 15px;
+    }
+    
+    .step-two-bottom {
+      padding-top: 35px;
+      width: 100%;
+      position: fixed;
+      bottom: 0px;
+      margin: 0 auto;
+    }
+    
+    .step-two-bottom a {
+      margin: 0px !important;
+      width: 100% !important;
+      text-align: center !important;
+      max-width: 100%;
+      display: inline-block;
+      padding: 15px 0;
+    }
+    
+    
+  }
+  
+  
+  @media (max-width: 1000px) {
+/*     .main-categories-words-popup {
+       padding-top: 62px !important;
+    }
+    
+    .main-categories-tile-popup{
+      width: 75%;
+      height: 150px !important;
+    } */
+  }
+  
+  @media (max-width: 600px) {
+/*    .main-categories-tile-popup {
+      width: 100%;
+    } */
+    
+    .wrap-list {
+      margin: 25px 30px;
+    }
+    
+    .wrap-list li {
+      padding-left: 55px;
+      font-size: 13px;
+    }
+    
+    .mail-wrapper label, .already-a-member-section p {
+      font-size: 13px;
+    }
+    
+    .step-one button {
+      width: 100%;
+    }
+    
+    .popup .close {
+      font-size: 45px !important;
+      line-height: 1.5;
+    }
+
+    
+    .popup h1 {
+      padding-top: 40px;
+      font-size: 24px;
+      line-height: 30px;
+    }
+  }
+  
+  @media (max-width: 460px) {
+    .main-categories-tile-popup {
+      background-position: bottom;
+      width: 85%;
+      height: 175px;
+    }
+    
+    .wrap-list {
+      margin: 25px 0px;
+    }
+    
+    .step-one {
+      width: 92%;
+    }
+  }
+  
+  @media (max-width: 390px) {
+    
+  }
+  
+
+</style>
+
+<script>
+$( document ).ready(function() {  
+  if (sessionStorage.getItem("pgSuppliedEmail")) {
+    $(".free-trial-btn").hide()
+    $("#promo-banner1").show()
+  }
+  
+  $(".free-trial-btn").click(function() {
+    $(".overlay").toggle()
+     $(".step-two").hide()
+    if ($(".overlay").is(":visible")) {
+      $("header").hide()
+      $(".free-trial-btn-li").hide()
+      $(".free-trial-sticky-btn").hide()
+    } else {
+      $("header").show()
+      $(".free-trial-btn-li").show()
+      $(".free-trial-sticky-btns").show()
+    }
+    
+    if (sessionStorage.getItem("pgSuppliedEmail")) {
+      $(".step-one").hide()
+      $(".step-two").show()
+      $(".free-trial-header-dt").hide()
+    }
+  })
+  
+  $(".close").click(function() {
+    $(".overlay").hide()
+    
+    if ($(".overlay").is(":visible")) {
+      $("header").hide()
+      $(".free-trial-btn-li").hide()
+      $(".free-trial-sticky-btn").hide()
+    } else {
+      $("header").show()
+      $(".free-trial-btn-li").show()
+      $(".free-trial-sticky-btn").show()
+    }
+  })
+
+  function emailIsValid(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  }
+  
+  $(".btn-step-one").click(function() {
+      
+    let freeTrialEmail = $("#popup-email").val()
+    
+    if (emailIsValid(freeTrialEmail)) {
+      $(".valid_message").text("")
+      _dcq.push(
+        [
+          "subscribe",
+          {
+            campaign_id: "220285039",
+            fields: {
+              email: freeTrialEmail
+            },
+            success: function(response) {
+               sessionStorage.setItem('pgSuppliedEmail', 'true');
+               $(".step-one").hide()
+               $(".step-two").show()
+               $(".free-trial-header-dt").hide()
+               $(".free-trial-btn").hide()
+               $("#promo-banner1").show()
+            },
+            failure: function(response) {
+              alert("There was a problem submitting your response. Please contact customer service, thank you.")
+            }
+          }
+        ]
+      );
+      
+    } else {
+      $(".valid_message").text("Email is not valid.!")
+    }
+    
+  })
+});
+  
+</script>

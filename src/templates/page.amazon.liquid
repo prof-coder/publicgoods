@@ -1,0 +1,213 @@
+
+<div id="main-container">
+  <div id="amazon">
+    <div class="amazon-header">
+      <h1>Over 500 trees planted just for you.</h1>
+      <h3>(and $10 of goods on us.)</h3>
+    </div>
+    <div class="amazon-words">
+      <p>We don’t think you need to be a superhero to help save the planet. Sign up for a membership today and we’ll use your annual fee of $59 to plant over 500 trees. Enjoy a year of access for our premium,eco-friendly essentials and provide vital aid to reforestation efforts.</p>
+      <p>To get you started, take $10 off your first order. Use code <span>acres</span> at checkout.</p>
+    </div>
+    <div id="start-membership-dt">
+      <a class="subscribe-to-membership-51-64 subscribe-to-membership button inverted button-cta">Start membership</a>
+    </div>
+  </div>
+<!--   <div id="start-membership-mobile">
+      <a class="subscribe-to-membership-51-64 subscribe-to-membership button inverted button-cta">Start membership</a>
+  </div> -->
+</div>
+
+<style>
+  #main-container {
+    padding-top: 86px;
+  }
+  
+  #amazon {
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/trees_desktop.jpg?48985);
+    background-size: cover;
+    height: 80vh;
+  }
+  
+  h1, h3, p {
+    color: #fff;
+  }
+  
+  .amazon-header, .amazon-words, #start-membership-dt {
+    max-width: 679px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .amazon-header {
+    padding-top: 125px;
+    padding-bottom: 50px;
+  }
+  
+  .amazon-header h1 {
+    padding-bottom: 25px;
+  }
+  
+  .amazon-words p:first-child {
+    padding-bottom: 15px;
+  }
+  
+  .amazon-words span {
+    font-family: 'NBH';
+  }
+  
+  #start-membership-dt {
+    padding-top: 75px;
+  }
+  
+  #start-membership-mobile {
+    display: none;
+  }
+  
+  #start-membership-mobile a {
+    width: 100% !important;
+  }
+  
+  .popup-wrapper .popup-header .wrap-list, .popup-wrapper .popup-header #wrap-list {
+    text-align: center !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    font-family: 'NB' !important;
+  }
+  
+  .card-address_zip-element {
+    width: 100% !important;
+    height: 40px !important;
+    border: 0.8px solid #67837D !important;
+    box-sizing: border-box !important;
+    padding: 10px !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+  
+  @media (max-width: 737px) {
+    
+   h3, p {
+     font-size: 16px;
+     line-height: 20px;
+   }
+    
+    #main-container {
+      padding-top: 72px;
+    }
+    
+    #amazon {
+      height: 100vh;
+    }
+	
+   .amazon-header, .amazon-words, #start-membership-dt {
+     max-width: 465px;
+   }
+    
+/*    #start-membership-mobile {
+     display: block;
+   }
+    
+   #start-membership-dt {
+     display: none;;
+   } */
+    
+    a.button.inverted {
+      margin: 0 !important;
+    }
+    
+    .dont-run-out-membership-wrapper .popup-wrapper.memberships-popup .popup-header ul {
+      padding-left: 0;
+    }
+ 
+  }
+  
+  @media (max-width: 550px) {
+    
+    
+    #main-container {
+      padding-top: 0px;
+    }
+    
+    #amazon {
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/trees_mobile.jpg?48985);
+    }
+    
+    .amazon-words, #start-membership-dt {
+      max-width: 350px;
+    }
+    
+    .amazon-header {
+      max-width: 315px;
+    }
+    
+    #amazon {
+      height: 110vh;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    
+    .amazon-words {
+      max-width: 300px;
+    }
+  }
+  
+/*   @media (max-height: 737px) {
+     #amazon {
+      height: 100vh;
+    }
+  }
+  
+  @media (max-width: 550px) {
+     #amazon {
+      height: 77vh;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    
+    #amazon {
+      height: 77vh;
+    }
+  }
+  
+  @media (max-width: 380px) {
+    
+    #amazon {
+      height: 75vh;
+    }
+  } */
+  
+  @media (max-width: 350px) {
+    
+    .amazon-header {
+      padding-top: 100px;
+      padding-bottom: 30px;
+    }
+    
+    #start-membership-dt {
+	  padding-top: 30px;
+	}
+    
+    .dont-run-out-membership-wrapper .popup-wrapper.memberships-popup .popup-header {
+      padding: 20px 20px 0;
+    }
+  }
+  
+  @media (max-height: 500px) {
+    #amazon { height: 500px;  }
+  }
+  
+  
+</style>
+
+<script>
+  $("#popup-form-membership-51-64").submit(function(e) {
+    e.preventDefault()
+    $(".wrap-list-step-two").css("display", "block !important")
+  })
+</script>
+
+
+<script src="https://dont-run-out-membership.herokuapp.com/public/plans/51/billings/64.js"></script>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head><script>GSXMLHttpRequest = XMLHttpRequest;</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NZB6XKR');</script>
+    <!-- End Google Tag Manager -->
+    
+    <title>{{ page_title }}</title>
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+    {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+	{{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+    
+  
+</head>
+  <body>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZB6XKR"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    	
+    {{ skip_to_content_link }}
+
+    <div class="banner" data-header>
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </div>
+
+    {{ order_summary_toggle }}
+
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main" role="main">
+          <div class="main__header">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+          </div>
+<!--Gift Note
+         <div id='gift-note-form' style='display:none'>
+           <label style="margin-top:15px; font-size: 16px; color:#333333; font-family: Helvetica Neue, sans-serif;" for="gift-box-note">Sending as a gift? Add a personal note.</label><span style="font-size:12px; display:none; float:right;" id="max-char-warning">max 150 characters</span><br>
+           <textarea maxlength="150" rows="4" cols="50" id='gift-box-note' placeholder='Dear, &#10; Happy Holidays! &#10;From,' name='properties[gift-box-note]' form='gift-box-note-form'></textarea>
+           <button id='submit-gift-note'>Submit</button>
+        </div>
+        <div id='gift-note-submitted' style='display:none'>
+          <p>Your note has been received. If you have any  questions or would like to make changes, please contact <a href='mailto:service@publicgoods.com'>Customer Service.</a></p>
+        </div> -->
+          
+          <div class="main__content">
+            {{ content_for_layout }}
+          </div>
+          <div class="main__footer">
+            {{ content_for_footer }}
+          </div>
+        </div>
+        <div class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          <div class="sidebar__content">
+            {{ content_for_order_summary }}
+          </div>
+        </div>
+      </div>
+    </div>
+	
+    {{ tracking_code }}
+   
+  </body>
+</html>
+
+<script>
+   $(document).ready(function(){
+     
+//      $(".order-summary__section--total-lines").append("<p style='padding-top:20px;'>*Cotton tote bag will be added to order during fulfillment</p>")
+      
+    // Limit address text inut
+  
+  var max_chars = 40;
+     
+     // checkout_shipping_address_address2
+
+    $('#checkout_shipping_address_address1').keydown( function(e){
+      if ($(this).val().length >= max_chars) { 
+          $(this).val($(this).val().substr(0, max_chars));
+      }
+    });
+
+    $('#checkout_shipping_address_address1').keyup( function(e){
+      if ($(this).val().length >= max_chars) { 
+          $(this).val($(this).val().substr(0, max_chars));
+      }
+    });
+     
+    $('#checkout_shipping_address_address2').keydown( function(e){
+      if ($(this).val().length >= max_chars) { 
+          $(this).val($(this).val().substr(0, max_chars));
+      }
+    });
+
+    $('#checkout_shipping_address_address2').keyup( function(e){
+      if ($(this).val().length >= max_chars) { 
+          $(this).val($(this).val().substr(0, max_chars));
+      }
+    });
+     
+  })
+  
+  setTimeout(function(){
+    document.querySelector('span.order-summary-toggle__text').click()
+  },0)
+  
+//   let b2bPO = document.getElementsByClassName('content-box')[1].children[4]
+//   b2bPO.parentNode.removeChild(b2bPO);
+  
+ 
+
+//   setInterval(function {
+//     let b2bPO2 = document.getElementsByClassName('content-box')[1].children[4]
+//     b2bPO2.parentNode.removeChild(b2bPO2);
+//   },1000);
+
+</script>
+
+{% comment %}{% include "gift-box-note" %}{% endcomment %}
+{% include 'investor-note' %}

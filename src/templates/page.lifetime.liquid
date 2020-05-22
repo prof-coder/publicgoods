@@ -1,0 +1,65 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+<!-- /templates/customers/register.liquid -->
+<div id="account_page" class="padding_top_70 padding_bottom_70">
+  <div class="row lifetime_row clearfix">
+    <div class="column_6 lifetime_div_form_wrapper">
+      <h1>Set for life.</h1>
+      <p class="margin_top_20">Congrats on your lifetime membership to healthy<br> essentials, mark-up free! Please enter your info below<br> to make it official.</p>
+      <form method="post" action="#" id="create_customer" accept-charset="UTF-8">
+		<input type="hidden" name="return_to" value="/pages/lifetime-success" />
+        {{ form.errors | default_errors }}
+
+        <div class="form_row clearfix">
+          <div class="form_split">
+            <label for="FirstName"><strong>{{ 'customer.register.first_name' | t }}</strong></label>
+            <input type="text" name="customer[first_name]" class="margin_top_10" id="FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocapitalize="words" autofocus/>
+          </div>
+          <div class="form_split">
+            <label for="LastName"><strong>{{ 'customer.register.last_name' | t }}</strong></label>
+            <input type="text" name="customer[last_name]" class="margin_top_10" id="LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocapitalize="words"/>
+          </div>
+        </div>
+
+        <div class="form_row">
+          <label for="Email"><strong>{{ 'customer.register.email' | t }}</strong></label>
+          <input type="email" name="customer[email]" id="Email" class="margin_top_10 input-full{% if form.errors contains 'email' %} error{% endif %}" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off"/>
+        </div>
+      
+      	<div class="form_row hidden">
+          <label for="ActivationCode"><strong>Activation Code</strong></label>
+          <input type="text" name="activation_code" id="ActivationCode" class="margin_top_10 input-full{% if form.errors contains 'password' %} error{% endif %}">
+        </div>
+
+        <div class="form_row lifetime_submit_button">
+          <input type="submit" value="Activate"/>
+        </div>
+      </form>
+    </div>
+    <div class="column_6 lifetime_div_img_wrapper">
+      <img src="{{ 'bath_small.jpg' | asset_url }}" alt="" class="fullSize"/>
+    </div>
+  </div>
+</div>
+
+<script>
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+  
+  $(document).ready(function(){
+  	$('#ActivationCode').val(getUrlParameter('code'));
+  });
+</script>
+<style>
+  .form_split label, .form_row label{
+  	font-size:16px;
+  }
+  .form_split .margin_top_10,.form_row .margin_top_10{
+  	margin-top:5px;
+  }
+</style>

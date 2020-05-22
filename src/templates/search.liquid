@@ -1,0 +1,734 @@
+{%- comment %}<locksmith:7ab4>{% endcomment -%}
+  {%- if search.results %}{% paginate search.results by 15 %}{% assign locksmith_search__results_count = 0 %}{% for result in search.results %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: result, subject_parent: search, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif %}{% assign locksmith_search__results_count = locksmith_search__results_count | plus: 1 %}{% endfor %}{% endpaginate %}{% endif -%}
+{%- comment %}</locksmith:7ab4>{% endcomment -%}
+
+<!-- /templates/search.liquid -->
+<div id="loadOverlay" style="background-color:#fff; position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:2000;"></div>
+
+{% include 'search-results' %}
+{% comment %}
+
+  To return only products or pages in results:
+    - http://docs.shopify.com/manual/configuration/store-customization/return-only-product-in-storefront-search-results
+    - Or manually add type=product or type=page to the search URL as a parameter
+
+{% endcomment %}
+
+{% comment %}
+  Set grid_results to true and set search results as a grid instead of a list.
+  This works well when your search is only for products.
+{% endcomment %}
+{% assign grid_results = true %}
+
+{% comment %}
+  Check to enforce respond.js
+{% endcomment %}
+{% assign respond_js_secret_key = shop.domain | md5 %}
+{% unless search.terms == respond_js_secret_key %}
+
+{% comment %}
+  Avoid accessing search.results before the opening paginate tag.
+  If you do, the pagination of results will be broken.
+{% endcomment %}
+{% paginate search.results by 15 %}
+<div id="search-page">
+  <div class="grid">
+    <div class="grid__item large--two-thirds push--large--one-sixth">
+
+      {% if search.performed %}
+        {% if locksmith_search__results_count == 0 %}
+  
+        {% else %}
+
+        {% endif %}
+      {% else %}
+        <h1 class="text-center search-title">{{ 'general.search.title' | t }}</h1>
+      {% endif %}
+		
+       <form action="/search" method="get" class="search-bar" role="search">
+         <input type="hidden" name="type" value="product">
+         <div class='border-around-search'>
+          <button type="submit">
+            <span class="magnifying-glass-2" aria-hidden="true"><img class='lazyload' src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-expand="-10" data-src="https://cdn.shopify.com/s/files/1/0838/7991/files/magnify_2.png?14102756025552087246" style="width:20px;"/></span>
+          </button>
+          <input type="search" name="q" value="{{ search.terms|replace:'*','' | escape }}" placeholder="Search" class="input-group-field snize-exclude-input" aria-label="{{ 'general.search.placeholder' | t }}"/>
+        </div>
+      </form>
+
+      {% if search.performed %}
+
+        <hr class="hr--clear">
+
+        <div class="grid-uniform">
+          {%- comment %}<locksmith:c052>{% endcomment -%}
+            {%- assign locksmith_8ace_forloop__size = 0 %}{% for item in search.results %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: item, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_8ace_forloop__size = locksmith_8ace_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_8ace_forloop__index = nil -%}
+          {%- comment %}</locksmith:c052>{% endcomment -%}
+          {% for item in search.results %}
+{%- comment %}<locksmith:9380>{% endcomment -%}
+  {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: item, subject_parent: search, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_8ace_forloop__index == nil %}{% assign locksmith_8ace_forloop__index = 1 %}{% assign locksmith_8ace_forloop__index0 = 0 %}{% else %}{% assign locksmith_8ace_forloop__index = locksmith_8ace_forloop__index | plus: 1 %}{% assign locksmith_8ace_forloop__index0 = locksmith_8ace_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_8ace_forloop__index == 1 %}{% assign locksmith_8ace_forloop__first = true %}{% else %}{% assign locksmith_8ace_forloop__first = false %}{% endif %}{% if locksmith_8ace_forloop__index == locksmith_8ace_forloop__size %}{% assign locksmith_8ace_forloop__last = true %}{% else %}{% assign locksmith_8ace_forloop__last = false %}{% endif %}{% assign locksmith_8ace_forloop__rindex = locksmith_8ace_forloop__size | minus: locksmith_8ace_forloop__index | minus: 1 %}{% assign locksmith_8ace_forloop__rindex0 = locksmith_8ace_forloop__size | minus: locksmith_8ace_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+{%- comment %}</locksmith:9380>{% endcomment -%}
+{%- include 'bold-product-json', product: item -%}
+          
+            {% assign searchInTags = false %}
+          	
+            {% unless item.tags contains 'B2B' or item.tags contains 'dropper' %}
+          
+            {% capture downcaseSearchTerms %} {{ search.terms|replace:'*','' | downcase }} {% endcapture %}
+          
+          	{% for tag in item.tags %}
+              {% capture newTag %} {{ tag | split: '-' | join: ' ' }} {% endcapture %}
+              {% if newTag contains downcaseSearchTerms %}
+                  {% assign searchInTags = true %}
+              {% endif %}
+            {% endfor %}
+          
+            {% capture downcaseTitle %} {{ item.title | downcase }} {% endcapture %}
+            
+            {% if downcaseTitle contains downcaseSearchTerms or searchInTags == true or downcaseSearchTerms | append: 's' == downcaseTitle %}
+          
+          	<!-- Bold: Memberships (search) -->
+			{% include 'bold_mem_helper' with 'search' %}
+			<!-- end Bold code -->
+          
+          
+            {% comment %}
+              Check if the product is on sale and set a variable to be used below.
+            {% endcomment %}
+            {% assign on_sale = false %}
+            {% if item.compare_at_price > item.price %}
+              {% assign on_sale = true %}
+            {% endif %}
+
+            {% comment %}
+              Check if the product is sold out and set a variable to be used below.
+            {% endcomment %}
+            {% assign sold_out = true %}
+            {% if item.available %}
+              {% assign sold_out = false %}
+            {% endif %}
+
+            {% if grid_results == false %}
+              <!-- begin list search results-->
+              <div class="grid__item">
+                <div class="grid">
+                  {% if item.featured_image %}
+                    {% comment %}
+                      We have a featured_image, so it's likely a product
+                    {% endcomment %}
+                    <div class="grid__item one-third">
+                      <a href="{{ item.url }}" title="{{ item.title | escape }}">
+                        {{ item.featured_image.src | img_url: 'medium' | img_tag: item.featured_image.alt }}
+                      </a>
+                    </div>
+                  {% endif %}
+
+                  {% comment %}
+                    If we don't have a featured_image, add a push-- class to keep the alignment the same
+                  {% endcomment %}
+                  <div class="grid__item two-thirds {% unless item.featured_image %}push--one-third{% endunless %}">
+                    <h2 class="h3">{{ item.title | link_to: item.url }}</h2>
+
+                    {% if item.price %}
+                      <p>
+                        {% comment %}
+                          You can show a leading 'from' or 'up to' by checking 'product.price_varies'
+                          if your variants have different prices.
+                        {% endcomment %}
+                        {% if on_sale %}
+                          {% if item.price_varies %}
+                            {% assign sale_price = item.price | money %}
+                            {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+                          {% else %}
+                            <strong>{{ 'products.product.on_sale' | t }}</strong>
+                            <span itemprop="price">{{ item.price | money }}</span>
+                          {% endif %}
+                        {% else %}
+                          {% if item.price_varies %}
+                            {% assign price = item.price | money %}
+                            <span itemprop="price">{{ 'products.general.from_text_html' | t: price: price }}</span>
+                          {% else %}
+                            <span itemprop="price">{{ item.price | money }}</span>
+                          {% endif %}
+                        {% endif %}
+                        {% if sold_out %}
+                          <br><strong>{{ 'products.product.sold_out' | t }}</strong>
+                        {% endif %}
+                        {% if on_sale %}
+                          <br><span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span><s>{{ item.compare_at_price | money }}</s>
+                        {% endif %}
+                      </p>
+                    {% endif %}
+
+                    {% comment %}
+                      Get a brief excerpt of raw text from the page/product
+                    {% endcomment %}
+                    <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
+                  </div>
+                </div>
+                {% unless forloop.last %}<hr>{% endunless %}
+              </div>
+              <!-- //list search results-->
+            {% else %}
+              <!-- begin grid search results-->
+            <div class="grid__item search-result large--one-third medium--one-third">
+
+                      {% assign name = 'item' | append:item.id %}
+                      {% assign idNo = name | append:'-no' %}
+                      {% assign idYes = name | append:'-yes' %}
+
+                      {% assign checkedNo = 'checked' %}
+                      {% assign checkedYes = '' %}
+                      {% assign opacityClass = '' %}
+                      {% assign available = true %}
+
+                      {% if item.variants[0].inventory_quantity <= 0 %}
+                        {% assign available = false %}
+                      {% endif %}
+
+                      {% if shop.customer_accounts_enabled %}
+                        {% if customer %}
+                            {% assign checkedNo = 'disabled' %}
+                            {% assign checkedYes = 'checked' %}
+                            {% assign opacityClass = 'opacity-3' %}
+
+                            {% assign available = true %}
+                            {% if item.variants[0].inventory_quantity <= 0 %}
+                                {% assign available = false %}
+                            {% endif %}
+                        {% endif %}
+                      {% endif %}
+
+                      <div class="collection" id="{{ item.handle }}">
+                        <div class="collection_header">
+                          <a href="{{ item.url | within: collection }}">
+                            <img src="{{ item.featured_image.src | img_url: 'master' }}" alt="{{ item.featured_image.alt | escape }}">
+                          </a>
+                          <div class="collection_action" rel="{{name}}">
+                            {% if available == true %}
+                                {% if customer %}
+                                   {% if item.variants.first.sku == "123" or item.variants.first.sku == "1234" %}
+                                      <a href="{{ item.url | within: collection }}">
+                                          <div class="collection_update">
+                                          </div>
+                                      </a>
+                                   {% else %}
+                                     <div class="collection_to_cart" rel="{{name}}">ADD TO CART</div>
+                                   {% endif %}
+                                {% else %}
+                                  <div class="collection_to_cart subscribe-to-membership" rel="{{name}}">ADD TO CART</div>
+                                {% endif %}
+                                <div class="collection_update">
+                                  <div class="collection_update_spans clearfix">
+                                    <span class="collection_minus" rel="{{name}}"></span>
+                                    <div>
+                                      <span class="collection_count" id="collection_count_{{item.id}}"></span> IN CART
+                                    </div>
+                                    <span class="collection_plus" rel="{{name}}"></span>
+                                  </div>
+                                </div>
+                            {% else %}
+                                <div class="collection_coming_soon">SOLD OUT</div>
+                            {% endif %}
+                          </div> <!-- Collection Action End !-->
+                        </div>
+                        <div class="collection_body">
+                          
+                          <label class="collection_title">{{ product.title }}</label>
+
+                        {% comment %}
+                          {% for variant in item.variants %}
+                            <div><input type="radio"/><span>{{ variant.price | money }} <font>{{ variant.title }}</font></span></div>
+                          {% endfor %}
+                        {% endcomment %}
+
+                          {% comment %} <div class="{{opacityClass}}"> {% endcomment %}
+                          <div class="hidden">
+                          <input type="hidden" rel="{{item.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" {{checkedNo}} checked/><label for="{{idNo}}" onclick="">{{ item.variants[0].price | money }} <font>{{ item.variants[0].title }}</font></label></div>
+
+                          {% if customer and item.variants.first.sku != "1234" %}
+                            <div class="var_checkbox"><input type="hidden" name="{{name}}" id="{{idYes}}" value="{{ item.variants[0].id }}" class="productYes" {{checkedYes}}/><label style="cursor:default;" for="{{idYes}}" onclick="">{{ item.variants[0].price | money }} <font>{{ item.variants[0].title | remove: '(member)'}}<small>{% unless customer %}With membership, from $59 / year{% endunless %}</small></font></label></div>
+                          {% else %}
+                            {% if item.variants.first.sku != "1234" %}
+                              <a class="subscribe-to-membership-32-45 subscribe-to-membership membuttonclick free"><div><input type="hidden" name="{{name}}" id="{{idYes}}" value="{{ item.variants[0].id }}" class="productYes" {{checkedYes}}/><label style="color:#000; " for="{{idYes}}" onclick="">{{ item.variants[0].price | money }} <font>{{ product.variants[0].title }} <small>{% unless customer %}With membership of $59 / year{% endunless %}</small></font></label></div></a>
+                            {% endif %}
+                          {% endif %}
+
+
+                          <!--<div><input type="radio"/><span>$24 <font>Non-Member Price</font></span></div>
+                          <div><input type="radio"/><span>$3 <font>No Markup (Members Only)<small>With membership, from $10 / month</small></font></span></div>!-->
+                        </div>
+                      </div>
+                    {% endif %}
+
+                  </div> <!-- Collections End !-->
+        
+  
+              <!-- //grid search results-->
+       {% endif %}
+  {% endunless %}
+
+          {% endfor %}
+        </div>
+      
+      
+    {% if locksmith_search__results_count == 0 %}
+      <div class="search-bottom-section">
+        <h1 class="search-bottom-header">Sorry, we couldn’t find anything for <span id="render-search-term-here"></span>. <br>Don’t see what you’re looking for?</h1>
+        <p class="search-bottom-words">Browse some of our favorites.</p>
+        <p class="search-bottom-favorites"><a href="/collections/personal-care">Personal Care</a></p>  
+        <p class="search-bottom-favorites"><a href="/collections/household">Household</a></p>  
+        <p class="search-bottom-favorites"><a href="/collections/grocery">Healthy Food</a></p>
+        <p class="search-bottom-favorites"><a href="/collections/coffee-and-tea">Coffee and Tea</a></p>  
+      </div>
+    {% else %}
+      <div class="search-bottom-section">
+        <h1 class="search-bottom-header">Don’t see what you’re looking for?</h1>
+        <p class="search-bottom-words">Browse some of our favorites.</p>
+        <p class="search-bottom-favorites"><a href="/collections/personal-care">Personal Care</a></p>  
+        <p class="search-bottom-favorites"><a href="/collections/household">Household</a></p>  
+        <p class="search-bottom-favorites"><a href="/collections/grocery">Healthy Food</a></p>
+        <p class="search-bottom-favorites"><a href="/collections/coffee-and-tea">Coffee and Tea</a></p>  
+      </div>
+    {% endif %}
+
+<!--         {% if paginate.pages > 1 %}
+          <hr>
+          <div class="pagination">
+            {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+          </div>
+        {% endif %}
+ -->
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+{% endpaginate %}
+
+{% else %}
+  {% include 'respond' %}
+  {% layout none %}
+{% endunless %}
+
+<style>
+  #PageContainer.is-moved-by-drawer .grid {
+    padding-top: 40px;
+  }
+
+  #search-page .grid__item {
+    margin-left: 0;
+    margin-right: 0;
+    margin: 0 auto;
+    margin-bottom: 25px;
+  }
+  
+  #search-page {
+    height: 100vh;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  @media (max-width: 450px) {
+    .search-title {
+      width: 95%; 
+/*       margin: 0 auto; */
+      font-size: 14px;
+    }
+  }
+</style>
+  
+{% include 'reactivate-popup' %}
+{% include 'annual-payment-failed-popup' %}
+
+
+<script>
+  $(document).ready(function(){
+
+    $("#loadOverlay").css("display","none");
+    
+    function createCookie(name,value,days) {        if (days) { var date = new Date();
+            date.setTime(date.getTime()+(days*24*60*60*1000));
+            var expires = "; expires="+date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name+"="+value+expires+"; path=/";
+        }
+    createCookie("free_trial_button", "true", 30);
+    
+    {% unless customer %}
+       console.log("DOM fully loaded and parsed");
+       let GSscriptURL = 'https://script.google.com/macros/s/AKfycbyZpEbiGJEYiAXNX9kDbvOnLptx6gtkyMBBLYH5If59DcmH3B_y/exec'
+       const popupEmailForm = document.forms['popup-email-form'] 
+       let emailInput = document.getElementById('emailinput2').value
+
+
+       popupEmailForm.addEventListener('submit', e => {  
+         e.preventDefault()  
+
+         let popupEmailText = popupEmailForm.elements.namedItem("email2").value;
+
+          const payload = {
+          subscribers: [{
+            email: popupEmailText,
+          }]
+        }
+
+         fetch(GSscriptURL, { method: 'POST', body: new FormData(popupEmailForm)})  
+          .then(response => console.log('Success!', response))  
+          .catch(error => console.error('Error!', error.message))  
+
+         _dcq.push(
+          [
+            "subscribe",
+            {
+              campaign_id: "220285039",
+              fields: {
+                email: popupEmailText
+              },
+              success: function(response) {
+                 console.log(popupEmailText)
+              }
+            }
+          ]
+        );
+       })
+   {% endunless %}
+     
+     function sticktothebottom() {
+        var h = window.innerHeight;
+        var window_top = $(window).scrollTop();
+        var top = $('#stick-here').offset().top;
+        var panelh = $(".free-tote-second-div").height();
+
+        if(h> top || h + window_top > top + 50) {
+            $('#stickThis').appendTo('body');
+            $('#stickThis').css('position', 'fixed');
+            $('#stickThis').css('bottom', '0');
+        } else {
+            $('#stickThis').appendTo('#stick-here');
+            $('#stickThis').css('position', 'relative');
+            $('#stickThis').css('bottom', 'auto');
+        }
+      }
+
+      var w = window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
+
+      var h = window.innerHeight
+      || document.documentElement.clientHeight
+      || document.body.clientHeight;
+
+
+      $(function() {
+        $(window).scroll(sticktothebottom);
+        sticktothebottom();
+      });
+    
+    
+    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+     
+    if (isChrome) {
+      $(".arrow-next").css("margin-top", "-306px")
+      if ($(window.width() < 460)) {
+        $(".arrow-next").css("margin-top", "-296px")
+      }
+    }
+    
+  })
+  
+  
+</script>
+
+<script type="text/javascript" language="javascript">
+  var member = 0;
+  var idNo_modal = '';
+  var idYes_modal = '';
+
+  {% if shop.customer_accounts_enabled %}
+    {% if customer %}
+      member = 1;
+    {% endif %}
+  {% endif %}
+
+  $(document).ready(function(){
+        
+    {% for tag in customer.tags %} 
+    {% if tag == 'member' or tag == 'members' or tag == 'Member' %}
+    {% assign nonmember = false %}
+    {% endif %}
+    {% if tag == 'Unsubscribed' or tag == 'unsubscribed' %}
+    {% assign nonmember = true %}
+    {% endif %}
+    {% if tag == 'membershipPaymentFailed' %}
+    {% assign failedAnnualPayment = true %}
+    {% endif %}
+    {% endfor %}
+    
+    {% if customer.tags contains 'lifetime' or customer.tags contains 'Lifetime' %}
+    {% assign nonmember = false %}
+    {% endif %}
+    
+    var modal = $('#customModal');
+    var modalDom = document.getElementById('customModal');
+
+    var cart_items = {};
+
+    $('.productYes').click(function(){
+      console.log("here2222");
+      if(member == 0){
+        $("a#membership_button_11118").click();
+
+        // modal.show();
+        // $('body').css('overflow', 'hidden');
+
+        var name = $(this).parents('.collection:first').find('.collection_action:first').attr('rel');
+
+        idNo_modal = name + '-no';
+        idYes_modal = name + '-yes';
+        
+        $('#'+idYes_modal).removeAttr('checked');
+        $('#'+idNo_modal).prop('checked',true);
+      }
+    });
+
+    $('.collection_minus').click(function(){
+      var object = $(this).parents('.collection_update_spans:first');
+      var quantity_object = object.find('.collection_count:first');
+      var total_quantity = parseInt(quantity_object.html());
+      var name = $(this).attr('rel');
+      
+      var idNo = name + '-no';
+      var idYes = name + '-yes';
+
+      var variantId = $('#'+idNo).val();
+      if($('#'+idYes).prop('checked'))
+        variantId = $('#'+idYes).val();
+
+      var quantity = find_cart_quantity(variantId, 'minus');
+
+      $.ajax({
+        type:'POST', 
+        url:'/cart/change.js', 
+        data: {id: variantId, quantity: quantity}, 
+        dataType: 'json',
+        success: function(data){
+            setCartItem(variantId, {id: $('#'+idYes).val(), quantity: quantity});
+            if(total_quantity > 1)
+                quantity_object.html(total_quantity-1);
+            else
+                get_cart_items();
+            
+            update_cart_count('minus');
+        }
+      });  
+    });
+
+    $('.collection_plus').click(function(){
+      var object = $(this).parents('.collection_update_spans:first');
+      var quantity_object = object.find('.collection_count:first');
+      var total_quantity = parseInt(quantity_object.html());
+      var name = $(this).attr('rel');
+      
+      var idNo = name + '-no';
+      var idYes = name + '-yes';
+
+      var variantId = $('#'+idNo).val();
+      if($('#'+idYes).prop('checked'))
+        variantId = $('#'+idYes).val();
+
+      var quantity = find_cart_quantity(variantId, 'plus');
+
+      $.ajax({
+        type:'POST', 
+        url:'/cart/change.js', 
+        data: {id: variantId, quantity: quantity}, 
+        dataType: 'json',
+        success: function(data){
+            setCartItem(variantId, {id: $('#'+idYes).val(), quantity: quantity});
+            quantity_object.html(total_quantity+1);
+            update_cart_count('plus');
+        }
+      });  
+    });
+
+    $('.collection_to_cart').click(function(){
+      var name = $(this).attr('rel');
+      
+      var object = $(this).parents('.collection_action:first');
+
+      var idNo = name + '-no';
+      var idYes = name + '-yes';
+
+      var variantId = $('#'+idNo).val();
+      if($('#'+idYes).prop('checked'))
+        variantId = $('#'+idYes).val();
+      
+       {% if nonmember == true %}
+        {% if failedAnnualPayment == true %}
+          $('#payment-failed-pop-up-wrapper').css('display', 'block')
+          let popupWidth = (window.innerWidth - $('#payment-failed-pop-up-wrapper').width()) / 2
+          $('#payment-failed-pop-up-wrapper').css('right', popupWidth )
+        {% else %}
+          $('#reactivate-pop-up-wrapper').css('display', 'block')
+          let popupWidth = (window.innerWidth - $('#reactivate-pop-up-wrapper').width()) / 2
+          $('#reactivate-pop-up-wrapper').css('right', popupWidth )
+        {% endif %}
+      {% endif %}
+      
+    {% unless nonmember == true %}
+      $.ajax({
+        type:'POST', 
+        url:'/cart/add', 
+        data: {id: variantId}, 
+        dataType: 'json',
+        success: function(data){
+            get_cart_items();
+            update_cart_count('plus');
+            setCartItem(variantId, {id: $('#'+idYes).val(), quantity: 1});
+        }
+      });
+      {% endunless %}
+    });
+	
+    $('#boldTrigger').click(function(){
+    	$('.modal-close').click();
+      	$('#checkout_11118 a').click();
+    });
+    
+    $('.modal-close').click(function(){
+      modal.hide();
+      $('body').css('overflow', 'auto');
+
+      if(idYes_modal != '' && idNo_modal != ''){
+        $('#'+idYes_modal).removeAttr('checked');
+        $('#'+idNo_modal).prop('checked',true);
+
+        idYes_modal = '';
+        idNo_modal = '';
+      }
+    });
+
+    $(window).click(function(e){
+      if (e.target == modalDom){
+        modal.hide();
+        $('body').css('overflow', 'auto');
+
+        if(idYes_modal != '' && idNo_modal != ''){
+          $('#'+idYes_modal).removeAttr('checked');
+          $('#'+idNo_modal).prop('checked',true);
+
+          idYes_modal = '';
+          idNo_modal = '';
+        }
+      }
+    });
+
+    function get_cart_items(){
+        $('.collection_to_cart').show();
+        $('.collection_update').hide();
+        $('.collection_update').css('opacity', 0);
+
+        $.ajax({
+          type:'GET', 
+          url:'/cart.js', 
+          dataType: 'json',
+          success: function(data){
+            var items = data.items;
+
+            cart_items = items;
+
+            for(var i in items){
+              var temp = [];
+
+              if(items[i].merged)
+                continue;
+
+              temp.product_id = items[i].product_id;
+              temp.quantity = parseInt(items[i].quantity);
+              items[i].merged = true;
+
+              for(var j in items){
+                if(i >= j || items[j].merged)
+                  continue;
+
+                if(items[i].product_id == items[j].product_id){
+                  temp.quantity += parseInt(items[j].quantity);
+                  items[j].merged = true;
+                }
+              }
+
+              var id = 'collection_count_' + temp.product_id;
+              $('#'+id).html(temp.quantity);
+
+              var object = $('#'+id).parents('.collection_action:first');
+              object.find('.collection_to_cart:first').hide();
+              object.find('.collection_update:first').show();
+              object.find('.collection_update:first').css('opacity', 1);
+            }
+          }
+        });
+    }
+    
+    $('body').on('afterChangeItem.ajaxCart', function(evt, cart) {
+      get_cart_items();
+    });
+
+    $('body').on('afterAddItem.ajaxCart', function(evt, cart) {
+      get_cart_items();
+    });
+
+    function find_cart_quantity(id, action){
+        var quantity = 0;
+        if(cart_items.length > 0){
+            for(var i in cart_items){
+                if(cart_items[i].id == id){
+                    if(action == 'minus')
+                        cart_items[i].quantity -= 1;
+                    else if(action == 'plus')
+                        cart_items[i].quantity += 1;      
+
+                    quantity = cart_items[i].quantity;
+
+                    break;
+                }
+            }
+        }
+
+        return parseInt(quantity);
+    }
+
+    function update_cart_count(action){
+        var quantity = parseInt($('#CartCount').html());
+        
+        if(action == 'minus')
+            quantity--;
+        else if(action == 'plus')
+            quantity++;
+
+        $('#CartCount').html(quantity);
+        $('#CartCount_mobile').html(quantity);
+    }
+
+    get_cart_items();
+    
+    $(window).load(function(){
+      var match = new RegExp('[?&]cart=([^&]*)').exec(window.location.href);
+
+      var param = match && decodeURIComponent(match[1].replace());
+
+      if(param == 'show'){
+          ajaxCart.load();
+          timber.RightDrawer.open()
+      }
+    });
+  });
+  $(document).ready(function(){
+    $("#boldTrigger").click(function(){ 	 
+    	amplitude.getInstance().logEvent('all products cta one month free ');
+    });   
+  })
+</script>

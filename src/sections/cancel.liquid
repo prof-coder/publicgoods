@@ -1,0 +1,38 @@
+{% if customer %}
+<script type="text/javascript">
+  window.cancel_page = { offer_variant: {{  section.settings.offer_variant }} };
+</script>
+<script id="dont-run-out-membership-list-js" src="https://dont-run-out-membership.herokuapp.com/public/memberships/cancel/{{ customer.id }}.js?shopify_domain=morgans-dont-run-out.myshopify.com"></script> 
+{% else %}
+<p class="error not_customer">Sorry, you are not logged in</p>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Section Cancel",
+    "settings": [
+	  	{
+        "type":      "radio",
+   			"id":        "offer_variant",
+   			"label":     "Offer Variant",
+   			"options": [
+     			{ 
+     				"value": "0", 
+     				"label": "First" 
+     			},
+     			{ 
+     				"value": "1", 
+     				"label": "Second" 
+     			}
+   			],
+   			"default":   "1"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

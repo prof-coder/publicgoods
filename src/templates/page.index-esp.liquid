@@ -1,0 +1,205 @@
+{% layout 'theme.liquid' %}
+<!-- /templates/page.liquid -->
+
+<div id="mission_hero">
+  <div class="row clearfix">
+    <div class="column_6">
+      <h2 class="margin_bottom_50">Nuestra Misión</h2>
+      <h1 class="margin_bottom_50 without-padding">Productos saludables, <br>precios honestos.</h1>
+      {% if customer %}
+	     <a href="/collections/all-products" class="home-shop-btn browse-prod-btn">Busque Productos</a>
+      {% else %}
+		<a class="subscribe-to-membership-32-45 subscribe-to-membership home-shop-btn membuttonclick margin_top_30 button inverted button-cta" data-label="home-btn-click">Prueba Gratis</a>
+        <a href="/collections/all-products" class="home-shop-btn browse-prod-btn">Busque Productos</a>
+      {% endif %}
+      
+    </div>
+    <div class="text_center margin_top_50 margin_bottom_70">
+  
+  
+<!--     <a href="/pages/membership" class="button inverted">Join Today</a> -->
+         
+    </div>
+    <!--<img src="{{ 'two.png' | asset_url }}" alt=""/>!-->
+  </div>
+</div>
+
+<div id="page_content">
+  <div class="row" id="mission_top_text">
+    {% section 'member-favorites-esp' %}
+  </div>
+  <div class="section_block_text_column">
+    <div id="shopify-section-home-text-mision-top" class="shopify-section"><div class="row" id="home_text_mision_top">
+      <div class="column_12">
+        <h2 class="text_center">Cómo Lo Estamos Haciendo</h2>
+      </div>
+      <div class="column_6 align_center block_text_phone_home" style="float: none;">
+        <p class="text_center font_nb margin_top_30 margin_bottom_50">La mayoría de las marcas pasan por cuatro proveedores antes de venderle jabón. Eso agrega costo en cada paso. Pero estamos cambiando la cadena de suministro: una tarifa de membresía anual plana permite obtener cero de costo adicional.</p>
+        {% if customer %}
+    	  <a href="/collections/all-products" data-label="home-shop" class="ind-inv-btn browse-prod-btn">Todos los Productos</a>
+        {% else %}
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_bottom_20 margin_top_10 membuttonclick button inverted button-cta">Prueba Gratis</a>
+        {% endif %}
+        
+      </div>
+      <div class="clear"></div>
+    </div></div>
+  </div>
+
+
+  <div id="flows">
+    <!--<div class="mobile">
+      <h2>INFOGRAPHIC</h2>
+    </div>!-->
+    <div id="current_flow">
+      <div class="row">
+        <div class="column_12">
+          <img src="{{ 'old_flow1.png' | asset_url }}" alt=""/>
+        </div>
+        <img src="{{ 'labelnew.png' | asset_url }}" alt="" class="labelImage" />
+      </div>
+    </div>
+    <div id="old_flow">
+      <div class="row">
+        <div class="column_12">
+          <img src="{{ 'new_flow.png' | asset_url }}" alt=""/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="flows-mobile">
+      <div class="row">
+        <div class="column_12">
+          <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/mobile.jpg?11718027169943468730" alt=""/>
+        </div>
+      </div>
+  </div>
+
+  <div class="row margin_bottom_50">
+    <h2 class="text_center" id="difference_header">Nuestra diferencia de producto</h2>
+    <div class="difference_pack">
+      <div class="column_7">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/package.jpg?15711509899398966051" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">Fórmulas<br/>obsesivas.</h2>
+        <p>Nos llevó más de un año desarrollar nuestros primeros productos. Revisamos más de 100 laboratorios. Consultamos con expertos en belleza limpia. Contratamos a los químicos más reputados. Luego tuvimos a nuestros amigos, familiares y las personas más exigentes que pudimos encontrar para probar cada producto.</p>
+        {% if customer %}
+    	  <a style="margin-top:25px;" href="/collections/all-products" data-label="home-shop" class="ind-inv-btn browse-prod-btn">Todos los Productos</a>
+        {% else %}
+          <a style="margin-top:25px;" class="subscribe-to-membership-32-45 subscribe-to-membership membuttonclick margin_top_30 button inverted button-cta">Prueba Gratis</a>
+        {% endif %}
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+
+      <div class="column_7" style="float:right;">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/ingredients.jpg?15711509899398966051" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">Saludable,<br/>no perjudicial.</h2>
+        <p>¿Sabía que hay más de 1,000 ingredientes no saludables prohibidos en Europa que se usan en productos aquí en los Estados Unidos? ¿Sabía que están relacionados con cáncer, interrupción hormonal y una serie de otros efectos dañinos? No te asustes, infórmate. En Public Goods estás protegido porque sólo usamos ingredientes seguros y saludables.</p>
+        {% if customer %}
+    	  <a style="margin-top:25px;" href="/collections/all-products" data-label="home-shop" class="ind-inv-btn browse-prod-btn">Todos los Productos</a>
+        {% else %}
+          <a style="margin-top:25px;" class="subscribe-to-membership-32-45 subscribe-to-membership membuttonclick margin_top_30 button inverted button-cta">Prueba Gratis</a>
+        {% endif %}
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+      
+      <div class="column_7">
+        <img src="{{ 'bath.jpg' | asset_url }}" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">Diseñado para<br/>tu hogar.</h2>
+        <p>Llámenos 'snobs', pero no podemos soportar las botellas brillantes y mal diseñadas que utilizan la mayoría de las marcas. Se ven así porque están hechos para sobresalir en la farmacia, no para estar sentados maravillosamente en su casa. Nuestro empaque es limpio y simple, diseñado para complementar su espacio, no para asaltarlo visualmente.</p>
+        {% if customer %}
+    	  <a style="margin-top:25px;" href="/collections/all-products" data-label="home-shop" class="ind-inv-btn browse-prod-btn">Todos los Productos</a>
+        {% else %}
+          <a style="margin-top:25px;" class="subscribe-to-membership-32-45 subscribe-to-membership membuttonclick margin_top_30 button inverted button-cta">Prueba Gratis</a>
+        {% endif %}
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+    </div>
+  </div>
+<!--   <script>
+    $(document).ready(function(){
+      $(".button.inverted").click(function(e){
+        event.stopPropagation();
+        console.log($("#memberships_button_11118"));
+        console.log($("#memberships_button_11118")[0]);
+//        $("#memberships_button_11118").click();
+      })
+    });
+  </script> -->
+
+  <!--<div class="row">
+    <div class="column_12"><h2 class="text_center margin_bottom_50">Show Us Your Goods</h2></div>
+    <div class="column_12">
+      <div class="goods">
+        {% for product in collections.featured-goods.products limit:10 %}
+          {%- comment %}<locksmith:5ace>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections.featured-goods, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:5ace>{% endcomment -%}
+          <div class="good">
+            <a href="{{ product.url | within: collection }}"><img src="{{ product.featured_image.src | img_url: 'medium' }}" alt=""/></a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="column_12">
+      <p class="text_center" id="publicgoods">#publicgoods</p>
+    </div>
+  </div>!--><!-- Row End !-->
+  
+<!-- Popup email capture   -->
+  {% unless customer %}
+  <div id="on-exit-popup" style='display: none;'>
+    <div id="popup-top-div">
+      <div id="top-left-div">
+        <h1 id="popup-header-text">Amigos con beneficios.</h1>
+      </div>
+      <div id="top-right-div">
+        <img id="popup-closeBtn" src="{{ 'X.svg' | asset_url }}"/>
+      </div>
+    </div>
+    <div id="popup-middle-div">
+      <p id="popup-body-text">Únete a nuestra lista para el primer acceso a nuevos productos, adelantos y más.</p>
+    </div>
+    <div id="popup-bottom-div">
+      <footer style="padding-top: 0;">
+        <form name="popup-email-form" style="padding-top: 0; position: relative;" class="validate-form footer_submit_form">
+          <input name="email" id="emailinput" value="" placeholder="" class="drip-text-field popupInput" type="email" required="">
+          <div id="drip-errors-for-email-27436" class="drip-errors" style="display: none"></div>
+          <a href="/collections/all-products" class="home-shop-btn" id="popup-post-signup-button" style="display: none; background-color: white; color:#EB8364;">Empieza A Comprar</a>
+          <input name="submit" value="Suscribir" id="drip-submit-27436" class="drip-submit-button submit-capture popup-submit-button" type="submit">
+
+          <div id="drip-success-panel-27436" class="drip-success drip-panel" style="display: none">
+            <p>Gracias.</p>
+          </div>
+        </form>
+      </footer>
+    </div>
+  </div>
+{% endunless %}
+{% include 'on-exit-popup-esp' %}
+<!-- End popup email capture -->
+</div> <!-- Page Content End !-->
+
+<script>
+  $(document).ready(function(){
+    
+    
+    function createCookie(name,value,days) {        if (days) { var date = new Date();
+            date.setTime(date.getTime()+(days*24*60*60*1000));
+            var expires = "; expires="+date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name+"="+value+expires+"; path=/";
+        }
+    createCookie("free_trial_button", "true", 30);
+  })
+</script>

@@ -1,0 +1,177 @@
+
+<div id="page-content">
+  <div id="content">
+    <h1>Enter your email, we’ll plant a tree on your behalf.</h1>
+    <form id="try-anything-form">
+      <div>
+        <input type="email" id="amazon-email" name="email" placeholder="Enter email."/>
+        <button type="submit" id="submit-form">Plant A Tree</button>
+      </div>
+    </form>
+    <p id="trees-info">No cost to you, and one of the most effective ways to combat climate change.</p>
+    <p>Our goal: 100,000 trees this month.</p>
+  </div>
+</div>
+
+
+<style>
+  #page-content {
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/tree_desktop_fill_d46abfd3-51b2-4831-8abe-31488f6f8bd6.jpg?v=1579808255);
+    background-size: cover;
+    height: 900px;
+  }
+  
+  #content {
+    padding-top: 175px;
+    width: 550px;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+  }
+  
+  #trees-directions {
+    padding: 50px 0;
+  }
+  
+  #try-anything-form {
+    padding: 75px 0 75px 0;
+  }
+  
+  #submit-form {
+    background-color: #dc876c;
+    height: 47px;
+    width: 125px;
+    color: #fff;
+    font-family: 'NBH';
+    margin-left: -4px;
+    font-size: 16px;
+  }
+  
+  #submit-form:hover {
+    opacity: .8;
+    -webkit-transition: font-size 0.3s, opacity 0.3s;
+  }
+  
+  #amazon-email {
+    height: 45px;
+    border: 0;
+    margin-top: 7px;
+    width: 245px;
+    padding-left: 5px;
+    line-height: .5;
+    border: 1px solid #dc876c;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  #amazon-email::placeholder, #submit-form::placeholder {
+    padding-top: 5px;
+  }  
+  
+  #trees-info {
+    padding-bottom: 20px;
+  }
+  
+  @media (min-height: 1100px) {
+    #page-content {
+      height: 81vh;
+    }
+  }
+  
+  @media (max-width: 737px) {
+    p {
+      font-size: 16px;
+    }
+    
+    #content {
+      width: 450px;
+    }
+    #page-content {
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/tree_mobile_full_ce27b2c9-dfb2-4dd1-a4cd-82524152688d.jpg?v=1579808255);
+    }
+  }
+  
+  @media (max-width: 500px) {
+    #page-content {
+      height: 750px;
+    }
+    
+    #content {
+      width: 300px;
+      padding-top: 150px;
+    }
+    
+    #content h1 {
+      width: 250px;
+      margin: 0 auto;
+    }
+    
+    #amazon-email {
+      margin-bottom: 10px;
+    }
+    
+    #submit-form {
+      width: 150px;
+      font-size: 16px;
+    }
+    
+    #trees-directions {
+      padding: 25px 0;
+    }
+    
+    #try-anything-form {
+      padding: 20px 0 35px 0;
+    }
+    
+    #trees-info {
+      padding-bottom: 25px;
+    }
+    
+  }
+</style>
+
+<script>
+  
+  $(document).ready(function(){
+    
+    function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    
+  	var emailUTM = getParameterByName('email');
+    $("#amazon-email").val(emailUTM)
+    
+    let emailCapture = document.getElementById("submit-form")
+    let tryAnythingForm = document.getElementById('try-anything-form')
+  	
+     tryAnythingForm.addEventListener('submit', e => {  
+       e.preventDefault()  
+
+       let emailText = tryAnythingForm.elements.namedItem("email").value;
+
+       
+       _dcq.push(
+            [
+              "subscribe",
+              {
+                campaign_id: '160073027',
+                fields: {
+                  email: emailText
+                },
+                success: function(response) {
+                   console.log(emailText)
+                   window.location.href= 'https://www.publicgoods.com/pages/lets-plant-trees-step-two'
+                },
+                failure: function(response) {
+                  alert("There was a problem submitting your response. Please contact customer service, thank you.")
+                }
+              }
+            ]
+          );
+     })
+       
+  })
+</script>

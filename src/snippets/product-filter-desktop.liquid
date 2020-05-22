@@ -1,0 +1,154 @@
+<script>
+  $('.shop-products-btn').mouseover(function(e) {
+    e.preventDefault()
+    let filter = document.getElementsByClassName('header-filter')
+    $('.header-filter-desktop').toggleClass('hide-filter')
+//     $('.publicgoods-header').toggleClass('fixedPosition')
+//     for (let i = 0; i < filter.length; i++) {
+//       if (filter[i].style.display = 'none') {
+//         console.log('to flex')
+//   	  	$('.header-filter').css('display', 'flex')
+//       } else {
+//         console.log('to none')
+//       $('.header-filter').css('display', 'none')
+//       }
+//     }
+  })
+  $('.header-filter-desktop').mouseleave(function(e) {
+    $('.header-filter-desktop').toggleClass('hide-filter')
+  })
+                               
+  $('#mobile-categories-text').click(function(e) {
+    e.preventDefault()
+    console.log('ayeee')
+    $('#mobile-filter-display').slideToggle(450)
+    
+    setTimeout(function() {
+      if ($('#mobile-filter-display').css('display') == 'block') {
+        $('body').addClass("fixedPosition");
+//         $("#collection_hero").css('min-height', '0')
+      } else {
+        $('body').removeClass("fixedPosition");
+      }
+    }, 500)
+    
+  })
+  
+  $('#mobile_menu_trigger').click(function(){
+
+    if ($('#mobile_menu_trigger').hasClass('menu_close')) {
+      $('body').removeClass("fixedPosition");
+      $('#mobile-nav-arrow').css('display', 'none')
+    } else {
+      $('body').addClass("fixedPosition");
+      $('#mobile-nav-arrow').css('display', 'none')
+    }
+    
+     setTimeout(function() {
+       if ($("#mobile_menu").prop('scrollHeight') > $("#mobile_menu").height() ) {
+        $('#mobile-nav-arrow').css('display', 'inline')
+       } else {
+         $('#mobile-nav-arrow').css('display', 'none')
+       }
+     },350)
+  })
+  
+  $(document).ready(function () {
+    var mobileMenu = $('#mobile_menu')
+    $('#mobile_menu').scroll(function() {
+      isScrolledToBottom(mobileMenu)
+    })
+  });
+  
+  function isScrolledToBottom(el) {
+    var $el = $(el);
+
+    if ($el.scrollTop() + $el.outerHeight() > $("#mobile_menu").prop('scrollHeight') - 5) {
+       $('#mobile-nav-arrow').css('display', 'none')
+    } else {
+      $('#mobile-nav-arrow').css('display', 'inline')
+    }
+  }
+  
+  $('.nav-personal-care-title').click(function() {
+    $('.nav-personal-care-title').css('border-bottom', '1px solid #000')
+    $('.nav-food-title').css('border-bottom', 'none')
+    $('.nav-vitamins-title').css('border-bottom', 'none')
+    $('.nav-household-title').css('border-bottom', 'none')
+    $('.mobile-nav-food').css('display', 'none')
+    $('.mobile-nav-household').css('display', 'none')
+    $('.mobile-nav-personal-care').css('display', 'block')
+    $('.mobile-nav-vitamins').css('display', 'none')
+    
+     if ($("#mobile_menu").prop('scrollHeight') > $("#mobile_menu").height() ) {
+      $('#mobile-nav-arrow').css('display', 'inline')
+     } else {
+       $('#mobile-nav-arrow').css('display', 'none')
+     }
+  })
+  
+  $('.nav-food-title').click(function() {
+    $('.nav-food-title').css('border-bottom', '1px solid #000')
+    $('.nav-personal-care-title').css('border-bottom', 'none')
+    $('.nav-household-title').css('border-bottom', 'none')
+    $('.nav-vitamins-title').css('border-bottom', 'none')
+    $('.mobile-nav-food').css('display', 'block')
+    $('.mobile-nav-household').css('display', 'none')
+    $('.mobile-nav-personal-care').css('display', 'none')
+    $('.mobile-nav-vitamins').css('display', 'none')
+    
+    if ($("#mobile_menu").prop('scrollHeight') > $("#mobile_menu").height() ) {
+      $('#mobile-nav-arrow').css('display', 'inline')
+     } else {
+       $('#mobile-nav-arrow').css('display', 'none')
+     }
+  })
+  
+  $('.nav-household-title').click(function() {
+    $('.nav-food-title').css('border-bottom', 'none')
+    $('.nav-personal-care-title').css('border-bottom', 'none')
+    $('.nav-vitamins-title').css('border-bottom', 'none')
+    $('.nav-household-title').css('border-bottom', '1px solid #000')
+    $('.mobile-nav-food').css('display', 'none')
+    $('.mobile-nav-household').css('display', 'block')
+    $('.mobile-nav-personal-care').css('display', 'none')
+    $('.mobile-nav-vitamins').css('display', 'none')
+//     $('html, body').css('overflow','scroll')
+    
+    if ($("#mobile_menu").prop('scrollHeight') > $("#mobile_menu").height() ) {
+      $('#mobile-nav-arrow').css('display', 'inline')
+     } else {
+       $('#mobile-nav-arrow').css('display', 'none')
+     }
+  })
+  
+  $('.nav-vitamins-title').click(function() {
+    $('.nav-food-title').css('border-bottom', 'none')
+    $('.nav-personal-care-title').css('border-bottom', 'none')
+    $('.nav-household-title').css('border-bottom', 'none')
+    $('.nav-vitamins-title').css('border-bottom', '1px solid #000')
+    $('.mobile-nav-food').css('display', 'none')
+    $('.mobile-nav-vitamins').css('display', 'block')
+    $('.mobile-nav-personal-care').css('display', 'none')
+    $('.mobile-nav-household').css('display', 'none')
+//     $('html, body').css('overflow','scroll')
+    
+    if ($("#mobile_menu").prop('scrollHeight') > $("#mobile_menu").height() ) {
+      $('#mobile-nav-arrow').css('display', 'inline')
+     } else {
+       $('#mobile-nav-arrow').css('display', 'none')
+     }
+  })
+
+  
+</script>
+
+<style>
+  .fixedPosition {
+    position: fixed;
+ }
+  
+  .showArrow {
+    display: inline;
+  }
+</style>

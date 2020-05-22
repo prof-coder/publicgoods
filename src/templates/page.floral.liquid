@@ -1,0 +1,507 @@
+<!-- /templates/page.liquid -->
+
+<div id="mission_hero">
+  <div class="row clearfix">
+    <div class="column_6">
+       <h1 class="margin_bottom_50">Healthy. Beautiful. Affordable.</h1>
+      <p class="margin_bottom_50 without-padding">Good-for-you, eco-friendly and beautifully designed home essentials, all in one place and at ultra-low prices.</p>
+      <div id="hero-buttons">
+      {% if customer %}
+	     <a href="/collections/all-products" class="home-shop-btn">Browse Products</a>
+      {% else %}
+    	<a class="subscribe-to-membership-32-45 subscribe-to-membership button inverted button-cta">Free Trial</a>
+<!--         <a href="/collections/all-products" class="home-shop-btn browse-prod-btn">Browse Products</a> -->
+      {% endif %}
+      </div>
+      
+    </div>
+    <div class="text_center margin_top_50 margin_bottom_70">
+   <div id="stick-here" class="stick-here"></div>
+  
+<!--     <a href="/pages/membership" class="button inverted">Join Today</a> -->
+         
+    </div>
+    <!--<img src="{{ 'two.png' | asset_url }}" alt=""/>!-->
+  </div>
+</div>
+
+<div id="sticky-button-bottom">
+      {% if customer %}
+        <div id="stickThis" class="free-tote-second-div" style="width: 100%">
+          <a href="/collections/all-products" class="button inverted">Browse Products</a>
+        </div>
+      {% else %}
+        <div id="stickThis" class="free-tote-second-div" style="width: 100%">
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free Trial</a>
+        </div>
+      {% endif %}
+    </div>
+
+<div id="page_content">
+
+
+
+  <div class="row margin_bottom_50">
+    <div class="difference_pack">
+      <div class="column_7">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/veggies_965b55b0-7e34-4a30-b302-aa9ca393a627.jpg?41219" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">Healthy and sustainable.</h2>
+        <p>We don’t make products that aren’t good for people and the planet.</p>
+        {% if customer %}
+    	  <a href="/collections/all-products" class="margin_bottom_20 margin_top_10 button inverted membuttonclick button-cta">Shop products</a>
+        {% else %}
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free Trial</a>
+        {% endif %}
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+
+      <div class="column_7" style="float:right;">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/baby_a0a31c55-92a7-4fc0-9344-d1adcf20b374.jpg?41219" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">Beautiful and simple.</h2>
+        <p>Simple, minimalist packaging designed to look beautiful in your space, rather than stand out on a drug store shelf.</p>
+        {% if customer %}
+    	  <a href="/collections/all-products" class="margin_bottom_20 margin_top_10 button inverted membuttonclick button-cta">Shop products</a>
+        {% else %}
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free Trial</a>
+        {% endif %}
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+      
+      <div class="column_7">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/infographic_d8717b6e-f4aa-48d4-b666-0a2c09b18278.jpg?41219" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">Affordable and accessible.</h2>
+        <p>We made a new model where we bring the healthiest essentials directly to you at the lowest price.</p>
+        {% if customer %}
+    	  <a href="/collections/all-products" class="margin_bottom_20 margin_top_10 button inverted membuttonclick button-cta">Shop products</a>
+        {% else %}
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free Trial</a>
+        {% endif %}
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+    </div>
+  </div>
+  
+  <div id="floral-quotes">
+	<div class="quotes-content">
+      <div class="review-stars margin_bottom_20">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/stars_05f9f9b5-b913-447a-830f-e18b29acfc67.png?41332" style="position:static" />
+      </div>
+       <h1 id="coffee-headline">"The whole experience is more appealing than I realized shopping could be."</h1>
+      <p id="coffee-reviewer">Claire</p>
+    </div>
+  </div>
+  
+   <div class="column_12">
+     <h2 class="best-sellers-title">OUR BEST SELLERS</h2>
+	<div class="content_member_favorites">
+      {%- comment %}<locksmith:6761>{% endcomment -%}
+        {%- assign locksmith_f977_forloop__size = 0 %}{% for product in collections.floral-lp.products %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_f977_forloop__size = locksmith_f977_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_f977_forloop__index = nil -%}
+      {%- comment %}</locksmith:6761>{% endcomment -%}
+      {% for product in collections.floral-lp.products %}
+          {%- comment %}<locksmith:c93d>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections.floral-lp, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_f977_forloop__index == nil %}{% assign locksmith_f977_forloop__index = 1 %}{% assign locksmith_f977_forloop__index0 = 0 %}{% else %}{% assign locksmith_f977_forloop__index = locksmith_f977_forloop__index | plus: 1 %}{% assign locksmith_f977_forloop__index0 = locksmith_f977_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_f977_forloop__index == 1 %}{% assign locksmith_f977_forloop__first = true %}{% else %}{% assign locksmith_f977_forloop__first = false %}{% endif %}{% if locksmith_f977_forloop__index == locksmith_f977_forloop__size %}{% assign locksmith_f977_forloop__last = true %}{% else %}{% assign locksmith_f977_forloop__last = false %}{% endif %}{% assign locksmith_f977_forloop__rindex = locksmith_f977_forloop__size | minus: locksmith_f977_forloop__index | minus: 1 %}{% assign locksmith_f977_forloop__rindex0 = locksmith_f977_forloop__size | minus: locksmith_f977_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:c93d>{% endcomment -%}
+          {% assign name = 'product' | append:product.id %}
+          {% assign idNo = name | append:'-no' %}
+          {% assign idYes = name | append:'-yes' %}
+      
+          {% assign checkedNo = 'checked' %}
+          {% assign checkedYes = '' %}
+          {% assign opacityClass = '' %}
+          {% assign available = true %}
+
+          {% if product.variants[0].inventory_quantity <= 0 %}
+            {% assign available = false %}
+          {% endif %}
+
+          {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+            {% assign checkedNo = 'disabled' %}
+            {% assign checkedYes = 'checked' %}
+            {% assign opacityClass = 'opacity-3' %}
+
+            {% assign available = true %}
+            {% if product.variants[0].inventory_quantity <= 0 %}
+              {% assign available = false %}
+            {% endif %}
+          {% endif %}
+          {% endif %}
+      {% if locksmith_f977_forloop__index <= 4 %}
+      {% assign name = 'product' | append:product.id %}
+    		<div class="home_members_block_column">
+          <div class="collection collection_on_front_page" id="{{ product.handle }}">
+            <div class="collection_header">
+	        	<a href="{{ product.url }}">
+	              <img src="{{ product.featured_image.src | img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}">
+    				</a>
+				 <div class="collection_action" rel="{{name}}">
+	            	<div class="collection_to_cart" rel="{{name}}">ADD TO CART</div>
+	            	<div class="collection_update">
+	                  <div class="collection_update_spans clearfix">
+	                    <span class="collection_minus" rel="{{name}}"></span>
+	                    <div>
+	                      <span class="collection_count" id="collection_count_{{product.id}}"></span> IN CART
+	                    </div>
+	                    <span class="collection_plus" rel="{{name}}"></span>
+	                  </div>
+	                </div>
+	              </div> <!-- Collection Action End !-->
+            </div>
+            <div class="collection_body collection_body_on_front_page">
+            	<a href="{{ product.url }}">
+                <label class="collection_title">{{ product.title }}</label>
+                <div class="price_on_front_page">
+<!--               	<label class="opacity" >{{ product.variants[0].price | money }}</label> -->
+        				<label>{{ product.variants[0].price | money }}</label></div>
+        			</a>
+              <div class="hidden_home">
+                <div class="{{opacityClass}}"><input type="radio" rel="{{product.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" {{checkedNo}}/><label for="{{idNo}}" onclick="">{{ product.variants[0].price | money }} <font>{{ product.variants[0].title }}</font></label></div>
+
+                <div><input type="radio" name="{{name}}" id="{{idYes}}" value="{{ product.variants[0].id }}" class="productYes" {{checkedYes}}/><label for="{{idYes}}" onclick="">{{ product.variants[0].price | money }} <font>{{ product.variants[0].title }}<small>{% unless customer %}With membership, from $59 / year{% endunless %}</small></font></label></div>
+              </div>
+      
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="clearfix"></div>
+</div>
+  
+  
+  <div id="try-us-section">
+    <div class="try-us-content">
+      <h1>Try us free.</h1>
+      <p>As seen in:</p>
+      <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/press-quotes_91d094a2-b12d-4230-90c1-ce737eea723d.png?41332" />
+      {% unless customer %}<a class="subscribe-to-membership-32-45 subscribe-to-membership button inverted button-cta">Free Trial</a>{% endunless %}
+<!--         {% if customer %}<a href="/collections/all-products" class="home-shop-btn">Browse Products</a>{% endif %} -->
+    </div>
+  </div>
+  
+  
+  
+  <script>
+    $(document).ready(function(){
+      $(".button.inverted").click(function(e){
+        event.stopPropagation();
+        console.log($("#memberships_button_11118"));
+        console.log($("#memberships_button_11118")[0]);
+//        $("#memberships_button_11118").click();
+      })
+    });
+  </script>
+
+  <!--<div class="row">
+    <div class="column_12"><h2 class="text_center margin_bottom_50">Show Us Your Goods</h2></div>
+    <div class="column_12">
+      <div class="goods">
+        {% for product in collections.featured-goods.products limit:10 %}
+          {%- comment %}<locksmith:29d4>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections.featured-goods, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:29d4>{% endcomment -%}
+          <div class="good">
+            <a href="{{ product.url | within: collection }}"><img src="{{ product.featured_image.src | img_url: 'medium' }}" alt=""/></a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="column_12">
+      <p class="text_center" id="publicgoods">#publicgoods</p>
+    </div>
+  </div>!--><!-- Row End !-->
+</div> <!-- Page Content End !-->
+
+<script>
+  $(document).ready(function(){
+    
+    
+    function createCookie(name,value,days) {        if (days) { var date = new Date();
+            date.setTime(date.getTime()+(days*24*60*60*1000));
+            var expires = "; expires="+date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name+"="+value+expires+"; path=/";
+        }
+    createCookie("free_trial_button", "true", 30);
+    
+    
+    
+    const headlines = ["“A game changer in the online space for families on a budget.”", "“No matter what you order you can trust that the quality will not disappoint.”", "“Super high quality, much less expensive products.”", "“The whole experience is more appealing than I realized shopping could be.”"]
+    const reviewers = ["Tom", "Justin", "Karen", "Claire"]
+    let numOfReviews = headlines.length
+    let idx = 0
+    
+    setInterval(function() {
+      $("#coffee-headline").text(headlines[idx])
+      $("#coffee-reviewer").text(reviewers[idx])
+      idx = (idx + 1) % numOfReviews
+    }, 3000)
+    
+    
+  })
+  
+  function sticktothebottom() {
+    var h = window.innerHeight;
+    var window_top = $(window).scrollTop();
+    var top = $('#stick-here').offset().top;
+    var panelh = $(".free-tote-second-div").height();
+    
+    if(h> top || h + window_top > top + 50) {
+        $('#stickThis').appendTo('body');
+        $('#stickThis').css('position', 'fixed');
+     	$('#stickThis').css('bottom', '0');
+    } else {
+        $('#stickThis').appendTo('#stick-here');
+        $('#stickThis').css('position', 'relative');
+        $('#stickThis').css('bottom', 'auto');
+    }
+   }
+   
+  
+ 
+    var w = window.innerWidth
+    || document.documentElement.clientWidth
+    || document.body.clientWidth;
+
+    var h = window.innerHeight
+    || document.documentElement.clientHeight
+    || document.body.clientHeight;
+
+
+      $(function() {
+        $(window).scroll(sticktothebottom);
+        sticktothebottom();
+      });
+</script>
+{{ 'memberships-response.js' | asset_url | script_tag }}
+
+<style>
+  
+  .free-tote-second-div {
+    display: none !important;
+  }
+  
+  #hero-buttons {
+    display: block;
+  }
+  
+  #mission_hero {
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/florals-hero_desktop.jpg?41219);
+  }
+  
+  .difference_pack h2 {
+    padding-top: 75px;
+  }
+  
+  .difference_pack p {
+    padding: 5px 0;
+  }
+  
+  #floral-quotes {
+    height: 360px;
+    background-color: #f5886b;
+    margin: 30px;
+  }
+  
+  .quotes-content {
+    text-align: center;
+    padding-top: 50px;
+    width: 600px;
+    margin: 0 auto;
+  }
+  
+  #coffee-headline, #coffee-reviewer {
+    color: #fff;
+  }
+  
+  #coffee-headline {
+    padding: 40px 0;
+    font-size: 30px;
+    line-height: 34px;
+  }
+  
+  .review-stars img {
+    width: 200px;
+    margin-right: 0 !important;
+  }
+  
+  .best-sellers-title {
+    padding: 50px 0;
+    text-align: center;
+  }
+  
+  #try-us-section {
+    height: 500px;
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/new-to-public-goods_desktop_e76b7c53-55bd-4971-beda-63c6457658a6.jpg?41332);
+    background-position-y: 88%;
+    background-size: cover;
+  }
+  
+  .try-us-content {
+    padding-top: 100px;
+    padding-left: 100px;
+  }
+  
+  #try-us-section img {
+    width: 400px;
+  }
+  
+  #try-us-section p {
+    padding-top: 40px;
+    padding-bottom: 15px;
+    color: #aaa;
+  }
+  
+  .home-shop-btn, #try-us-section .subscribe-to-membership {
+    display: block;
+    margin-top: 40px;
+  }
+  
+  @media screen and (max-width: 950px) {
+    #hero-buttons, .row .button-cta,   #try-us-section .home-shop-btn, #try-us-section .subscribe-to-membership  {
+      display: none;
+    }
+    .free-tote-second-div {
+      display: block !important;
+    }
+    #stickThis a.button.inverted {
+      margin: 0px !important;
+      width: 100% !important;
+      text-align: center !important;
+    }
+    .popup-wrapper {
+      height: 100%;
+/*       margin-top: 210px; */
+    }
+    #mission_hero .column_6 {
+      width: 55%;
+      padding: 0 30px;
+      text-align: left;
+    }
+    #mission_hero {
+      background-position-x: 75%;
+    }
+    #try-us-section {
+	  height: 725px;
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/new-to-public-goods_mobile_fd3c4f7a-029e-48ba-bdb8-6085903d739c.jpg?41332);
+      background-position-y: 39%;
+    }
+    .try-us-content {
+      padding: 60px 0 0 0;
+      text-align: center;
+    }
+    #try-us-section p {
+      padding-top: 50px;
+    }
+  }
+
+  #mission_hero h1 {
+    padding-bottom: 0 !important;
+  }
+  
+  @media (max-width: 737px) {
+    #floral-quotes {
+      height: 350px;
+    }
+    .quotes-content {
+      width: 400px;
+    }
+    #try-us-section {
+      height: 650px;
+      background-position-y: 30%;
+    }
+    #coffee-headline {
+      font-size: 24px;
+      line-height: 28px;
+    }
+    .difference_pack h2 {
+      padding-top: 10px;
+    }
+  }
+  
+  @media (max-width: 550px) {
+    #mission_hero {
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/florals-hero_mobile.jpg?41332);
+    }
+    
+    #coffee-headline {
+      font-size: 20px;
+      line-height: 24px;
+    }
+    
+    .review-stars img {
+      width: 100px;
+    }
+    #try-us-section {
+      height: 500px;
+      background-position-y: 30%;
+   }
+    #try-us-section img {
+      width: 300px;
+    }
+    #try-us-section p {
+      padding-top: 30px;
+    }
+    .try-us-content {
+      padding: 30px 0 0 0;
+      width: 305px;
+      margin: 0 auto;
+    }
+    
+  }
+  
+  @media (max-width: 450px) {
+    #mission_hero {
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/florals-hero_mobile_2.jpg?41619);
+      height: 350px;
+      background-position-y: 50px;
+    }
+    #mission_hero .column_6 {
+      margin-top: 0px;
+    }
+    
+    #floral-quotes {
+     height: 300px;
+    }
+     #coffee-headline {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    .quotes-content {
+      width: 225px;
+    }
+  }
+  
+  @media (max-width: 450px) {
+    #try-us-section {
+      background-position-y: 0%;
+    }
+  }
+  
+  @media (max-width: 375px) {
+    #try-us-section {
+      height: 450px;
+    }
+    #mission_hero .column_6 {
+      width: 63%;
+    }
+  }
+  
+  @media (max-width: 320px) {
+    #try-us-section {
+      height: 400px;
+    }
+  }
+</style>

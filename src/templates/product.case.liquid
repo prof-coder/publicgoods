@@ -1,0 +1,815 @@
+
+<style>
+  
+  body {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  .cbb-also-bought-slider {
+    text-align: center;
+    overflow-x: scroll !important;
+  }
+  
+  .cbb-also-bought-title {
+    font-family: 'BN' !important;
+    text-align: left !important;
+  }
+  .money {
+    font-family: "NBH" !important;
+  }
+  .cbb-also-bought-slider {
+    text-align: center;
+  }
+  .cbb-also-bought-container {
+    padding: 20px 10px !important;
+  }
+  
+  .cbb-also-bought-title {
+    padding-left: 20px;
+    margin-top: 1em;
+    padding-top: 0.5em;
+  }
+  
+  {% unless customer %}
+    .cbb-also-bought-add-to-cart-button {
+      display: none !important;
+    }
+  {% endunless %}
+  
+  .product_description p {
+    margin-bottom: 30px !important;
+  }
+  
+  {% if customer %}
+    @media (max-width: 737px) {
+      body {
+        margin-top: 20px !important;
+      }
+    }
+  {% endif %}
+  
+</style>
+
+
+<script src="kenwheeler.github.io/slick/slick/slick.js"></script>
+<!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+<!-- <script type="text/javascript" src="slick/slick.min.js"></script> -->
+
+{% assign is_imperfect = false %}
+
+{% for collection in product.collections %}
+	{% if collection.handle == 'imperfect-goods' %}
+		{% assign is_imperfect = true %}
+		{% break; %}
+	{% endif %}
+{% endfor %}
+
+<!-- /templates/product.liquid -->
+<div class="memberships_button hiddenBtn" id="checkout_11118"	data-billingid="11118" data-planid="2418" data-approot="https://mem.boldapps.net" data-hash="06ac502d0bd77a332cf0c651ceaed93c" data-label="30 Days For Free" data-domain="morgans-dont-run-out.myshopify.com"></div>
+        
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+<div id="product_detail" itemscope itemtype="http://schema.org/Product">
+  
+    {% assign variantNo = product.variants[1] %}
+      {% assign variantYes = product.variants[0] %}
+      {% assign opacityClass = '' %}
+
+      {% assign checkedNo = 'checked' %}
+      {% assign checkedYes = '' %}
+      
+      {% assign available = true %}
+	  {% if product.variants[0].inventory_quantity <= 0 %}
+      	{% assign available = false %}
+      {% endif %}
+      
+      {% if shop.customer_accounts_enabled %}
+        {% if customer %}
+          {% assign checkedNo = 'disabled' %}
+          {% assign checkedYes = 'checked' %}
+          {% assign opacityClass = 'opacity-3' %}
+      	  
+          {% assign available = true %}
+	  	  {% if product.variants[0].inventory_quantity <= 0 %}
+      	  	{% assign available = false %}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+  
+
+  <div class="row clearfix">
+    <div class="column_6">
+      <h2 class="product_title">{{ product.title }}</h2>
+
+       <div class="product-image-carousel">
+        {% for image in product.images %}
+          <div class="slide">
+            <a href="#" data-product-single-thumbnail>
+              {% if image.src == product.featured_image %}
+                <img src="{{ image.src | img_url: 'master'  }}" alt="{{ image.alt | escape }}">
+              {% endif %}
+			  {% unless image.src == product.featured_image %}
+                <img data-lazy="{{ image.src | img_url: 'master'  }}" alt="{{ image.alt | escape }}">
+              {% endunless %}
+            </a>
+        </div>
+        {% endfor %}
+      </div>
+      
+      <a href="/collections/all-products" class="desktop">&lt;&nbsp;&nbsp;Back to all products</a>
+    </div>
+    
+    <div class="column_6 grocery-price-mobile">
+      
+       <label class="collection_title all-products-product-stars"> 
+                <a href="#anchor-reviews">  <!--- Star Reviews !--->
+                  <div class="yotpo bottomLine yotpo-small"
+                    data-appkey="1czk4hDZQU9jrmp3MaNi1wqhc05RABHrg6aDSVLd"
+                    data-domain="{{shop.permanent_domain | escape }}"
+                    data-product-id="{{ product.id }}"
+                    data-product-models="{{ product.id }}"
+                    data-name="{{ product.title | escape }}"
+                    data-url="{{ shop.url }}{{ product.url }}"
+                    data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                    data-description="{{ product.description | escape }}"
+                    data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+                  </div>
+                </a>
+              </label>
+      
+       <div class="radios">
+        
+        {% if customer %}
+        <div class="var_checkbox"><input type="hidden" name="product_select" id="productYes" value="{{variantYes.id}}" {{checkedYes}}/><span><font><span class="money" data-product-id="{{ product.id }}">{{ variantYes.price | money }}</span></font> {{ variantYes.title | remove: '(member)' }} <small>{% unless customer %}With membership, from $59 / year{% endunless %}</small></span></div>
+        {% else %}        
+        <a class="subscribe-to-membership-32-45 subscribe-to-membership membuttonclick free">
+          <div>
+            <input type="hidden" name="product_select" id="productYes" value="{{variantYes.id}}" {{checkedYes}}/>
+            <span>
+              <font><span class="money" data-product-id="{{ product.id }}">{{ variantYes.price | money }}</span></font> {{ variantYes.title }}
+            </span>
+          </div>
+        </a>
+         <a class="subscribe-to-membership-32-45 subscribe-to-membership membuttonclick free" style="display:block">
+          <small style="font-family: 'NB'">{% unless customer %}With membership of $59 / year{% endunless %}</small>
+         </a>
+        {% endif %}
+      </div>
+
+    </div>
+    
+    <div class="column_6">
+      <div id="sold-out" class="product_description">{{ product.description }}</div>
+      <div id="esc-oos-form"></div>
+     {% assign hide_ingredients = false %}
+      
+      {% for tag in product.tags %}
+          {% if tag == 'hide-ingredients' %}
+            {% assign hide_ingredients = true %}
+            {% break %}
+          {% endif %}
+      {% endfor %}
+      
+      
+       <div class="grocery-price-desktop">
+         
+          <div class="grocery-stars-desktop">
+          <label class="collection_title all-products-product-stars"> 
+                <a href="#anchor-reviews">  <!--- Star Reviews !--->
+                  <div class="yotpo bottomLine yotpo-small"
+                    data-appkey="1czk4hDZQU9jrmp3MaNi1wqhc05RABHrg6aDSVLd"
+                    data-domain="{{shop.permanent_domain | escape }}"
+                    data-product-id="{{ product.id }}"
+                    data-product-models="{{ product.id }}"
+                    data-name="{{ product.title | escape }}"
+                    data-url="{{ shop.url }}{{ product.url }}"
+                    data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                    data-description="{{ product.description | escape }}"
+                    data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+                  </div>
+                </a>
+              </label>
+         </div>
+
+        <div class="margin_top_50 radios">
+  <!--         <div class="{{opacityClass}}"><input type="hidden" name="product_select" id="productNo" value="{{variantNo.id}}" {{checkedNo}}/><span><font><span class="money" data-product-id="{{ product.id }}">{{ variantNo.price | money }}</span></font> {{ variantNo.title }}</span></div> -->
+
+
+          {% if customer %}
+          <div class="var_checkbox"><input type="hidden" name="product_select" id="productYes" value="{{variantYes.id}}" {{checkedYes}}/><span><font><span class="money" data-product-id="{{ product.id }}">{{ variantYes.price | money }}</span></font> {{ variantYes.title | remove: '(member)' }} <small>{% unless customer %}With membership, from $59 / year{% endunless %}</small></span></div>
+          {% else %}        
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership membuttonclick free">
+            <div>
+              <input type="hidden" name="product_select" id="productYes" value="{{variantYes.id}}" {{checkedYes}}/>
+              <span>
+                <font><span class="money" data-product-id="{{ product.id }}">{{ variantYes.price | money }}</span></font> {{ variantYes.title }} <small>{% unless customer %}With membership of $59 / year{% endunless %}</small>
+              </span>
+            </div>
+          </a>
+          {% endif %}
+
+        </div>
+         
+     </div>
+	<div class="grocery-button-desktop">
+      {% if available == true %}
+        <div id="cartControl_con">
+          <div id="cartControl">
+            <span id="cartControl_minus"></span>
+            <div>
+              <font id="cartControl_count"></font> IN CART
+            </div>
+            <span id="cartControl_plus"></span>
+          </div>
+        </div>
+
+        {% if customer %}<div id="addtocartDiv" class="stickThis">ADD TO CART</div>{% else %}<div id="addtocartDiv" class="stickThis subscribe-to-membership-32-45 subscribe-to-membership">ADD TO CART</div>{% endif %}
+        {% else %}
+        <div id="addtocartDiv_coming" class="stickThis">Sold Out</div>
+      {% endif %}
+     </div>
+      
+      <input type="hidden" id="product_id" value="{{product.id}}"/>
+
+      <div class="clear"></div>
+      <div style="display:block;"></div>
+      {% unless hide_ingredients %}
+      
+      <label class="margin_top_50 healthy-ings-nothing-to-hide">healthy ingredients with nothing to hide</label>
+      
+      <div class="specs universal" style="padding-bottom: 50px;">
+        
+         
+        {% if product.tags contains "organic"  %}      
+        <div class="spec"><span>O</span><p> <br/>organic</p></div>
+        {% endif %}
+        {% if product.tags contains "treefree"  %}
+        <div class="spec"><span>TF</span><p>tree<br/>free</p></div>
+        {% endif %} 
+        {% if product.tags contains "bamboo"  %}
+        <div class="spec"><span>BB</span><p>bam<br/>boo</p></div>
+        {% endif %} 
+        {% if product.tags contains "sugarcane"  %}
+        <div class="spec"><span>SC</span><p>sugar<br/>cane</p></div>
+        {% endif %} 
+        {% if product.tags contains "natural-silk"  %}
+        <div class="spec"><span>NS</span><p>natural<br/>silk</p></div>
+        {% endif %}         
+        {% if product.tags contains "biodegradable"  %}
+        <div class="spec"><span>BD</span><p>bio<br/>degradable</p></div>
+        {% endif %} 
+        {% if product.tags contains "septic-safe"  %}
+        <div class="spec"><span>SS</span><p>septic<br/>safe</p></div>
+        {% endif %}                         
+        {% if product.tags contains "paraben-free"  %}
+        <div class="spec"><span>PF</span><p>paraben<br/>free</p></div>
+        {% endif %}
+        {% if product.tags contains "vegan-friendly"  %}
+        <div class="spec"><span>VF</span><p>vegan<br/>friendly</p></div>
+        {% endif %}
+        {% if product.tags contains "sulfate-free"  %}      
+        <div class="spec"><span>SF</span><p>sulfate<br/>free</p></div>
+        {% endif %}
+        {% if product.tags contains "gluten-free"  %}      
+        <div class="spec"><span>GF</span><p>gluten<br/>free</p></div>
+        {% endif %}
+        {% if product.tags contains "natural-fragrance"  %}      
+        <div class="spec"><span>NF</span><p>natural<br/>fragrance</p></div>
+        {% endif %}   
+        {% if product.tags contains "fragrance-free"  %}      
+        <div class="spec"><span>FF</span><p>fragrance<br/>free</p></div>
+        {% endif %}         
+        {% if product.tags contains "cruelty-free"  %}      
+        <div class="spec"><span>CF</span><p>cruelty<br/>free</p></div>
+        {% endif %}          
+        {% if product.tags contains "baby-safe"  %}      
+        <div class="spec"><span>BS</span><p>baby<br/>safe</p></div>
+        {% endif %}   
+        {% if product.tags contains "all-natural"  %}      
+        <div class="spec"><span>AN</span><p>all<br/>natural</p></div>
+        {% endif %}   
+        {% if product.tags contains "bacteria-resistant"  %}      
+        <div class="spec"><span>BR</span><p>bacteria<br/>resistant</p></div>
+        {% endif %}          
+        
+        
+        {% if product.tags contains "stainless-steel"  %}      
+        <div class="spec"><span>SS</span><p>stainless<br/>steel</p></div>
+        {% endif %}
+        {% if product.tags contains "dishwasher-friendly"  %}      
+        <div class="spec"><span>DF</span><p>dishwasher<br/>friendly</p></div>
+        {% endif %}
+        {% if product.tags contains "BPA-free"  %}      
+        <div class="spec"><span>BF</span><p>BPA<br/>free</p></div>
+        {% endif %}
+        {% if product.tags contains "eco-friendly"  %}      
+        <div class="spec"><span>EF</span><p>eco<br/>friendly</p></div>
+        {% endif %}
+        {% if product.tags contains "phthalate-free"  %}      
+        <div class="spec"><span>PF</span><p>phthalate<br/>free</p></div>
+        {% endif %}
+        {% if product.tags contains "multi-purpose"  %}      
+        <div class="spec"><span>MP</span><p>multi<br/>purpose</p></div>
+        {% endif %}
+        {% if product.tags contains "pet-free"  %}      
+        <div class="spec"><span>PF</span><p>PET<br/>free</p></div>
+        {% endif %}
+        {% if product.tags contains "no-single-use-plastic"  %}      
+        <div class="spec"><span>NP</span><p>no single<br/>use plastic</p></div>
+        {% endif %}
+        
+        {% if product.tags contains "non-GMO"  %}      
+        <div class="spec"><span>NG</span><p>non<br/>GMO</p></div>
+        {% endif %}
+        {% if product.tags contains "fair-trade"  %}      
+        <div class="spec"><span>FT</span><p>fair<br/>trade</p></div>
+        {% endif %}
+        {% if product.tags contains "natural-silk"  %}      
+        <div class="spec"><span>NS</span><p>natural<br/>silk</p></div>
+        {% endif %}
+        {% if product.tags contains "additive-free"  %}      
+        <div class="spec"><span>AF</span><p>additive<br/>free</p></div>
+        {% endif %}
+        
+        {% if product.tags contains "recycled-material"  %}      
+        <div class="spec"><span>RM</span><p>recycled<br/>material</p></div>
+        {% endif %}
+        {% if product.tags contains "landfill-friendly"  %}      
+        <div class="spec"><span>LF</span><p>landfill<br/>friendly</p></div>
+        {% endif %}
+        {% if product.tags contains "certified-organic"  %}      
+        <div class="spec"><span>CO</span><p>certified<br/>organic</p></div>
+        {% endif %}
+        {% if product.tags contains "grade-a"  %}      
+        <div class="spec"><span>GA</span><p>grade<br/>A</p></div>
+        {% endif %}
+        {% if product.tags contains "lightly-caffeinated"  %}      
+        <div class="spec"><span>LC</span><p>lightly<br/>caffeinated</p></div>
+        {% endif %}
+         {% if product.tags contains "high-protein"  %}      
+        <div class="spec"><span>HP</span><p>high<br/>protein</p></div>
+        {% endif %}
+         {% if product.tags contains "no-sugar-added"  %}      
+        <div class="spec"><span>NS</span><p>no sugar<br/>added</p></div>
+        {% endif %}
+         {% if product.tags contains "preservative-free"  %}      
+        <div class="spec"><span>PF</span><p>preservative<br/>free</p></div>
+        {% endif %}
+         {% if product.tags contains "dairy-free"  %}      
+        <div class="spec"><span>DF</span><p>dairy<br/>free</p></div>
+        {% endif %}
+        
+        {% if product.tags contains "chlorine-free"  %}      
+        <div class="spec"><span>CF</span><p>chlorine<br/>free</p></div>
+        {% endif %}
+         {% if product.tags contains "no-rayon"  %}      
+        <div class="spec"><span>NR</span><p>no<br/>rayon</p></div>
+        {% endif %}
+         {% if product.tags contains "organic-cotton"  %}      
+        <div class="spec"><span>OC</span><p>organic<br/>cotton</p></div>
+        {% endif %}
+         {% if product.tags contains "no-applicator"  %}      
+        <div class="spec"><span>NO</span><p>no<br/>applicator</p></div>
+        {% endif %}
+        
+        
+      </div>
+      {% endunless %}
+<form action="/cart/add" method="post" enctype="multipart/form-data">
+  
+<!--       <div id="w3-product-accessories" data-product-handle="{{ product.handle }}">
+        <div id="w3-money-format" style="display:none;">{{ shop.money_format }}</div>
+      </div> -->
+  
+       <script data-app="esc-out-of-stock" type="text/json">[{% for variant in product.variants %}{"id":{{ variant.id }},"title":"{{ variant.title }}","option1":{% if variant.option1 %}"{{ variant.option1 }}"{% else %}null{% endif %},"option2":{% if variant.option2 %}"{{ variant.option2 }}"{% else %}null{% endif %},"option3":{% if variant.option3 %}"{{ variant.option3 }}"{% else %}null{% endif %},"sku":{% if variant.sku %}"{{ variant.sku }}"{% else %}null{% endif %},"requires_shipping":{{ variant.requires_shipping }},"taxable":{{ variant.taxable }},"featured_image":{% if variant.featured_image %}"{{ variant.featured_image }}"{% else %}null{% endif %},"available":{{ variant.available }},"name":"{{ variant.name }}","public_title":"{{ variant.public_title }}","options":{{ variant.options | json }},"price":{{ variant.price }},"weight":{% if variant.weight %}{{ variant.weight }}{% else %}0{% endif %},"compare_at_price":{% if variant.compare_at_price %}{{ variant.compare_at_price }}{% else %}null{% endif %},"inventory_quantity":{% if variant.inventory_quantity > 0 %}1{% else %}0{% endif %},"inventory_management":{% if variant.inventory_management %}"{{ variant.inventory_management }}"{% else %}null{% endif %},"inventory_policy":{% if variant.inventory_policy %}"{{ variant.inventory_policy }}"{% else %}null{% endif %},"barcode":{% if variant.barcode %}"{{ variant.barcode }}"{% else %}null{% endif %}}{% unless forloop.last %},{% endunless %}{% endfor %}]</script>
+      </form>
+      <!--<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical" style="visibility: hidden;">
+        <input type="hidden" name="id" value=""/>
+        <button type="submit" name="add" id="AddToCart" class="btn">Add to cart</button>  
+      </form>!-->
+
+    </div>
+    <div class="grocery-button-mobile">
+      {% if available == true %}
+        <div id="cartControl_con">
+          <div id="cartControl">
+            <span id="cartControl_minus"></span>
+            <div>
+              <font id="cartControl_count"></font> IN CART
+            </div>
+            <span id="cartControl_plus"></span>
+          </div>
+        </div>
+
+        {% if customer %}<div id="addtocartDiv" class="stickThis addtocartDivMobile">ADD TO CART</div>{% else %}<div id="addtocartDiv" class="stickThis subscribe-to-membership-32-45 subscribe-to-membership">ADD TO CART</div>{% endif %}
+        {% else %}
+        <div id="addtocartDiv_coming" class="stickThis">Sold out</div>
+      {% endif %}
+     </div>
+    
+  </div>
+</div>
+
+<div class="row clearfix" id="also-bought-with">
+ <div class="column_12 ">
+  </div>
+</div>
+
+<a name="anchor-reviews"></a>
+<div class="row clearfix" id="product-comments-block">
+  <div class="column_12">
+    <h2 class="margin_top_30">Reviews</h2>
+    <div class="yotpo yotpo-main-widget"
+        data-product-id="{{ product.id }}"
+        data-name="{{ product.title | escape }}"
+        data-url="{{ shop.url }}{{ product.url }}"
+        data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
+        data-description="{{ product.description | escape }}">
+    </div>
+   
+  </div>
+</div>
+
+{% include 'product-grocery' %}
+
+
+<style type="text/css">
+  .yotpo.yotpo-main-widget{ margin-bottom: 30px !important;}
+  .yotpo-label.yotpo-small-box{ display: none;}
+  .yotpo-first-review{ display: none;}
+  .yotpo-icon-write:before { content: '+' !important; color: black; font-size: 25px !important;}
+  .yotpo .yotpo-regular-box{ padding:10px 0 !important; margin: 0 !important; border-top: none !important; border-bottom: 2px solid #dc886c;}
+
+  .write-review-button .yotpo-icon-button-text{ display: none !important;}
+  
+  .yotpo.yotpo-main-widget .yotpo-bottomline.yotpo-bottomline-2-boxes .yotpo-default-button.write-review-button{
+    top: 0 !important;
+    color: black;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    display: block;
+    border: 1px solid black;
+    border-radius: 40px;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+  	line-height: 40px !important;
+  }
+  .yotpo-stars-and-sum-reviews .yotpo-default-button.write-review-button { display: none !important;}
+
+  .yotpo-bottomline .yotpo-icon-empty-star, .yotpo .yotpo-review .yotpo-header .yotpo-review-stars .yotpo-icon-empty-star{ color: #a6a8ab !important;}
+
+  .yotpo .write-review .yotpo-header .yotpo-icon{ color: #EDA937 !important;}
+  .yotpo .primary-color-btn.yotpo-disabled, .yotpo input[type="button"].primary-color-btn.yotpo-disabled{
+    background-color: #dc886c !important;
+  }
+  .yotpo .primary-color-btn.yotpo-disabled:hover, .yotpo input[type="button"].primary-color-btn.yotpo-disabled:hover{
+    background-color: #dc886c !important;
+  }
+  .yotpo .primary-color-btn, .yotpo input[type="button"].primary-color-btn{
+    background-color: #dc886c !important;
+  }
+  .yotpo .primary-color-btn:hover, .yotpo input[type="button"].primary-color-btn:hover{
+    background-color: #dc886c !important;
+  }
+  .yotpo .yotpo-nav ul .yotpo-nav-tab.yotpo-active span{
+    color: black !important;
+  }
+  .yotpo .yotpo-review .yotpo-header .yotpo-header-element .y-label.yotpo-user-name{
+    color: black !important;
+  }
+
+  .yotpo .yotpo-bottomline .yotpo-icon-star, .yotpo .yotpo-review .yotpo-header .yotpo-review-stars .yotpo-icon-star{
+    color: #EDA937 !important;
+  }
+  
+  .yotpo.yotpo-main-widget .yotpo-thank-you .yotpo-thankyou-header .yotpo-icon{
+  	color: #EDA937 !important;
+  }
+  
+  .yotpo.yotpo-main-widget .yotpo-thank-you .yotpo-thankyou-header span {
+    color: #EDA937 !important;
+  }  
+  
+</style>
+
+{% include 'reactivate-popup' %}
+
+<script>
+  
+var member = 0;
+var cart_items = {};
+var mine = [];
+
+{% if shop.customer_accounts_enabled %}
+  {% if customer %}
+    member = 1;
+  {% endif %}
+{% endif %}
+
+$(document).ready(function(){
+  
+  // Update cart count when an Also Bought product is added to the cart
+  setTimeout(function() {
+    $(".cbb-also-bought-add-to-cart-button").click(function() {
+     let newCartCount = parseInt(document.getElementById('CartCount').innerText) + 1
+     document.getElementById('CartCount').innerText = newCartCount
+    })
+    $(".cbb-also-bought-add-to-cart-button").click(function() {
+     let newCartCount = parseInt(document.getElementById('CartCount_mobile').innerText) + 1
+     document.getElementById('CartCount_mobile').innerText = newCartCount
+    })
+  },1000)
+
+  var $slideShow = $('.product-image-carousel').slick({
+    dots: true,
+    arrows: false,
+    rows:1,
+    slidesToShow: 1,
+    slidesToScroll:1,
+    lazyLoad: 'ondemand',
+//     focusOnSelect: true,
+  });
+  $('.slide').click(function(e) {
+    e.preventDefault()
+    $slideShow.slick('slickNext');
+  });
+  
+  
+  var product_id = $('#product_id').val();
+
+  var modal = $('#customModal');
+  var modalDom = document.getElementById('customModal');
+
+  $('#productYes').click(function(){
+    if(member == 0){
+       //  modal.show();
+       //  $('body').css('overflow', 'hidden');
+      $(this).parent().parent().click();
+      	return false;
+
+        
+    }
+  });
+  
+  $('#boldTrigger').click(function(){
+    $('.modal-close').click();
+    $('#checkout_11118 a').click();
+  });
+  
+  $('#cartControl_plus').click(function(){
+    var id = $('#productNo').val();
+
+    if($('#productYes').prop("checked"))
+      id = $('#productYes').val();
+
+    $.ajax({
+      type:'POST', 
+      url:'/cart/change.js', 
+      data: {id: id, quantity: mine.quantity+1}, 
+      dataType: 'json',
+      success: function(data){
+          update_mine('plus');
+          update_cart_count('plus');
+          setCartItem(id, {id: $('#productYes').val(), quantity: mine.quantity+1}); 
+      }
+    });  
+  });
+
+  $('#cartControl_minus').click(function(){
+    var id = $('#productNo').val();
+
+    if($('#productYes').prop("checked"))
+      id = $('#productYes').val();
+
+    $.ajax({
+      type:'POST', 
+      url:'/cart/change.js', 
+      data: {id: id, quantity: mine.quantity-1}, 
+      dataType: 'json',
+      success: function(data){
+          update_mine('minus');
+          update_cart_count('minus');
+          setCartItem(id, {id: $('#productYes').val(), quantity: mine.quantity-1});
+      }
+    });  
+  });
+
+  $('#addtocartDiv').click(function(){
+    var id = $('#productNo').val();
+
+    if($('#productYes').prop("checked"))
+      id = $('#productYes').val();
+
+    /*var form = $('#AddToCartForm');
+    form.find('input[name="id"]').val(id);
+
+    form.submit();*/
+    
+    {% for tag in customer.tags %}
+    
+      {% if tag == 'member' or tag == 'members' %}
+        {% assign nonmember = false %}
+      {% endif %}
+    
+      {% if tag == 'Unsubscribed' or tag == 'unsubscribed' %}
+        {% assign nonmember = true %}
+      {% endif %}
+    
+    {% endfor %}
+    
+    {% if customer.tags contains 'lifetime' %}
+      {% assign nonmember = false %}
+    {% endif %}
+    
+     {% if nonmember == true %}
+      	$('#reactivate-pop-up-wrapper').css('display', 'block')
+        let popupWidth = (window.innerWidth - $('#reactivate-pop-up-wrapper').width()) / 2
+        $('#reactivate-pop-up-wrapper').css('right', popupWidth )
+      {% endif %}
+
+    {% if nonmember == false %}
+    $.ajax({
+      type:'POST', 
+      url:'/cart/add', 
+      data: {id: id}, 
+      dataType: 'json',
+      success: function(data){
+          update_mine('plus');
+          update_cart_count('plus');
+          setCartItem(id, {id: $('#productYes').val(), quantity: 1});
+      }
+    });
+    {% endif %}
+  });
+  
+  $('.addtocartDivMobile').click(function(){
+    var id = $('#productNo').val();
+	console.log('clicked')
+    if($('#productYes').prop("checked"))
+      id = $('#productYes').val();
+
+    /*var form = $('#AddToCartForm');
+    form.find('input[name="id"]').val(id);
+
+    form.submit();*/
+    
+    {% for tag in customer.tags %}
+      {% if tag == 'member' or tag == 'members' %}
+        {% assign nonmember = false %}
+      {% endif %}
+      {% if tag == 'Unsubscribed' or tag == 'unsubscribed' %}
+        {% assign nonmember = true %}
+      {% endif %}
+    {% endfor %}
+    
+    {% if customer.tags contains 'lifetime' %}
+      {% assign nonmember = false %}
+    {% endif %}
+    
+     {% if nonmember == true %}
+      	$('#reactivate-pop-up-wrapper').css('display', 'block')
+        let popupWidth = (window.innerWidth - $('#reactivate-pop-up-wrapper').width()) / 2
+        $('#reactivate-pop-up-wrapper').css('right', popupWidth )
+      {% endif %}
+
+    {% if nonmember == false %}
+    $.ajax({
+      type:'POST', 
+      url:'/cart/add', 
+      data: {id: id}, 
+      dataType: 'json',
+      success: function(data){
+          update_mine('plus');
+          update_cart_count('plus');
+          setCartItem(id, {id: $('#productYes').val(), quantity: 1});
+      }
+    });
+    {% endif %}
+  });
+
+  $('.modal-close').click(function(){
+    modal.hide();
+    $('body').css('overflow', 'auto');
+
+    $('#productYes').removeAttr('checked');
+    $('#productNo').prop('checked',true);
+  });
+
+  $(window).click(function(e){
+    if (e.target == modalDom){
+      modal.hide();
+      $('body').css('overflow', 'auto');
+   
+      $('#productYes').removeAttr('checked');
+      $('#productNo').prop('checked',true);
+    }
+  });
+
+  function update_mine(action){
+    if(action == 'plus')
+      mine.quantity++;
+    else if(action == 'minus')
+      mine.quantity--;
+
+
+    if(mine.quantity <= 0){
+      $('#cartControl_con').hide();
+      $('#addtocartDiv').show();
+    }else{
+      $('#cartControl_count').html(mine.quantity);
+      $('#cartControl_con').show();
+      $('#addtocartDiv').hide();
+    }
+  }
+
+  function update_cart_count(action){
+      var quantity = parseInt($('#CartCount').html());
+      
+      if(action == 'minus')
+          quantity--;
+      else if(action == 'plus')
+          quantity++;
+
+      $('#CartCount').html(quantity);
+      $('#CartCount_mobile').html(quantity);
+  }
+
+  get_cart_items();
+
+  function get_cart_items(){
+    $('#addtocartDiv').hide();
+    $('#cartControl_con').hide();
+
+    $.ajax({
+      type:'GET', 
+      url:'/cart.js', 
+      dataType: 'json',
+      success: function(data){
+        var items = data.items;
+
+        cart_items = items;
+
+        mine.quantity = 0;
+
+        for(var i in items){
+          if(product_id == items[i].product_id){
+            mine.quantity += parseInt(items[i].quantity);
+          }
+        }
+
+        if(mine.quantity > 0){
+          $('#cartControl_count').html(mine.quantity);
+          $('#cartControl_con').show();
+          $('#addtocartDiv').hide();
+        }else{
+          $('#addtocartDiv').show();
+        }
+      }
+    });
+  }
+  
+  $('body').on('afterChangeItem.ajaxCart', function(evt, cart) {
+    get_cart_items();
+  });
+  
+  $('body').on('afterAddItem.ajaxCart', function(evt, cart) {
+    get_cart_items();
+  });
+  
+//   setTimeout(function() {
+//     document.getElementsByClassName('spb-productoptiontextcolor')[0].checked = true
+//   }, 5000)
+});
+$(document).ready(function(){
+    $("#boldTrigger").click(function(){ 	 
+    	amplitude.getInstance().logEvent('product cta one month free ');
+    });   
+  })
+
+// Dropper autoselect
+
+setTimeout(function() {
+  document.getElementsByClassName('spb-productoptiontextcolor')[0].checked = true
+}, 6000)
+
+</script>
+
+<style>
+  .esc-email-input{
+    font-family: inherit;
+  }
+  
+  #esc-out-of-stock-inputs .esc-btn {
+    
+}
+</style>
+<!-- DRIP_PRODUCT_TRACKING_V1 -->
+<script text="text/javascript">
+  var _dcq = _dcq || [];
+  _dcq.push(['recordProductView', {{ product|json }}, {{ product.collections|map:'id'|json }}, '{{shop.currency}}', '{{ product.url }}']);
+</script>
+<!-- END_DRIP_PRODUCT_TRACKING_V1 -->

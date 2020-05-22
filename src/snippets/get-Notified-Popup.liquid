@@ -1,0 +1,215 @@
+
+<div id="notify-pop-up-wrapper"> 
+  <div id="notify-pop-up-contents">
+    <div id="notify-pop-top-div">
+      <h3 id="notify-pop-header">Notify me.</h3><span id="notify-pop-up-close">x</span>
+    </div>
+    <div id="notify-pop-middle-div">
+      <h4>Enter your email address and you'll be first to know when it's back in stock.</h4>
+    </div>
+    <hr>
+    <div>
+      <h3 id="oos-product-name"></h3>
+      <form>
+        <input id="notify-email" type="email" placeholder="Email address" class="form-control input-lg" value="{{customer.email}}">
+        <button type="submit" id="submit-btn" class="btn btn-success btn-lg btn-block">Email me when available</button>
+      </form>
+      <p id="err-success-msg"></p>
+    </div>
+  </div>
+</div>
+  
+
+
+
+<style>
+  
+  #notify-pop-up-wrapper {
+    display: none;
+    height: 375px;
+    max-width: 410px;
+    top: 25%;
+    position: fixed;
+    z-index: 101;
+    background-color: #fff;
+    -webkit-box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+    box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 30px 40px;
+    left: 50%;
+    transform: translateX(-50%); 
+  }
+  
+  #notify-email {
+    display: block;
+    width: 93%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    margin: 0 auto;
+  }
+  
+  #submit-btn {
+	color: #FFFFFF;
+    background-color: #dc886c;
+    border-color: #dc886c;
+    width: 100%;
+    height: 45px;
+    padding: 6px 12px;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+  
+  #oos-product-name {
+    margin-bottom: 15px;
+    font-family: "NB";
+  }
+  
+  hr {
+    margin: 0;
+    margin-bottom: 25px;
+  }
+  
+  h4 {
+    font-family: "NB";
+    font-weight: unset;
+  }
+  
+  #notify-pop-middle-div {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-family: 'NB';
+    font-size: 16px;
+    line-height: 22px;
+  }
+  
+  #notify-pop-up-contents {
+    height: 100%;
+    text-align: left;
+    color: #000;
+    text-align: -webkit-left;
+    text-align: -moz-left;
+  }
+  
+  #notify-pop-header {
+    height: 25%;
+    padding-top: 15px;
+    display: inline-block;
+    font-size: 26px;
+  }
+  
+  #notify-pop-bottom-div {
+    color: rgb(220, 136, 108);
+    font-family: 'NBH';
+    padding: 15px;
+    background-color: #fff;
+  }
+  
+  #notify-pop-up-close {
+    position: absolute;
+    right: 50px;
+    top: 40px;
+    width: 20px;
+    font-size: 20px;
+    color: grey;
+    cursor: pointer;
+  }
+  
+  #err-success-msg {
+    font-family: "NB";
+    font-size: 14px;
+    margin-top: 15px;
+  }
+  
+  @media (max-width: 900px) {
+    
+    #notify-pop-up-wrapper {
+      height: 400px;
+    }
+    
+    
+    #notify-pop-header {
+	  width: 250px;
+      line-height: 26px;
+    }
+    
+    #notify-pop-middle-div {
+      font-size: 20px;
+      line-height: 26px;
+      padding-bottom: 45px;
+    }
+  }
+  
+  @media (max-width: 550px) {
+     #notify-pop-up-close {
+      right: 30px;
+      top: 25px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+     #notify-pop-up-wrapper {
+       height: 450px;
+       width: 90%;
+       top: 15%;
+    }
+    
+    #notify-pop-bottom-div {
+      padding: 20px;
+      font-size: 14px;
+    }
+    #notify-pop-middle-div {
+      padding-bottom: 65px;
+      width: 90%
+    }
+  }
+  
+  @media (max-width: 385px) {
+    #notify-pop-header {
+      width: 200px;
+    }
+    #notify-pop-header {
+      font-size: 20px;
+    }
+    #notify-pop-middle-div {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    #notify-pop-up-wrapper {
+      height: 400px;
+    }
+     #notify-pop-up-close {
+      right: 25px;
+      top: 20px;
+    }
+  }
+  
+  @media (max-width: 385px) {
+    #notify-pop-up-wrapper {
+      height: 450px;
+    }
+  }
+
+</style>
+
+<script>
+  
+
+   
+  $("#notify-pop-up-close").click(function() {
+    $("#notify-pop-up-wrapper").css("display", "none")
+    $("#err-success-msg").text("")
+    
+  })
+</script>

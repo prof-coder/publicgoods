@@ -1,0 +1,54 @@
+{% comment %}
+  DO NOT MODIFY MANUALLY
+  This asset is generated automatically by Talkable Integration at 2/7/20 3:13AM
+{% endcomment %}
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<!-- <div id="loadOverlay" style="background-color:#eaeaea; position:absolute; top:0px; left:0px; width:100%; height:100vh; z-index:2000;"></div> -->
+<div id="page_content">
+  <div class="row clearfix">
+  	<div class="">
+      <div class="">
+       <div id="talkable-offer"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+//    $(document).ready(function(){
+//      $("#loadOverlay").css("display","none");
+//    })
+     
+  {% unless customer %}
+    window.location.href = "https://www.publicgoods.com/account/login" 
+  {% endunless %}
+</script>
+
+
+<style>
+  
+  p {
+  font-family: 'NB' !important;
+}
+
+.share-email-button input[value="Send Email"] {
+  font-family: 'NBH' !important;
+}
+  
+#page_content {
+  background-color: #eaeaea;
+  padding-top: 55px;
+}
+  
+  
+@media (max-width: 400px) {
+  #page_content {
+    background-color: #eaeaea; 
+    padding-top: 40px;
+  }
+}
+</style>

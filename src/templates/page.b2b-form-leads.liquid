@@ -1,0 +1,128 @@
+ 
+<div class='contact-form'>
+  <div class='contact-form-container'>
+    
+	<div class="contact-header">
+      <h3 class="content-head is-center">We've got you covered.</h3>
+      <p>Let us know how we can best help you.</p>
+    </div>
+
+  <!-- START HERE -->
+  <!--    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"> -->
+  <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+     <!-- Style The Contact Form How Ever You Prefer -->
+
+    <form class="gform pure-form pure-form-stacked" method="POST" data-email="example@email.net"
+    action="https://script.google.com/macros/s/AKfycbwUc4HIeiH6cNQBbu5pKk6WW37qNNqAtyjPdl_IQMY5LqzNAYuo/exec">
+      <!-- change the form action to your script url -->
+
+      <div class="form-elements">
+        
+		<div class="name-company-container">
+          <fieldset class="pure-group contact-name">
+            <input id="name" name="name" placeholder="Name" />
+          </fieldset>
+
+          <fieldset class="pure-group company-name">
+            <input id="company-name" name="company name" type="text" value=""
+            required placeholder="Company Name"/>
+          </fieldset>
+        </div>
+        
+        <div class="email-container">
+          <fieldset class="pure-group contact-email">
+            <input id="email" name="email" type="email" value=""
+            required placeholder="Email"/>
+            <span class="email-invalid" style="display:none">
+              Must be a valid email address</span>
+          </fieldset>
+        </div>
+        
+        <div class="reason-message-container">
+          <fieldset class="pure-group contact-reason">
+            <label>Business type:</label>
+            <select id="reason" name="business type">
+              <option>Hotel</option>
+              <option>AirBnb</option>
+              <option>Gym</option>
+              <option>Other</option>
+              <option>It’s something else.</option>
+            </select>
+          </fieldset>
+
+           <fieldset class="pure-group contact-message">
+            <textarea id="message" name="message" rows="10"
+            placeholder="Message"></textarea>
+          </fieldset>
+        </div>
+
+        <button class="button-success pure-button button-xlarge contact-submit">Send Now</button>
+      </div>
+
+      <!-- Customise the Thankyou Message People See when they submit the form: -->
+      <div class="thankyou_message" style="display:none;">
+        <h1>Thanks for contacting us.</h1>
+        <p>We'll respond as soon as possible.</p>
+      </div>
+
+    </form>
+    
+  </div>
+</div>
+
+  <!-- Submit the Form to Google Using "AJAX" -->
+    <script data-cfasync="false" src="form-submission-handler.js"></script>
+
+<!-- END -->
+
+{{ 'contact-page.css' | asset_url | stylesheet_tag }}
+{{ "form-submission-handler.js" | asset_url | script_tag }}
+
+<style>
+  
+  .contact-header {
+    width: 185px;
+  }
+  
+  .content-head {
+    line-height: 30px;
+  } 
+  
+  .contact-header p {
+    line-height: 20px;
+  }
+  
+  .contact-email {
+    float: none;
+    width: 100%;
+    padding-top: 12px;
+  }
+  
+  .company-name {
+    float: right;
+    width: 49%;
+  }
+  
+  #company-name {
+    height: 50px;
+    width: 100%;
+    border: 1px solid #606060;
+    padding-left: 10px;
+    box-sizing: border-box;
+  }
+  
+  #reason {
+    width: 84.5%;
+  }
+  
+  .contact-reason {
+    padding-top: 12px;
+  }
+  
+  .contact-reason label {
+    padding-right: 30px;
+    font-size: 16px;
+  }
+  
+  
+</style>

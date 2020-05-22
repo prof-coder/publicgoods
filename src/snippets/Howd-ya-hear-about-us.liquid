@@ -1,0 +1,317 @@
+<!-- This is a popup form to get info on where people heard about us. -->
+
+
+<!-- How did you hear about us? popup   -->
+<div id='hdyhau-container'>
+  <div id='hear-about-us-div'>
+    
+    <div id='hdyhau-top-div'>
+      <div id='hdyhau-header-div'>
+        <h3 id='hdyhau-header'>How did you hear of us?</h3> 
+      </div>
+      <div id='hdyhau-exit-div'>
+ 		<img id="hdyhau-exit" src="{{ 'blackX.svg' | asset_url }}"/>
+      </div>
+    </div>
+    
+    <form name='hear-about-us-form' id='hdyhau-form'>
+      
+      <input type='radio' name='facebookAd' />
+      <span class='hdyhau-radios'>Facebook</span><br>
+      
+      <input type='radio' name='instagramAd'/>
+      <span class='hdyhau-radios'>Instagram Ad</span><br>
+      
+      <input type='radio' name='instagramNotAd'/>
+      <span class='hdyhau-radios'>Someone I follow on Instagram</span><br>
+      
+      <input type='radio' name='FriendsOrFamily'/>
+      <span class='hdyhau-radios'>Friends or family</span><br>
+      
+      <input type='radio' name='YoutubeAd'/>
+      <span class='hdyhau-radios'>Youtube Ad</span><br>
+      
+      <input type='radio' name='GoogleAd'/>
+      <span class='hdyhau-radios'>Google Ad</span><br>
+      
+      <input type='radio' name='Pinterest'/>
+      <span class='hdyhau-radios'>Pinterest</span><br>
+      
+      <input type='radio' name='Blog'/>
+      <span class='hdyhau-radios'>Article on Public Goods Blog</span><br>
+      
+      <input type='radio' name='peoplehype'/>
+      <span class='hdyhau-radios'>People Hype Article</span><br>
+      
+      <input type='radio' name='referral'/>
+      <span class='hdyhau-radios'>Referral Link</span><br>
+      
+      <span class='hdyhau-radios hdyhau-other'>Other</span>
+      <input type='text' name='other'/><br>
+      
+      <input type='hidden' name='email-address' value={{customer.email}} />
+      <input type='hidden' name='customer-id' value={{customer.id}} />
+      
+      <input id='hdyhau-submit' class='button inverted' type='submit' value='Submit'/>
+       
+    </form>
+  </div>
+</div>
+<!-- END popup   -->
+  
+<script>  
+
+  const mainDiv = document.getElementById('hdyhau-container') 
+  
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxqKbI_vEXgCIuF4VBzPKkCxP0B1vRc3sIsNo4TAhnz_XUBF6fa/exec'  
+  const form = document.forms['hear-about-us-form']  
+  
+  form.addEventListener('submit', e => {  
+   e.preventDefault() 
+   
+   $this = $(this);
+
+    /** prevent double posting */
+    if ($this.data().isSubmitted) {
+        return false;
+    }
+    
+    
+   fetch(scriptURL, { method: 'POST', body: new FormData(form)})  
+   .then(response => {
+     console.log('Success!', response)
+     mainDiv.style.display = 'none'
+   })  
+    .catch(error => console.error('Error!', error.message)) 
+   
+    $this.data().isSubmitted = true;
+
+    return true;
+  })  
+  
+  $('input[type="radio"]').on('change', function() {
+    $(this).siblings('input[type="radio"]').prop('checked', false);
+  });
+  
+  if(document.referrer.indexOf("https://www.publicgoods.com/account/activate/") > -1 && !localStorage['PG_received_hdyhau_popup'] ) {
+    setTimeout(function() {
+      mainDiv.style.display = 'flex'
+      localStorage['PG_received_hdyhau_popup'] = true;
+    },2000)
+  }
+    
+    $('#hdyhau-exit-div').click(function() {
+      mainDiv.remove()
+    })
+ 
+</script>  
+
+<!-- Styles -->
+ 
+ <style>
+  #hdyhau-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    z-index: 999999999;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    display: none;
+  }
+  #hear-about-us-div {
+    flex-grow: 2;
+    position: relative;
+    max-width: 500px;
+    background-color: #fff;
+    display: block;
+    margin: 50px auto;
+    padding: 50px;
+    z-index: 999;
+    text-align: center;
+  }
+  .hdyhau-radios {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  #hdyhau-form {
+    text-align: left;
+    margin-left: 33%;
+  }
+  #hdyhau-header {
+    display: inline-block;
+    font-size: 28px;
+  }
+  #hdyhau-submit {
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 14px;
+    margin-left: -30px;
+  }
+  .hdyhau-other {
+    padding-right: 10px;
+  }
+  #hdyhau-exit-div {
+	display: inline-block;
+    cursor: pointer;
+    width: 15%;
+    margin-left: 15px;
+    position: relative;
+  }
+  #hdyhau-header-div {
+    display: inline-block;
+    width: 75%;
+    position: relative;
+  }
+  #hdyhau-exit {
+    display: inline-block;
+    font-size: 25px;
+    width: 20px;
+  }
+   #hdyhau-top-div{
+	margin-left: 45px;
+    margin-bottom: 40px;
+    width: 100%;
+  }
+   input[name="other"] {
+     border: 1px solid black;
+     padding-left: 2px;
+  }
+
+  @media (max-width: 700px) {
+    #hear-about-us-div {
+      flex-grow: 0;
+      width: 400px;
+    }
+    #hdyhau-form {
+      margin-left: 35%;
+    }
+    #hdyhau-header {
+      line-height: 30px;
+      font-size: 28px;
+    }
+    #hdyhau-exit-div {
+      top: -45px;
+    }
+  }
+   
+  @media (max-width: 550px) {
+    #hear-about-us-div {
+        flex-grow: 0;
+        width: 300px;
+      }
+
+    #hdyhau-exit {
+        width: 15px;
+      }
+      
+    #hdyhau-form {
+      margin-left: 25%;
+    }
+    
+    input[name="other"] {
+      width: 100px;
+    }
+    
+    #hdyhau-top-div {
+      margin-left: 30px;
+    }
+  }
+   
+  @media (max-width: 475px) {
+      #hear-about-us-div {
+        flex-grow: 0;
+        width: 300px;
+        height: 84%;
+        padding: 40px 0;
+      }
+        
+     #hdyhau-exit-div {
+       margin-left: 0;  
+     }
+
+      #hdyhau-top-div {
+        width: 300px;
+        margin: 0 auto;
+        padding-bottom: 40px;
+        margin-left: 12px;
+      }
+
+      #hdyhau-header-div {
+        padding-right: 0px;
+        margin-right: -15px;
+      }
+
+      #hdyhau-exit {
+        width: 15px;
+      }
+
+
+      #hdyhau-submit {
+          margin-top: 30px;
+          padding: 10px;
+          font-size: 14px;
+      }
+
+      .hdyhau-radios {
+          margin-bottom: 10px;
+      }
+
+      #hdyhau-form {
+/*           margin-left: 20%; */
+      }   
+  }
+   
+/*    @media (max-width: 355px) {
+       #hear-about-us-div {
+        flex-grow: 0;
+        width: 150px;
+        height: 250px;
+      }
+     
+       #hdyhau-form {
+          margin-left: 15%;
+      }
+     
+     #hdyhau-submit {
+          margin-top: 15px;
+          padding: 5px;
+          font-size: 14px;
+          margin-left: -25px;
+          margin-bottom: 0px;
+      }
+     
+     .hdyhau-radios {
+          margin-bottom: 10px;
+      }
+     
+      input[name="other"] {
+        width: 75px;
+      }
+
+     #hdyhau-top-div {
+       margin-left: 12px;
+       width: 100%;
+       margin-top: -15px;
+       margin-bottom: 20px;
+     }
+     
+     #hdyhau-header-div {
+          padding-right: 0px;
+          margin-right: 10px;
+      }
+     
+     #hdyhau-header {
+      font-size: 18px;
+      line-height: 18px
+     }
+     
+     #hdyhau-exit-div {
+        top: -30px;
+        right: -20px;
+     }
+   } */
+
+
+</style>

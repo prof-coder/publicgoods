@@ -1,0 +1,152 @@
+<!-- /templates/page.contact.liquid -->
+{% comment %}
+
+  This page template is a requirement if you are submitting your theme to the Shopify Theme Store.
+  Be sure to select page.contact as the template from the admin page to have this template take effect.
+
+  For information on adding more fields, visit:
+    - http://docs.shopify.com/support/configuration/store-customization/adding-fields-to-the-liquid-contact-form
+
+{% endcomment %}
+<!-- https://script.google.com/macros/s/AKfycbwL6ZGJ_OyGLk2qk09kjEd0g4yjnLVUu_UttgOqyw/exec -->
+
+<div class='contact-form'>
+  <div class='contact-form-container'>
+    
+	<div class="contact-header">
+      <h3 class="content-head is-center">Contact.</h3>
+      <p>How can we help?</p>
+    </div>
+
+  <!-- START HERE -->
+  <!--    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"> -->
+  <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+     <!-- Style The Contact Form How Ever You Prefer -->
+
+    <form class="gform pure-form pure-form-stacked" method="POST" data-email="example@email.net"
+    action="https://script.google.com/macros/s/AKfycbz5LecJiAG3sw4DGTcC9an3yCJN8VqgOJKi7uZO2HgEHYW7Upo/exec">
+      <!-- change the form action to your script url -->
+
+      <div class="form-elements">
+        
+        <div class="reason-message-container">
+          <fieldset class="pure-group contact-reason">
+            <select id="reason" name="reason">
+              <option selected>Where’s my order?</option>
+              <option>I have a question about products.</option>
+              <option>I need a tracking number.</option>
+              <option>I received the wrong item.</option>
+              <option>My order is damaged.</option>
+              <option>It’s something else.</option>
+            </select>
+          </fieldset>
+
+           <fieldset class="pure-group contact-message">
+            <textarea id="message" name="message" rows="10"
+            placeholder="Message"></textarea>
+          </fieldset>
+        </div>
+
+		<div class="name-email-container">
+          <fieldset class="pure-group contact-name">
+            <input id="name" name="name" placeholder="Name" />
+          </fieldset>
+
+          <fieldset class="pure-group contact-email">
+            <input id="email" name="email" type="email" value=""
+            required placeholder="Email"/>
+            <span class="email-invalid" style="display:none">
+              Must be a valid email address</span>
+          </fieldset>
+        </div>
+
+        <button class="button-success pure-button button-xlarge contact-submit">Send Now</button>
+      </div>
+
+      <!-- Customise the Thankyou Message People See when they submit the form: -->
+      <div class="thankyou_message" style="display:none;">
+        <h1>Thanks for contacting us.</h1>
+        <p>We'll respond as soon as possible.</p>
+      </div>
+
+    </form>
+    
+  </div>
+</div>
+
+  <!-- Submit the Form to Google Using "AJAX" -->
+  <script data-cfasync="false" src="form-submission-handler.js"></script>
+<!-- END -->
+
+
+{{ 'contact-page.css' | asset_url | stylesheet_tag }}
+{{ "form-submission-handler.js" | asset_url | script_tag }}
+
+
+<!-- <script>
+  $(document).ready(function(){
+    var footerHeight = $("footer").height()
+    var windowHeight = $(window).height()
+    var headerHeight = $('header').height()
+    var formHeight = windowHeight - footerHeight - headerHeight - 100
+    $(".contact-form").height(formHeight)
+    console.log(footerHeight)
+    console.log(windowHeight)
+    console.log(formHeight)
+//     $(".contact-form").height() = $(window).height() - footerHeight
+  })
+</script> -->
+
+
+<!-- <div class="grid">
+
+  <div class="grid__item large--two-thirds push--large--one-sixth">
+
+    <h1>{{ page.title }}</h1>
+
+    {% comment %}
+      Regular page content goes here.
+    {% endcomment %}
+    <div class="rte">
+      {{ page.content }}
+    </div>
+
+    {% comment %}
+      Contact form starts here
+    {% endcomment %}
+    <div class="form-vertical">
+      {% form 'contact' %}
+
+        {% comment %}
+          Successful message
+        {% endcomment %}
+        {% if form.posted_successfully? %}
+          <p class="note form-success">
+            {{ 'contact.form.post_success' | t }}
+          </p>
+        {% endif %}
+
+        {{ form.errors | default_errors }}
+
+        {% assign name_attr = 'contact.form.name' | t | handle %}
+        <label for="ContactFormName" class="hidden-label">{{ 'contact.form.name' | t }}</label>
+        <input type="text" id="ContactFormName" class="input-full" name="contact[{{ name_attr }}]" placeholder="{{ 'contact.form.name' | t }}" autocapitalize="words" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+
+        <label for="ContactFormEmail" class="hidden-label">{{ 'contact.form.email' | t }}</label>
+        <input type="email" id="ContactFormEmail" class="input-full" name="contact[email]" placeholder="{{ 'contact.form.email' | t }}" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+
+        {% assign name_attr = 'contact.form.phone' | t | handle %}
+        <label for="ContactFormPhone" class="hidden-label">{{ 'contact.form.phone' | t }}</label>
+        <input type="tel" id="ContactFormPhone" class="input-full" name="contact[{{ name_attr }}]" placeholder="{{ 'contact.form.phone' | t }}" pattern="[0-9\-]*" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+
+        <label for="ContactFormMessage" class="hidden-label">{{ 'contact.form.message' | t }}</label>
+        <textarea rows="10" id="ContactFormMessage" class="input-full" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+        <input type="submit" class="btn right" value="{{ 'contact.form.send' | t }}">
+
+      {% endform %}
+    </div>
+
+  </div>
+
+</div> -->

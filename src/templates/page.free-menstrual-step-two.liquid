@@ -1,0 +1,550 @@
+
+<div id="fg-step-two-page">
+  <div id="fg-top">
+    <h1>Select your free <br>monthly goods.</h1>
+  </div>
+  
+  
+    <div class="text_center margin_top_50 margin_bottom_70">
+      <div id="stick-here" class="stick-here"></div>
+    </div>
+  
+  	<div id="sticky-button-bottom">
+        <div id="stickThis" class="free-tote-second-div free-product-button-click" style="width: 100%">
+          <a href="#" class="button inverted">Claim Now</a>
+        </div>
+    </div>
+  
+  <div id="fg-middle">
+    <div id="fg-middle-content">
+      <div id="fg-main-products">
+        <form id="main-products-form">
+          <div id="main-products-flex">
+            
+<!--             <div id="choice-one">
+              <div class="choice">
+                <input type="radio" id="razor" class="main-product-input" name="main" value="razors">
+                <label class="main-product-label" for="razor">Razors</label>
+                <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/select_razors.png?52611">
+              </div>
+              <div id="drop-down-products" style="display: none;">
+                <div id="product-one-variants" class="product-dropdown">
+                </div>
+              </div>
+            </div> -->
+            
+            <div id="choice-two">
+              <div class="choice">
+                <input type="radio" id="maxi-pad" class="main-product-input" name="main" value="maxi-pads">
+                <label class="main-product-label" for="maxi-pad">Maxi pads</label>
+                <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/select_pads.png?52611">
+              </div>
+              <div id="product-two-variants" class="product-dropdown">
+                <form id="">
+                  <p>Select one:</p>
+                  <div id="product-two-inputs">
+                    <div class="pruduct-two-selection">
+                      <input type="radio" id="maxi-regular" name="maxi" value="regular" class="maxi-deselect"/>
+                      <label for="maxi-regular">Regular</label>
+                    </div>
+
+                    <div class="pruduct-two-selection">
+                      <input type="radio" id="maxi-overnight" name="maxi" value="overnight" class="maxi-deselect" />
+                      <label for="maxi-overnight">Overnight</label>
+                    </div>
+
+                    <div class="pruduct-two-selection">
+                      <input type="radio" id="maxi-pantyliner" name="maxi" value="pantyliner" class="maxi-deselect" />
+                      <label for="maxi-pantyliner">Pantyliner</label>
+                    </div>
+
+                    <div class="pruduct-two-selection">
+                      <input type="radio" id="maxi-super" name="maxi" value="super" class="maxi-deselect" />
+                      <label for="maxi-super">Super</label>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            
+            
+            <div id="choice-three">
+              <div class="choice">
+                <input type="radio" id="tampon" class="main-product-input" name="main" value="tampons">
+                <label class="main-product-label" for="tampon">Tampons</label>
+                <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/select_tampons.png?52611">
+              </div>
+              <div id="product-three-variants" class="product-dropdown">
+                <form id="">
+                  <p>Select one:</p>
+                  <div id="product-three-inputs">
+                    <div class="pruduct-three-selection">
+                      <input type="radio" id="regular-with-app" name="tampon" value="regular-with-applicator" class="tampon-deselect"/>
+                      <label for="regular-with-app">Applicator - Regular</label>
+                    </div>
+
+                    <div class="pruduct-three-selection padding-left">
+                      <input type="radio" id="super-with-app" name="tampon" value="super-with-applicator" class="tampon-deselect" />
+                      <label for="super-with-app">Applicator - Super</label>
+                    </div>
+
+                    <div class="pruduct-three-selection">
+                      <input type="radio" id="regular-without-app" name="tampon" value="regular-without-applicator" class="tampon-deselect" />
+                      <label for="regular-with-app">No Applicator - Regular</label>
+                    </div>
+
+                    <div class="pruduct-three-selection padding-left">
+                      <input type="radio" id="super-without-app" name="tampon" value="super-without-applicator" class="tampon-deselect" />
+                      <label for="super-without-app">No Applicator - Super</label>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+  <div id="fg-bottom">
+    <p id="free-product-button" class="free-product-button-click">Claim Now</p>
+  </div>
+</div>
+
+  
+<style>
+  #fg-step-two-page {
+    background-color: #e7e7e7;
+    height: 100%;
+  }
+  
+  #fg-top {
+/*     height: 400px; */
+    padding-top: 100px;
+    text-align: center;
+  }
+  
+  #fg-top h1 {
+    padding-top: 100px;
+  }
+  
+  #fg-middle {
+    padding-bottom: 100px;
+  }
+  
+  #fg-middle-content {
+    margin-top: 100px;
+  }
+  
+  #main-products-flex, #drop-down-products {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  
+  .choice {
+    width: 26em;
+    border: 2px solid #d1d1d1;
+    padding-top: 40px;
+    padding-left: 20px;
+    position: relative;
+  }
+  
+  .choice img {
+    width: 200px;
+    padding-left: 125px;
+    margin-bottom: -4px;
+  }
+  
+  .main-product-input, .main-product-label {
+    position: absolute;
+    padding-left: 25px;
+    top: 90px;
+    font-family: 'NBH';
+  }
+  
+  .product-dropdown {
+    width: 27em;
+/*     padding-left: 11px; */
+    padding-top: 15px;
+  }
+  
+  #product-two-inputs, #product-three-inputs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .pruduct-two-selection, .pruduct-three-selection {
+    width: 49%;
+    margin-top: 10px;
+  }
+  
+/*   #main-products-flex input[type='radio']:after {
+    color: #dc876c;
+  } */
+  
+  input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+  }
+
+  input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    position: relative;
+    background-color: none !important;
+    content: '';
+    display: inline-block;
+    border: 1px solid black;
+    outline: none;
+  }
+
+  input[type='radio'].visibility:after {
+     visibility: hidden;
+  }
+/*   
+    
+  .hidden {
+    visibility: visible;
+  }
+   */
+  
+  input[type='radio']:checked:after {
+    background-color: #F5886B;
+  }
+  
+  .padding-left {
+    padding-left: 7px;
+  }
+  
+  #fg-middle-content p {
+    font-size: 14px;
+    font-family: 'NBH';
+  }
+  
+  .product-dropdown label {
+    font-family: 'NB';
+  }
+  
+  #product-two-variants, #product-three-variants {
+/*     visibility: hidden; */
+    display: none;
+  }
+  
+  input[type:'radio']:checked:focus{
+    outline:none !important;
+  }
+  
+  #fg-bottom {
+    text-align: center;
+    margin: 100px 0;
+  }
+  
+  #free-product-button {
+    background-color: #F5886B;
+    color: #fff;
+    font-family: 'nbh';
+    width: 150px;
+    margin: 0 auto;
+    padding: 15px;
+  }
+  
+  #free-product-button:hover {
+    cursor: pointer;
+    opacity: .8;
+    -webkit-transition: font-size 0.3s, opacity 0.3s;
+  }
+  
+  
+  #stickThis {
+    display: none;
+  }
+  
+  
+  @media (max-width: 1150px) {
+    
+    #main-products-flex {
+      flex-direction: column;
+    }
+    
+    #fg-main-products {
+      text-align: -webkit-center;
+      text-align: -moz-center;
+    }
+    
+    #fg-top h1 {
+      padding-top: 50px;
+    }
+    
+    #fg-middle-content {
+      margin-top: 50px;
+    }
+    
+    #choice-two {
+      margin: 20px 0;
+    }
+    
+    .product-dropdown {
+      text-align: left;
+    }
+
+  }
+  
+  
+    
+    @media screen and (max-width: 950px) {
+      #hero-buttons, .row .button-cta {
+        display: none;
+      }
+      .free-tote-second-div {
+        display: block !important;
+      }
+      #stickThis a.button.inverted {
+        margin: 0px !important;
+        width: 100% !important;
+        text-align: center !important;
+        background-color: #F5886B !important;
+      }
+      .popup-wrapper {
+  /*       height: 100%; */
+  /*       margin-top: 210px; */
+      }
+
+      html {
+        height: 100% !important;
+        overflow-y: scroll !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      body {
+        height: 100% !important;
+        overflow-y: scroll !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      #stickThis {
+        display: block;
+      }  
+
+      #free-trial-dt {
+        display: none;    
+      }
+      
+      #free-product-button {
+        display: none;
+      }
+    }
+  
+  @media (max-width: 737px) {
+    input[type="radio"] {
+      padding: 0px;
+    }
+    
+    body {
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    
+    #fg-top h1 {
+      padding-top: 25px;
+    }
+    
+    .choice {
+      width: 20em;
+      font-size: 13px;
+    }
+    
+    .choice img {
+      width: 130px;
+      margin-bottom: -5px;
+    }
+    
+    .product-dropdown {
+      width: 21em;
+      font-size: 13px;
+    }
+    
+    .pruduct-two-selection, .pruduct-three-selection {
+      width: 48%;
+    }
+    
+    input[type='radio']:after {
+      width: 11px;
+      height: 11px;
+    }
+    
+    .main-product-input, .main-product-label {
+      padding-left: 20px;
+      top: 70px;
+    }
+    
+    #fg-bottom {
+      margin: 50px 0;
+    }
+  }
+  
+
+</style>
+  
+<script>
+  
+  $(document).ready(function() {
+    
+    $('input:radio[name="main"]').change(function(e) {
+      if (this.value === 'maxi-pads') {
+        $('.tampon-deselect').prop('checked', false)
+        $('#product-two-variants').css('display', 'block')
+        $('#product-three-variants').css('display', 'none')
+//         $('#pruduct-two-selection .visibility').removeClass('visibility')
+      }
+      if (this.value === 'tampons') {
+        $('.maxi-deselect').prop('checked', false)
+        $('#product-three-variants').css('display', 'block')
+        $('#product-two-variants').css('display', 'none')
+      }
+      if (this.value === 'razors') {
+        $('.tampon-deselect').prop('checked', false)
+        $('.maxi-deselect').prop('checked', false)
+        $('#product-two-variants').css('display', 'none')
+        $('#product-three-variants').css('display', 'none')
+      }
+    })
+    
+//     var url = new URL(window.location.href)
+//     var emailText2 = url.searchParams.get("email")
+   
+    
+    $(".free-product-button-click").click(function() {
+      let checked;
+      let campaignID;  
+      let chosenProduct;
+      let emailText2 = window.location.href.split('email=')[1]
+       
+      if ($("#razor").is(":checked")) {
+         checked = true
+        campaignID = "731899448"  
+        chosenProduct = "Razors";
+      }
+      
+      if ($("#maxi-pad").is(":checked")) {
+        console.log('maxi-pad checked')
+        checked = true
+
+        if ($("#maxi-regular").is(":checked")) {
+          campaignID = "697051420"  
+          chosenProduct = "Bamboo Regular Pads";
+        }
+
+       if ($("#maxi-overnight").is(":checked")) {
+         campaignID = "646808769"  
+         chosenProduct = "Bamboo Overnight Pads";
+       }
+
+        if ($("#maxi-pantyliner").is(":checked")) {
+          campaignID = "219892023"  
+          chosenProduct = "Bamboo Pantyliner Pads";
+        }
+
+        if ($("#maxi-super").is(":checked")) {
+          campaignID = "524476433"  
+          chosenProduct = "Bamboo Super Pads";
+        }
+     }
+      
+     if ($("#tampon").is(":checked")) {
+        console.log('tampon checked')
+        checked = true
+
+        if ($("#regular-with-app").is(":checked")) {
+          campaignID = "74108845"  
+          chosenProduct = "Tampons With Applicator - Regular";
+        }
+
+       if ($("#regular-without-app").is(":checked")) {
+         campaignID = "961909671"  
+         chosenProduct = "Tampons Without Applicator - Regular";
+       }
+
+        if ($("#super-with-app").is(":checked")) {
+          campaignID = "428597682"  
+          chosenProduct = "Tampons With Applicator - Super";
+        }
+
+        if ($("#super-without-app").is(":checked")) {
+          campaignID = "350025213"  
+          chosenProduct = "Tampons Without Applicator - Super";
+        }
+     }
+      
+      if (checked) {
+
+        if (localStorage.getItem("freeGoodsEmail") === null) {
+          _dcq.push(
+            [
+              "subscribe",
+              {
+                campaign_id: campaignID,
+                fields: {
+                  email: emailText2
+                },
+                success: function(response) {
+                   localStorage.setItem('freeGoodsEmail', 'ayo')
+                   console.log(emailText2)
+                   window.location.href= 'https://www.publicgoods.com/pages/free-goods-congrats?product=' + chosenProduct
+                },
+                failure: function(response) {
+                  alert("There was a problem submitting your response. Please contact customer service, thank you.")
+                }
+              }
+            ]
+          );
+        } else {
+          window.location.href= 'https://www.publicgoods.com/pages/free-goods-error'
+        }
+        
+      }
+      
+     })
+    
+     
+    function sticktothebottom() {
+        var h = window.innerHeight;
+        var window_top = $(window).scrollTop();
+        var top = $('#stick-here').offset().top;
+        var panelh = $(".free-tote-second-div").height();
+
+        if(h> top || h + window_top > top + 50) {
+            $('#stickThis').appendTo('body');
+            $('#stickThis').css('position', 'fixed');
+            $('#stickThis').css('bottom', '0');
+        } else {
+            $('#stickThis').appendTo('#stick-here');
+            $('#stickThis').css('position', 'relative');
+            $('#stickThis').css('bottom', 'auto');
+        }
+      }
+
+      var w = window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
+
+      var h = window.innerHeight
+      || document.documentElement.clientHeight
+      || document.body.clientHeight;
+
+
+      $(function() {
+        $(window).scroll(sticktothebottom);
+        sticktothebottom();
+      });
+    
+    
+  })
+</script>

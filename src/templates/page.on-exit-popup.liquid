@@ -1,0 +1,143 @@
+{{ page.content }}
+
+<!-- Add this code to page where you want exit popup to occur along with on-exit-popup in snippets -->
+
+{% unless customer %}
+  <div id="on-exit-popup" style='display: none;'>
+    <div id="popup-top-div">
+      <div id="top-left-div">
+        <h1 id="popup-header-text">Friends with benefits.</h1>
+      </div>
+      <div id="top-right-div">
+        <img id="popup-closeBtn" src="{{ 'X.svg' | asset_url }}"/>
+      </div>
+    </div>
+    <div id="popup-middle-div">
+      <p id="popup-body-text">Join our list for exclusive promotions, first access to new products and more.</p>
+    </div>
+    <div id="popup-bottom-div">
+      <footer style="padding-top: 0;">
+        <form name="popup-email-form" style="padding-top: 0; position: relative;" class="validate-form footer_submit_form">
+          <input name="email" id="emailinput" value="" placeholder="" class="drip-text-field popupInput" type="email" required="">
+          <div id="drip-errors-for-email-27436" class="drip-errors" style="display: none"></div>
+          <a href="/collections/all-products" class="home-shop-btn" id="popup-post-signup-button" style="display: none; background-color: white; color:#EB8364;">Start Shopping</a>
+          <input name="submit" value="Subscribe" id="drip-submit-27436" class="drip-submit-button submit-capture popup-submit-button" type="submit">
+
+          <div id="drip-success-panel-27436" class="drip-success drip-panel" style="display: none">
+            <p>Thank you.</p>
+          </div>
+        </form>
+      </footer>
+    </div>
+  </div>
+{% endunless %}
+{% include 'on-exit-popup' %}
+
+<!-- End of popup snippet -->
+  <footer>
+      <!-- REMOVE THE EMAIL CAPTURE IN THE FOOTER IF A CUSTOMER IS LOGGED IN !-->
+  
+      {% unless customer %} 
+      <div class="row clearfix margin_bottom_30">
+        <div class="column_12 margin_bottom_20">
+          <label>Connect with us</label>
+          
+         <!--<form action="https://www.getdrip.com/forms/7708152/submissions" class="validate-form footer_submit_form" method="post" data-drip-embedded-form="7708152">
+          <input name="fields[email]" id="emailinput"  value="" placeholder="Enter your email" class="drip-text-field" type="email" required>
+          <div id="drip-errors-for-email-27436" class="drip-errors" style="display: none"></div>
+          <input name="submit" value="Subscribe" id="drip-submit-27436" class="drip-submit-button submit-capture" type="submit">
+
+          <div id="drip-success-panel-27436" class="drip-success drip-panel" style="display: none">
+            <p>Thank you.</p>          
+          </div>
+
+        </form>!-->
+          
+          <form name="email-capture"class="validate-form footer_submit_form">
+          <input name="email" id="emailinput"  value="" placeholder="Enter your email" class="drip-text-field" type="email" required>
+          <div id="drip-errors-for-email-27436" class="drip-errors" style="display: none"></div>
+          <input name="submit" value="Subscribe" id="drip-submit-27436" class="drip-submit-button submit-capture" type="submit">
+
+          <div id="drip-success-panel-27436" class="drip-success drip-panel" style="display: none">
+            <p>Thank you.</p>          
+          </div>
+
+        </form>
+          
+          <!--<form class="validate-form footer_submit_form" action="https://www.getdrip.com/forms/560251309/submissions" method="post" data-drip-embedded-form="560251309">
+        <input type="email" placeholder="Enter your email" id="drip-email" name="fields[email]" value="" class="drip-text-field"/>
+        <input type="submit" name="submit" value="Subscribe" class="drip-submit-button submit-capture" data-drip-attribute="sign-up-button" />
+     </form>!-->
+          
+        </div>
+        <a name='homepage-footer'></a>
+        <div class="column_6" id="email-success">
+          <p>By clicking Sign Up you agree to receive<br/>marketing emails from PUBLIC GOODS</p>
+        </div>
+        <div class="column_6 footer_social" style="display:none">
+          <a href="#"><img src="{{ 'pinterest.png' | asset_url }}" alt=""/></a>
+          <a href="#"><img src="{{ 'facebook.png' | asset_url }}" alt=""/></a>
+          <a href="#"><img src="{{ 'twitter.png' | asset_url }}" alt=""/></a>
+          <a href="#"><img src="{{ 'instagram.png' | asset_url }}" alt=""/></a>
+        </div>
+      </div>
+      {% endunless %} 
+      <div class="row clearfix">
+        <div class="column_6 footer_menu">
+          <a href="mailto:service@publicgoods.com">Contact</a>
+          <a href="/pages/shipping">Shipping</a>
+          <a href="/pages/privacy-policy">Privacy Policy</a>
+          <a href="/pages/terms-and-conditions">Terms and Service</a>
+        </div>
+        <div class="column_6 copyright">
+          <p>&copy; 2018 PUBLIC GOODS – All Rights Reserved</p>
+        </div>
+      </div>
+    </footer>
+{{ 'popupstyle.scss.css' | asset_url | stylesheet_tag }}
+
+<script>
+    console.log("DOM fully loaded and parsed");
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyZpEbiGJEYiAXNX9kDbvOnLptx6gtkyMBBLYH5If59DcmH3B_y/exec'
+    const form = document.forms['email-capture']  
+    let emailInput = document.getElementById('emailinput').value
+//     const client = ({ token: 'bdd1140d7c89290a33f22484eedeb433', accountId: '1478138' });
+    
+    let footerEmail = document.getElementById('email-success')
+    let subscribeButton = document.getElementById('drip-submit-27436')
+
+    form.addEventListener('submit', e => {  
+     e.preventDefault()  
+     let emailText = form.elements.namedItem("email").value;
+      const payload = {
+        subscribers: [{
+          email: emailText,
+        }]
+      }
+     fetch(scriptURL, { method: 'POST', body: new FormData(form)})  
+        .then(response => console.log('Success!', response))  
+        .catch(error => console.error('Error!', error.message))  
+ 
+     console.log('submitteddd ' + emailText)
+       _dcq.push(
+      [
+        "subscribe",
+        {
+          campaign_id: "220285039",
+          fields: {
+            email: emailText
+          }
+        }
+      ]
+       )
+//      _dcq.push(["identify", {
+//         email: emailText,
+//        tags: ["Membership trial cj"],
+//        	user_id: emailText,
+//       }]);
+       footerEmail.children[0].innerText = "Thanks for signing up. You're in." 
+       form.reset()            
+     })
+
+</script>
+

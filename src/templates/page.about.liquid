@@ -1,0 +1,201 @@
+  <!-- /templates/page.liquid -->
+
+<div id="mission_hero" {% unless customer %}style="padding-top: 130px"{% endunless %}>
+  <div class="row clearfix">
+    <div class="column_12">
+      <h2 class="margin_bottom_50">About Us</h2>
+      <p class="margin_bottom_50 without-padding desktop-header-words">We’re on a mission to make healthy products <br>affordable and accessible to everyone.</p>
+      <p class="margin_bottom_50 without-padding mobile-header-words" style="display: none">We’re on a mission to make healthy products affordable and accessible to everyone.</p>
+    </div>
+    <div class="text_center margin_top_50 margin_bottom_70">
+  
+  
+<!--     <a href="/pages/membership" class="button inverted">Join Today</a> -->
+         
+    </div>
+    <!--<img src="{{ 'two.png' | asset_url }}" alt=""/>!-->
+  </div>
+</div>
+
+<div id="page_content" style="margin-top: 0;">
+  <div class="section_block_text_column">
+    <div id="shopify-section-home-text-mision-top" class="shopify-section"><div class="row" id="home_text_mision_top">
+      <div class="column_12">
+        <h2 class="text_center">How We Do It</h2>
+      </div>
+      <div class="column_6 align_center block_text_phone_home" style="float: none;">
+        <p class="text_center font_nb margin_top_30 margin_bottom_50">Most brands go through four suppliers before selling you a product. That adds cost at every step. But we’re changing the supply chain: for a flat annual fee, our members have access to high-quality essentials without the marked-up prices.</p>
+        {% if customer %}
+    	  <a href="/collections/all-products" data-label="home-shop" class="ind-inv-btn browse-prod-btn">Shop products</a>
+        {% else %}
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_bottom_20 margin_top_10 membuttonclick button inverted button-cta">Free 30 Day Trial</a>
+        {% endif %}
+        
+      </div>
+      <div class="clear"></div>
+    </div></div>
+  </div>
+
+
+  <div id="flows">
+    <!--<div class="mobile">
+      <h2>INFOGRAPHIC</h2>
+    </div>!-->
+    <div id="current_flow">
+      <div class="row">
+        <div class="column_12">
+          <img src="{{ 'old_flow1.png' | asset_url }}" alt=""/>
+        </div>
+        <img src="{{ 'labelnew.png' | asset_url }}" alt="" class="labelImage" />
+      </div>
+    </div>
+    <div id="old_flow">
+      <div class="row">
+        <div class="column_12">
+          <img src="{{ 'new_flow.png' | asset_url }}" alt=""/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="flows-mobile">
+      <div class="row">
+        <div class="column_12">
+          <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/mobile.jpg?11718027169943468730" alt=""/>
+        </div>
+      </div>
+  </div>
+
+  <div class="row margin_bottom_50">
+    <h2 class="text_center" id="difference_header">Our Product Difference</h2>
+    <div class="difference_pack">
+      <div class="column_7">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/highest-standards.jpg?15666702579284422426" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">The highest standards.</h2>
+        <p>We work obsessively to develop the perfect
+          version of each product. Then we have our
+          friends, family, and the pickiest people we know
+          test every last thing. There’s only one kind of
+          each item in our store, so you’re guaranteed
+          it’s the highest quality without the headache of
+          comparing endless options.</p>
+        {% if customer %}
+    	  <a style="margin-top:25px;" href="/collections/all-products" data-label="home-shop" class="ind-inv-btn browse-prod-btn">Shop products</a>
+        {% else %}
+          <a style="margin-top:25px;" class="subscribe-to-membership-32-45 subscribe-to-membership membuttonclick margin_top_30 button inverted button-cta">Free 30 Day Trial</a>
+        {% endif %}
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+
+      <div class="column_7" style="float:right;">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/healthy-not-harmful.jpg?12716159037615457500" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">Healthy not harmful.</h2>
+        <p>Did you know that there are over 1,000
+          unhealthy ingredients in common household
+          and personal care products. They’re linked
+          to cancer, hormone disruption, and a host of
+          other harmful effects - not just for our bodies
+          but also our environment. At Public Goods,
+          you’re protected because we use only safe and
+          healthy ingredients that are good for people
+          and the planet alike.</p>
+        {% if customer %}
+    	  <a style="margin-top:25px;" href="/collections/all-products" data-label="home-shop" class="ind-inv-btn browse-prod-btn">Shop products</a>
+        {% else %}
+          <a style="margin-top:25px;" class="subscribe-to-membership-32-45 subscribe-to-membership membuttonclick margin_top_30 button inverted button-cta">Free 30 Day Trial</a>
+        {% endif %}
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+      
+      <div class="column_7">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/designed-for-your-home2.jpg?9107376753396010606" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">Designed for<br/>your home.</h2>
+        <p>We design our goods to be as beautiful as they
+          are functional. Other brands use brightly colored
+          bottles to stand out on a store shelf, not sit
+          beautifully in your home. Our packaging is clean
+          and simple — designed to complement your space,
+          not visually assault it with ads. </p>
+        {% if customer %}
+    	  <a style="margin-top:25px;" href="/collections/all-products" data-label="home-shop" class="ind-inv-btn browse-prod-btn">Shop products</a>
+        {% else %}
+          <a style="margin-top:25px;" class="subscribe-to-membership-32-45 subscribe-to-membership membuttonclick margin_top_30 button inverted button-cta">Free 30 Day Trial</a>
+        {% endif %}
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+    </div>
+  </div>
+  
+ 
+  
+  <style>
+    #mission_hero {
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/desktop2.jpg?1951);
+	  height: 600px;
+      background-position-y: 77%;
+      padding-top: 350px !important;
+    }
+    
+    #mission_hero .column_12 {
+      text-align: center;
+      margin-top: -200px;
+    }
+    
+    @media (max-width: 950px) {
+      #mission_hero {
+        background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/about-us_tablet.jpg?1951);
+        height: 500px;
+      }
+    }
+    
+    @media (max-width: 737px) {
+      #mission_hero {
+        background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/about-us_tablet.jpg?1951);
+        height: 500px;
+      }
+      
+      #mission_hero p { 
+        line-height: 26px;
+        font-size: 18px;
+      }
+      
+      #mission_hero h2 { 
+        font-size: 24px;
+        letter-spacing: 1px;
+      }
+    }
+    
+     
+    @media (max-width: 550px) {
+      #mission_hero {
+        background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/aboutus_mobile.jpg?1961);
+        height: 300px;
+      }
+      
+      #mission_hero p { 
+        line-height: 20px;
+        font-size: 14px;
+      }
+      
+      #mission_hero h2 { 
+        font-size: 20px;
+        letter-spacing: 1px;
+      }
+      
+      .mobile-header-words {
+        display: block !important;
+      }
+      
+      .desktop-header-words {
+        display: none;
+      }
+    }
+  </style>

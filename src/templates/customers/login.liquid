@@ -1,0 +1,215 @@
+<!-- /templates/customers/login.liquid -->
+<div id="login_page">
+<div id="account_page">
+  <div class="row clearfix">
+    <div class="column_6">
+      <div class="note form-success" id="ResetSuccess" style="display:none;">
+        {{ 'customer.recover_password.success' | t }}
+      </div>
+
+      <div id="CustomerLoginForm">
+        <h3 id="customer-login-welcome">Welcome back.</h3>
+        <p id="customer-login-to-account">Log into your account.</p>    
+        {% form 'customer_login' %}
+            <input type="hidden" name="checkout_url" id="redirect_url" value="" />
+<!--         <input type="hidden" name="checkout_url" value="/collections/all-products" /> -->
+          {{ form.errors | default_errors }}
+          <div class="form_row">
+            <input type="email" name="customer[email]" id="CustomerEmail" class="input-full{% if form.errors contains 'email' %} error{% endif %}" placeholder="{{ 'customer.login.email' | t }}" autocorrect="off" autocapitalize="off" autofocus>
+          </div>
+
+          {% if form.password_needed %}
+            <div class="form_row">
+              <input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full{% if form.errors contains 'password' %} error{% endif %}" placeholder="{{ 'customer.login.password' | t }}">
+            </div>
+          {% endif %}
+        
+          <div class="form_row">
+            {% if form.password_needed %}
+              <a class="link" href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a>
+            {% endif %}
+            <!--<a href="/" class="link">{{ 'customer.login.cancel' | t }}</a>!-->
+          </div>
+
+          <div class="form_row">
+            <input type="submit" value="{{ 'customer.login.sign_in' | t }}">
+          </div>
+
+        {% endform %}
+      </div> <!-- Customer Login Form !-->
+
+      <div id="RecoverPasswordForm" style="display: none;">
+        <div>
+          <h1 style="font-size: 28px; line-height: 34px;">Forgot your password?</h1>
+          <br>
+          <p style="font-size: 16px; line-height: 22px;">Enter your email address and we will email you a link to reset your password.</p>
+        </div>
+        {% form 'recover_customer_password' %}
+          {{ form.errors | default_errors }}
+
+          {% if form.posted_successfully? %}
+            {% assign resetPassword = true %}
+          {% endif %}
+
+          <div class="form_row">
+            <input type="email" value="" name="email" id="RecoverEmail" class="input-full" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
+          </div>
+
+          <div class="form_row">
+            <input type="submit" id="reset_pass_email" value="Reset Your Password" style="margin-top:10px;margin-bottom:20px;">
+            {% comment %}<a id="HideRecoverPasswordLink" class="link">{{ 'customer.recover_password.cancel' | t }}</a>{% endcomment %}
+          </div>
+        {% endform %}
+      </div> <!-- Recover Form End !-->
+      
+      <div id="RecoverCheckEmail" style="display: none;">
+        <div>
+          <h1 style="font-size: 28px; line-height: 34px;">Please check <br> your email.</h1>
+          <br>
+          <p style="font-size: 16px; line-height: 22px; margin-bottom: 35px;">We sent you a link to reset your password.</p>
+        </div>
+        
+<!--         <div class="form_row">
+          <input type="email" value="" name="email" id="RecoverEmail" class="input-full" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
+        </div> -->
+        
+      </div> <!-- Recover Email End !-->
+<!-- Disable Guest Login !-->      
+<!--
+      {% if shop.checkout.guest_login %}
+        {% form 'guest_login' %}
+          <div class="form_row">
+            <input type="submit" value="{{ 'customer.login.guest_continue' | t }}">
+          </div>
+        {% endform %}
+      {% endif %}
+!-->
+    </div>
+    <div class="column_6">
+      <img src="{{ 'girl.png' | asset_url }}" alt="" class="fullSize" style="display:none;"/>
+    </div>
+  </div>
+</div>
+  </div>
+
+<script type="text/javascript">
+
+ $(document).ready(function() {
+    var url = document.referrer;
+    if(url.indexOf("share?tkbl_campaign_id=1159669") > -1){
+      $("#redirect_url").val("https://www.publicgoods.com/pages/share?tkbl_campaign_id=1159669");
+    }else if (url == 'https://www.publicgoods.com/') {
+      $("#redirect_url").val("https://www.publicgoods.com/collections/all-products"); 
+    }else if(url.indexOf("/a/member") > 0 || document.cookie.indexOf("redirect_custom_checkout_page")){
+      $("#redirect_url").val("/checkout/"); 
+      createCookie("redirect_custom_checkout_page", "yes", 1);
+    }else{
+      $("#redirect_url").val(url);
+    }
+
+   
+      var pro = $("#ResetSuccess").css("display");
+      if(pro == "none") {
+        console.log(1);
+      }else {
+        console.log(0);
+        $("#ResetSuccess").hide();
+        $("#CustomerLoginForm").hide();
+        $("#RecoverPasswordForm").hide();
+        $("#RecoverCheckEmail").show();
+      }
+   
+      createCookie("customerReachedLoginPG", "yes");
+  
+  });
+</script>
+
+<style>
+  #account_page {
+    background-color: #E7E7E7;
+    padding-top: 70px;
+  }
+  
+  #login_page {
+    background-color: #E7E7E7;
+  }
+  
+  #account_page input[type="email"], #account_page input[type="password"] {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #606060;
+    height: 50px;
+  }
+  
+  #CustomerPassword::placeholder, #CustomerEmail::placeholder {
+    color: lightslategray !important;
+  }
+  
+  #customer-login-to-account {
+    font-size: 16px;
+    color: #000 !important;
+    padding-top: 5px;
+  }
+  
+  #customer-login-welcome {
+    padding-top: 50px;
+    padding-bottom: 5px;
+    font-size: 28px;
+    color: #000;
+  }
+  
+  #login_page .column_6 {
+    padding-left: 100px;
+    padding-top: 50px;
+  }
+  
+  #account_page a.link {
+    color: #000;
+  }
+  
+  #account_page input[type="submit"] {
+    background-color: rgb(220, 136, 108);
+    color: #fff;
+/*     padding: 15px 40px; */
+    margin-top: 25px;
+    width: 100%;
+  }
+  
+  #CustomerPassword {
+    margin-bottom: 25px;
+  }
+  
+  #account_page form {
+    padding-top: 25px;
+  }
+  
+  @media (max-width: 737px) {
+    #login_page {
+      padding-top: 100px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    
+    #account_page {
+    padding-top: 20px;
+  }
+    #login_page .column_6 {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+    
+    #customer-login-welcome {
+      padding-top: 0px;
+      font-size: 28px;
+      color: #000;
+    }
+  }
+  
+  @media (max-width: 415px) {
+    #login_page {
+      padding-bottom: 40px;
+    }
+  }
+  
+</style>

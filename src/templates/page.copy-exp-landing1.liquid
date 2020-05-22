@@ -1,0 +1,51 @@
+{% layout 'theme.copy-exp-landing' %}
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div class="copy-exp-landing1-main">
+  <div class="row clearfix">
+    <div class="column_12">
+      <div class="copy-exp-main-words">
+        <p class="without-padding">Healthy products.</p>
+        <p class="without-padding">No middlemen, no retail markup.</p>
+      </div>
+      <div class="copy-exp-buttons">
+        <a href="/collections/all-products" style="background-color: #EB8364; color: white;" class="home-shop-btn">Browse Products</a>
+        <a style="background-color: #EB8364; color: white;" class="subscribe-to-membership-32-45 subscribe-to-membership home-shop-btn membuttonclick margin_top_30 button inverted button-cta">Try 30 Days Free</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="copy-exp-landing1-subsection">
+  <div class"row clearfix">
+    <div class="column_12">
+      <div class="copy-exp-subsection-header">
+        <p>Let's be in touch.</p>
+      </div>
+      <div class="copy-exp-subsection-body">
+        <p>Join our list for good news.<br>New healthy essentials launch every week.</p>
+      </div>
+      <div class="copy-exp-bottom-section">
+          <div class="column_12 margin_bottom_20">
+            
+            <form id="copy-exp-email-form" class="validate-form footer_submit_form">
+              <input name="email" id="emailinput"  value="" placeholder="Enter email" class="drip-text-field exp-input" type="email" required>
+              <div id="drip-errors-for-email-27436" class="drip-errors" style="display: none"></div>
+              <a href="/collections/all-products" class="home-shop-btn" id="copy-exp-post-signup-button" style="display: none; background-color: #000; color:#fff;">Start Shopping</a>
+              <input name="submit" value="Subscribe" id="drip-submit-27436" class="drip-submit-button submit-capture exp-submit" type="submit">
+
+              <div id="drip-success-panel-27436" class="drip-success drip-panel" style="display: none">
+                <p>Thank you.</p>          
+              </div>
+
+            </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'copy-exp-landing-js' %}

@@ -1,0 +1,107 @@
+<script src="https://js.stripe.com/v3/"></script>
+<div id="account_details_page">
+  <div id="account_page">
+    <div class="row">
+      <div class="column_12">
+        <div class="grid">
+
+          <div class="grid__item one-third medium-down--one-whole">
+            <h2 class="h4">Update Credit Card For Annual Membership Payment</h2>
+            <h3 class="h5">{{ customer.name }}</h3>
+          </div>
+          <script id="dont-run-out-membership-card-update-js" src="/a/memberships/credit_cards/{{ customer.id }}.js"></script>
+        </div>
+        <p style='margin-top: 30px; font-size: 14px'><a href='/pages/contact'>Having account issues? Please contact our customer service team.</a></p>
+
+      </div> <!-- Column End !-->
+    </div> <!-- Row End !-->
+  </div>
+</div>
+
+<script>
+  $( document ).ready(function() {
+    setTimeout(function() {
+      document.getElementsByName('cvc')[0].placeholder = '123'
+    },5000)
+  })
+</script>
+
+<style>
+  
+  #account_page {
+    padding-top: 125px;
+  }
+  
+  #order_history {
+    overflow-y: scroll;
+    max-height: 400px;
+  }
+  
+  .grid {
+    background-color: #E7E7E7 !important;
+/*     color: #000 !important; */
+  }
+  
+  #account_page table, #account_page tr, #account_page th, #account_page thead, #account_page tbody, #account_page td, #account_page a, #account_page h2, #account_page h3, #account_page h4, #account_page h5, #account_page p {
+    color: #000 !important;
+  }
+  
+/*   .add-address-btn {
+    background-color: #dc886c !important;
+    color: #fff !important;
+  }
+   */
+ #account_page span {
+     background-color: #fff !important;
+    color: #000 !important;
+    border: 1px solid #606060 !important;
+    height: 50px !important;
+  }
+  
+  #card-element-edit-form, #card-expiry-element-edit-form, #card-cvc-element-edit-form {
+    margin-bottom: 10px !important;
+    padding: 10px 0;
+    padding-left: 5px;
+    background-color: #fff !important;
+    color: #000 !important;
+    border: 1px solid #606060 !important;
+/*     height: 50px !important; */
+     font-family: 'NB' !important;
+  }
+  
+  label {
+    font-size: 16px;
+    font-family: 'NB';
+  }
+
+  .grid__item ~ div {
+    font-size: 16px;
+    font-family: 'NB';
+  }
+  
+  #account_page button {
+     background-color: rgb(220, 136, 108);
+    color: #fff;
+    padding: 10px 40px;
+    margin-top: 15px;
+    width: 100%;
+    font-family: 'NBH';
+    font-size: 16px;
+  }
+  
+  .ElementsApp input {
+    font-family: 'NB' !important;
+  }
+  
+  
+  @media (max-width: 450px) {
+    #account_page {
+      padding-top: 75px;
+    }
+  }
+</style>
+
+
+
+
+

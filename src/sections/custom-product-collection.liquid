@@ -1,0 +1,99 @@
+<div class="row">
+    <div class="column_12">
+      <div class="collections clearfix">
+        {% for product in collections.Eco-friendly.products %}
+
+           {%- comment %}<locksmith:0f24>{% endcomment -%}
+             {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections.Eco-friendly, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+           {%- comment %}</locksmith:0f24>{% endcomment -%}
+
+           {% assign name = 'product' | append:product.id %}
+          {% assign idNo = name | append:'-no' %}
+          {% assign idYes = name | append:'-yes' %}
+		  
+          {% assign checkedNo = 'checked' %}
+          {% assign checkedYes = '' %}
+          {% assign opacityClass = '' %}
+          {% assign available = true %}
+
+          {% if product.variants[0].inventory_quantity <= 0 %}
+          	{% assign available = false %}
+          {% endif %}
+
+          {% if shop.customer_accounts_enabled %}
+          	{% if customer %}
+        		{% assign checkedNo = 'disabled' %}
+        		{% assign checkedYes = 'checked' %}
+        		{% assign opacityClass = 'opacity-3' %}
+
+        		{% assign available = true %}
+        		{% if product.variants[0].inventory_quantity <= 0 %}
+        			{% assign available = false %}
+        		{% endif %}
+        	{% endif %}
+          {% endif %}
+        
+          <div class="collection">
+            <div class="collection_header">
+              <a href="{{ product.url | within: collection }}">
+                <img src="{{  product.images[0] | img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}">
+              </a>
+              <div class="collection_action" rel="{{name}}">
+                 {% if available == true %}
+                	{% if customer %}
+                	   {% if product.variants.first.sku == "123" %}
+                          <a href="{{ product.url | within: collection }}">
+                              <div class="collection_update">
+                              </div>
+                          </a>
+                       {% else %}
+                	     <div class="collection_to_cart" rel="{{name}}">ADD TO CART</div>
+                       {% endif %}
+                	{% else %}
+                	  <div class="collection_to_cart subscribe-to-membership subscribe-to-membership-32-45" rel="{{name}}">ADD TO CART</div>
+                	{% endif %}
+                	<div class="collection_update">
+                      <div class="collection_update_spans clearfix">
+                        <span class="collection_minus" rel="{{name}}"></span>
+                        <div>
+                          <span class="collection_count" id="collection_count_{{product.id}}"></span> IN CART
+                        </div>
+                        <span class="collection_plus" rel="{{name}}"></span>
+                      </div>
+                    </div>
+                {% else %}
+                	<div class="collection_coming_soon">SOLD OUT</div>
+                {% endif %}
+              </div> <!-- Collection Action End !-->
+            </div>
+            <div class="collection_body">
+              <label class="collection_title">{{ product.title }}</label>
+             
+              
+              <div><input type="hidden" rel="{{product.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" {{checkedNo}}/><label for="{{idNo}}" onclick="">{{ product.variants[0].price | money }}</label></div>
+
+            </div>
+          </div>
+        {% endfor %}
+      </div> <!-- Collections End !-->
+      {% if paginate.pages > 1 %}
+        <div class="pagination">
+          {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+        </div>
+      {% endif %}
+    </div>
+  </div><!-- Row End !-->
+
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

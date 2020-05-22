@@ -1,0 +1,262 @@
+  <div class="row clearfix whole-page">
+    <div class="column_12 image-top">
+    </div>
+    <div class="column_6 content-left">
+      <div class="top-words">
+        <h1>Buying for a business?</h1>
+        <p>Hotels, short term rentals, spas, restaurants,
+           co-working spaces and more can shop in bulk,
+           membership free.
+        </p>
+      </div>
+      <div class="input-fields">
+        {% form 'create_customer' %}
+          <input type="hidden" name="return_to" value="/collections/all-products" />
+          <input type="hidden" id="customer_tags" name="customer[tags]" value="B2B, member"/>
+          {{ form.errors | default_errors }}
+
+          <div class="form_row clearfix">
+            <div class="form_split">
+              <input required type="text" name="customer[first_name]" id="FirstName" placeholder="{{ 'customer.register.first_name' | t }}" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocapitalize="words" autofocus/>
+            </div>
+            <div class="form_split">
+              <input required type="text" name="customer[last_name]" id="LastName" placeholder="{{ 'customer.register.last_name' | t }}" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocapitalize="words"/>
+            </div>
+          </div>
+        
+        <div class="form_row">
+ 		  <input type="text" id="BusinessName" name="customer[note][BusinessName]" placeholder="Business Name">
+        </div>
+
+        
+        <div class="form_row">
+          <input type="text" id="BusinessURL" name="customer[note][BusinessURL]" placeholder="Business URL">
+        </div>
+        
+          <div class="form_row">
+            <input required type="email" name="customer[email]" id="Email" class="input-full{% if form.errors contains 'email' %} error{% endif %}" placeholder="{{ 'customer.register.email' | t }}" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off"/>
+          </div>
+
+          <div class="form_row">
+            <input required type="password" name="customer[password]" id="CreatePassword" class="input-full{% if form.errors contains 'password' %} error{% endif %}" placeholder="Create Password">
+          </div>
+
+          <div class="form_row">
+            <input class="submit-button" type="submit" value="Start Now"/>
+          </div>
+
+        {% endform %}
+      </div>
+    </div>
+    <div class="column_6 image-right">
+      <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/desktop_07819af6-dd62-4c65-b2ae-26f483278b81.jpg?4758" alt="" class="fullSize"/>
+    </div>
+  </div>
+
+<style>
+  .whole-page {
+    width: 100%;
+  }
+  
+  main {
+    background-color: #eaeaea;
+  }
+  
+/*   .content-left {
+    margin-left: 50px;
+  } */
+  
+  .image-top {
+    display: none;
+    height: 400px;
+    background-image: url("https://cdn.shopify.com/s/files/1/0838/7991/files/desktop_07819af6-dd62-4c65-b2ae-26f483278b81.jpg?4758");
+    background-size: cover;
+    background-position-y: -416px;
+  }
+  
+  .top-words, .input-fields {
+    width: 80%;
+    padding-left: 50px;
+  }
+  
+  .top-words {
+    padding-top: 60px;
+  }
+  
+  .top-words h1, .top-words p {
+    padding-bottom: 20px;
+    width: 95%;
+  }
+  
+  .image-right {
+    padding: 0 !important;
+  }
+  
+  ::-webkit-input-placeholder { /* WebKit browsers */
+    color: #8c8c8c;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #8c8c8c;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #8c8c8c;
+
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #8c8c8c;
+  }
+
+ 
+  
+   #FirstName, #LastName, #Email, #CreatePassword, #BusinessURL, #BusinessName, .submit-button  {
+    float: left;
+    height: 50px;
+    width: 40% !important;
+    margin: 10px 40px 10px 0;
+    border: 1px solid #606060 !important;
+    padding-left: 10px;
+    box-sizing: border-box;
+  }
+  
+  .submit-button {
+    width: 150px !important;
+    background-color: #dc886c;
+    color: #fff !important;
+    font-family: 'NBH';
+    border: none !important;
+    padding-left: 0;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 1348px) {
+    .top-words h1 {
+      font-size: 24px;
+    }
+    
+    .top-words p {
+      font-size: 16px;
+    }
+    
+    .top-words {
+      padding-top: 60px;
+    }
+  }
+  
+  @media (max-width: 1245px) {
+    .image-right {
+      display: none
+    }
+    
+    .image-top {
+      display: block;
+      padding: 0;
+    }
+    
+    .content-left {
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      padding-bottom: 50px;
+    }
+    
+    .input-fields {
+      width: 100%;
+    }
+    
+    .top-words {
+      width: 100%;
+      padding-left: 0;
+    }
+    .top-words p {
+      width: 50%;
+      margin: 0 auto;
+    }
+    
+    .top-words h1 {
+      width: 50%;
+      margin: 0 auto;
+    }
+    
+  }
+  
+   @media (max-width: 1055px) {
+     .image-top {
+       height: 300px;
+       background-image: url("https://cdn.shopify.com/s/files/1/0838/7991/files/mobile_2f7b13ca-92c1-4cd1-9f00-48d40f4d1d53.jpg?4760");
+       background-position-y: -316px;
+     }
+   }
+  
+  @media (max-width: 873px) {
+     .image-top {
+       height: 300px;
+       background-position-y: -276px;
+     }
+    
+     .top-words p {
+      width: 75%;
+    }
+    
+    .top-words h1 {
+      width: 75%;
+    }
+   }
+  
+  @media (max-width: 747px) {
+     .image-top {
+       height: 300px;
+       background-position-y: -176px;
+     }
+   }
+  
+  @media (max-width: 627px) {
+     .image-top {
+       height: 300px;
+       background-position-y: -100px;
+     }
+    #FirstName, #LastName, #Email, #CreatePassword, #BusinessURL, #BusinessName, .submit-button  {
+      float: none;
+      width: 75% !important;
+      margin: 5px 0;
+    }
+    
+    .submit-button {
+      width: 50% !important;
+      margin-top: 30px;
+    }
+    
+    .input-fields {
+      padding-left: 0;
+    }
+   }
+   @media (max-width: 517px) {
+     .image-top {
+       height: 300px;
+       background-position-y: -50px;
+     }
+   }
+  
+   @media (max-width: 455px) {
+     .image-top {
+       height: 300px;
+       background-position-y: -20px;
+     }
+   }
+  
+  @media (max-width: 414px) {
+     .image-top {
+       height: 300px;
+       background-position-y: 0px;
+     }
+    
+    .top-words p {
+      width: 95% !important;
+    }
+    
+    .top-words h1 {
+      width: 95% !important;
+    }
+   }
+   
+</style>

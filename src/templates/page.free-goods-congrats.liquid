@@ -1,0 +1,91 @@
+
+<div id="fg-congrats-page">
+  <div id="congrats-content">
+    <h1>Congrats! You’re getting free goods every month.</h1>
+    <p id="congrats-middle">We’ll email you a link every month for <span class="chosen-product"></span>.</p>
+    <p>Enjoy! <br>— the Public Goods team</p>
+    <div id="congrats-works">
+      <p class="fg-congrats-bottom padding-bottom-15"><span class="bold-font">How it works:</span></p>
+      <p class="padding-bottom-15">1. We’ll email you a link every month for free goods with any purchase.</p>
+      <p class="padding-bottom-15">2. Just click the link, add <span class="chosen-product"></span> to your cart and we’ll automatically apply the discount. </p>
+      <p class="padding-bottom-15">3. That’s it! Enjoy saving every month.</p>
+    </div>
+    <p class="fg-congrats-fine-print">Standard shipping rates apply. Subject to terms and conditions, offer may change or expire. For new customers only.</p>
+  </div>
+</div>
+
+
+<style>
+  #fg-congrats-page {
+    height: 100vh;
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/floral_desktop.jpg?53063);
+    background-size: cover;
+    text-align: center;
+  }
+  
+  .padding-bottom-15 {
+    padding-bottom: 15px;
+  }
+  
+  #congrats-content {
+    width: 500px;
+    padding-top: 175px;
+    margin: 0 auto;
+  }
+  
+  #congrats-middle {
+    padding: 50px 0 25px 0;
+  }
+  
+  .chosen-product, .bold-font {
+    font-family: 'NBH';
+  }
+  
+  .fg-congrats-bottom {
+    padding-top: 40px;
+  }
+  
+  #congrats-works {
+    margin: 0 auto;
+    width: 400px
+  }
+  
+  .fg-congrats-fine-print {
+    font-size: 12px;
+    padding-top: 100px;
+  }
+  
+  @media (max-width: 737px) {
+    #congrats-content{
+      width: 400px;
+      padding-top: 125px;
+      margin: 0 auto;
+    }
+
+  }
+  
+  @media (max-width: 560px) {
+    #congrats-content, #congrats-works {
+      width: 292px;
+    }
+    
+        
+    #fg-congrats-page {
+      height: 800px;
+    }
+  }
+  
+  @media (max-width: 350px) {
+    #fg-congrats-page {
+      background-position-y: 70px;
+    }
+  }
+</style>
+
+<script>
+  
+  let chosenProduct = window.location.href.split("product=")[1]
+  chosenProduct = chosenProduct.split("%20").join(" ")
+  $(".chosen-product").text(chosenProduct)
+  
+</script>

@@ -1,0 +1,199 @@
+#shopify-section-healthy-page-flow {
+  .mobile_image{
+    display: none;
+  }
+  .desctop_image{
+    display: flex;
+  }
+
+  .site-content {
+    width: 90%;
+    max-width: 1120px;
+    margin: 0 auto;
+    margin-top: 85px;
+    min-height: calc(100vh - 268px);
+  }
+}
+#shopify-section-healthy-page-flow.change-background {
+  transition: background-color 1s ease;
+  background-color: #f5886b;
+}
+.healthy-flow-wrapper {
+  padding-bottom: 40px;
+
+  .step {
+    display: none;
+  }
+  .step.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 0; 
+    h1 {
+      margin: 20px 0;
+    }
+    p {
+      margin: 20px auto;
+      max-width: 600px;
+      text-align: center;
+
+      &.add-p {
+        margin-bottom: 0;
+      }
+    }
+  }
+  form {
+    position: relative;
+    width: 400px;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+  form input[type="email"] {
+    width: 100%;
+    height: 40px;
+    border: 2px solid #f5886b;
+    color: grey;
+    background: transparent;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+  form input[type="submit"] {
+    font-family: 'NBH';
+    background-color: #f5886b;
+    color: #fff;
+    border: none;
+    padding: 0 10px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .step-main-image {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 10px;
+
+    img {
+      max-width: 400px;
+      width: 100%;
+    }
+  }
+  .next-button {
+    display: none;
+  }
+  .next-button.active {
+    display: flex;
+    margin: 50px 0;
+    margin-top: 10px;
+
+    a {
+      margin: 0 auto;
+      cursor: pointer;
+    }
+  }
+  span.orange {
+    color: #f5886b;
+  }
+  span.grey {
+    color: grey;
+  }
+  .left-right {
+    display: flex;
+	max-height: 195px;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      max-height: unset;
+    }
+  }
+  svg {
+    height: 175px;
+    margin: 20px;
+    display: inline-block;
+    margin-left: 100px;
+  }
+  .step-6 {
+    h1 {
+      color: #fff;
+    }
+    p {
+      color: #fff;
+    }
+  }
+  #drip-errors-for-email {
+    text-align: center;
+    display: none;
+  }
+}
+
+// Mobile Fixes ================
+
+@media screen and (max-width: 768px) {
+  body{
+    #shopify-section-healthy-page-flow {
+	  background-color: hsl(0, 0%, 91%);
+ 	  .mobile_image{
+        display: flex;
+      }
+      .desctop_image{
+        display: none;
+      }
+      
+      #emailinputval{
+      	font-size: 16px;
+      }
+      
+      input[type="submit"]{
+      	position: relative;
+        margin: 10px auto;
+        height: 40px;
+        width: 100%;
+        font-size: 16px;
+      }
+      
+      .site-content {
+		margin-top: 72px;
+	  }
+      
+      .healthy-flow-wrapper {
+   		.step.active {
+          padding-top: 53px;
+          
+          .for_desc{
+          	display: none;
+          }
+          form#subscription-form{
+          	margin-top: 0;
+          }
+          h1 {
+            margin-top: 0;
+          }
+          
+          p{
+            margin-top: 0;
+            font-size: 14px;
+            line-height: 20px;            
+            b{
+              font-weight: 400;
+              font-family: 'NBH';
+            }
+          }
+
+  		}
+        .step-main-image {
+          max-height:  unset;
+          img {
+            height: 100%;
+            max-height: 300px;
+          }
+        }
+      }
+	}
+    
+    footer{
+      display: none;
+    }
+  }
+}

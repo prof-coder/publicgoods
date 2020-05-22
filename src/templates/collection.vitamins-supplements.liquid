@@ -1,0 +1,842 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div id="page_content">
+  
+  <div id="mission_hero" class="supplements-hero">
+    <div class="row clearfix">
+      <div class="column_6 supplements-hero-content">
+         <h1 class="margin_bottom_50">In good health.</h1>
+        <p class="margin_bottom_50 without-padding">Modern life requires a modern
+                                                health regimin. From magnesium to
+                                                multivitamins, we’ve made complete
+                                                formulas that fit your lifestyle.</p>
+
+          {% unless customer %}<a class="subscribe-to-membership-32-45 subscribe-to-membership button inverted button-cta">Free Trial</a>{% endunless %}
+          {% if customer %}<a href="/collections/all-products" class="home-shop-btn">Browse Products</a>{% endif %}
+      </div>
+      <div id="stick-here" class="stick-here"></div>
+    </div>
+  </div>
+  
+  <div id="sticky-button-bottom">
+      {% if customer %}
+        <div id="stickThis" class="free-tote-second-div" style="width: 100%">
+          <a href="/collections/all-products" class="button inverted">Browse Products</a>
+        </div>
+      {% else %}
+        <div id="stickThis" class="free-tote-second-div" style="width: 100%">
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Start Free Trial</a>
+        </div>
+      {% endif %}
+    </div>
+  
+  <div class="supplements-content">
+    <div id="supplements-section-two" class="column_12">
+      <div class="sup-section-two-left">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/ABCs_desktop.jpg?30760" />
+      </div>
+      <div class="sup-section-two-right">
+        <div class="section-two-heading">
+          <h1>Our vitamins know<br>their ABC’s.</h1>
+        </div>
+        <div class="section-two-subheading">
+          <p>We’ve made smarter supplements with<br>
+            pure and potent ingredients. It’s an<br>
+            intelligent approach to wellness.</p>
+        </div>
+        <div class="section-two-button">
+          {% unless customer %}<a class="subscribe-to-membership-32-45 subscribe-to-membership button inverted button-cta">14 Day Trial</a>{% endunless %}
+          {% if customer %}<a href="/collections/all-products" class="home-shop-btn">Browse Products</a>{% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div id="supplements-section-three">
+      <div class="sup-section-three-left">
+        <div class="section-three-heading">
+          <h1>Comprehensive<br>
+            care for your best,<br>
+            feeling body.</h1>
+        </div>
+        <div class="section-three-search-dropdown">
+          <p style="display: inline-block">I want vitamins for better: </p>
+           <div style="display: inline-block" class="clearfix filter">
+           <select id="target-select" class="coll-filter">
+             <option value="">All</option>
+             {% for tag in collection.all_tags %}
+               {% if current_tags contains tag %}
+                 {% unless tag == 'vitamin-supplements' %}<option value="{{ tag | handle }}" selected>{{ tag | capitalize }}</option>{% endunless %}
+               {% else %}
+                 {% unless tag == 'vitamin-supplements' %} <option value="{{ tag | handle }}">{{ tag | capitalize }}</option>{% endunless %}
+               {% endif %}
+             {% endfor %}
+           </select>
+         </div>
+        </div>
+      </div>
+      <div class="sup-section-three-right">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/comprehsive_desktop.jpg?30760" />
+      </div>
+    </div>
+
+    <div id="supplements-search-results">
+       <div class="row">
+         <div class="column_12">
+            <div class="collections clearfix">
+              {% paginate collections.all-products.products by 300 %}
+              {% for product in collection.products %}
+{%- comment %}<locksmith:b5d2>{% endcomment -%}
+  {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+{%- comment %}</locksmith:b5d2>{% endcomment -%}
+{%- include 'bold-product-json', product: product -%}
+
+                {% assign name = 'product' | append:product.id %}
+                {% assign idNo = name | append:'-no' %}
+                {% assign idYes = name | append:'-yes' %}
+
+                {% assign checkedNo = 'checked' %}
+                {% assign checkedYes = '' %}
+                {% assign opacityClass = '' %}
+                {% assign available = true %}
+
+                {% if product.variants[0].inventory_quantity <= 20 %}
+                  {% assign available = false %}
+                {% endif %}
+
+                {% if shop.customer_accounts_enabled %}
+                  {% if customer %}
+                      {% assign checkedNo = 'disabled' %}
+                      {% assign checkedYes = 'checked' %}
+                      {% assign opacityClass = 'opacity-3' %}
+
+                      {% assign available = true %}
+                      {% if product.variants[0].inventory_quantity <= 20 %}
+                          {% assign available = false %}
+                      {% endif %}
+                  {% endif %}
+                {% endif %}
+
+                <div class="collection">
+                  <div class="collection_header">
+                    <a href="{{ product.url | within: collection }}">
+                      <img src="{{  product.images[0] | img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}">
+                    </a>
+                    <div class="collection_action" rel="{{name}}">
+                       {% if available == true %}
+                          {% if customer %}
+                             {% if product.variants.first.sku == "123" %}
+                                <a href="{{ product.url | within: collection }}">
+                                    <div class="collection_update">
+                                    </div>
+                                </a>
+                             {% else %}
+                               <div class="collection_to_cart" rel="{{name}}">ADD TO CART</div>
+                             {% endif %}
+                          {% else %}
+                            <div class="collection_to_cart subscribe-to-membership subscribe-to-membership-32-45" rel="{{name}}">ADD TO CART</div>
+                          {% endif %}
+                          <div class="collection_update">
+                            <div class="collection_update_spans clearfix">
+                              <span class="collection_minus" rel="{{name}}"></span>
+                              <div>
+                                <span class="collection_count" id="collection_count_{{product.id}}"></span> IN CART
+                              </div>
+                              <span class="collection_plus" rel="{{name}}"></span>
+                            </div>
+                          </div>
+                      {% else %}
+                          <div class="collection_coming_soon">SOLD OUT</div>
+                      {% endif %}
+                    </div> <!-- Collection Action End !-->
+                  </div>
+                  <div class="collection_body">
+
+                    <label class="collection_title all-products-product-stars"><a href="{{ product.url | within: collection }}">{{ product.title }}</a> 
+                    </label>
+
+                    <div><input type="hidden" rel="{{product.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" {{checkedNo}}/><label for="{{idNo}}" onclick="">{{ product.variants[0].price | money }}</label></div>
+
+                  </div>
+                </div>
+
+
+              {% endfor %}
+
+              {% if paginate.pages > 1 %}
+              <div class="pagination">
+                {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+              </div>
+            {% endif %}
+       {% endpaginate %}
+            </div> <!-- Collections End !-->
+          </div>
+      </div><!-- Row End !-->
+     </div>
+  </div>
+  
+    <div id="supplements-section-five">
+      <div class="section-five-content">
+        <h1 class="section-five-header">New to Public Goods?</h1>
+        <p class="section-five-subheader">We’re commited to making healthier, better
+          choices easy and affordable to all. Good for you, eco-friendly and beautifully designed home
+          essentials, all in one place and at ultra-low prices. </p>
+        <p class="sections-five-image-title">As seen in:</p>
+        <img class="section-five-image" src="https://cdn.shopify.com/s/files/1/0838/7991/files/press-quotes.png?30958" />
+        {% unless customer %}<a class="subscribe-to-membership-32-45 subscribe-to-membership button inverted button-cta">14 Day Trial</a>{% endunless %}
+        {% if customer %}<a href="/collections/all-products" class="home-shop-btn">Browse Products</a>{% endif %}
+      </div>
+    </div>
+  
+  <div id="supplemets-mobile-bottom" style="display:none;">
+  </div>
+</div>
+
+
+
+ <script>
+  /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+  var collFilters = jQuery('.coll-filter');
+  collFilters.change(function() {
+    var newTags = [];
+    collFilters.each(function() {
+      if (jQuery(this).val()) {
+        newTags.push(jQuery(this).val());
+      }
+    });
+    if (newTags.length) {
+      var query = newTags.join('+');
+      window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('/' + 'tag', '/' + query);
+    }
+    else {
+      {% if collection.handle %}
+      window.location.href = '/collections/{{ collection.handle }}';
+      {% elsif collection.products.first.type == collection.title %}
+      window.location.href = '{{ collection.title | url_for_type }}';
+      {% elsif collection.products.first.vendor == collection.title %}
+      window.location.href = '{{ collection.title | url_for_vendor }}';
+      {% endif %}
+    }
+  });
+      
+ var member = 0;
+  var idNo_modal = '';
+  var idYes_modal = '';
+
+  {% if shop.customer_accounts_enabled %}
+    {% if customer %}
+      member = 1;
+    {% endif %}
+  {% endif %}
+
+  $(document).ready(function(){
+    
+    $(function(){
+        $("body").on("change", "#target-select", function(e){
+            location.href = "https://www.publicgoods.com/collections/vitamins-and-supplements-for-lp/" + $('#target-select').val() + '#supplements-section-three'
+        });
+    });
+
+       function sticktothebottom() {
+        var h = window.innerHeight;
+        var window_top = $(window).scrollTop();
+        var top = $('#stick-here').offset().top;
+        var panelh = $(".free-tote-second-div").height();
+
+        if(h> top || h + window_top > top + 50) {
+          if ($('#stick-here').parentElement.tagName !== 'body') {
+            $('#stickThis').appendTo('body');
+            $('#stickThis').css('position', 'fixed');
+            $('#stickThis').css('bottom', '0');
+          }
+        } else {
+          if ($('#stick-here').parentElement.id !== 'stick-here') {
+            $('#stickThis').appendTo('#stick-here');
+            $('#stickThis').css('position', 'relative');
+            $('#stickThis').css('bottom', 'auto');
+          }
+        }
+      }
+
+      var w = window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
+
+      var h = window.innerHeight
+      || document.documentElement.clientHeight
+      || document.body.clientHeight;
+
+
+      $(function() {
+        $(window).scroll(sticktothebottom);
+        sticktothebottom();
+      });
+    
+    // Update cart count for incase of cache issue
+    (function() {
+    
+      jQuery.getJSON('/cart.js', function(cart) {
+        console.log('in')
+          $('#CartCount').html(cart.item_count);
+      });
+      
+    })()
+    
+    
+    var modal = $('#customModal');
+    var modalDom = document.getElementById('customModal');
+
+    var cart_items = {};
+
+    $('.productYes').click(function(){
+      console.log("here2222");
+      if(member == 0){
+        $("a#membership_button_11118").click();
+
+        // modal.show();
+        // $('body').css('overflow', 'hidden');
+
+        var name = $(this).parents('.collection:first').find('.collection_action:first').attr('rel');
+
+        idNo_modal = name + '-no';
+        idYes_modal = name + '-yes';
+        
+        $('#'+idYes_modal).removeAttr('checked');
+        $('#'+idNo_modal).prop('checked',true);
+      }
+    });
+
+    $('.collection_minus').click(function(){
+      var object = $(this).parents('.collection_update_spans:first');
+      var quantity_object = object.find('.collection_count:first');
+      var total_quantity = parseInt(quantity_object.html());
+      var name = $(this).attr('rel');
+      
+      var idNo = name + '-no';
+      var idYes = name + '-yes';
+
+      var variantId = $('#'+idNo).val();
+      if($('#'+idYes).prop('checked'))
+        variantId = $('#'+idYes).val();
+
+      var quantity = find_cart_quantity(variantId, 'minus');
+
+      $.ajax({
+        type:'POST', 
+        url:'/cart/change.js', 
+        data: {id: variantId, quantity: quantity}, 
+        dataType: 'json',
+        success: function(data){
+            setCartItem(variantId, {id: $('#'+idYes).val(), quantity: quantity});
+            if(total_quantity > 1)
+                quantity_object.html(total_quantity-1);
+            else
+                get_cart_items();
+            
+            update_cart_count('minus');
+        }
+      });  
+    });
+
+    $('.collection_plus').click(function(){
+      var object = $(this).parents('.collection_update_spans:first');
+      var quantity_object = object.find('.collection_count:first');
+      var total_quantity = parseInt(quantity_object.html());
+      var name = $(this).attr('rel');
+      
+      var idNo = name + '-no';
+      var idYes = name + '-yes';
+
+      var variantId = $('#'+idNo).val();
+      if($('#'+idYes).prop('checked'))
+        variantId = $('#'+idYes).val();
+
+      var quantity = find_cart_quantity(variantId, 'plus');
+
+      $.ajax({
+        type:'POST', 
+        url:'/cart/change.js', 
+        data: {id: variantId, quantity: quantity}, 
+        dataType: 'json',
+        success: function(data){
+            setCartItem(variantId, {id: $('#'+idYes).val(), quantity: quantity});
+            quantity_object.html(total_quantity+1);
+            update_cart_count('plus');
+        }
+      });  
+    });
+
+    $('.collection_to_cart').click(function(e){
+	
+      e.preventDefault()
+      
+      var name = $(this).attr('rel');
+      
+      var object = $(this).parents('.collection_action:first');
+
+      var idNo = name + '-no';
+      var idYes = name + '-yes';
+
+      var variantId = $('#'+idNo).val();
+      if($('#'+idYes).prop('checked'))
+        variantId = $('#'+idYes).val();
+
+      {% for tag in customer.tags %}
+        {% if tag == 'member' or tag == 'members' %}
+          {% assign nonmember = false %}
+        {% endif %}
+        {% if tag == 'Unsubscribed' or tag == 'unsubscribed' %}
+          {% assign nonmember = true %}
+        {% endif %}
+      {% endfor %}
+      
+      {% if customer.tags contains 'lifetime' %}
+        {% assign nonmember = false %}
+      {% endif %}
+      
+      {% if nonmember == true %}
+      	$('#reactivate-pop-up-wrapper').css('display', 'block')
+        let popupWidth = (window.innerWidth - $('#reactivate-pop-up-wrapper').width()) / 2
+        $('#reactivate-pop-up-wrapper').css('right', popupWidth )
+      {% endif %}
+	
+      {% if nonmember == false %}
+        $.ajax({
+          type:'POST', 
+          url:'/cart/add', 
+          data: {id: variantId}, 
+          dataType: 'json',
+          success: function(data){
+              get_cart_items();
+              update_cart_count('plus');
+              setCartItem(variantId, {id: $('#'+idYes).val(), quantity: 1});
+          }
+        });
+      {% endif %}
+    });
+	
+    $('#boldTrigger').click(function(){
+    	$('.modal-close').click();
+      	$('#checkout_11118 a').click();
+    });
+    
+    $('.modal-close').click(function(){
+      modal.hide();
+      $('body').css('overflow', 'auto');
+
+      if(idYes_modal != '' && idNo_modal != ''){
+        $('#'+idYes_modal).removeAttr('checked');
+        $('#'+idNo_modal).prop('checked',true);
+
+        idYes_modal = '';
+        idNo_modal = '';
+      }
+    });
+
+    $(window).click(function(e){
+      if (e.target == modalDom){
+        modal.hide();
+        $('body').css('overflow', 'auto');
+
+        if(idYes_modal != '' && idNo_modal != ''){
+          $('#'+idYes_modal).removeAttr('checked');
+          $('#'+idNo_modal).prop('checked',true);
+
+          idYes_modal = '';
+          idNo_modal = '';
+        }
+      }
+    });
+
+    function get_cart_items(){
+        $('.collection_to_cart').show();
+        $('.collection_update').hide();
+        $('.collection_update').css('opacity', 0);
+
+        $.ajax({
+          type:'GET', 
+          url:'/cart.js', 
+          dataType: 'json',
+          success: function(data){
+            var items = data.items;
+
+            cart_items = items;
+
+            for(var i in items){
+              var temp = [];
+
+              if(items[i].merged)
+                continue;
+
+              temp.product_id = items[i].product_id;
+              temp.quantity = parseInt(items[i].quantity);
+              items[i].merged = true;
+
+              for(var j in items){
+                if(i >= j || items[j].merged)
+                  continue;
+
+                if(items[i].product_id == items[j].product_id){
+                  temp.quantity += parseInt(items[j].quantity);
+                  items[j].merged = true;
+                }
+              }
+
+              var id = 'collection_count_' + temp.product_id;
+              $('#'+id).html(temp.quantity);
+
+              var object = $('#'+id).parents('.collection_action:first');
+              object.find('.collection_to_cart:first').hide();
+              object.find('.collection_update:first').show();
+              object.find('.collection_update:first').css('opacity', 1);
+            }
+          }
+        });
+    }
+    
+    $('body').on('afterChangeItem.ajaxCart', function(evt, cart) {
+      get_cart_items();
+    });
+
+    $('body').on('afterAddItem.ajaxCart', function(evt, cart) {
+      get_cart_items();
+    });
+
+    function find_cart_quantity(id, action){
+        var quantity = 0;
+        if(cart_items.length > 0){
+            for(var i in cart_items){
+                if(cart_items[i].id == id){
+                    if(action == 'minus')
+                        cart_items[i].quantity -= 1;
+                    else if(action == 'plus')
+                        cart_items[i].quantity += 1;      
+
+                    quantity = cart_items[i].quantity;
+
+                    break;
+                }
+            }
+        }
+
+        return parseInt(quantity);
+    }
+
+    function update_cart_count(action){
+        var quantity = parseInt($('#CartCount').html());
+        
+        if(action == 'minus')
+            quantity--;
+        else if(action == 'plus')
+            quantity++;
+
+        $('#CartCount').html(quantity);
+        $('#CartCount_mobile').html(quantity);
+    }
+
+    get_cart_items();
+    
+    $(window).load(function(){
+      var match = new RegExp('[?&]cart=([^&]*)').exec(window.location.href);
+
+      var param = match && decodeURIComponent(match[1].replace());
+
+      if(param == 'show'){
+          ajaxCart.load();
+          timber.RightDrawer.open()
+      }
+    });
+  });
+</script>
+
+
+<style>
+  .supplements-hero {
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/vitamins-hero_desktop.jpg?30760) !important;
+    background-position-y: 60% !important;
+  }
+  
+  .supplements-hero-content {
+    width: 450px;
+  }
+  
+  .supplements-content {
+    margin: 30px;
+  }
+  
+  #supplements-section-two {
+    background-color: #eaeaea;
+    margin-bottom: 30px;
+  }
+  
+  .sup-section-two-left {
+    width: 49%;
+    display: inline-block;
+  }
+  
+  .sup-section-two-left img {
+    margin-left: -30px;
+    margin-bottom: -3px;
+    max-width: 104%;
+  }
+  
+  .sup-section-two-right {
+    width: 49%;
+    float: right;
+    margin-top: 100px;
+  }
+  
+  .section-two-heading, .section-two-subheading, .section-two-button {
+    margin-left: 50px;
+  }
+  
+  .section-two-subheading p {
+    margin: 30px 0;
+  }
+  
+  #supplements-section-three {
+    background-color: #eaeaea;
+    margin-bottom: 40px;
+  }
+  
+  .sup-section-three-right {
+    width: 49%;
+    display: inline-block;
+  }
+  
+  .sup-section-three-left {
+    width: 49%;
+    float: left;
+    margin-top: 100px;
+  }
+  
+  .section-three-heading, .section-three-search-dropdown {
+    margin-left: 70px;
+  }
+  
+  .section-three-heading {
+    margin-bottom: 50px;
+  }
+  
+  .sup-section-three-right img {
+    max-width: 104%;
+    margin-bottom: -3px;
+  }
+  
+  select {
+    border-radius: 0;
+    padding-right: 0;
+    margin-left: 5px;
+    width: 125px;
+    padding: 5px;
+  }
+  
+  #supplements-section-five {
+    height: 650px;
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/new-to-public-goods_desktop.jpg?30958);
+    background-size: cover;
+    background-position-y: 83%;
+  }
+  
+  .section-five-content {
+    width: 450px;
+    margin-left: 70px;
+    padding-top: 70px;
+  }
+  
+  .section-five-subheader {
+    padding: 40px 0;
+  }
+  
+  .sections-five-image-title {
+    color: #777;
+  }
+  
+  .section-five-image {
+    padding: 40px 0 50px 0;
+  }
+  
+  #stickThis a.button.inverted {
+    display: none;
+  }
+  
+   @media (max-width: 1250px) {
+    #supplements-section-five {
+      background-position-x: 25% !important;
+    }
+  }
+  
+  @media (max-width: 1120px) {
+    .sup-section-two-right, .sup-section-three-left {
+      margin-top: 75px;
+    }
+  }
+  
+  @media (max-width: 1000px) {
+    h1 {
+      font-size: 32px;
+      line-height: 38px;
+    }
+    .sup-section-two-right, .sup-section-three-left {
+      margin-top: 50px;
+    }
+  }
+  
+  @media (max-width: 950px) {
+    
+    .supplements-hero {
+      height: 650px !important;
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/vitamins-hero_mobile.jpg?30958) !important;
+      background-position-y: 60% !important;
+      background-size: cover !important;
+    }
+    
+    
+    #supplements-section-two {
+      height: 600px !important;
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/ABCs-mobile.jpg?30958);
+      background-position-y: 70%;
+      background-size: cover;
+    }
+    
+    .sup-section-two-left, .sup-section-three-right {
+      display: none;
+    }
+    
+    .sup-section-two-right, .sup-section-three-left {
+      float: none;
+      width: 100%;
+    }
+    
+    .supplements-hero-content h1 {
+      margin-top: -75px;
+      margin-bottom: 475px;
+    }
+    
+    .supplements-hero-content p {
+      width: 400px;
+      margin: 0 auto;
+      margin-bottom: 40px;
+    }
+    
+    .sup-section-two-right, .sup-section-three-left {
+      text-align: center;
+      margin-top: 0;
+      padding-top: 50px;
+    }
+    
+    .section-two-heading, .section-two-subheading, .section-two-button, .section-three-heading, .section-three-search-dropdown {
+      margin-left: 0px;
+    }
+    
+    .section-two-button, .section-five-subheader, .section-five-header, .section-five-content a {
+      display: none;
+    }
+    
+    #supplements-section-three {
+      height: 700px !important;
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/comprehensive-care_mobile.jpg?30958);
+      background-position-y: 60%;
+      background-size: cover;
+    }
+    
+    #mission_hero .button.inverted {
+      margin-right: 0;
+    }
+    
+    #supplements-section-five {
+      height: 300px;
+      margin: 15px;
+      background-image: none;
+      background-color: #eee;
+    }
+    
+    .section-five-content {
+      width: 85%;
+      padding: 0;
+      padding-top: 40px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    #supplemets-mobile-bottom {
+      display: block !important;
+      height: 400px;
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/new-to-public-goods_mobile.jpg?31354);
+      background-size: cover;
+      background-position-y: 55%; 
+    }
+    
+    #stickThis a.button.inverted {
+      display: block;
+      margin: 0px !important;
+      width: 100% !important;
+      text-align: center !important;
+    }
+  }
+    
+  @media (max-width: 737px) {
+    #mission_hero h1 {
+      padding-bottom: 0;
+    }
+    
+    .supplements-hero-content h1 {
+      margin-top: -35px;
+    }
+    
+  }
+    
+  @media (max-width: 460px) {
+    
+    h1 {
+      font-size: 28px;
+      line-height: 33px;
+    }
+    
+    .supplements-hero {
+      height: 400px !important;
+    }
+    
+    #mission_hero h1 {
+      margin-bottom: 275px;
+      margin-top: -75px;
+   }
+    
+    .supplements-hero-content p {
+      width: 300px;
+    }
+    
+    .supplements-content {
+      margin: 10px;
+    }
+    
+    #supplements-section-two {
+      height: 450px !important;
+    }
+    
+    #supplements-section-three {
+      height: 500px !important;
+    }
+    
+    #supplements-section-five {
+      height: 225px;
+    }
+    
+    #supplemets-mobile-bottom {
+      height: 300px;
+    }
+    
+    
+  }
+  
+  @media screen and (-webkit-min-device-pixel-ratio:0) { 
+    select,
+    textarea,
+    input {
+      font-size: 16px;
+    }
+  }
+   
+</style>

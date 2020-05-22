@@ -1,0 +1,311 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div id="page_content">
+  <div class="signup-page">
+    <div id="sign-up-part-1">
+      <h1>Our gift to you.</h1>
+      <p>Our classic care essentials kit with shampoo, conditioner, soap and more.</p>
+    </div>
+    <div id="sign-up-part-2">
+      <h1>Free and easy.</h1>
+      <p>1. Start a no-risk, free trial.</p>
+      <p>2. Add your gift to cart.</p>
+      <p>3. Make a purchase of $40+ and your gift is automatically free—no code needed.</p>
+      <p>Enjoy your gift and a month of free unlimited access to Public Goods</p>
+    </div>
+    <div class="signup-page-content-container" id="dont-run-out-membership-wrapper-47-60">
+            <div id="already-a-member"><strong>Already a member?</strong> <a href="https://morgans-dont-run-out.myshopify.com/account/login">Sign-in to your account.</a></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://dont-run-out-membership.herokuapp.com/public/plans/47/billings/60.js"></script>
+<script>
+  
+  $( document ).ready(function() {    
+    $("#already-a-member").css("display", "block")
+    $("#already-a-member").insertAfter(".btn-step-one")
+    
+    setTimeout(function() {
+      $('.btn-step-one')[4].innerHTML = "Claim your free gift"
+    })
+    
+    $('.btn-step-one').click(function() {
+      $("#sign-up-part-2").css("display", "block")
+      $("#sign-up-part-1").css("display", "none")
+      $('.signup-page').css("background-image", "none")
+      $('.signup-page').css("height", "900px")
+    })
+  })
+  
+</script>
+
+<style>
+  
+  .popup-header, #sign-up-part-2 {
+    display: none;
+    padding-bottom: 20px;
+  }
+  
+  #sign-up-part-1 h1, #sign-up-part-2 h1 {
+    padding-top: 60px;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+  
+  #sign-up-part-1 p, #sign-up-part-2 p {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px;
+  }
+  
+  .already-a-member-section, #already-a-member {
+    display:none;
+  }
+
+  .membership-modal-hide {
+    display: none;
+  }
+  
+  .popup-wrapper {
+    background-color: inherit;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  
+  .popup-header {
+    margin-bottom: 25px !important;
+  }
+  
+/*   .popup-wrapper .popup-membership-wrapper form label {
+    display: none;
+  } */
+  
+  .card-address_zip-element {
+    border: 0.8px solid #000 !important;
+    padding: 10px !important;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form .step-two .card-data .card-field-wrapper {
+    width: 30%;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form .step-two .names .field-wrapper, .popup-wrapper .popup-membership-wrapper form .step-two .card-wrapper .field-wrapper {
+    width: 100%;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form input {
+    border-color: #000;
+  }
+  
+/*   .popup-last-name, .card-data {
+    margin-top: 10px !important;
+  } */
+  
+  .popup-wrapper .popup-membership-wrapper form .card-element, .popup-wrapper .popup-membership-wrapper form .StripeElement {
+    border-color: #000;
+    background-color: #fff;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form .valid_message {
+    padding: 0;
+  }
+  
+  
+  .line-break {
+    font-family: 'BN';
+  }
+  
+  .signup-page {
+    height: 110vh;
+    background-color: #e7e7e7;
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/shampoo_soap_desktop_smaller.jpg?2664);
+    background-size: cover;
+    background-position: bottom;
+    background-position-y: 80%;
+  }
+  
+  .signup-page-content-container {
+    width: 500px;
+    margin: 0 auto;
+/*     padding-top: 25px; */
+  }
+  
+   .signup-page-header {
+    text-align: center;
+    font-size: 28px;
+  }
+  
+  .signup-page-info-points {
+    list-style: none;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    margin-left: 80px;
+  }
+  
+  .signup-page-info-points li {
+    margin: 15px 0;
+    font-size: 16px;
+    font-family: 'NB';
+    line-height: 1.5;
+  }
+  
+  .signup-page-info-points li img {
+    position: relative;
+    top: 2px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+  }
+  
+  .popup-membership-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .popup-membership-wrapper form input {
+    width: 100%;
+    height: 40px;
+    border: 0.8px solid #000;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 0;
+    margin: 0;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form button {
+    background-color: rgb(220, 136, 108);
+    width: 100%;
+    height: 40px;
+    font-family: NBH;
+    font-size: 16px;
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .btn-step-two {
+    margin-top: 25px;
+  }
+  
+  .popup-membership-wrapper form .step-two .names, .popup-membership-wrapper form .step-two .card-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  
+  .card-wrapper {
+    margin-top: 15px;
+  }
+  
+  .card-data {
+    width: 60%;
+  }
+  
+  .cvc-container {
+    width: 40%;
+    float: left;
+    margin-top: 15px;
+  }
+  
+  .zip-container {
+    width: 40%;
+    float: right;
+    margin-top: 15px;
+  }
+  
+  .popup-footer-info {
+    font-size: 14px;
+    font-family: 'NB';
+    line-height: 1.5;
+/*     margin-top: 15px; */
+  }
+  
+  @media (max-width: 737px) {
+    #sign-up-part-1 h1, #sign-up-part-2 h1 {
+      padding-top: 80px;
+    }
+     #sign-up-part-2 h1 {
+      padding-top: 80px;
+    }
+  }
+  
+  @media (max-width: 625px) {
+    .signup-page-content-container {
+      width: 400px;
+    }
+    
+    .field-wrapper {
+      width: 100%;
+    }
+    
+    .signup-page-info-points {
+      margin-left: 25px;
+    }
+    
+    #sign-up-part-1 p, #sign-up-part-2 p {
+      padding-bottom: 20px;
+      width: 300px;
+    }
+    
+    #sign-up-part-2 p {
+      padding-bottom: 0px;
+    }
+  }
+  
+  @media (max-width: 450px) {
+    .signup-page-content-container {
+      width: 350px;
+/*       padding-top: 50px; */
+    }
+    .popup-wrapper {
+      margin-top: 0;
+      padding: 20px 10px;
+    }
+    
+    .signup-page {
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/shampoo-soap_mobile_6ea4e4c2-188d-4105-9b92-998cdcc184ea.jpg?2681);
+      background-position-y: 36px;
+      height: 100vh;
+    }
+  }
+  
+  @media (max-width: 415px) {
+    .signup-page-content-container {
+      width: 300px;
+    }
+    
+    .signup-page-header {
+      font-size: 24px;
+    }
+    
+    .popup-wrapper .popup-membership-wrapper form button {
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 350px) {
+    .signup-page-content-container {
+      width: 250px;
+/*       padding-top: 100px;/ */
+    }
+    
+    .line-break {
+      display: block;
+      padding-top: 5px;
+    }
+  }
+  
+  @media (max-height: 655px) {
+    .signup-page {
+      height: 650px;
+    }
+  }
+  
+  
+  
+</style>

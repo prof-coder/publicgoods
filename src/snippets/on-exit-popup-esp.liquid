@@ -1,0 +1,84 @@
+<!-- % include % this on pages where you want exit popup to occur along with page.on-exit-popup  -->
+
+<script>
+  
+document.addEventListener("DOMContentLoaded", function(event) {
+
+//   if (localStorage['PG_received_email_popup2']) {
+//     localStorage['PG_received_email_popup2'] = true;
+//     triggerPopup()
+//   }
+  const popupEmailForm = document.forms['popup-email-form']
+  const popupHeaderText = document.getElementById('popup-header-text')
+  const popupBodyText = document.getElementById('popup-body-text')
+  const popupSubmit = document.getElementsByClassName('popup-submit-button')[0]
+  const popupInput = document.getElementsByClassName("popupInput")[0]
+  const popupSignupButton = document.getElementById("popup-post-signup-button")
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxNjoHR2FJw2wv6hhyUYy73pvdU-Ms4SQxEd7NLMV3rersRtGA/exec'
+
+  
+  popupEmailForm.addEventListener('submit', event => {  
+    event.preventDefault() 
+    console.log('submittedddd')
+    popupHeaderText.innerText = "Estas todo listo."
+    popupBodyText.innerText = "Revise su bandeja de entrada para las buenas noticias. Nuevos productos saludables cada semana."
+    popupSubmit.style.display = 'none'
+    popupInput.style.display = 'none'
+    popupSignupButton.style.display = '';
+    fetch(scriptURL, { method: 'POST', body: new FormData(popupEmailForm)})  
+       .then(response => console.log('Success!', response))  
+       .catch(error => console.error('Error!', error.message))  
+  })
+})
+
+window.setTimeout(function() {
+  if (!localStorage['PG_received_email_popup']) {
+    localStorage['PG_received_email_popup'] = true;
+    triggerPopup()
+  }
+}, 10000)
+
+triggerPopup = () => {
+  console.log('triggggggered');
+  let placement = document.querySelector('body')
+  let popup = document.getElementById('on-exit-popup')
+
+  popup.style.cssText = `display: block;
+						 width: 100%;
+                         height: 250px;
+                         left: 0;
+                         position: fixed;
+                         background-color: #EB8364;
+                         z-index: 101;`
+
+
+  let topLeftDiv = document.getElementById('top-left-div')
+  topLeftDiv.style.cssText = `float: left;
+                          position: relative;
+                          width: 75%;
+                          height: 25%;`
+
+
+  let headerText = document.getElementById('popup-header')
+
+
+  let topRightDiv = document.getElementById('top-right-div')
+  topRightDiv.style.cssText = `float: right;
+                          position: relative;
+                          width: 25%;
+                          height: 25%;`
+
+
+  let closeBtn = document.getElementById('popup-closeBtn')
+  closeBtn.addEventListener('click', function() {
+    popup.remove()
+  })
+
+  let bodyText = document.getElementById('popup-body-text')
+
+  placement.parentNode.insertBefore(popup, placement.nextSibling)
+
+}
+  
+
+</script>

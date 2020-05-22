@@ -1,0 +1,25 @@
+{% comment %}
+  DO NOT MODIFY MANUALLY
+  This asset is generated automatically by Talkable Integration at 2/7/20 3:13AM
+{% endcomment %}
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div id="page_content">
+  <div class="row clearfix">
+  	<div class="column_12">
+      <h1>{{ page.title }}</h1>
+      <div class="rte">
+       {% if shop.customer_accounts_enabled %}
+         {% if customer %}
+           <div id="talkable-offer"></div>
+         {% else %}
+           {{ 'Log in' | customer_login_link }}
+         {% endif %}
+       {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,215 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div id="page_content" class="lifetime-activation-container">
+  <div class="row clearfix">
+  	<div class="column_12 lifetime-content">
+      <script src="https://deeko.io/aai/customeractivate.js" id="1CfHX9iMZQbriA4" type="text/javascript"></script>
+<div id="AAI-customeractivate"></div>
+<!--       <div id="lifteime-activation-step1">
+        <h1 id="lifetime-activation-heading">Activate your<br>lifetime account.</h1>
+        <p id="lifetime-activation-subheading">A lifetime of savings is waiting for you—no
+          additional fees ever. Complete the final step in
+          your account activation now.</p>
+        <a href="" id="lifetime-activation-button">Activate Account</a>
+      </div>
+      <div id="lifetime-activation-step2">
+        <p>Enter the email address linked to your Public
+			Goods accout. We’ll send you a confirmation
+			email to finalize account activation.</p>
+       {% form 'customer', id: formId, novalidate: 'novalidate' %}
+          <input type="hidden" name="contact[tags]" value="lifetime-activation-drip">
+          <input type="email" name="contact[email]" value="{{ form.email }}">
+          <button type="submit">Submit</button>
+        {% endform %}
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<script>
+
+    setTimeout(function() {
+      let button = document.getElementById("AAI-buttontext").firstChild
+      $(button).click(function(e) {
+        e.preventDefault()
+        console.log('clicked')
+        $("#AAI-title").css("display", "none")
+        $("#AAI-description").css("display", "none")
+        $("#AAI-buttontext").css("display", "none")
+      })
+    },1800)
+
+
+</script>
+
+<style>
+
+  
+  .lifetime-activation-container {
+    box-sizing: border-box;
+    background-color: #eaeaea;
+    height: 80vh;
+  }
+  
+  #AAI-customeractivate {
+    padding-top: 150px;
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  #AAI-title {
+    font-family: 'NBH';
+    line-height: 40px;
+    font-size: 36px;
+    text-align: center;
+  }
+  
+  #AAI-description {
+    margin: 50px 0 65px 0;
+    text-align: center;
+  }
+  
+  #AAI-buttontext a, #AAI-submitbtn input {
+    display: block;
+    font-family: 'NBH';
+    font-size: 18px;
+    color: #fff;
+    background-color: #f5886b;
+    text-align: center;
+    padding: 15px 0px;
+    margin-top: 50px;
+  }
+  
+  #AAI-submitbtn input {
+    width: 100%;
+    padding: 10px 0px;
+  }
+  
+  #lifetime-activation-button:hover {
+    opacity: .9;
+  }
+  
+  #AAI-modal {
+    position: static;
+    transform: none;
+    top: 0%;
+    left: 0%;
+    height: 300px;
+  }
+  
+  #AAI-headline h1 {
+    color: #fff;
+  }
+  
+  #AAI-headline {
+    margin-top: 50px;
+  }
+  
+  #AAI-emailaddress {
+    padding-top: 50px;
+  }
+  
+  #AAI_email {
+    color: #000;
+    border: 1px solid #606060;
+    height: 45px;
+    width: 100%;
+	padding-left: 10px;
+  }
+  
+  #AAI-submitbtn input {
+    margin-top: 15px;
+  }
+  
+  #AAI-cancel {
+    margin-top: 35px;
+  }
+  
+  #AAI-cancel a, #AAI-close a {
+    color: #000;
+  }
+  
+  #AAI-confirmation {
+    margin: 100px 0;
+  }
+  
+  #AAI-close {
+    margin-top: 100px;
+  }
+
+  
+  @media (max-width: 737px) {
+    #AAI-customeractivate { 
+      width: 350px;
+    }
+    #AAI-buttontext a, #AAI-submitbtn input {
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 450px) {
+    #AAI-customeractivate {
+      width: 300px;
+    }
+    
+    .lifetime-content {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    
+     #AAI-customeractivate {
+      padding-top: 75px;
+    }
+    
+    #AAI-modal {
+      width: 80%;
+    }
+    
+    #AAI-confirmation { 
+      width: 230px;
+    }
+  }
+  
+  @media (max-width: 350px) {
+    #AAI-customeractivate {
+      width: 265px;
+    }
+    
+    #AAI-title {
+      font-size: 30px;
+      line-height: 34px;
+    }
+    
+    .lifetime-content {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+    
+    #AAI-modal {
+      padding: 0;
+      width: 95%;
+      height: 340px;
+    }
+    #AAI_email {
+      padding-left: 0;
+      
+    }
+    
+    #AAI-form {
+      width: 90%;
+      margin: 0 auto;
+   }
+    
+    #AAI-confirmation {
+      width: 230px;
+      margin: 100px auto;
+    }
+
+
+  }
+  
+</style>

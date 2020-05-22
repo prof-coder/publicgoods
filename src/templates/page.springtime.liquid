@@ -1,0 +1,509 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+
+<!-- /templates/page.liquid -->
+
+<div id="mission_hero">
+  <div class="row clearfix">
+    <div class="column_6">
+       <h1 class="margin_bottom_50">Just what you need.</h1>
+      <p class="margin_bottom_50 without-padding">Just one version of every essential in
+                                                  <br>just one place. Healthy. High quality.
+                                                  <br>Sustainable and ultra affordable.</p>
+      
+        {% unless customer %}<a class="subscribe-to-membership-32-45 subscribe-to-membership button inverted button-cta">Free Trial</a>{% endunless %}
+        <a href="/collections/all-products" class="home-shop-btn">Browse Products</a>
+<!--       <div id="hero-buttons">
+      {% if customer %}
+	     <a href="/collections/all-products" class="home-shop-btn">Browse Products</a>
+      {% else %}
+    	<a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free 30 Day Trial</a>
+        <a href="/collections/all-products" class="home-shop-btn browse-prod-btn">Browse Products</a>
+      {% endif %}
+      </div> -->
+      
+    </div>
+    <div class="text_center margin_top_50 margin_bottom_70">
+   <div id="stick-here" class="stick-here"></div>
+  
+<!--     <a href="/pages/membership" class="button inverted">Join Today</a> -->
+         
+    </div>
+    <!--<img src="{{ 'two.png' | asset_url }}" alt=""/>!-->
+  </div>
+</div>
+
+<div id="sticky-button-bottom">
+      {% if customer %}
+        <div id="stickThis" class="free-tote-second-div" style="width: 100%">
+          <a href="/collections/all-products" class="button inverted">Browse Products</a>
+        </div>
+      {% else %}
+        <div id="stickThis" class="free-tote-second-div" style="width: 100%">
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free Trial</a>
+        </div>
+      {% endif %}
+    </div>
+
+  <div class="whats-new-container">
+    <div class="whats-new-title">
+      <h2>Member Favorites</h2>
+    </div>
+    <div class="whats-new-products">
+        <div class="row">
+        <div class="column_12">
+          <div class="collections clearfix">
+            {% for product in collections.whats-new-homepage.products %}
+
+               {%- comment %}<locksmith:000d>{% endcomment -%}
+                 {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections.whats-new-homepage, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+               {%- comment %}</locksmith:000d>{% endcomment -%}
+
+               {% assign name = 'product' | append:product.id %}
+              {% assign idNo = name | append:'-no' %}
+              {% assign idYes = name | append:'-yes' %}
+
+              {% assign checkedNo = 'checked' %}
+              {% assign checkedYes = '' %}
+              {% assign opacityClass = '' %}
+              {% assign available = true %}
+
+              {% if product.variants[0].inventory_quantity <= 0 %}
+                {% assign available = false %}
+              {% endif %}
+
+              {% if shop.customer_accounts_enabled %}
+                {% if customer %}
+                    {% assign checkedNo = 'disabled' %}
+                    {% assign checkedYes = 'checked' %}
+                    {% assign opacityClass = 'opacity-3' %}
+
+                    {% assign available = true %}
+                    {% if product.variants[0].inventory_quantity <= 0 %}
+                        {% assign available = false %}
+                    {% endif %}
+                {% endif %}
+              {% endif %}
+
+              <div class="collection">
+                <div class="collection_header">
+                  <a href="{{ product.url | within: collection }}">
+                    <img src="{{  product.images[0] | img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}">
+                  </a>
+                  <div class="collection_action" rel="{{name}}">
+                    {% if available == true %}
+                        {% if customer %}
+                           {% if product.variants.first.sku == "123" %}
+                              <a href="{{ product.url | within: collection }}">
+                                  <div class="collection_update">
+                                  </div>
+                              </a>
+                           {% else %}
+<!--                              <div class="collection_to_cart" rel="{{name}}">ADD TO CART</div> -->
+                           {% endif %}
+                        {% else %}
+<!--                           <div class="collection_to_cart subscribe-to-membership subscribe-to-membership-32-45" rel="{{name}}">ADD TO CART</div> -->
+                        {% endif %}
+                        <div class="collection_update">
+                          <div class="collection_update_spans clearfix">
+                            <span class="collection_minus" rel="{{name}}"></span>
+                            <div>
+                              <span class="collection_count" id="collection_count_{{product.id}}"></span> IN CART
+                            </div>
+                            <span class="collection_plus" rel="{{name}}"></span>
+                          </div>
+                        </div>
+                    {% else %}
+                        <div class="collection_coming_soon">SOLD OUT</div>
+                    {% endif %}
+                  </div> <!-- Collection Action End !-->
+                </div>
+                <div class="collection_body">
+                  <label class="collection_title">{{ product.title }}</label>
+
+
+                  <div><input type="hidden" rel="{{product.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" {{checkedNo}}/><label for="{{idNo}}" onclick="">{{ product.variants[0].price | money }}</label></div>
+
+                </div>
+              </div>
+            {% endfor %}
+          </div> <!-- Collections End !-->
+          {% if paginate.pages > 1 %}
+            <div class="pagination">
+              {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+            </div>
+          {% endif %}
+        </div>
+      </div><!-- Row End !-->
+    </div>
+    <div class="whats-new-buttons">
+      {% if customer %}
+	     <a href="/collections/all-products" class="home-shop-btn browse-prod-btn customer-signed-in-change-color">Browse Products</a>
+      {% else %}
+		<a class="subscribe-to-membership-32-45 subscribe-to-membership home-shop-btn membuttonclick margin_top_30 button inverted button-cta" data-label="home-btn-click">Free Trial</a>
+        <a href="/collections/all-products" class="home-shop-btn browse-prod-btn" style="border:1px solid #dc886c">Shop Products</a>
+      {% endif %}
+  </div>
+
+</div>
+
+<div class="margin_top_50">
+    <div class="shop-by-category">
+<!--       <div class="shop-by-category-title">
+        <h2>Shop By Category</h2>
+      </div> -->
+      <div class="main-categories">
+        <div class="main-categories-tile main-categories-pc">
+          <div class="main-categories-words">
+            <h2>Personal Care</h2>
+            <a href="https://www.publicgoods.com/collections/personal-care">shop all</a>
+          </div>
+        </div>
+        <div class="main-categories-tile main-categories-household">
+          <div class="main-categories-words">
+            <h2>Home Essentials</h2>
+            <a href="https://www.publicgoods.com/collections/household">shop all</a>
+          </div>
+        </div>
+        <div class="main-categories-tile main-categories-food">
+          <div class="main-categories-words">
+            <h2>Healthy Food</h2>
+            <a href="https://www.publicgoods.com/collections/grocery">shop all</a>
+          </div>
+        </div>
+      </div>
+      <div class="shop-by-category-tiles">
+        <div class="spec"><a href="https://www.publicgoods.com/collections/vegan"><span>VF</span><p>vegan<br/>friendly</p></a></div>     
+        <div class="spec"><a href="https://www.publicgoods.com/collections/organic"><span>O</span><p><br/>organic</p></a></div>     
+        <div class="spec"><a href="https://www.publicgoods.com/collections/gluten-free"><span>GF</span><p>gluten<br/>free</p></a></div>      
+        <div class="spec"><a href="https://www.publicgoods.com/collections/tree-free-paper"><span>TF</span><p>tree<br/>free</p></a></div>    
+        <div class="spec"><a href="https://www.publicgoods.com/collections/vegetarian"><span>V</span><p><br/>vegetarian</p></a></div>              
+        <div class="spec"><a href="https://www.publicgoods.com/collections/zero-waste-1"><span>ZW</span><p>zero<br/>waste</p></a></div>
+      </div>
+<!--       <div class="shop-by-category-arrows">
+        <img class="category-arrow" src='https://cdn.shopify.com/s/files/1/0838/7991/files/arrow-right.png?8111881308690237463' />
+        <img class="category-arrow" src='https://cdn.shopify.com/s/files/1/0838/7991/files/arrow-right.png?8111881308690237463' />
+        <img class="category-arrow" src='https://cdn.shopify.com/s/files/1/0838/7991/files/arrow-right.png?8111881308690237463' />
+        <img class="category-arrow" src='https://cdn.shopify.com/s/files/1/0838/7991/files/arrow-right.png?8111881308690237463' />
+        <img class="category-arrow" src='https://cdn.shopify.com/s/files/1/0838/7991/files/arrow-right.png?8111881308690237463' />
+        <img class="category-arrow" src='https://cdn.shopify.com/s/files/1/0838/7991/files/arrow-right.png?8111881308690237463' />
+      </div> -->
+    </div>
+  </div>
+
+
+<div id="page_content">
+  
+  <div>
+  	<div class="about-container">
+      <div class="about-product-slider">
+        <h1>It's all good.</h1>
+        <div class='arrow-prev'><img src='https://cdn.shopify.com/s/files/1/0838/7991/files/arrow-left.png?8111881308690237463' /></div>
+        <div class="product-image-slider">
+          <div>
+            <a href="https://www.publicgoods.com/collections/personal-care/products/shampoo" data-product-single-thumbnail>
+              <img data-lazy="https://cdn.shopify.com/s/files/1/0838/7991/files/all-good1_copy.png?17231728799301496424" />
+            </a>
+          </div>
+          <div>
+            <a href="https://www.publicgoods.com/collections/linens-1/products/organic-cotton-kitchen-towels-2-pack" data-product-single-thumbnail>
+              <img data-lazy="https://cdn.shopify.com/s/files/1/0838/7991/files/all-good2_copy.png?17231728799301496424">
+            </a>
+          </div>
+          <div>
+            <a href="https://www.publicgoods.com/collections/household/products/surfacecleaner24oz" data-product-single-thumbnail>
+              <img data-lazy="https://cdn.shopify.com/s/files/1/0838/7991/files/all-good3_copy.png?17231728799301496424" />
+            </a>
+          </div>
+          <div>
+            <a href="https://www.publicgoods.com/collections/household/products/tall-kitchen-recycled-trash-bag-13-gal" data-product-single-thumbnail>
+              <img data-lazy="https://cdn.shopify.com/s/files/1/0838/7991/files/all-good4_copy.png?17231728799301496424" />
+            </a>
+          </div>
+          <div>
+            <a href="https://www.publicgoods.com/collections/personal-care/products/shampoo-refill-34oz-pouch" data-product-single-thumbnail>
+              <img data-lazy="https://cdn.shopify.com/s/files/1/0838/7991/files/all-good5_copy.png?17231728799301496424" />
+            </a>
+          </div>
+        </div>
+      </div>
+              <div class='arrow-next'><img src='https://cdn.shopify.com/s/files/1/0838/7991/files/arrow-right.png?8111881308690237463' /></div>
+
+      <div class="how-we-operate">
+        <div class="hwo-item how-we-operate-header">
+          <h1>Making healthy affordable.</h1>
+        </div>
+        <div class="hwo-item how-we-operate-info">
+          <p>For $59 a year, get access to high-end, low-cost essentials all in one place.</p>
+        </div>
+        <div class="hwo-item how-we-operate-button">
+           {% if customer %}
+             <a href="/collections/all-products" class="home-shop-btn browse-prod-btn customer-signed-in-change-color">Shop Products</a>
+          {% else %}
+             <a class="subscribe-to-membership-32-45 subscribe-to-membership home-shop-btn membuttonclick margin_top_30 button inverted button-cta" data-label="home-btn-click">Free Trial</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+{{ 'homepage.css' | asset_url | stylesheet_tag }}
+  {{ 'slick.min.js' | asset_url | script_tag }}
+
+
+<script>
+
+    $('.product-image-slider').slick({
+      dots: false,
+      arrows: true,
+      rows:1,
+      slidesToShow: 1,
+      lazyLoad: 'progressive',
+      focusOnSelect: true,
+	  nextArrow:$('.arrow-next'),
+      prevArrow:$('.arrow-prev'),
+    });
+	
+  $('.slick-next').click(function() {
+    $('.about-container').click()
+  })
+  
+  $(".main-categories-tile").click(function() {
+    window.location = $(this).find("a").attr("href"); 
+    return false;
+  });
+  
+</script>
+  
+<!--  prevArrow: "<img class='arrow-prev' src='https://cdn.shopify.com/s/files/1/0838/7991/files/arrow-left.png?8111881308690237463' />",
+      nextArrow: "<img class='arrow-next' src='https://cdn.shopify.com/s/files/1/0838/7991/files/arrow-right.png?8111881308690237463' />"  -->
+  
+  
+<!--   <script>
+    $(document).ready(function(){
+      $(".button.inverted").click(function(e){
+        event.stopPropagation();
+        console.log($("#memberships_button_11118"));
+        console.log($("#memberships_button_11118")[0]);
+//        $("#memberships_button_11118").click();
+      })
+    });
+  </script> -->
+
+  <!--<div class="row">
+    <div class="column_12"><h2 class="text_center margin_bottom_50">Show Us Your Goods</h2></div>
+    <div class="column_12">
+      <div class="goods">
+        {% for product in collections.featured-goods.products limit:10 %}
+          {%- comment %}<locksmith:69e7>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections.featured-goods, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:69e7>{% endcomment -%}
+          <div class="good">
+            <a href="{{ product.url | within: collection }}"><img src="{{ product.featured_image.src | img_url: 'medium' }}" alt=""/></a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="column_12">
+      <p class="text_center" id="publicgoods">#publicgoods</p>
+    </div>
+  </div>!--><!-- Row End !-->
+  
+<!-- Popup email capture   -->
+  {% unless customer %}
+  <div id="on-exit-popup" style='display: none;'>
+    <div id="popup-top-div">
+      <div id="top-left-div">
+        <h1 id="popup-header-text">Friends with benefits.</h1>
+      </div>
+      <div id="top-right-div">
+        <img id="popup-closeBtn" src="{{ 'X.svg' | asset_url }}"/>
+      </div>
+    </div>
+    <div id="popup-middle-div">
+      <p id="popup-body-text">Join our list for first access to new products, sneak peeks and more.</p>
+    </div>
+    <div id="popup-bottom-div">
+      <footer style="padding-top: 0;">
+        <form name="popup-email-form" id="email-capture-popup2" style="padding-top: 0; position: relative;" class="validate-form footer_submit_form">
+          <input name="email2" id="emailinput2" value="" placeholder="" class="drip-text-field popupInput" type="email" required="">
+          <div id="drip-errors-for-email-27436" class="drip-errors" style="display: none"></div>
+          <a href="/collections/all-products" class="home-shop-btn" id="popup-post-signup-button" style="display: none; background-color: white; color:#EB8364;">Start Shopping</a>
+          <input name="submit" value="Subscribe" id="drip-submit-27436" class="drip-submit-button submit-capture popup-submit-button" type="submit">
+
+          <div id="drip-success-panel-27436" class="drip-success drip-panel" style="display: none">
+            <p>Thank you.</p>
+          </div>
+        </form>
+      </footer>
+    </div>
+  </div>
+{% endunless %}
+{% include 'on-exit-popup' %}
+<!-- End popup email capture -->
+</div> <!-- Page Content End !-->
+
+<script>
+  $(document).ready(function(){
+
+    $("#loadOverlay").css("display","none");
+    
+    function createCookie(name,value,days) {        if (days) { var date = new Date();
+            date.setTime(date.getTime()+(days*24*60*60*1000));
+            var expires = "; expires="+date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name+"="+value+expires+"; path=/";
+        }
+    createCookie("free_trial_button", "true", 30);
+    
+    {% unless customer %}
+       console.log("DOM fully loaded and parsed");
+       let GSscriptURL = 'https://script.google.com/macros/s/AKfycbyZpEbiGJEYiAXNX9kDbvOnLptx6gtkyMBBLYH5If59DcmH3B_y/exec'
+       const popupEmailForm = document.forms['popup-email-form'] 
+       let emailInput = document.getElementById('emailinput2').value
+
+
+       popupEmailForm.addEventListener('submit', e => {  
+         e.preventDefault()  
+
+         let popupEmailText = popupEmailForm.elements.namedItem("email2").value;
+
+          const payload = {
+          subscribers: [{
+            email: popupEmailText,
+          }]
+        }
+
+         fetch(GSscriptURL, { method: 'POST', body: new FormData(popupEmailForm)})  
+          .then(response => console.log('Success!', response))  
+          .catch(error => console.error('Error!', error.message))  
+
+         _dcq.push(
+          [
+            "subscribe",
+            {
+              campaign_id: "220285039",
+              fields: {
+                email: popupEmailText
+              },
+              success: function(response) {
+                 console.log(popupEmailText)
+              }
+            }
+          ]
+        );
+       })
+   {% endunless %}
+     
+     function sticktothebottom() {
+        var h = window.innerHeight;
+        var window_top = $(window).scrollTop();
+        var top = $('#stick-here').offset().top;
+        var panelh = $(".free-tote-second-div").height();
+
+        if(h> top || h + window_top > top + 50) {
+            $('#stickThis').appendTo('body');
+            $('#stickThis').css('position', 'fixed');
+            $('#stickThis').css('bottom', '0');
+        } else {
+            $('#stickThis').appendTo('#stick-here');
+            $('#stickThis').css('position', 'relative');
+            $('#stickThis').css('bottom', 'auto');
+        }
+      }
+
+      var w = window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
+
+      var h = window.innerHeight
+      || document.documentElement.clientHeight
+      || document.body.clientHeight;
+
+
+      $(function() {
+        $(window).scroll(sticktothebottom);
+        sticktothebottom();
+      });
+  })
+  
+  
+</script>
+
+<style>
+  .shop-by-category-tiles {
+    margin-top: 100px;
+  }
+
+    .arrow-next {
+/*       top: 4787px; */
+      margin-top: -260px;
+      top: inherit;
+    }
+  
+   .free-tote-second-div {
+    display: none !important;
+  }
+  
+  #hero-buttons {
+    display: block;
+  }
+  
+  #mission_hero {
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/flowers.jpg?26801) !important;
+  }
+  
+  @media screen and (max-width: 1000px) {
+    #hero-buttons, .row .button-cta {
+      display: none;
+    }
+    .free-tote-second-div {
+      display: block !important;
+    }
+    #stickThis a.button.inverted {
+      margin: 0px !important;
+      width: 100% !important;
+      text-align: center !important;
+    }
+    .popup-wrapper {
+/*       height: 100%; */
+/*       margin-top: 210px; */
+    }
+    
+    #mission_hero {
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/flowers_mobile.jpg?26801) !important;
+      background-position-y: 72% !important;
+    }
+    
+  }
+
+  #mission_hero h1 {
+    padding-bottom: 0 !important;
+  }
+  
+  
+  @media (max-width: 460px) { 
+     #mission_hero {
+      height: 300px;
+    }
+  }
+  
+    @media (max-width: 450px) { 
+    .arrow-next {
+      margin-top: -244px;
+    }
+   }
+  
+   @media (max-width: 375px) { 
+    .arrow-next {
+          margin-top: -222px;
+    }
+     
+   }
+  
+</style>

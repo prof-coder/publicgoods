@@ -1,0 +1,102 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div class="deodorant-main-section tp-main-section">
+  <div class="row clearfix">
+    <div class="column_6">
+      <h2 class="margin_bottom_50">Tree-free toilet paper</h2>
+      <h1 class="margin_bottom_50 without-padding">How we roll.</h1>
+      <div class="deodorant-thumbnail-mobile">
+      	{{ 'Toilet_Paper_New.png' | asset_url | img_tag }}            
+      </div>
+      <div class="deodorant-price-section">
+      	<p class="margin_bottom_50">For  us,  a  smarter  bath  tissue  is  all  about  softness  and  sustainability.  We  chose  sustainable  bamboo  and  sugar  cane  pulp  (technically  both  grasses)  because  it’s  softer  than  paper  and  saves  trees.  The  3-ply  bath  tissue  comes  in  300-sheet  rolls  that  will  last  longer  than  standard  rolls.</p>
+        <h1 style="display: inline;">$7.00</h1><p style="display:inline"> /6 rolls</p><span>  with membership</span>
+        <br><br><br>
+        {% if customer %}
+           <a href="/collections/all-products" style="background-color: black" class="home-shop-btn">Browse Products</a>
+        {% else %}
+          <a  style="background-color: black" class="subscribe-to-membership home-shop-btn membuttonclick margin_top_30 button inverted button-cta">Get Membership</a>
+        {% endif %}
+        <br><br>
+        <a href="/collections/all-products/products/deodorant">No thanks - I'll Pay full price instead</a>
+      </div>
+    </div>
+    <div class="column_6 deodorant-thumbnail-desktop">
+      {{ 'Toilet_Paper_New.png' | asset_url | img_tag }} 
+    </div>
+   <div class="text_center margin_top_50 margin_bottom_70">
+ 
+  
+<!--     <a href="/pages/membership" class="button inverted">Join Today</a> -->
+         
+    </div>   
+    <!--<img src="{{ 'two.png' | asset_url }}" alt=""/>!-->
+  </div>
+</div>
+
+<div class="deodorant-ingredients-section toilet-paper-ingredients-section">
+  <div class="row clearfix">
+    <div class="deodorant-ingredients-section-inner-text toilet-ing-section-text">
+      <p style="display: inline; font-size: 14px; font-family: NBH;">What's in it:</p><p style="display: inline; font-size: 14px; line-height: 1.5"> 30%  bamboo  and  70%  sugar  cane.  300  sheet,  3-ply  rolls  that  last  twice  as  long  as  a  normal  roll.</p><br><br><br>
+      <p style="display: inline; font-size: 14px; font-family: NBH;">What's not in it:</p><p style="display: inline; font-size: 14px; line-height: 1.5"> tree  materials  of  any  kind,  formaldehyde,  BPA,  chlorine,  bleach.</p>
+    </div>
+  </div>
+</div>
+
+<div class="margin_top_50">
+  <div class="column_12">
+    <h2 class="text_center">It's all good</h2>
+  </div>
+  <div class="column_6 deodorant-specs-cont align_center block_text_phone_home" style="float: none; padding-bottom: 75px;">
+    <h3 style="font-family: NBH;" class="text_center font_nb margin_top_30 margin_bottom_30">Healthy ingredients<br>with nothing to hide</h3>
+    <div class="specs deodorant-specs"> 
+      <div class="spec"><span>PF</span><p>paraben<br>free</p></div>   
+      <div class="spec"><span>VF</span><p>vegan<br>friendly</p></div>        
+      <div class="spec"><span>CF</span><p>cruelty<br>free</p></div>    
+      <div class="spec"><span>BD</span><p>bio<br>degradable</p></div>        
+      <div class="spec"><span>TF</span><p>tree<br>free</p></div>          
+      <div class="spec"><span>SS</span><p>septic<br>safe</p></div>
+    </div>
+
+  </div>
+  <div class="row clearfix" id="product-comments-block">
+    <div class="column_12">
+      <h2 class="margin_top_30">Reviews</h2>
+      <div class="yotpo yotpo-main-widget"
+          data-product-id="2318390977"
+          data-name="Tree-Free Toilet Paper"
+          data-url="https://www.publicgoods.com/products/6-rolls"
+          data-image-url="//cdn.shopify.com/s/files/1/0838/7991/products/Toilet_Paper_New_b5bbd103-e9cf-43aa-b9a3-8c16b730c5df_large.png%3Fv=1508437245"
+          data-description="{{ product.description | escape }}">
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="pg-section review-section">
+  <div class="pg-container">
+    <div class="review-section-inner">
+      <div class="pg-row">
+        <div class="pg-col pg-col-3 single-review">
+          	{{ 'go.png' | asset_url | img_tag }}
+            <p>"An obvious yes."</p>
+        </div>
+        <div class="pg-col pg-col-3 single-review">
+            {{ 'cool.png' | asset_url | img_tag }}
+            <p>“Provides simple products <br>and convenience.”</p>
+        </div>
+        <div class="pg-col pg-col-3 single-review">
+            {{ 'detail.png' | asset_url | img_tag }}
+            <p>“The easiest way to restock <br>your bathroom.”</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+

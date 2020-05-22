@@ -1,0 +1,49 @@
+<!-- /templates/list-collections.liquid -->
+{% comment %}
+
+  This page represents the /collections and /products pages.
+  It is an optional, but highly recommended, template for your theme.
+
+  More info:
+    - http://docs.shopify.com/manual/configuration/store-customization/taking-control-of-collections-listing
+
+{% endcomment %}
+
+{% include 'breadcrumb' %}
+
+{% comment %}
+  Loop through each collection, except 'frontpage'
+{% endcomment %}
+{%- comment %}<locksmith:6e8a>{% endcomment -%}
+  {%- assign locksmith_242a_forloop__size = 0 %}{% for link in linklists.all-collections.links %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_242a_forloop__size = locksmith_242a_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_242a_forloop__index = nil -%}
+{%- comment %}</locksmith:6e8a>{% endcomment -%}
+{% for link in linklists.all-collections.links %}{%- comment %}<locksmith:30ec>{% endcomment -%}{%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.all-collections, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_242a_forloop__index == nil %}{% assign locksmith_242a_forloop__index = 1 %}{% assign locksmith_242a_forloop__index0 = 0 %}{% else %}{% assign locksmith_242a_forloop__index = locksmith_242a_forloop__index | plus: 1 %}{% assign locksmith_242a_forloop__index0 = locksmith_242a_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_242a_forloop__index == 1 %}{% assign locksmith_242a_forloop__first = true %}{% else %}{% assign locksmith_242a_forloop__first = false %}{% endif %}{% if locksmith_242a_forloop__index == locksmith_242a_forloop__size %}{% assign locksmith_242a_forloop__last = true %}{% else %}{% assign locksmith_242a_forloop__last = false %}{% endif %}{% assign locksmith_242a_forloop__rindex = locksmith_242a_forloop__size | minus: locksmith_242a_forloop__index | minus: 1 %}{% assign locksmith_242a_forloop__rindex0 = locksmith_242a_forloop__size | minus: locksmith_242a_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}{%- comment %}</locksmith:30ec>{% endcomment -%}{% include 'easylockdown_filter_collections' with l %}
+{% assign collection = link.object %}
+
+  {% unless collection.handle == 'frontpage' %}
+
+    {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+
+    <div class="section-header">
+      <p class="h1 section-header__left">{{ collection_title }}</p>
+      <div class="section-header__right">
+        <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}">More {{ collection_title }} &rsaquo;</a>
+      </div>
+    </div>
+
+    <div class="grid-uniform">
+      {% for product in collection.products limit:5 %}
+{%- comment %}<locksmith:ca17>{% endcomment -%}
+  {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+{%- comment %}</locksmith:ca17>{% endcomment -%}
+{%- include 'bold-product-json', product: product -%}{% include 'easylockdown_filter_collection' with product %}
+        {% assign grid_item_width = 'large--one-fifth medium--one-half' %}
+        {% include 'product-grid-item' %}
+      {% endfor %}
+    </div>
+
+    {% unless locksmith_242a_forloop__last %}<hr>{% endunless %}
+
+  {% endunless %}
+
+{% endfor %}

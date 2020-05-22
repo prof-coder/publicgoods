@@ -1,0 +1,118 @@
+<div class="column_12">
+	<div class="title_member_favorites">
+		<h2 class="text_center">{{ section.settings.title }}</h2>
+	</div>
+</div>
+<div class="column_12">
+	<div class="content_member_favorites">
+      {%- comment %}<locksmith:b365>{% endcomment -%}
+        {%- assign locksmith_4231_forloop__size = 0 %}{% for product in collections[section.settings.feature_collection].products %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_4231_forloop__size = locksmith_4231_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_4231_forloop__index = nil -%}
+      {%- comment %}</locksmith:b365>{% endcomment -%}
+      {% for product in collections[section.settings.feature_collection].products %}
+      {%- comment %}<locksmith:cd3a>{% endcomment -%}
+        {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections[section.settings.feature_collection], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_4231_forloop__index == nil %}{% assign locksmith_4231_forloop__index = 1 %}{% assign locksmith_4231_forloop__index0 = 0 %}{% else %}{% assign locksmith_4231_forloop__index = locksmith_4231_forloop__index | plus: 1 %}{% assign locksmith_4231_forloop__index0 = locksmith_4231_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_4231_forloop__index == 1 %}{% assign locksmith_4231_forloop__first = true %}{% else %}{% assign locksmith_4231_forloop__first = false %}{% endif %}{% if locksmith_4231_forloop__index == locksmith_4231_forloop__size %}{% assign locksmith_4231_forloop__last = true %}{% else %}{% assign locksmith_4231_forloop__last = false %}{% endif %}{% assign locksmith_4231_forloop__rindex = locksmith_4231_forloop__size | minus: locksmith_4231_forloop__index | minus: 1 %}{% assign locksmith_4231_forloop__rindex0 = locksmith_4231_forloop__size | minus: locksmith_4231_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+      {%- comment %}</locksmith:cd3a>{% endcomment -%}
+      <script>console.log('hhhsshhshs')</script>
+          {% assign name = 'product' | append:product.id %}
+          {% assign idNo = name | append:'-no' %}
+          {% assign idYes = name | append:'-yes' %}
+      
+          {% assign checkedNo = 'checked' %}
+          {% assign checkedYes = '' %}
+          {% assign opacityClass = '' %}
+          {% assign available = true %}
+
+          {% if product.variants[0].inventory_quantity <= 0 %}
+            {% assign available = false %}
+          {% endif %}
+
+          {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+            {% assign checkedNo = 'disabled' %}
+            {% assign checkedYes = 'checked' %}
+            {% assign opacityClass = 'opacity-3' %}
+
+            {% assign available = true %}
+            {% if product.variants[0].inventory_quantity <= 0 %}
+              {% assign available = false %}
+            {% endif %}
+          {% endif %}
+          {% endif %}
+      {% if locksmith_4231_forloop__index <= 4 %}
+      {% assign name = 'product' | append:product.id %}
+    		<div class="home_members_block_column">
+          <div class="collection collection_on_front_page" id="{{ product.handle }}">
+            <div class="collection_header">
+	        	<a href="{{ product.url }}">
+	              <img src="{{ product.featured_image.src | img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}">
+    				</a>
+				 <div class="collection_action" rel="{{name}}">
+	            	<div class="collection_to_cart" rel="{{name}}">ADD TO CART</div>
+	            	<div class="collection_update">
+	                  <div class="collection_update_spans clearfix">
+	                    <span class="collection_minus" rel="{{name}}"></span>
+	                    <div>
+	                      <span class="collection_count" id="collection_count_{{product.id}}"></span> IN CART
+	                    </div>
+	                    <span class="collection_plus" rel="{{name}}"></span>
+	                  </div>
+	                </div>
+	              </div> <!-- Collection Action End !-->
+            </div>
+            <div class="collection_body collection_body_on_front_page">
+            	<a href="{{ product.url }}">
+                <label class="collection_title">{{ product.title }}</label>
+                <div class="price_on_front_page">
+<!--               	<label class="opacity" >{{ product.variants[0].price | money }}</label> -->
+        				<label>{{ product.variants[0].price | money }}</label></div>
+        			</a>
+              <div class="hidden_home">
+                <div class="{{opacityClass}}"><input type="radio" rel="{{product.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" {{checkedNo}}/><label for="{{idNo}}" onclick="">{{ product.variants[0].price | money }} <font>{{ product.variants[0].title }}</font></label></div>
+
+                <div><input type="radio" name="{{name}}" id="{{idYes}}" value="{{ product.variants[0].id }}" class="productYes" {{checkedYes}}/><label for="{{idYes}}" onclick="">{{ product.variants[0].price | money }} <font>{{ product.variants[0].title }}<small>{% unless customer %}With membership, from $59 / year{% endunless %}</small></font></label></div>
+              </div>
+              <div class="yotpo bottomLine"
+                data-appkey="1czk4hDZQU9jrmp3MaNi1wqhc05RABHrg6aDSVLd"
+                data-domain="{{shop.permanent_domain | escape }}"
+                data-product-id="{{ product.id }}"
+                data-product-models="{{ product.id }}"
+                data-name="{{ product.title | escape }}"
+                data-url="{{ shop.url }}{{ product.url }}"
+                data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                data-description="{{ product.description | escape }}"
+                data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="clearfix"></div>
+    <div class="btn_permalink_shop">
+      <a href="/collections/all-products" class="btn_for_going_shop">Todos los Productos</a>
+    </div>
+</div>
+
+
+{% schema %}
+
+{
+  "name": "Member Favorites Spanish",
+  "class": "member-favorites",
+  "settings": [
+     {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Favoritos por nuestro Miembros "
+    },
+    {
+     "type": "collection",
+     "id": "feature_collection",
+     "label": "Feature collection"
+    }
+  ]
+}
+
+{% endschema %}

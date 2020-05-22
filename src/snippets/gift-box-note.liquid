@@ -1,0 +1,79 @@
+<script>
+  
+  let isThereANote = false;
+  
+  {% for item in checkout.line_items %}
+    {% if item.product.id == 1461476098099 or item.product.id == 492823969843 or item.product.id == 1567191892019 or item.product.id == 1567192907827 or item.product.id == 1567193694259 %}
+      jQuery.getJSON('/cart.js', function(cart) {
+        if (!cart.note) {
+          document.getElementById('gift-note-form').style.display = 'block'
+        } else {
+          document.getElementById('gift-note-submitted').style.display = 'block'
+        }
+      });
+    {% endif %}			
+  {% endfor %}
+      
+  const giftNoteSubmit = document.getElementById('submit-gift-note')
+  
+  giftNoteSubmit.addEventListener('click', () => {
+    const message = document.getElementById('gift-box-note').value
+    isThereANote = true;
+    if (isThereANote) {
+      $.ajax({
+          type:'POST', 
+          url:'/cart/update', 
+          data: {note: 'Gift Note: ' + message},  
+          dataType: 'json',
+          success: function(data){
+              document.location.reload(true) 
+              document.getElementById('gift-note-form').style.display = 'none'
+              document.getElementById('gift-note-submitted').style.display = 'block'
+          }
+      });
+    }
+  })
+
+  $("#gift-box-note").on('input', function() {
+    if ($(this).val().length >= 150) {
+      $("#max-char-warning").css("display", "inline");
+    }
+  });
+  
+</script>
+
+<style>
+  #gift-note-submitted {
+    margin-bottom: 15px;
+  }
+  #gift-box-note {
+    max-width: 100%;
+    border: 1px solid lightgray;
+    margin-bottom: -6px;
+    margin-top: 10px;
+    border-radius: 5px;
+    width: 100%
+  }
+  #submit-gift-note {
+    border: 1px solid transparent;
+    margin-bottom: 15px;
+    background-color: #67837e;;
+    color: #fff;
+    font-family: Helvetica Neue, sans-serif;
+    font-size: 14px;
+    padding: 15px 40px;
+    border-radius: 5px;
+    font-weight: 500;
+    margin-top: 20px;
+    float: right;
+  }
+  #submit-gift-note:hover {
+    -webkit-filter: brightness(80%);
+    -webkit-transition: all .5 ease;
+    -moz-transition: all .5 ease;
+    -o-transition: all .5 ease;
+    -ms-transition: all .5 ease;
+    transition: all .5 ease;
+  }
+</style>
+

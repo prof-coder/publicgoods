@@ -1,0 +1,493 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div id="page_content">
+  <div class="signup-page">
+     <div class="column_12 image-top">
+    </div>
+    <div class="signup-page-content-container" id="dont-run-out-membership-wrapper-50-63">
+<!--           {% comment %}
+      <h2 class="signup-page-header">FREE 30-DAY <span class="line-break">TRIAL MEMBERSHIP</span></h2>
+      <ul class="signup-page-info-points">
+        <li><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/checkmark.png?2088808595971241270" />70% savings on average (vs traditional retail).</li>
+        <li><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/checkmark.png?2088808595971241270" />Only $59/year after your free trial.</li>
+        <li><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/checkmark.png?2088808595971241270" />New products every month.</li>
+        <li><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/checkmark.png?2088808595971241270" />Cancel anytime.</li>
+      </ul>    
+      <div class="popup-membership-wrapper">
+        <form action="https://dont-run-out-membership.herokuapp.com/charges" name="memsh" id="popup-form-membership-46-59" onsubmit="return false;" class="membership_billing-form">
+          <input type="hidden" name="plan" value="32" />
+          <input type="hidden" name="billing" value="45" />
+          <div class="step-one">
+            <div class="mail-wrapper">
+              <input class="popup-email" id="popup-email-46-59" name="stripeEmail" type="email" placeholder="Enter email." />
+              <p class="valid_message"></p>
+            </div>
+            <button type="button" class="btn-step-one">Start Now</button>
+            <div class="already-a-member-section">
+              <strong>Already a member?</strong>
+              <a href="https://morgans-dont-run-out.myshopify.com/account/login">Sign-in to your account.</a>
+            </div>
+          </div>
+          <div class="step-two hidden">
+            <div class="names">
+              <div class="field-wrapper">
+                <label for="popup-first-name-46-59">First Name</label>
+                <input type="text" class="popup-first-name" id="popup-first-name-46-59" />
+              </div>
+              <div class="field-wrapper">
+                <label for="popup-last-name-46-59">Last Name</label>
+                <input type="text" class="popup-last-name" id="popup-last-name-46-59" />
+              </div>
+            </div>
+            <div class="card-wrapper">
+              <div class="field-wrapper card-data">
+                <label for="card-element-46-59">Card Number</label>
+                <div class="card-element StripeElement StripeElement--empty" id="card-element-46-59">
+                </div>
+                <div class="card-field-wrapper cvc-container">
+                  <label for="card-cvc-element-46-59">CVC</label>
+                  <div class="card-cvc-element StripeElement StripeElement--empty" id="card-cvc-element-46-59">
+                  </div>
+                </div>
+                <div class="card-field-wrapper zip-container">
+                  <label for="card-address_zip-element-46-59">Zip Code</label>
+                  <div class="card-address_zip-element StripeElement StripeElement--empty" id="card-address_zip-element-46-59">
+                  </div>
+                </div>
+              </div>
+              <div class="field-wrapper card-data2">
+                <div class="card-field-wrapper">
+                  <label for="card-expiry-element-46-59">Exp Date</label>
+                  <div class="card-expiry-element StripeElement StripeElement--empty" id="card-expiry-element-46-59">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn-step-two" id="btn-step-two-46-59">Join Now<img src="https://cdn.shopify.com/s/files/1/0838/7991/files/Spin1.svg?8476499393379577946" alt="Spin" class="hidden"></button>
+            <div class="popup-footer">
+              <p class="popup-footer-info">Your card will <span>not</span> be charged for 30 days. Cancel anytime.</p>
+              <div class="promo-wrapper hidden">
+                <p class="promo-label">Have a promo code?</p>
+                <div class="promo-form">
+                  <input type="text" name="promo" class="promo-input" id="promo-input-46-59" placeholder="Enter code" />
+                  <button type="button" class="promo-submit">Submit</button>
+                </div>
+              </div>
+            </div>
+            <input type="hidden" name="days" value="0" class="promo_days" id="promo_days-46-59" />
+          </div>
+        </form>
+             {% endcomment %}
+      </div> -->
+      <div id="already-a-member"><strong>Already a member?</strong> <a href="https://morgans-dont-run-out.myshopify.com/account/login">Sign-in to your account.</a></div>
+    </div>
+     <div class="image-right">
+      <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/desktop_07819af6-dd62-4c65-b2ae-26f483278b81.jpg?4758" alt="" class="fullSize"/>
+    </div>
+    
+          <div class="press-quotes-section" style="background-color: #fff; text-align:center; clear:both;">
+       <h2>Proudly Serving</h2>
+      <div class="press-quotes">
+        <img class="pq-desktop" src="https://cdn.shopify.com/s/files/1/0838/7991/files/desktop_dbc07dea-d973-4013-9550-ecd3e60eebcf.png?15771" />
+        <img class="pq-mobile" src="https://cdn.shopify.com/s/files/1/0838/7991/files/mobile_df984ca2-6f91-4674-8702-4edbb8ad28fb.png?15771" />
+      </div>
+    </div>
+  </div>
+ 
+</div>
+
+
+  
+<script src="https://dont-run-out-membership.herokuapp.com/public/plans/50/billings/63.js"></script>
+
+  
+<script>
+  $( document ).ready(function() {
+//     let a = document.getElementById('root')
+// //     debugger
+// //     a.firstChild.children[3].children[0].firstChild.placeholder = ""
+//     $(".popup-email").attr("placeholder", "Enter email");
+//     $(".popup-first-name").attr("placeholder", "First Name");
+//     $(".popup-last-name").attr("placeholder", "Last Name");
+//     $(".card-element").attr("placeholder", "Card Number");
+//     $(".card-expiry-element").attr("placeholder", "Exp. Date");
+//     $(".card-csv-element").attr("placeholder", "CVC");
+//     $(".card-address_zip-element").attr("placeholder", "Zip");
+    $("#already-a-member").css("display", "block")
+    $("#already-a-member").insertAfter(".btn-step-one")
+  })
+ 
+  
+</script>
+  
+  
+<style>
+  
+  #page_content {
+    margin-top:0 !important;
+  }
+  
+  .signup-page {
+/*     margin-top: -50px; */
+        padding-top: 86px;
+  }
+  
+  .already-a-member-section, #already-a-member {
+    display:none;
+  }
+  
+  .card-element {
+    font-family: 'NB' !important;
+  }
+ 
+  .membership-modal-hide {
+    display: none;
+  }
+  
+  .popup-wrapper {
+    background-color: #e7e7e7;
+    margin: 0 auto;
+  }
+  
+  .popup-header {
+    margin-bottom: 25px !important;
+  }
+  
+/*   .popup-wrapper .popup-membership-wrapper form label {
+    display: none;
+  } */
+  
+  .popup-wrapper .popup-membership-wrapper form .step-one {
+    max-width: 370px;
+    margin: 0 auto;
+  }
+  
+  .card-address_zip-element {
+    border: 0.8px solid #000 !important;
+    padding: 10px !important;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form .step-two .card-data .card-field-wrapper {
+    width: 30%;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form .step-two .names .field-wrapper, .popup-wrapper .popup-membership-wrapper form .step-two .card-wrapper .field-wrapper {
+    width: 100%;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form input {
+    border-color: #000;
+  }
+  
+  .popup-last-name, .card-data {
+/*     margin-top: 10px !important; */
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form .card-element, .popup-wrapper .popup-membership-wrapper form .StripeElement {
+    border-color: #000;
+    background-color: #fff;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form .valid_message {
+    padding: 0;
+  }
+  
+  
+  .line-break {
+    font-family: 'BN';
+  }
+  
+  .signup-page {
+    background-color: #e7e7e7;
+  }
+  
+  .signup-page-content-container {
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 25px;
+    float: left;
+  }
+  
+  .image-right {
+    width: 50%;
+    float: right;
+  }
+  
+  .signup-page-header {
+    text-align: center;
+    font-size: 28px;
+  }
+  
+  .signup-page-info-points {
+    list-style: none;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    margin-left: 80px;
+  }
+  
+  .signup-page-info-points li {
+    margin: 15px 0;
+    font-size: 16px;
+    font-family: 'NB';
+    line-height: 1.5;
+  }
+  
+  .signup-page-info-points li img {
+    position: relative;
+    top: 2px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+  }
+  
+  .popup-membership-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .popup-membership-wrapper form input {
+    width: 100%;
+    height: 40px;
+    border: 0.8px solid #000;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 0;
+    margin: 0;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form button {
+    background-color: rgb(220, 136, 108);
+    width: 100%;
+    height: 40px;
+    font-family: NBH;
+    font-size: 16px;
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .btn-step-two {
+    margin-top: 25px;
+  }
+  
+  .popup-membership-wrapper form .step-two .names, .popup-membership-wrapper form .step-two .card-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  
+  .card-wrapper {
+    margin-top: 15px;
+  }
+  
+  .card-data {
+    width: 60%;
+  }
+  
+  .cvc-container {
+    width: 40%;
+    float: left;
+    margin-top: 15px;
+  }
+  
+  .zip-container {
+    width: 40%;
+    float: right;
+    margin-top: 15px;
+  }
+  
+  .popup-footer-info {
+    font-size: 14px;
+    font-family: 'NB';
+    line-height: 1.5;
+/*     margin-top: 15px; */
+  }
+  
+  .image-top {
+    display: none;
+    height: 400px;
+    background-image: url("https://cdn.shopify.com/s/files/1/0838/7991/files/desktop_07819af6-dd62-4c65-b2ae-26f483278b81.jpg?4758");
+    background-size: cover;
+    background-position-y: -416px;
+  }
+  
+  .press-quotes-section h2 {
+    padding-bottom: 30px;
+  }
+  
+/*   .popup-wrapper .popup-membership-wrapper form .card-element, .popup-wrapper .popup-membership-wrapper form .StripeElement {
+    display: none !important;
+  }
+  
+  .card-wrapper {
+    display: none !important;
+  } */
+  
+/*   .card-element::-webkit-input-placeholder {
+ color: pink !important;
+}
+.card-element::-moz-placeholder { 
+color: pink !important;
+}
+.card-element:-ms-input-placeholder { 
+color: pink !important;
+}
+.card-element:-moz-placeholder { 
+color: pink !important;
+} */
+  
+  @media (max-width: 1245px) {
+    .image-right {
+      display: none
+    }
+    
+    .image-top {
+      display: block;
+      padding: 0;
+    }
+    
+    .content-left {
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      padding-bottom: 50px;
+    }
+    
+    .signup-page-content-container {
+      float: none;
+    }
+  }
+  
+   @media (max-width: 1055px) {
+     .image-top {
+       height: 300px;
+       background-image: url("https://cdn.shopify.com/s/files/1/0838/7991/files/mobile_2f7b13ca-92c1-4cd1-9f00-48d40f4d1d53.jpg?4760");
+       background-position-y: -316px;
+     }
+   }
+  
+    @media (max-width: 873px) {
+     .image-top {
+       height: 300px;
+       background-position-y: -276px;
+     }
+   }
+  
+  @media (max-width: 747px) {
+     .image-top {
+       height: 300px;
+       background-position-y: -176px;
+     }
+   }
+  
+  @media (max-width: 627px) {
+     .image-top {
+       height: 300px;
+       background-position-y: -100px;
+     }
+   }
+   @media (max-width: 517px) {
+     .image-top {
+       height: 300px;
+       background-position-y: -50px;
+     }
+   }
+  
+   @media (max-width: 455px) {
+     .image-top {
+       height: 300px;
+       background-position-y: -20px;
+     }
+   }
+  
+  @media (max-width: 414px) {
+     .image-top {
+       height: 300px;
+       background-position-y: 0px;
+     }
+   }
+  
+  @media (max-width: 625px) {
+    .signup-page-content-container {
+      width: 400px;
+    }
+    
+    .field-wrapper {
+      width: 100%;
+    }
+    
+    .signup-page-info-points {
+      margin-left: 25px;
+    }
+  }
+  
+  @media (max-width: 450px) {
+    .signup-page-content-container {
+      width: 350px;
+      padding-top: 50px;
+    }
+    .popup-wrapper {
+      margin-top: 0;
+      padding: 20px 10px;
+    }
+  }
+  
+  @media (max-width: 415px) {
+    .signup-page-content-container {
+      width: 300px;
+    }
+    
+    .signup-page-header {
+      font-size: 24px;
+    }
+  }
+  
+  @media (max-width: 350px) {
+    .signup-page-content-container {
+      width: 250px;
+/*       padding-top: 100px;/ */
+    }
+    
+    .line-break {
+      display: block;
+      padding-top: 5px;
+    }
+  }
+  
+  @media (max-height: 655px) {
+    .signup-page {
+      height: 800px;
+    }
+  }
+  
+    .press-quotes-section {
+    padding: 50px 40px 50px 40px;
+  }
+  .pq-mobile {
+    display: none;
+  }
+  
+  @media (max-width: 950px) {
+    .pq-mobile {
+      display: block;
+      margin: 0 auto;
+      width: 500px; 
+    }
+    .pq-desktop {
+      display: none;
+    }
+    .press-quotes-section {
+      padding: 100px 0px 50px 0px;
+    }
+  }
+   @media (max-width: 575px) {
+    .press-quotes-section {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+   } 
+ 
+</style>

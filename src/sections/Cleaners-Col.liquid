@@ -1,0 +1,248 @@
+<div class="row">
+    <div class="column_12">
+      <div class="collections clearfix">
+        {% for product in collections.cleaners.products %}
+
+          {%- comment %}<locksmith:c36a>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections.cleaners, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:c36a>{% endcomment -%}
+
+          {% assign name = 'product' | append:product.id %}
+          {% assign idNo = name | append:'-no' %}
+          {% assign idYes = name | append:'-yes' %}
+		  
+          {% assign checkedNo = 'checked' %}
+          {% assign checkedYes = '' %}
+          {% assign opacityClass = '' %}
+          {% assign available = true %}
+
+          {% if product.variants[0].inventory_quantity <= 20 %}
+          	{% assign available = false %}
+          {% endif %}
+
+          {% if shop.customer_accounts_enabled %}
+          	{% if customer %}
+        		{% assign checkedNo = 'disabled' %}
+        		{% assign checkedYes = 'checked' %}
+        		{% assign opacityClass = 'opacity-3' %}
+
+        		{% assign available = true %}
+        		{% if product.variants[0].inventory_quantity <= 20 %}
+        			{% assign available = false %}
+        		{% endif %}
+        	{% endif %}
+          {% endif %}
+        
+          <div class="collection">
+            <div class="collection_header">
+              <a href="{{ product.url | within: collection }}">
+                <div class="reveal">
+                  <img src="{{ product.featured_image.src | img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}">
+                  <img class="hidden" src="{{ product.images.last | img_url: 'master' }}" alt="{{ product.images.last.alt | escape }}" />
+                </div>
+              </a>
+             <div class="collection_action" rel="{{name}}">
+                {% if available == true %}
+                	{% if customer %}
+                	   {% if product.variants.first.sku contains "Giftcard" %}
+                          <a href="{{ product.url | within: collection }}">
+                              <div class="collection_update">
+                              </div>
+                          </a>
+                       {% else %}
+                	     <div class="collection_to_cart" rel="{{name}}">ADD TO CART</div>
+                       {% endif %}
+                	{% else %}
+                	  <div class="collection_to_cart subscribe-to-membership subscribe-to-membership-32-45" rel="{{name}}">ADD TO CART</div>
+                	{% endif %}
+                	<div class="collection_update">
+                      <div class="collection_update_spans clearfix">
+                        <span class="collection_minus" rel="{{name}}"></span>
+                        <div>
+                          <span class="collection_count" id="collection_count_{{product.id}}"></span> IN CART
+                        </div>
+                        <span class="collection_plus" rel="{{name}}"></span>
+                      </div>
+                    </div>
+                {% else %}
+                <div class="collection_coming_soon"><a href="{{ product.url | within: collection }}#sold-out">SOLD OUT</a></div>
+                {% endif %}
+              </div> <!-- Collection Action End !-->
+            </div>
+            <div class="collection_body">
+              
+              <label class="collection_title all-products-product-stars"><a href="{{ product.url | within: collection }}">{{ product.title }}</a> 
+                <a href="{{ product.url | within: collection | append: '#anchor-reviews'}}">  <!--- Star Reviews !--->
+                  <div class="yotpo bottomLine yotpo-small"
+                    data-appkey="1czk4hDZQU9jrmp3MaNi1wqhc05RABHrg6aDSVLd"
+                    data-domain="{{shop.permanent_domain | escape }}"
+                    data-product-id="{{ product.id }}"
+                    data-product-models="{{ product.id }}"
+                    data-name="{{ product.title | escape }}"
+                    data-url="{{ shop.url }}{{ product.url }}"
+                    data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                    data-description="{{ product.description | escape }}"
+                    data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+                  </div>
+                </a>
+              </label>
+             
+              
+<!--               <div><input type="hidden" rel="{{product.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" {{checkedNo}}/><label for="{{idNo}}" onclick="">{{ product.variants[0].price | money }}</label></div> -->
+
+              {% if customer and product.variants.first.sku != "Giftcard10" %}
+              	<div class="var_checkbox"><input type="hidden" name="{{name}}" id="{{idYes}}" value="{{ product.variants[0].id }}" class="productYes" {{checkedYes}}/><label style="cursor:default;" for="{{idYes}}" onclick="">{{ product.variants[0].price | money }} <font>{{ product.variants[0].title | remove: '(member)'}}<small>{% unless customer %}With membership, from $59 / year{% endunless %}</small></font></label></div>
+              {% else %}
+              	{% if product.variants.first.sku != "Giftcard10" %}
+				  <a class="subscribe-to-membership-32-45 subscribe-to-membership membuttonclick free"><div><input type="hidden" name="{{name}}" id="{{idYes}}" value="{{ product.variants[0].id }}" class="productYes" {{checkedYes}}/><label style="color:#000; " for="{{idYes}}" onclick="">{{ product.variants[0].price | money }} <font>{{ product.variants[0].title }} <small>{% unless customer %}With membership of $59 / year{% endunless %}</small></font></label></div></a>
+                {% endif %}
+              {% endif %}
+              
+              
+            </div>
+          </div>
+        {% endfor %}
+      </div> <!-- Collections End !-->
+      {% if paginate.pages > 1 %}
+        <div class="pagination">
+          {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+        </div>
+      {% endif %}
+    </div>
+  </div><!-- Row End !-->
+
+  <div id='filter-separator'>
+    <h1>All Products</h1>
+  </div>
+
+<div class="row">
+    <div class="column_12">
+      <div class="collections clearfix">
+         {% paginate collections.all-products.products by 300 %}
+        
+        {% for product in collections.all-products.products %}
+		  {%- comment %}<locksmith:721c>{% endcomment -%}
+		    {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections.all-products, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+		  {%- comment %}</locksmith:721c>{% endcomment -%}
+		  {% unless product.tags contains 'cleaners' %} 
+			        
+            {% assign name = 'product' | append:product.id %}
+            {% assign idNo = name | append:'-no' %}
+            {% assign idYes = name | append:'-yes' %}
+
+            {% assign checkedNo = 'checked' %}
+            {% assign checkedYes = '' %}
+            {% assign opacityClass = '' %}
+            {% assign available = true %}
+
+            {% if product.variants[0].inventory_quantity <= 20 %}
+              {% assign available = false %}
+            {% endif %}
+
+            {% if shop.customer_accounts_enabled %}
+              {% if customer %}
+                  {% assign checkedNo = 'disabled' %}
+                  {% assign checkedYes = 'checked' %}
+                  {% assign opacityClass = 'opacity-3' %}
+
+                  {% assign available = true %}
+                  {% if product.variants[0].inventory_quantity <= 20 %}
+                      {% assign available = false %}
+                  {% endif %}
+              {% endif %}
+            {% endif %}
+
+            <div class="collection">
+            <div class="collection_header">
+              <a href="{{ product.url | within: collection }}">
+                <div class="reveal">
+                  <img src="{{ product.featured_image.src | img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}">
+                  <img class="hidden" src="{{ product.images.last | img_url: 'master' }}" alt="{{ product.images.last.alt | escape }}" />
+                </div>
+              </a>
+             <div class="collection_action" rel="{{name}}">
+                {% if available == true %}
+                	{% if customer %}
+                	   {% if product.variants.first.sku contains "Giftcard" %}
+                          <a href="{{ product.url | within: collection }}">
+                              <div class="collection_update">
+                              </div>
+                          </a>
+                       {% else %}
+                	     <div class="collection_to_cart" rel="{{name}}">ADD TO CART</div>
+                       {% endif %}
+                	{% else %}
+                	  <div class="collection_to_cart subscribe-to-membership subscribe-to-membership-32-45" rel="{{name}}">ADD TO CART</div>
+                	{% endif %}
+                	<div class="collection_update">
+                      <div class="collection_update_spans clearfix">
+                        <span class="collection_minus" rel="{{name}}"></span>
+                        <div>
+                          <span class="collection_count" id="collection_count_{{product.id}}"></span> IN CART
+                        </div>
+                        <span class="collection_plus" rel="{{name}}"></span>
+                      </div>
+                    </div>
+                {% else %}
+                <div class="collection_coming_soon"><a href="{{ product.url | within: collection }}#sold-out">SOLD OUT</a></div>
+                {% endif %}
+              </div> <!-- Collection Action End !-->
+            </div>
+            <div class="collection_body">
+              
+              <label class="collection_title all-products-product-stars"><a href="{{ product.url | within: collection }}">{{ product.title }}</a> 
+                <a href="{{ product.url | within: collection | append: '#anchor-reviews'}}">  <!--- Star Reviews !--->
+                  <div class="yotpo bottomLine yotpo-small"
+                    data-appkey="1czk4hDZQU9jrmp3MaNi1wqhc05RABHrg6aDSVLd"
+                    data-domain="{{shop.permanent_domain | escape }}"
+                    data-product-id="{{ product.id }}"
+                    data-product-models="{{ product.id }}"
+                    data-name="{{ product.title | escape }}"
+                    data-url="{{ shop.url }}{{ product.url }}"
+                    data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                    data-description="{{ product.description | escape }}"
+                    data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+                  </div>
+                </a>
+              </label>
+             
+              
+<!--               <div><input type="hidden" rel="{{product.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" {{checkedNo}}/><label for="{{idNo}}" onclick="">{{ product.variants[0].price | money }}</label></div> -->
+
+              {% if customer and product.variants.first.sku != "Giftcard10" %}
+              	<div class="var_checkbox"><input type="hidden" name="{{name}}" id="{{idYes}}" value="{{ product.variants[0].id }}" class="productYes" {{checkedYes}}/><label style="cursor:default;" for="{{idYes}}" onclick="">{{ product.variants[0].price | money }} <font>{{ product.variants[0].title | remove: '(member)'}}<small>{% unless customer %}With membership, from $59 / year{% endunless %}</small></font></label></div>
+              {% else %}
+              	{% if product.variants.first.sku != "Giftcard10" %}
+				  <a class="subscribe-to-membership-32-45 subscribe-to-membership membuttonclick free"><div><input type="hidden" name="{{name}}" id="{{idYes}}" value="{{ product.variants[0].id }}" class="productYes" {{checkedYes}}/><label style="color:#000; " for="{{idYes}}" onclick="">{{ product.variants[0].price | money }} <font>{{ product.variants[0].title }} <small>{% unless customer %}With membership of $59 / year{% endunless %}</small></font></label></div></a>
+                {% endif %}
+              {% endif %}
+              
+              
+            </div>
+          </div>
+          {% endunless %}
+        {% endfor %}
+      </div> <!-- Collections End !-->
+      {% if paginate.pages > 1 %}
+        <div class="pagination">
+          {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+        </div>
+      {% endif %}
+      {% endpaginate %}
+    </div>
+  </div><!-- Row End !-->
+
+
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

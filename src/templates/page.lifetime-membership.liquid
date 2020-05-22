@@ -1,0 +1,151 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+{% assign product = all_products['lifetime-membership'] %}
+{% assign available = true %}
+
+{% if product.variants[0].inventory_quantity <= 0 %}
+	{% assign available = false %}
+{% endif %}
+<!-- /templates/page.liquid -->
+
+<div id="page_content">
+  <div class="row clearfix">
+  	<div class="column_12 margin_bottom_70">
+      <h1 class="text_center margin_bottom_40">Who's in luck?</h1>
+      <div class="rte lifetime-content">
+        <p class="text_center margin_bottom_40">Enter the email of the person that you would like to give a lifetime membership.</p>
+        <form class="validate-form text_center lifetime_form">
+          <div class="margin_bottom_20 lifetime_form_wrapper">
+          	<div class="margin_bottom_10 lifetime_form_label">
+              <label for="recipient_email">Email Address</label>
+          	</div>
+          	<div class="clearfix">
+              <div class="padding_left_0 lifetime_input_wrapper">
+	              <input type="email" id="recipient_email" name="recipient_email" class="recipient_email">
+                <div class="text-left margin_top_10 margin_bottom_10 lifetime_text_under_input">Still deciding? <br style="display:none;">No prob, leave this blank and tell us later!</div>
+              </div>
+              <div class="margin_top_30 padding_left_0 lifetime_button_wrapper">
+              		{% if available == true %}
+              			<button class="recipient_add_to_cart lifetime_add_to_cart button" data-variant-id="{{ product.variants[0].id }}" type="button">Add to Cart</button>
+              		{% else %}
+              			<div class="">SOLD OUT</div>
+              		{% endif %}
+          		</div>
+              <div class="margin_top_50 lifetime_text_under_button">
+              	Your friend will receive lifetime access
+				<br>to healthy essentials, mark-up free.
+              </div>
+            </div>
+          </div>
+      	</form>
+        
+        <div class="collection lifetime_product">
+            <div class="collection_header">
+              <a href="javascript:;">
+                <img src="{{ product.featured_image.src | img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}">
+              </a>
+            </div>
+            <div class="collection_body">
+              <label class="collection_title">{{ product.title }}</label>
+              <div class="{{opacityClass}}">
+                <input type="radio" rel="{{product.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" checked="checked"/>
+                <label for="{{idNo}}" onclick="">{{ product.variants[0].price | money }} <font>{{ product.variants[0].title }}</font></label>
+              </div>
+            </div>
+          </div>
+          <div class="lifetime_buttom_button_wrapper">
+        	  <div class="margin_top_30 padding_left_0 lifetime_button_wrapper">
+              		{% if available == true %}
+              			<button class="recipient_add_to_cart lifetime_add_to_cart button" data-variant-id="{{ product.variants[0].id }}" type="button">Add to Cart</button>
+              		{% else %}
+              			<div class="">SOLD OUT</div>
+              		{% endif %}
+          		</div>
+              <div class="margin_top_50 lifetime_text_under_button lifetime_text_under_button_buttom">
+              	Your friend will receive lifetime access
+				<br>to healthy essentials, mark-up free.
+              </div>	
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    var is_added_to_cart = false;
+    var is_loading = false;
+    
+    	function checkEmail($email) {
+          var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+          $email.removeClass('error');
+          $('.lifetime_invalid_email_text').remove();
+          var check = true;
+          if($email.val() == '') {
+          	return true;
+          }
+          if (!re.test($email.val())) {
+            check = false;
+            $email.addClass('error');
+            $("<div class='lifetime_invalid_email_text margin_bottom_20'><strong>Invalid or empty email</strong></div>").insertBefore('.lifetime_add_to_cart');
+          }
+          return check;
+        }
+    
+    $.ajax({
+      url: '/cart.js',
+      method: 'get',
+      dataType: 'json',
+      success: function(data) {
+        $.each(data.items, function(k, itm){
+          	if(itm.variant_id == 4874082091045) {
+            	is_added_to_cart = true;
+              	$('.lifetime_add_to_cart').addClass('lifetime_disabled');
+            }
+        });
+      }
+    });
+    
+    
+    $('.lifetime_add_to_cart').on('click', function(){
+      	if(is_loading || is_added_to_cart || checkEmail($('.recipient_email')) === false) {
+        	return false;
+        }
+      	var variantId = $(this).data().variantId;
+      	var $this = $(this);
+      	console.log('add_to_cart_lifetime-membership');
+          $.ajax({
+            type:'POST', 
+            url:'/cart/add.js', 
+            data: { id: variantId }, 
+            dataType: 'json', 
+            beforeSend: function() {
+            	is_loading = true;
+            },
+            success: function(data, status, xhr){
+              update_cart_count('plus');
+              is_loading = false;
+              is_added_to_cart = true;
+              $this.addClass('lifetime_disabled');
+              
+              window.cart_token = $.cookie('cart');
+              $( document ).trigger( "afterLifetimeProductWasAdded", [ $.cookie('cart') ] );
+            }
+          });
+        });
+    });
+  
+  function update_cart_count(action){
+        var quantity = parseInt($('#CartCount').html());
+        
+        if(action == 'minus')
+            quantity--;
+        else if(action == 'plus')
+            quantity++;
+
+        $('#CartCount').html(quantity);
+        $('#CartCount_mobile').html(quantity);
+    }
+</script>

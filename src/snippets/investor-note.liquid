@@ -1,0 +1,22 @@
+
+{% include 'VIP-Members' %}
+
+<script>
+ (function() {
+  for (let email of VIP_MEMBERS) {
+    if ({{customer.email | json }} === email) {
+      	$.ajax({
+          type:'POST', 
+          url:'/cart/update', 
+          data: {note: 'PACKAGE CAREFULLY'},  
+          dataType: 'json',
+          success: function(data){
+
+          }
+      });
+    }
+  }
+})();
+ 
+  
+</script>

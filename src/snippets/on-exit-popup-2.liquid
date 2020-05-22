@@ -1,0 +1,183 @@
+
+<div id="exit-popup-wrapper">
+  <div id="exit-popup-conatiner">
+    <div id="exit-popup-content">
+      <h1 id="exit-pop-header">Save $10 for later.</h1><span id="exit-pop-up-close">x</span>
+    </div>
+    <div id="exit-pop-middle-div">
+      <p>Enter your email and <br>we'll send you a code.</p>
+    </div>
+    <div>
+      <form id="exit-intent-form">
+        <input id="exit-email" type="email" placeholder="Email address" class="form-control input-lg" value="">
+        <button type="submit" id="submit-btn" class="btn btn-success btn-lg btn-block">Get code</button>
+      </form>
+<!--       <p id="err-success-msg"></p> -->
+      <p id="success-msg">Your code is on its way!</p>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  
+  #exit-popup-wrapper {
+    display: none;
+    height: 375px;
+    max-width: 440px;
+    width: 420px;
+    top: 25%;
+    position: fixed;
+    z-index: 101;
+    background-color: #fff;
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/blog-updates-2020---data-capture3.jpg?v=1582662048);
+    -webkit-box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+    box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+    padding: 30px 40px;
+    left: 50%;
+    transform: translateX(-50%); 
+    background-size: cover;
+  }
+  
+  #exit-popup-conatiner {
+    height: 100%;
+    text-align: left;
+    color: #000;
+    text-align: -webkit-left;
+    text-align: -moz-left;
+  }
+  
+  #exit-popup-content {
+    font-family: 'NBH';
+    padding: 15px;
+  }
+  
+  #exit-pop-header {
+    text-align: center;
+  }
+  
+  #exit-pop-up-close {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    width: 20px;
+    font-size: 25px;
+    color: grey;
+    cursor: pointer;
+  }
+  
+  #exit-pop-middle-div {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-family: 'NB';
+    font-size: 16px;
+    line-height: 22px;
+  }
+  
+  #exit-pop-middle-div p {
+    text-align: center;
+  }
+  
+  #exit-email {
+    display: block;
+    width: 65%;
+    height: 34px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #000;
+    background-color: #ffffff;
+    background-image: none;
+    border: none;
+    text-align: center;
+/*     border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; */
+    margin: 0 auto;
+  }
+  
+  #submit-btn {
+    display: block;
+	color: #FFFFFF;
+    background-color: #dc886c;
+    border-color: #dc886c;
+    width: 200px;
+    height: 35px;
+    padding: 6px 12px;
+    margin: 0 auto;
+    margin-top: 25px;
+    font-size: 14px;
+  }
+  
+  #submit-btn:hover {
+    opacity: .9;
+  }
+  
+  #success-msg {
+    display: none;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  @media (max-width: 500px) {
+    #exit-pop-up-close {
+      right: 75px;
+    }
+  }
+  
+  @media (max-width: 375px) {
+    #exit-pop-up-close {
+      right: 100px;
+    }
+  }
+  
+</style>
+
+<script>
+  {% unless customer %}
+  $(document).mouseleave(function(e) {
+    if(e.clientY < 20 && sessionStorage['PG_received_email_popup'] != "true") {
+      if (!localStorage['PG_received_email_popup']) {
+        localStorage['PG_received_email_popup'] = true;
+        sessionStorage['PG_received_email_popup'] = "true";
+        $("#exit-popup-wrapper").show()
+      }
+    }
+  })
+  {% endunless %}
+  
+  $("#exit-pop-up-close").click(function() {
+    $("#exit-popup-wrapper").hide()
+  })
+  
+  let exitForm = $("#exit-intent-form")
+  
+  $("#exit-intent-form").submit(function(e) { 
+       e.preventDefault()  
+       let emailText = $("#exit-email").val()
+       
+       _dcq.push(
+            [
+              "subscribe",
+              {
+                campaign_id: '92823864',
+                fields: {
+                  email: emailText,
+                  tag: "exit-intent"
+                },
+                success: function(response) {
+                   console.log(emailText)
+                   $("#success-msg").show()
+                   $("#exit-email").val("")
+                },
+                failure: function(response) {
+                  alert("There was a problem submitting your response. Please contact customer service, thank you.")
+                }
+              }
+            ]
+          );
+     })
+</script>

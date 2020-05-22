@@ -1,0 +1,221 @@
+<div class="site-content">
+    <section class="healthy-flow-wrapper">
+
+        <div class="step step-1 active">
+            <h1>Make a clean break.</h1>
+            <p>Try us today and get a <b>free gift set</b> complete with our bestselling shampoo, soap and more.</p>
+            <div class="row clearfix margin_bottom_30">
+                <div class="column_12 margin_bottom_20">
+                    <form id="subscription-form" name="email-capture" class="validate-form footer_submit_form">
+                        <input name="email" id="emailinputval"  value="" placeholder="Enter email." class="drip-text-field" type="email" required>
+                        <div id="drip-errors-for-email-27436" class="drip-errors" style="display: none"></div>
+                        <input name="submit" value="Claim Your Gift" id="drip-submit-27436" class="drip-submit-button submit-capture" type="submit">
+
+                        <div id="drip-success-panel-27436" class="drip-success drip-panel" style="display: none">
+                            <p>Thank you.</p>
+                        </div>
+                    </form>
+                    <div id="drip-errors-for-email" class="drip-errors" style="color:red;">Something went wrong. Try reloading the page.</div>
+                </div>
+                {% comment %} 
+              	<div class="column_12 margin_bottom_20">
+
+                    {% form 'customer', id: 'flow-subscription-form'  %}
+                        <input id="contact_tags" name="contact[tags]" type="hidden" value="newFlowPage" />
+                        <input name="email" id="contact_email"  value="" placeholder="Enter email." class="drip-text-field" type="email" required>
+                        <input name="submit" value="Claim Your Gift" class="drip-submit-button submit submit-capture" type="submit">
+                    {% endform %}
+
+                    <div id="drip-errors-for-email" class="drip-errors" style="color:red;">Something went wrong. Try reloading the page.</div>
+                </div> 
+              	{% endcomment %}
+                <p id="email-footer-confirmation"></p>
+            </div>
+          	{% assign hide_class = '' %}
+          	{% if section.settings.s1_mobile != blank %}
+          	{% assign hide_class = 'desctop_image' %}
+          		<div class="step-main-image left-right mobile_image">
+	                <img src="{{ section.settings.s1_mobile | img_url: '' }}">
+            	</div>
+          	{% endif %}
+            <div class="step-main-image left-right {{ hide_class }}">
+                <img src="{{ section.settings.step_one_image | img_url: '' }}">
+                <img src="{{ section.settings.step_one_image_two | img_url: '' }}">
+            </div>
+        </div>
+
+        <div class="step step-2">
+            <h1>Healthy and sustainable.</h1>
+            <p>We take the guesswork out of finding products that are good for you and the planet.</p>
+          
+          	{% assign hide_class = '' %}
+          	{% if section.settings.s2_mobile != blank %}
+          	{% assign hide_class = 'desctop_image' %}
+          		<div class="step-main-image mobile_image">
+	                <img src="{{ section.settings.s2_mobile | img_url: '' }}">
+            	</div>
+          	{% endif %}
+            <div class="step-main-image {{ hide_class }}">          
+                <img src="{{ section.settings.step_two_image | img_url: 'master' }}">
+            </div>
+        </div>
+
+        <div class="step step-3">
+            <h1>Clean and simple.</h1>
+            <p>Toxin-free products.<br>Calming minimalist packaging.</p>
+            {% assign hide_class = '' %}
+          	{% if section.settings.s3_mobile != blank %}
+          	{% assign hide_class = 'desctop_image' %}
+          		<div class="step-main-image mobile_image">
+	                <img src="{{ section.settings.s3_mobile | img_url: '' }}">
+            	</div>
+          	{% endif %}
+            <div class="step-main-image {{ hide_class }}">
+                <img src="{{ section.settings.step_three_image | img_url: '' }}">
+            </div>
+        </div>
+
+        <div class="step step-4">
+            <h1>A better way to shop.</h1>
+            <p>High-quality products at a fraction of traditional retail cost, plus exclusive gifts and perks</p>
+            {% assign hide_class = '' %}
+          	{% if section.settings.s4_mobile != blank %}
+          	{% assign hide_class = 'desctop_image' %}
+          		<div class="step-main-image mobile_image">
+	                <img src="{{ section.settings.s4_mobile | img_url: '' }}">
+            	</div>
+          	{% endif %}
+            <div class="step-main-image {{ hide_class }}">
+                <img src="{{ section.settings.step_four_image | img_url: '' }}">
+            </div>
+        </div>
+
+        <div class="step step-5">
+            <h1>Your gift set.</h1>
+            <p>Enjoy a free classic personal care set with your first order</p>
+            {% assign hide_class = '' %}
+          	{% if section.settings.s5_mobile != blank %}
+          	{% assign hide_class = 'desctop_image' %}
+          		<div class="step-main-image mobile_image">
+	                <img src="{{ section.settings.s5_mobile | img_url: '' }}">
+            	</div>
+          	{% endif %}
+            <div class="step-main-image {{ hide_class }}">
+                <img src="{{ section.settings.step_five_image | img_url: '' }}">
+            </div>
+            <p class="add-p">Includes: 12oz Shampoo, Conditioner,<br> Body Wash and Hand Soap.<br> <span class="grey">Traditional retail: $47.</span> Our price: <strike>$18</strike>. <span class="orange">Free</span>
+            </p>
+        </div>
+
+        <div class="step step-6">
+            <h1>We’re building your cart.</h1>
+            <p>We added some of our bestselling items so you can take<br class="for_desc">
+                advantage of our free shipping on orders $45+.<br>
+                (add or delete anything you want.)
+          </p>
+          <p class="animation">
+                <svg version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+                <circle fill="#fff" stroke="none" cx="6" cy="50" r="6">
+                    <animateTransform 
+                    attributeName="transform" 
+                    dur="1s" 
+                    type="translate" 
+                    values="0 15 ; 0 -15; 0 15" 
+                    repeatCount="indefinite" 
+                    begin="0.1"/>
+                </circle>
+                <circle fill="#fff" stroke="none" cx="30" cy="50" r="6">
+                    <animateTransform 
+                    attributeName="transform" 
+                    dur="1s" 
+                    type="translate" 
+                    values="0 10 ; 0 -10; 0 10" 
+                    repeatCount="indefinite" 
+                    begin="0.2"/>
+                </circle>
+                <circle fill="#fff" stroke="none" cx="54" cy="50" r="6">
+                    <animateTransform 
+                    attributeName="transform" 
+                    dur="1s" 
+                    type="translate" 
+                    values="0 5 ; 0 -5; 0 5" 
+                    repeatCount="indefinite" 
+                    begin="0.3"/>
+                </circle>
+                </svg>
+            </p>
+        </div>
+        
+        <div class="next-button">
+            <a style="background-color:#DC886C; color:#fff" class="home-shop-btn flow-next-step">Next</a>
+        </div>
+    </section>
+</div>
+
+{% schema %}
+    {
+    "name": "Flow Section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "step_one_image",
+            "label": "Step one Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "step_one_image_two",
+            "label": "Step one Image Right"
+        },
+        {
+            "type": "image_picker",
+            "id": "step_two_image",
+            "label": "Step two Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "step_three_image",
+            "label": "Step three Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "step_four_image",
+            "label": "Step four Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "step_five_image",
+            "label": "Step five Image"
+        },
+        {
+           "type":      "header",
+           "content":   "Images For Mobile"
+        },
+        {
+            "type": "image_picker",
+            "id": "s1_mobile",
+            "label": "Step One Image Mobile"
+        },
+        {
+            "type": "image_picker",
+            "id": "s2_mobile",
+            "label": "Step Two Image Mobile"
+        },
+        {
+            "type": "image_picker",
+            "id": "s3_mobile",
+            "label": "Step Three Image Mobile"
+        },
+        {
+            "type": "image_picker",
+            "id": "s4_mobile",
+            "label": "Step Four Image Mobile"
+        },
+        {
+            "type": "image_picker",
+            "id": "s5_mobile",
+            "label": "Step Five Image Mobile"
+        }
+    ]
+    }
+{% endschema %}

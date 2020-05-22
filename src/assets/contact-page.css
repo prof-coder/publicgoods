@@ -1,0 +1,233 @@
+
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+.contact-form {
+  height: 86vh;
+  background-color: #e7e7e7;
+}
+
+.contact-form-container {
+  width: 800px;
+  margin: 0 auto;
+  padding-top: 175px;
+}
+
+.contact-header {
+  float: left;
+}
+
+.contact-header p{
+  font-size: 16px;
+}
+
+.content-head {
+  font-size: 28px;
+  padding-bottom: 10px;
+}
+
+select {
+  height: 50px;
+  border: 1px solid black;
+  border-radius: inherit;
+  padding-left: 10px;
+  color: #000;
+  font-size: 16px;
+  font-family: 'NB';
+}
+
+.form-elements {
+  float: right;
+  width: 600px;
+}
+
+#reason {
+  width: 100%;
+  border: 1px solid #606060;
+}
+
+.contact-reason {
+  padding-bottom: 10px;
+}
+
+#message {
+  width: 100%;
+  font-family: 'NB';
+  border: 1px solid #606060;
+  padding-top: 10px;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 1.5px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+/* .name-email-container {
+  width: 100%;
+} */
+
+.name-email-container {
+  padding-top: 10px;
+}
+
+.contact-email, .contact-name {
+  width: 49%;
+}
+
+#name, #email {
+  height: 50px;
+  width: 100%;
+  border: 1px solid #606060;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+.contact-email {
+  float: right;
+}
+
+.contact-name {
+  float: left;
+}
+
+/* .contact-message {
+  width: 100%;
+} */
+
+.contact-submit {
+  margin-top: 10px;
+  width: 25%;
+  background-color: #dc886c;
+  height: 50px;
+  color: #fff;
+  font-family: 'NBH';
+  font-size: 18px;
+}
+  
+.thankyou_message {
+  padding-top: 40px;
+  text-align: center; 
+}
+
+.thankyou_message h1 {
+  padding-bottom: 20px;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+  color: #999;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #999;
+
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #999;
+
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #999;
+}
+
+@media (max-width: 950px) {
+  .contact-header {
+    float: none;
+    padding-bottom: 10px;
+  }
+  
+  .form-elements {
+    float: none;
+  }
+  
+  .contact-form-container {
+    width: 600px;
+  }
+  
+  .content-head {
+    padding-bottom: 20px;
+  }
+  
+  .contact-form {
+     height: 97vh;
+  }
+}
+
+@media (max-width: 737px) {
+  .contact-header {
+    padding-top: 50px;
+  }
+    .contact-form-container {
+    padding-top: 75px;
+  }
+}
+
+@media (max-width: 650px) {
+  .form-elements {
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  .contact-header {
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  .contact-form-container {
+    width: 400px;
+  }
+  
+  .contact-submit {
+    width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  .form-elements, .contact-header {
+    width: 300px;
+  }
+  
+  .thankyou_message {
+    padding-top: 80px;
+  }
+  
+  .contact-form-container {
+    padding-top: 75px;
+  }
+}
+
+@media (max-width: 400px) {
+  .contact-form-container {
+    width: 300px;
+  }
+}
+
+@media (max-width: 350px) {
+  .contact-form {
+    height: 95vh;
+  }
+  .form-elements, .contact-header {
+    width: 250px;
+  }
+}
+
+@media (max-width: 300px) {
+  .form-elements, .contact-header {
+    width: 200px;
+  }
+  
+  #message {
+    height: 200px
+  }
+  
+  .contact-form-container {
+    width: 250px;
+  }
+}
+
+@media (max-height: 600px) {
+  .contact-form {
+    height: 600px;
+  }
+}

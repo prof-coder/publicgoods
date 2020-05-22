@@ -1,0 +1,344 @@
+<!-- /templates/page.liquid -->
+
+<div id="mission_hero">
+  <div class="row clearfix">
+    <div class="column_6">
+       <h1 class="margin_bottom_50">Make a clean break.</h1>
+      <p class="margin_bottom_50 without-padding">Try our eco home essentials risk-free
+                                                  <br>for 30 days - no subscription needed.</p>
+      <div id="hero-buttons">
+        {% if customer %}
+           <a href="/collections/all-products" class="home-shop-btn">Browse Products</a>
+        {% else %}
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free 30 Day Trial</a>
+          <a href="/collections/all-products" class="home-shop-btn browse-prod-btn">Browse Products</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="text_center margin_top_50 margin_bottom_70">
+     <div id="stick-here" class="stick-here"></div>
+  
+<!--     <a href="/pages/membership" class="button inverted">Join Today</a> -->
+         
+    </div>
+    <!--<img src="{{ 'two.png' | asset_url }}" alt=""/>!-->
+  </div>
+</div>
+	<div id="sticky-button-bottom">
+      {% if customer %}
+        <div id="stickThis" class="free-tote-second-div" style="width: 100%">
+          <a href="/collections/all-products" class="button inverted">Browse Products</a>
+        </div>
+      {% else %}
+        <div id="stickThis" class="free-tote-second-div" style="width: 100%">
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Start Free Trial</a>
+        </div>
+      {% endif %}
+    </div>
+
+<div id="page_content">
+  <div class="row" id="mission_top_text">
+   <div class="column_12">
+	<div class="content_member_favorites">
+      {%- comment %}<locksmith:a6a5>{% endcomment -%}
+        {%- assign locksmith_b74e_forloop__size = 0 %}{% for product in collections.grove-front-page.products %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_b74e_forloop__size = locksmith_b74e_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_b74e_forloop__index = nil -%}
+      {%- comment %}</locksmith:a6a5>{% endcomment -%}
+      {% for product in collections.grove-front-page.products %}
+          {%- comment %}<locksmith:c219>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections.grove-front-page, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_b74e_forloop__index == nil %}{% assign locksmith_b74e_forloop__index = 1 %}{% assign locksmith_b74e_forloop__index0 = 0 %}{% else %}{% assign locksmith_b74e_forloop__index = locksmith_b74e_forloop__index | plus: 1 %}{% assign locksmith_b74e_forloop__index0 = locksmith_b74e_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_b74e_forloop__index == 1 %}{% assign locksmith_b74e_forloop__first = true %}{% else %}{% assign locksmith_b74e_forloop__first = false %}{% endif %}{% if locksmith_b74e_forloop__index == locksmith_b74e_forloop__size %}{% assign locksmith_b74e_forloop__last = true %}{% else %}{% assign locksmith_b74e_forloop__last = false %}{% endif %}{% assign locksmith_b74e_forloop__rindex = locksmith_b74e_forloop__size | minus: locksmith_b74e_forloop__index | minus: 1 %}{% assign locksmith_b74e_forloop__rindex0 = locksmith_b74e_forloop__size | minus: locksmith_b74e_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:c219>{% endcomment -%}
+          {% assign name = 'product' | append:product.id %}
+          {% assign idNo = name | append:'-no' %}
+          {% assign idYes = name | append:'-yes' %}
+      
+          {% assign checkedNo = 'checked' %}
+          {% assign checkedYes = '' %}
+          {% assign opacityClass = '' %}
+          {% assign available = true %}
+
+          {% if product.variants[0].inventory_quantity <= 0 %}
+            {% assign available = false %}
+          {% endif %}
+
+          {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+            {% assign checkedNo = 'disabled' %}
+            {% assign checkedYes = 'checked' %}
+            {% assign opacityClass = 'opacity-3' %}
+
+            {% assign available = true %}
+            {% if product.variants[0].inventory_quantity <= 0 %}
+              {% assign available = false %}
+            {% endif %}
+          {% endif %}
+          {% endif %}
+      {% if locksmith_b74e_forloop__index <= 4 %}
+      {% assign name = 'product' | append:product.id %}
+    		<div class="home_members_block_column">
+          <div class="collection collection_on_front_page" id="{{ product.handle }}">
+            <div class="collection_header">
+	        	<a href="{{ product.url }}">
+	              <img src="{{ product.featured_image.src | img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}">
+    				</a>
+				 <div class="collection_action" rel="{{name}}">
+	            	<div class="collection_to_cart" rel="{{name}}">ADD TO CART</div>
+	            	<div class="collection_update">
+	                  <div class="collection_update_spans clearfix">
+	                    <span class="collection_minus" rel="{{name}}"></span>
+	                    <div>
+	                      <span class="collection_count" id="collection_count_{{product.id}}"></span> IN CART
+	                    </div>
+	                    <span class="collection_plus" rel="{{name}}"></span>
+	                  </div>
+	                </div>
+	              </div> <!-- Collection Action End !-->
+            </div>
+            <div class="collection_body collection_body_on_front_page">
+            	<a href="{{ product.url }}">
+                <label class="collection_title">{{ product.title }}</label>
+                <div class="price_on_front_page">
+<!--               	<label class="opacity" >{{ product.variants[0].price | money }}</label> -->
+        				<label>{{ product.variants[0].price | money }}</label></div>
+        			</a>
+              <div class="hidden_home">
+                <div class="{{opacityClass}}"><input type="radio" rel="{{product.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" {{checkedNo}}/><label for="{{idNo}}" onclick="">{{ product.variants[0].price | money }} <font>{{ product.variants[0].title }}</font></label></div>
+
+                <div><input type="radio" name="{{name}}" id="{{idYes}}" value="{{ product.variants[0].id }}" class="productYes" {{checkedYes}}/><label for="{{idYes}}" onclick="">{{ product.variants[0].price | money }} <font>{{ product.variants[0].title }}<small>{% unless customer %}With membership, from $59 / year{% endunless %}</small></font></label></div>
+              </div>
+              <div class="yotpo bottomLine"
+                data-appkey="1czk4hDZQU9jrmp3MaNi1wqhc05RABHrg6aDSVLd"
+                data-domain="{{shop.permanent_domain | escape }}"
+                data-product-id="{{ product.id }}"
+                data-product-models="{{ product.id }}"
+                data-name="{{ product.title | escape }}"
+                data-url="{{ shop.url }}{{ product.url }}"
+                data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                data-description="{{ product.description | escape }}"
+                data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="clearfix"></div>
+</div>
+  </div>
+  <div class="section_block_text_column">
+    <div id="shopify-section-home-text-mision-top" class="shopify-section"><div class="row" id="home_text_mision_top">
+      <div class="column_12">
+        <h2 class="text_center">How We're Doing It</h2>
+      </div>
+      <div class="column_6 align_center block_text_phone_home" style="float: none;">
+        <p class="text_center font_nb margin_top_30 margin_bottom_50">Most brands go through four suppliers before selling you soap. That adds cost at every step. But we’re changing the supply chain: One flat annual membership fee gets you zero retail markups.</p>
+<!--         {% if customer %}
+    	  <a href="/collections/all-products" class="margin_bottom_20 margin_top_10 button inverted membuttonclick button-cta">Shop products</a>
+        {% else %}
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free 30 Day Trial</a>
+        {% endif %} -->
+        
+      </div>
+      <div class="clear"></div>
+    </div></div>
+  </div>
+
+
+  <div id="flows">
+    <!--<div class="mobile">
+      <h2>INFOGRAPHIC</h2>
+    </div>!-->
+    <div id="current_flow">
+      <div class="row">
+        <div class="column_12">
+          <img src="{{ 'old_flow1.png' | asset_url }}" alt=""/>
+        </div>
+        <img src="{{ 'labelnew.png' | asset_url }}" alt="" class="labelImage" />
+      </div>
+    </div>
+    <div id="old_flow">
+      <div class="row">
+        <div class="column_12">
+          <img src="{{ 'new_flow.png' | asset_url }}" alt=""/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="flows-mobile">
+      <div class="row">
+        <div class="column_12">
+          <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/mobile.jpg?11718027169943468730" alt=""/>
+        </div>
+      </div>
+  </div>
+
+  <div class="row margin_bottom_50">
+    <h2 class="text_center" id="difference_header">Our Product Difference</h2>
+    <div class="difference_pack">
+      <div class="column_7">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/package.jpg?15711509899398966051" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">Obsessive<br/>formulations.</h2>
+        <p>It took us over a year to develop our first products. We reviewed over 100 labs. Consulted with clean beauty experts. Hired the most reputable chemists. Then we had our friends, family, and the pickiest people we could find to test every single product.</p>
+<!--         {% if customer %}
+    	  <a href="/collections/all-products" class="margin_bottom_20 margin_top_10 button inverted membuttonclick button-cta">Shop products</a>
+        {% else %}
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free 30 Day Trial</a>
+        {% endif %} -->
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+
+      <div class="column_7" style="float:right;">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/ingredients.jpg?15711509899398966051" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">Healthy,<br/>not harmful.</h2>
+        <p>Did you know that there are over 1,000 unhealthy ingredients banned in Europe that are used in products here in the US? Did you know they’re linked to cancer, hormone disruption, and a host of other harmful effects? Don’t get scared—get informed. At Public Goods you’re protected, because we use only safe and healthy ingredients.</p>
+<!--         {% if customer %}
+    	  <a href="/collections/all-products" class="margin_bottom_20 margin_top_10 button inverted membuttonclick button-cta">Shop products</a>
+        {% else %}
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free 30 Day Trial</a>
+        {% endif %} -->
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+      
+      <div class="column_7">
+        <img src="{{ 'bath.jpg' | asset_url }}" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">Designed for<br/>your home.</h2>
+        <p>Call us snobs, but we can’t stand the badly designed, bright bottles that most brands use. They look like that because they’re made to stand out at the drugstore, not sit beautifully in your bathroom. Our packaging is clean and simple—designed to complement your space, not visually assault it.</p>
+<!--         {% if customer %}
+    	  <a href="/collections/all-products" class="margin_bottom_20 margin_top_10 button inverted membuttonclick button-cta">Shop products</a>
+        {% else %}
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free 30 Day Trial</a>
+        {% endif %} -->
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function(){
+      $(".button.inverted").click(function(e){
+        event.stopPropagation();
+        console.log($("#memberships_button_11118"));
+        console.log($("#memberships_button_11118")[0]);
+//        $("#memberships_button_11118").click();
+      })
+    });
+  </script>
+
+  <!--<div class="row">
+    <div class="column_12"><h2 class="text_center margin_bottom_50">Show Us Your Goods</h2></div>
+    <div class="column_12">
+      <div class="goods">
+        {% for product in collections.featured-goods.products limit:10 %}
+          {%- comment %}<locksmith:6d52>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections.featured-goods, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:6d52>{% endcomment -%}
+          <div class="good">
+            <a href="{{ product.url | within: collection }}"><img src="{{ product.featured_image.src | img_url: 'medium' }}" alt=""/></a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="column_12">
+      <p class="text_center" id="publicgoods">#publicgoods</p>
+    </div>
+  </div>!--><!-- Row End !-->
+</div> <!-- Page Content End !-->
+
+<script>
+  $(document).ready(function(){
+    
+    
+    function createCookie(name,value,days) {        if (days) { var date = new Date();
+            date.setTime(date.getTime()+(days*24*60*60*1000));
+            var expires = "; expires="+date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name+"="+value+expires+"; path=/";
+        }
+    createCookie("free_trial_button", "true", 30);
+  })
+  
+  function sticktothebottom() {
+    var h = window.innerHeight;
+    var window_top = $(window).scrollTop();
+    var top = $('#stick-here').offset().top;
+    var panelh = $(".free-tote-second-div").height();
+    
+    if(h> top || h + window_top > top + 50) {
+        $('#stickThis').appendTo('body');
+        $('#stickThis').css('position', 'fixed');
+     	$('#stickThis').css('bottom', '0');
+    } else {
+        $('#stickThis').appendTo('#stick-here');
+        $('#stickThis').css('position', 'relative');
+        $('#stickThis').css('bottom', 'auto');
+    }
+   }
+   
+  
+ 
+    var w = window.innerWidth
+    || document.documentElement.clientWidth
+    || document.body.clientWidth;
+
+    var h = window.innerHeight
+    || document.documentElement.clientHeight
+    || document.body.clientHeight;
+
+
+      $(function() {
+        $(window).scroll(sticktothebottom);
+        sticktothebottom();
+      });
+</script>
+{{ 'memberships-response.js' | asset_url | script_tag }}
+
+<style>
+  
+  .free-tote-second-div {
+    display: none !important;
+  }
+  
+  #hero-buttons {
+    display: block;
+  }
+  @media screen and (max-width: 950px) {
+    #hero-buttons {
+      display: none;
+    }
+    .free-tote-second-div {
+      display: block !important;
+    }
+    #stickThis a.button.inverted {
+      margin: 0px !important;
+      width: 100% !important;
+      text-align: center !important;
+    }
+    .popup-wrapper {
+      height: 100%;
+      margin-top: 210px;
+    }
+    #mission_hero {
+	  background-position-x: 80%;
+    }
+  }
+
+  #mission_hero {
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/home_cleaners.jpg?15680);
+  }
+  #mission_hero h1 {
+    padding-bottom: 0 !important;
+  }
+</style>
+
+
+

@@ -1,0 +1,1015 @@
+{%- comment %}<locksmith:8538>{% endcomment -%}
+  {%- include 'locksmith' -%}
+{%- comment %}</locksmith:8538>{% endcomment -%}
+
+<!doctype html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head><script>GSXMLHttpRequest = XMLHttpRequest;</script>
+  
+  <script type="text/javascript">
+  (function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/1czk4hDZQU9jrmp3MaNi1wqhc05RABHrg6aDSVLd/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+</script>
+
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
+  <style type="text/css">@import url("https://mem.boldapps.net/app_assets/css/bs-modal-only.min.css");</style>
+  <script id="stripe_scr" src="https://js.stripe.com/v3"></script>
+  {% if settings.favicon_enable %}
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+  {% endif %}
+
+  <!-- Title and description ================================================== -->
+  <title>
+  {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+  {%- comment %}<locksmith:2feb>{% endcomment -%}
+    {%- capture var %}{% render 'locksmith-variables', variable: 'transparent', hiding_scope: 'resource' %}{% endcapture %}{% if var == 'true' %}<meta name="description" content="{{ page_description | escape }}">{% endif -%}
+    {%- comment %}original: <meta name="description" content="{{ page_description | escape }}">{%- endcomment %}
+  {%- comment %}</locksmith:2feb>{% endcomment -%}
+  {% endif %}
+
+  <!-- Helpers ================================================== -->
+  <meta name="google-site-verification" content="_642FcdSEReLMugk6pedBGIGaIMQqKL5txx_zY7HAX4" />
+  {% include 'social-meta-tags' %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+  
+  <meta name="p:domain_verify" content="b627fe1a4f62e419b87cdb6b2106454b"/>
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  
+  <!-- CSS ================================================== -->
+  {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'slick.css' | asset_url | stylesheet_tag }}
+  {{ 'slick-theme.css' | asset_url | stylesheet_tag }}
+  {{ 'style.css' | asset_url | stylesheet_tag }}
+  {{ 'mobile.css' | asset_url | stylesheet_tag }}
+  {{ 'collections-filter.css' | asset_url | stylesheet_tag }}
+  {{ 'slick.css' | asset_url | stylesheet_tag }}
+  {{ 'slick-theme.css' | asset_url | stylesheet_tag }}
+
+
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
+  {% include 'oldIE-js' %}
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js' | script_tag }}
+          {{ '//code.jquery.com/jquery-migrate-1.4.1.js' | script_tag }}
+  
+{% comment %}
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js' | script_tag }}
+{% endcomment %}  
+  
+  {{ 'modernizr.min.js' | asset_url | script_tag }}
+
+  {{ 'https://mem.boldapps.net/app_assets/js/bs-modal-only.min.js' | script_tag }}
+  {{ '//ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js' | script_tag }}
+  {{ '//checkout.stripe.com/checkout.js' | script_tag }}
+
+  <script data-cfasync="false" src="https://mem.boldapps.net/app_assets/js/plan_multibutton.js"></script>
+
+  {% comment %}
+    If you store has customer accounts disabled, you can remove the following JS file
+  {% endcomment %}
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {% endif %}
+  
+  <!-- Begin Inspectlet Asynchronous Code -->
+    <script type="text/javascript">
+    (function() {
+    window.__insp = window.__insp || [];
+    __insp.push(['wid', 1649733113]);
+    var ldinsp = function(){
+    if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=1649733113&r=' + Math.floor(new Date().getTime()/3600000); var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+    setTimeout(ldinsp, 0);
+    })();
+    </script>
+<!-- End Inspectlet Asynchronous Code -->
+  
+<!-- Begin Mouseflow Asynchronous Code -->
+  <script type="text/javascript">
+  window._mfq = window._mfq || [];
+  (function() {
+    var mf = document.createElement("script");
+    mf.type = "text/javascript"; mf.async = true;
+    mf.src = "//cdn.mouseflow.com/projects/4d01e4fc-e492-4b2a-bf36-172b19d19371.js";
+    document.getElementsByTagName("head")[0].appendChild(mf);
+  })();
+</script>
+
+    <!-- Drip -->
+
+    <script type="text/javascript">
+
+     var _dcq = _dcq || [];
+
+     var _dcs = _dcs || {};
+
+     _dcs.account = '1478138';
+
+     
+
+     (function() {
+
+       var dc = document.createElement('script');
+
+       dc.type = 'text/javascript'; dc.async = true;
+
+       dc.src = '//tag.getdrip.com/1478138.js';
+
+       var s = document.getElementsByTagName('script')[0];
+
+       s.parentNode.insertBefore(dc, s);
+
+     })();
+
+    </script>
+   <!-- End Drip -->
+
+<!-- Start Visual Website Optimizer Asynchronous Code -->
+<script type='text/javascript'>
+var _vwo_code=(function(){
+var account_id=242739,
+settings_tolerance=2000,
+library_tolerance=2500,
+use_existing_jquery=false,
+/* DO NOT EDIT BELOW THIS LINE */
+f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
+</script>
+<!-- End Visual Website Optimizer Asynchronous Code -->
+
+  
+  <!--  FuelX Tracking Code Placing Instructions  -->
+<!--   <script type="text/javascript">
+(function(e,t,u,n,f){
+    "use strict";
+    e.fx||(e.fuelxEQ=e.fuelxEQ?e.fuelxEQ:[],e.fuelx=function(){e.fuelxP&&e.fuelxP.fuelx?e.fuelxP.handleEvent(arguments):e.fuelxEQ.push(arguments)},
+    f=e.document.createElement(t),f.async=!0,f.src=u,n=e.document.getElementsByTagName(t)[0],n.parentNode.insertBefore(f,n))
+})(window,"script","https://cdn.fuelx.com/js/tr.js?v1");
+</script>
+<script type="text/javascript">
+    fuelx("init", "8b01ff4899f06fbb60ba47096dc742e8", "roVgsityMT7bRRw1NtFsjg%3D%3D");
+    fuelx("pageview");
+</script> -->
+
+  <!--  App Dont-run-out  -->
+  
+<div class="dont-run-out-membership-wrapper" data-button="subscribe-to-membership-32-45" data-wrapper-id="dont-run-out-membership-wrapper-32-45" id="dont-run-out-membership-wrapper-32-45"></div>
+<div 
+data-button="subscribe-to-membership-42-55" 
+data-wrapper-id="dont-run-out-membership-wrapper-42-55" 
+id="dont-run-out-membership-wrapper-42-55" class="dont-run-out-membership-wrapper"></div>
+  <div 
+data-button="subscribe-to-membership-43-56" 
+data-wrapper-id="dont-run-out-membership-wrapper-43-56" 
+id="dont-run-out-membership-wrapper-43-56" class="dont-run-out-membership-wrapper"></div>
+  
+<div 
+data-button="subscribe-to-membership-45-58" 
+data-wrapper-id="dont-run-out-membership-wrapper-45-58" 
+id="dont-run-out-membership-wrapper-45-58" class="dont-run-out-membership-wrapper"></div>
+  
+   <!--  Snapchat  -->
+  <script type='text/javascript'>
+  (function(win, doc, sdk_url){
+  if(win.snaptr) return;
+  var tr=win.snaptr=function(){
+  tr.handleRequest? tr.handleRequest.apply(tr, arguments):tr.queue.push(arguments);
+};
+  tr.queue = [];
+  var s='script';
+  var new_script_section=doc.createElement(s);
+  new_script_section.async=!0;
+  new_script_section.src=sdk_url;
+  var insert_pos=doc.getElementsByTagName(s)[0];
+  insert_pos.parentNode.insertBefore(new_script_section, insert_pos);
+})(window, document, 'https://sc-static.net/scevent.min.js');
+
+     function readCookie(name) { var nameEQ = name + "=";    var ca = document.cookie.split(';');
+          for(var i=0;i < ca.length;i++) {
+              var c = ca[i];
+              while (c.charAt(0)==' ') c = c.substring(1,c.length);
+              if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+          }
+          return null;
+      } 
+    var custEmail = readCookie("custEmail");
+    
+  snaptr('init','0b06cb94-c939-4960-8927-1b57017080b7',{
+  'user_email':custEmail
+})
+  snaptr('track','PAGE_VIEW') 
+</script>
+<script type="text/javascript">
+  // functions for cookie, cj
+  function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+    
+    for (i = 0; i < sURLVariables.length; i++) {
+      sParameterName = sURLVariables[i].split('=');
+      
+      if (sParameterName[0] === sParam) {
+        return sParameterName[1] === undefined ? true : sParameterName[1];
+      }
+    }
+  };
+  function printCookie() {
+  	var theCookies = document.cookie.split(';');
+    var aString = '';
+    for (var i = 1 ; i <= theCookies.length; i++) {
+        aString += i + ' ' + theCookies[i-1] + "\n";
+    }
+    console.log(aString);
+  };
+  function createCookie(name,value,days) {        
+    if (days) { 
+      var date = new Date();
+      date.setTime(date.getTime()+(days*24*60*60*1000));
+      var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+  };
+  function readCookie(name) { 
+    var nameEQ = name + "=";    
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+  };  
+  function eraseCookie(name) {     
+    createCookie(name,"",-1);    
+  };
+  $(document).ready(function(){
+  	var cj_event = getUrlParameter("cjevent=abC124nfhs");
+    cj_event === undefined ? console.log("cj_event undefined") : createCookie("cjevent", cj_event, 28);
+  });
+</script> 
+
+  {% if canonical_url contains '/collections/all' %}
+      <meta name="robots" content="noindex">
+  {% endif %}
+  
+
+
+<!--SteelHouse Tracking Pixel-->
+<!-- INSTALL ON ALL PAGES OF SITE-->
+<script type="text/javascript">
+    (function(){"use strict";var e=null,b="4.0.0",
+    n="22941",
+    additional="term=value",
+    t,r,i;try{t=top.document.referer!==""?encodeURIComponent(top.document.referrer.substring(0,2048)):""}catch(o){t=document.referrer!==null?document.referrer.toString().substring(0,2048):""}try{r=window&&window.top&&document.location&&window.top.location===document.location?document.location:window&&window.top&&window.top.location&&""!==window.top.location?window.top.location:document.location}catch(u){r=document.location}try{i=parent.location.href!==""?encodeURIComponent(parent.location.href.toString().substring(0,2048)):""}catch(a){try{i=r!==null?encodeURIComponent(r.toString().substring(0,2048)):""}catch(f){i=""}}var l,c=document.createElement("script"),h=null,p=document.getElementsByTagName("script"),d=Number(p.length)-1,v=document.getElementsByTagName("script")[d];if(typeof l==="undefined"){l=Math.floor(Math.random()*1e17)}h="dx.steelhousemedia.com/spx?"+"dxver="+b+"&shaid="+n+"&tdr="+t+"&plh="+i+"&cb="+l+additional;c.type="text/javascript";c.src=("https:"===document.location.protocol?"https://":"http://")+h;v.parentNode.insertBefore(c,v)})()
+</script>
+  
+  
+
+  <!-- Pinterest Tag -->
+  <script type="text/javascript">
+    !function(e){if(!window.pintrk){window.pintrk=function()
+    {window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var
+    n=window.pintrk;n.queue=[],n.version="3.0";var
+    t=document.createElement("script");t.async=!0,t.src=e;var
+    r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r)}}
+    ("https://s.pinimg.com/ct/core.js"); 
+
+    pintrk('load','2613930601070', { em: '{{ customer.email }}', });
+    pintrk('page');
+  </script> 
+  <noscript> 
+    <img height="1" width="1" style="display:none;" alt=""
+    src="https://ct.pinterest.com/v3/?tid=2613930601070&noscript=1" /> 
+  </noscript>
+  
+  <!-- end Pinterest Tag -->
+
+
+<!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5SCQF94');</script>
+<!-- End Google Tag Manager -->
+  
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NZB6XKR');</script>
+<!-- End Google Tag Manager -->
+
+
+<!-- BeginConsistentCartAddon -->  <script>  {% if customer %}  Shopify.merge_cart_text = '{{ "consistent_cart_addon.merge_cart_text" | t }}' ;  Shopify.customer_logged_in = true ;  Shopify.customer_email = "{{ customer.email }}" ;  Shopify.log_uuids = true;  {% else %}  Shopify.customer_logged_in = false ;  Shopify.customer_email = "" ;  Shopify.log_uuids = true;  {% endif %}  </script>  <!-- EndConsistentCartAddon -->
+  {{ 'shopstorm-apps.scss.css' | asset_url | stylesheet_tag }}
+  {% include 'shopstorm-scripttags' %}
+  {% include 'talkable-partial' %}
+  {% include 'Howd-ya-hear-about-us' %}
+  {% include 'minmaxify-head' %}
+{% include 'sca.freegifts' %}
+
+</head>
+{% comment %}
+  Add the page template as a class for easy page or template specific styling.
+{% endcomment %}
+<body id="{{ page_title | handle }}" class="free_trial {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+  
+  <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SCQF94"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZB6XKR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+{% assign member = 0 %}
+{% if shop.customer_accounts_enabled %}
+  {% if customer %}
+    {% assign member = 1 %}
+  {% else %}
+    {% unless page.handle == 'unauthorized-checkout' %}
+    	<script>jQuery.post('/cart/clear.js')</script>
+  	{% endunless %}
+  {% endif %}
+{% endif %}
+  
+{% for tag in customer.tags %}
+  {% if tag == 'member' or tag == 'members' %}
+    {% assign nonmember = false %}
+  {% endif %}
+  {% if tag == 'Unsubscribed' or tag == 'unsubscribed' %}
+    {% assign nonmember = true %}
+  {% endif %}
+{% endfor %}
+
+  
+<!-- Bold: Memberships -->
+{% if customer %}
+<div class="bold_customer_id" hidden>{{ customer.id }}</div>
+{% endif %}
+<!-- end Bold code -->  
+  
+  
+  {% if settings.ajax_cart_method == "drawer" %}
+    <div id="CartDrawer" class="drawer drawer--right">
+      <div class="drawer__header">
+        <div class="drawer__title h3">{{ 'cart.general.title' | t }}</div>
+        <div class="drawer__close js-drawer-close">
+          <button type="button" class="icon-fallback-text">
+            <span class="icon icon-x" aria-hidden="true"></span>
+            <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+          </button>
+        </div>
+      </div>
+      <div id="CartContainer"></div>
+    </div>
+  {% endif %}
+
+  <div class="is-moved-by-drawer sticky_header publicgoods-header">
+    {% unless customer %}
+      <div class="free-trial-mobile-banner" style="display:none;">
+        <a style="color: #fff; cursor: pointer;" class="subscribe-to-membership-32-45 subscribe-to-membership">
+          <p>The first month's on us. <span style="text-decoration: underline">Start free trial.</span></p></a>
+      </div>
+    {% endunless %}
+<!--     {% if customer %}
+      <div class="promo-banner">
+        <a href="https://www.publicgoods.com/pages/march-promotion" style="color: #fff; cursor: pointer;">
+          <p class="promo-mobile" style="display:none">Choose a free gift with any order $20+. <span style="text-decoration: underline">Choose here.</span></p>
+ 		  <p class="promo-desktop">This weekend only  — choose a free gift with any order $20+. <span style="text-decoration: underline">Choose here.</span></p>
+	    </a>
+      </div>
+    {% endif %} -->
+    <header>
+      <div id="mobile_menu_trigger"><div id="mobile_menu_trigger_inner"></div></div>
+      <ul class="left_nav">
+          {% if template == "collection" %}
+              {% for link in linklists.collection-menu.links %}
+        	  {%- comment %}<locksmith:4cfe>{% endcomment -%}
+        	    {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.collection-menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	  {%- comment %}</locksmith:4cfe>{% endcomment -%}
+        	  <li>
+                <a class='shop-products-btn' href="https://www.publicgoods.com/collections/all-products" style="padding: 20px 0;">Shop Products</a>
+              </li>   
+              {% unless customer %}<li><a href="https://www.publicgoods.com/pages/about-us-1">About Us</a></li>{% endunless %}
+              {% unless nonmember %}<li><a href='http://blog.publicgoods.com/'>Blog</a></li>{% endunless %}
+       		  {% if nonmember %}<li><a href="mailto:service@publicgoods.com?subject=Reactivate account.">Reactivate</a></li>{% endif %}
+              {% if customer %}<li><a href="https://www.publicgoods.com/?tkbl_expand=true&traffic_source=header">Get $20</a></li>{% endif %}
+              {% endfor %}
+          {% else %}
+              {% for link in linklists.sub-menu.links %}
+              {%- comment %}<locksmith:7dd4>{% endcomment -%}
+                {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.sub-menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+              {%- comment %}</locksmith:7dd4>{% endcomment -%}
+              <li {% if link.active %}class="site-nav--active"{% endif %}>
+                <a class='shop-products-btn' href="{{ link.url }}" style="padding: 15px 0;">{{ link.title }}</a>
+              </li>
+              {% unless customer %}<li><a href="https://www.publicgoods.com/pages/about-us-1">About Us</a></li>{% endunless %}
+              <li><a href='http://blog.publicgoods.com/'>Blog</a></li>
+        	  {% if customer %}<li><a href="https://www.publicgoods.com/?tkbl_expand=true&traffic_source=header">Get $20</a></li>{% endif %}
+        	  {% if nonmember %}<li><a href="mailto:service@publicgoods.com?subject=Reactivate account.">Reactivate Account</a></li>{% endif %}
+              {% endfor %}
+          {% endif %}
+     
+      </ul>
+      
+      <a href="/" id="logo"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo"></a>
+      
+      <ul class="right_nav">       
+        {% if template == 'index' or template == 'collection' or template == 'product'%}
+          <li class="desktop-search-li">
+            <form action="/search" method="get" class="input-group search-bar" role="search">
+              <span class="input-group-btn desktop-input-group-btn">
+                <button type="submit" class="btn icon-fallback-text desktop-mag-btn">
+                  <span class="magnifying-glass" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/magnify_2.png?2583" style="width:20px;"/></span>
+                  <span class="fallback-text">{{ 'general.search.submit' | t }}</span>
+                </button>
+              </span>
+              <input type="hidden" name="type" value="product">
+              <div class='border-around-search desktop-search-container' style="display:none">
+                <button class="desktop-search-btn" type="submit">
+                  <span class="magnifying-glass-2 magnifying-glass-2-desktop" style="display:none" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/magnify_2.png?14102756025552087246" style="width:20px;"/></span>
+                </button>
+                <input style="display:none;" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search" class="input-group-field -search-bar" aria-label="{{ 'general.search.placeholder' | t }}">
+              </div>
+            </form>
+            <span aria-hidden="true" class="magnifying-glass-for-tablet" style="display:none"><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/magnify_2.png?2583" style="width:20px;"/></span>
+          </li>
+        {% endif %}
+        <li class="free-trial-btn-li">
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership free-trial-btn membuttonclick margin_top_30 button-cta">Free Trial</a>
+        </li>
+        {% if template.suffix != 'altindex' and template.suffix != 'membership-trial' and template != 'product'  and template != 'collection'  %}
+          <div style="display:none;" class="memberships_button margin_top_40" id="checkout_11118" data-billingid="11118" data-planid="2418" data-approot="https://mem.boldapps.net" data-hash="06ac502d0bd77a332cf0c651ceaed93c" data-label="Free 30 Day Trial" data-domain="morgans-dont-run-out.myshopify.com"></div>
+        {% else %}
+          <div style="display:none;" class="memberships_button margin_top_40" id="checkout_10641" data-billingid="10641" data-planid="2237" data-approot="https://mem.boldapps.net" data-hash="e992ecb473cb61b97834158fa7750167" data-label="Join now" data-domain="morgans-dont-run-out.myshopify.com"></div>
+        {% endif %}
+        {% if shop.customer_accounts_enabled %}
+          {% if customer %}
+            {% if customer.tags contains 'B2B' %}<li><a href="https://www.publicgoods.com/collections/b2b">Bulk Order</a></li>{% endif %}
+            <li><a data-cust-email={{ customer.email }} id="custAccountLink" href="/account">{{ 'layout.customer.account' | t }}</a></li>
+            <li>{{ 'layout.customer.log_out' | t | customer_logout_link }}</li>
+          {% else %}
+          {% if collection.handle == 'imperfect-goods' %}
+              <li>{{ 'layout.customer.create_account' | t | customer_register_link }}</li>
+          {% endif %}
+            <li>{{ 'layout.customer.log_in' | t | customer_login_link }}</li>
+          {% endif %}
+        {% endif %}
+        {% if customer %}<li><a href="/cart" class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">{{ 'layout.cart.title' | t }} <span id="CartCount" style="color:black;">{{ cart.item_count }}</span></a></li>{% endif %}
+      </ul>
+      
+      {% unless template == 'search' %}
+        <div id="mobile_header_cart">
+          <span class="input-group-btn mobile-input-group-btn">
+            <button type="" class="btn icon-fallback-text mobile-mag-icon">
+              <span class="mobile-search-icon" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/magnify_2.png?2583" style="width:20px;"/></span>
+              <span class="fallback-text">{{ 'general.search.submit' | t }}</span>
+            </button>
+          </span>
+          <a href="/cart" class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">{{ 'layout.cart.title' | t }} <span id="CartCount_mobile">{{ cart.item_count }}</span></a>
+        </div>
+      {% endunless %}
+      
+    </header>
+    
+     <div id="mobile-search-input">
+      <form action="/search" method="get" class="input-group search-bar" role="search">
+        <input type="hidden" name="type" value="product">
+        <div class="close-search-mobile">
+          <span class="mobile-search-exit"><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/x_2.png?14102756025552087246" id="mobile-search-exit-img" style="width:20px; display:none;"/></span>
+        </div>
+        <div class='border-around-search mobile-search-container' style="display:none">
+          <button type="submit">
+            <span class="magnifying-glass-2" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/magnify_2.png?2583" style="width:20px;"/></span>
+          </button>
+          <input style="display:none;" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search" class="input-group-field mobile-search-bar" aria-label="{{ 'general.search.placeholder' | t }}">
+        </div>
+      </form>
+    </div>
+    
+    <div class='header-filter header-filter-desktop hide-filter'>
+      <div class="categories-container-desktop" style='display:flex'>
+        
+        <div class="store-categories-desktop personal-care-category-div">
+          <a style="color: #000;" href="https://www.publicgoods.com/collections/personal-care">
+            <p class="dt-category-title dt-personal-care-title">Personal Care</p></a>
+            {% for link in linklists.personal-care.links %}
+               {%- comment %}<locksmith:b70a>{% endcomment -%}
+                 {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.personal-care, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+               {%- comment %}</locksmith:b70a>{% endcomment -%}
+               {% if link.type == 'collection_link' %}
+                 {% assign linkCollection = link.object %}
+                   <div class="filter-collection-item desktop-filter-collection-item">
+                      <h2 class='desktop-menu-filter-text'><a href="{{ link.url }}">{{link.title }}</a></h2>
+                  </div>
+              {% endif %}
+            {% endfor %}
+        </div>
+        
+         <div class="store-categories-desktop household-category-div">
+          <a style="color: #000;" href="https://www.publicgoods.com/collections/household">
+            <p class="dt-category-title dt-household-title">Household</p></a>
+            {% for link in linklists.household.links %}
+               {%- comment %}<locksmith:f881>{% endcomment -%}
+                 {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.household, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+               {%- comment %}</locksmith:f881>{% endcomment -%}
+               {% if link.type == 'collection_link' %}
+                 {% assign linkCollection = link.object %}
+                   <div class="filter-collection-item desktop-filter-collection-item">
+                      <h2 class='desktop-menu-filter-text'><a href="{{ link.url }}">{{link.title }}</a></h2>
+                  </div>
+              {% endif %}
+            {% endfor %}
+        </div>
+       
+        <div class="store-categories-desktop food-category-div">
+           <a style="color: #000;" href="https://www.publicgoods.com/collections/grocery">
+             <p class="dt-category-title dt-food-title">Food</p></a>
+              {% for link in linklists.grocery.links %}
+                 {%- comment %}<locksmith:b255>{% endcomment -%}
+                   {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.grocery, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                 {%- comment %}</locksmith:b255>{% endcomment -%}
+                 {% if link.type == 'collection_link' %}
+                   {% assign linkCollection = link.object %}
+                     <div class="filter-collection-item desktop-filter-collection-item">
+                        <h2 class='desktop-menu-filter-text'><a href="{{ link.url }}">{{link.title}}</a></h2>
+                    </div>
+                {% endif %}
+              {% endfor %}
+        </div>
+        
+      </div>
+            
+    </div>
+
+    
+    <div id="mobile_menu">
+      <ul id="mobile-categories-container">
+<!--         <li class="free-trial-btn-li">
+		  <a class="subscribe-to-membership-32-45 subscribe-to-membership free-trial-btn membuttonclick margin_top_30 button-cta">Free Trial</a>
+        </li> -->
+        <div class="categories-container-mobile">
+          <li class="store-categories-mobile nav-personal-care-title">Personal Care</li>
+          <li class="store-categories-mobile nav-household-title">Household</li>
+          <li class="store-categories-mobile nav-food-title">Food</li>
+        </div>
+
+<!--           {% for link in linklists.main-menu.links %}
+            {%- comment %}<locksmith:1b03>{% endcomment -%}
+              {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.main-menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+            {%- comment %}</locksmith:1b03>{% endcomment -%}
+            <li {% if link.active %}class="site-nav--active"{% endif %}>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>  
+          {% endfor %} -->
+          <li id='mobile-menu-product-filter-li'>
+            
+            <div class='header-filter mobile-header-filter'>
+              
+              <div class="mobile-nav-personal-care">
+                {% for link in linklists.personal-care.links %}
+                   {%- comment %}<locksmith:6ab1>{% endcomment -%}
+                     {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.personal-care, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                   {%- comment %}</locksmith:6ab1>{% endcomment -%}
+                   {% if link.type == 'collection_link' %}
+                     {% assign linkCollection = link.object %}
+                       <div class="filter-collection-item mobile-filter-collection-item">
+                          <h2 class='mobile-menu-filter-text'><a href="{{ link.url }}">{{link.title }}</a></h2>
+                      </div>
+                  {% endif %}
+                {% endfor %}
+                <div class="filter-collection-item mobile-filter-collection-item">
+                  <h2 class='mobile-menu-filter-text'><a href="https://www.publicgoods.com/collections/personal-care">All Personal Care</a></h2>
+                </div>
+              </div>
+            
+              <div class="mobile-nav-food">
+				{% for link in linklists.grocery.links %}
+                   {%- comment %}<locksmith:d76b>{% endcomment -%}
+                     {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.grocery, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                   {%- comment %}</locksmith:d76b>{% endcomment -%}
+                   {% if link.type == 'collection_link' %}
+                     {% assign linkCollection = link.object %}
+                       <div class="filter-collection-item mobile-filter-collection-item">
+                          <h2 class='mobile-menu-filter-text'><a href="{{ link.url }}">{{link.title }}</a></h2>
+                      </div>
+                  {% endif %}
+                {% endfor %}
+                 <div class="filter-collection-item mobile-filter-collection-item">
+                   <h2 class='mobile-menu-filter-text'><a href="https://www.publicgoods.com/collections/grocery">All Food</a></h2>
+                 </div>
+              </div>
+
+              <div class="mobile-nav-household">
+                {% for link in linklists.household.links %}
+                   {%- comment %}<locksmith:c942>{% endcomment -%}
+                     {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.household, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                   {%- comment %}</locksmith:c942>{% endcomment -%}
+                   {% if link.type == 'collection_link' %}
+                     {% assign linkCollection = link.object %}
+                       <div class="filter-collection-item mobile-filter-collection-item">
+                          <h2 class='mobile-menu-filter-text'><a href="{{ link.url }}">{{link.title }}</a></h2>
+                      </div>
+                  {% endif %}
+                {% endfor %}
+                <div class="filter-collection-item mobile-filter-collection-item">
+                  <h2 class='mobile-menu-filter-text'><a href="https://www.publicgoods.com/collections/household">All Household</a></h2>
+                </div>
+              </div>
+              <span id="mobile-nav-arrow"><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/arrown_down.png?2224" /></span>
+            </div>
+          </li>			
+
+        {% if shop.customer_accounts_enabled %}
+          {% if customer %}
+        	{% if nonmember %}<li><a href="mailto:service@publicgoods.com?subject=Reactivate account.">Reactivate Account</a></li>{% endif %}
+            <li><a href='http://blog.publicgoods.com/'>Blog</a></li>
+            <li><a href="https://www.publicgoods.com/?tkbl_expand=true&traffic_source=header">Get $20</a></li>
+            <li><a href="/account">{{ 'layout.customer.account' | t }}</a></li>
+            <li>{{ 'layout.customer.log_out' | t | customer_logout_link }}</li>
+          {% else %}
+            <!--<li>{{ 'layout.customer.create_account' | t | customer_register_link }}</li>!-->
+            <li><a href='https://www.publicgoods.com/pages/about-us-1'>About Us</a></li>
+        	<li><a href='http://blog.publicgoods.com/'>Blog</a></li>
+            <li>{{ 'layout.customer.log_in' | t | customer_login_link }}</li>
+          {% endif %}
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+
+  <div id="PageContainer" class="is-moved-by-drawer">
+    <div class="mobile" id="forMenu"></div>
+
+    <main role="main">
+      {{ content_for_layout }}
+    </main>
+
+    <footer>
+      <!-- REMOVE THE EMAIL CAPTURE IN THE FOOTER IF A CUSTOMER IS LOGGED IN !-->
+     
+      {% unless customer %} 
+      <div class="row clearfix margin_bottom_30">
+        <div class="column_12 margin_bottom_20">
+          <label>Connect with us</label>
+          
+         <!--<form action="https://www.getdrip.com/forms/7708152/submissions" class="validate-form footer_submit_form" method="post" data-drip-embedded-form="7708152">
+          <input name="fields[email]" id="emailinput"  value="" placeholder="Enter your email" class="drip-text-field" type="email" required>
+          <div id="drip-errors-for-email-27436" class="drip-errors" style="display: none"></div>
+          <input name="submit" value="Subscribe" id="drip-submit-27436" class="drip-submit-button submit-capture" type="submit">
+
+          <div id="drip-success-panel-27436" class="drip-success drip-panel" style="display: none">
+            <p>Thank you.</p>          
+          </div>
+
+        </form>!-->
+           <form name="email-capture"class="validate-form footer_submit_form">
+          <input name="email" id="emailinput"  value="" placeholder="Enter your email" class="drip-text-field" type="email" required>
+          <div id="drip-errors-for-email-27436" class="drip-errors" style="display: none"></div>
+          <input name="submit" value="Subscribe" id="drip-submit-27436" class="drip-submit-button submit-capture" type="submit">
+
+          <div id="drip-success-panel-27436" class="drip-success drip-panel" style="display: none">
+            <p>Thank you.</p>          
+          </div>
+
+        </form>
+          
+          <!--<form class="validate-form footer_submit_form" action="https://www.getdrip.com/forms/560251309/submissions" method="post" data-drip-embedded-form="560251309">
+        <input type="email" placeholder="Enter your email" id="drip-email" name="fields[email]" value="" class="drip-text-field"/>
+        <input type="submit" name="submit" value="Subscribe" class="drip-submit-button submit-capture" data-drip-attribute="sign-up-button" />
+     </form>!-->
+        <p id="email-footer-confirmation"></p>
+        </div>
+        <a name='homepage-footer'></a>
+        <div class="column_6" id="email-success">
+          <p style='line-height: 18px;'>By clicking Sign Up you agree to receive<br/>marketing emails from PUBLIC GOODS</p>
+        </div>
+        
+         <div id='instagram-logo-and-link' class='column_6'>
+            <a href='https://www.instagram.com/public_goods_/'><i class="fab fa-instagram"></i></a>
+            <a href='https://www.instagram.com/public_goods_/' id='instagram-footer'>Instagram</a> 
+          </div>
+        
+        <div class="column_6 footer_social" style="display:none">
+          <a href="#"><img src="{{ 'pinterest.png' | asset_url }}" alt=""/></a>
+          <a href="#"><img src="{{ 'facebook.png' | asset_url }}" alt=""/></a>
+          <a href="#"><img src="{{ 'twitter.png' | asset_url }}" alt=""/></a>
+          <a href="#"><img src="{{ 'instagram.png' | asset_url }}" alt=""/></a>
+        </div>
+      </div>
+      {% endunless %} 
+      <div class="row clearfix">
+        <div class="column_6 footer_menu">
+          <a href="/pages/contact">Contact</a>
+          <a href="/pages/shipping">Shipping</a>
+          <a href="/pages/careers">Careers</a>
+          <a href="/pages/privacy-policy">Privacy Policy</a>
+          <a href="/pages/terms-and-conditions">Terms and Service</a>
+        </div>
+        <div class="column_6 copyright">
+          <p>&copy; 2018 PUBLIC GOODS – All Rights Reserved</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+  
+  <div id="customModal" class="customModal">
+    <div class="modal-content">
+      <div class="modal-inner-content">
+        <span class="modal-close">&times;</span>
+        <div class="clear"></div>
+
+        <div class="modal-detail">
+          <h1>Excellent Choice. Start your free membership trial.</h1>
+          <div class="margin_top_40 margin_bottom_40">
+            <a class="button inverted" id="boldTrigger">One Month Free</a>
+          </div>
+          <p class="margin_bottom_30">Already a member? <a href="/account/login">Login here</a></p>
+        </div><!-- Modal Detail End !-->
+      </div> <!-- Modal Inner Content End !-->
+    </div>
+  </div>
+
+  {{ 'fastclick.min.js' | asset_url | script_tag }}
+  {{ 'timber.js' | asset_url | script_tag }}
+  {{ 'jquery.cookie.js' | asset_url | script_tag }}
+  {{ 'jquery.initialize.js' | asset_url | script_tag }}
+  {{ 'slick.min.js' | asset_url | script_tag }}
+  {{ 'script.js' | asset_url | script_tag }}
+
+
+  {% comment %}
+    Template-specific js
+  {% endcomment %}
+  <script>
+    {% if resetPassword %}
+      $(function() {
+        timber.resetPasswordSuccess();
+      });
+    {% endif %}
+  </script>
+  {% comment %}
+    Ajaxify your cart with this plugin.
+    Documentation:
+      - http://shopify.com/timber#ajax-cart
+  {% endcomment %}
+  {% if settings.ajax_cart_method == "drawer" %}
+    {{ 'handlebars.min.js' | asset_url | script_tag }}
+    {% include 'ajax-cart-template' %}
+    {{ 'ajax-cart.js' | asset_url | script_tag }}
+    <script>
+      jQuery(function($) {
+        ajaxCart.init({
+          formSelector: '#AddToCartForm',
+          cartContainer: '#CartContainer',
+          addToCartSelector: '#AddToCart',
+          cartCountSelector: '#CartCount',
+          cartCostSelector: '#CartCost',
+          moneyFormat: {{ shop.money_format | json }}
+        });
+      });
+
+      jQuery(document.body).on('afterCartLoad.ajaxCart', function(evt, cart) {
+        // Bind to 'afterCartLoad.ajaxCart' to run any javascript after the cart has loaded in the DOM
+        timber.RightDrawer.open();
+      });
+    </script>
+  {% endif %}
+  
+  {% include 'homepage-search-bar' %}
+  {% include 'product-filter-desktop' %}
+<!--BeginCFFPersistentCartCart-->
+{% if customer %}
+<script>
+
+    window.cffCustomer = {
+        name: '{{customer.name}}',
+        email: '{{customer.email}}',
+        hasAccount: '{{customer.has_account}}',
+        id: '{{customer.id}}'
+    };
+
+
+</script>
+
+{% endif %}
+
+<script>
+    window.cffPCLiquidPlaced = true
+</script>
+
+<!--EndCFFPersistentCartCart-->
+
+<script src="//cdn.codeblackbelt.com/js/modules/also-bought/main.min.js?shop=morgans-dont-run-out.myshopify.com"></script>
+</body>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-67055015-3', 'auto');
+  
+  ga('send', 'event', 'sales', 'order_success', 'valentines', '[subtotal]');
+  ga('send', 'pageview');
+  
+     
+  
+  
+      function hasHtml5Validation () {
+        return typeof document.createElement('input').checkValidity === 'function';
+      }
+
+      if (hasHtml5Validation()) {
+        $('.validate-form').submit(function (e) {
+          if (!this.checkValidity()) {
+            e.preventDefault();
+            $(this).addClass('invalid');
+          } else {
+            $(this).removeClass('invalid');
+          }
+        });
+      }
+      
+      
+  
+      
+//       $('.footer_submit_form ').submit(function (e) {
+//         console.log("good");
+//         fbq('track', 'Lead');
+//       });
+      $("#slideshow > div:gt(0)").hide();
+  
+</script>
+
+<!-- For email capture to google sheet -->
+<script>
+    console.log("DOM fully loaded and parsed");
+    let GSscriptURL = 'https://script.google.com/macros/s/AKfycbyZpEbiGJEYiAXNX9kDbvOnLptx6gtkyMBBLYH5If59DcmH3B_y/exec'
+    const emailForm = document.forms['email-capture']  
+    let emailInput = document.getElementById('emailinput').value
+	let emailConfirm = document.getElementById('email-footer-confirmation')
+    
+    let footerEmail = document.getElementById('email-success')
+    let subscribeButton = document.getElementById('drip-submit-27436')
+  if (document.forms['email-capture']) {
+    emailForm.addEventListener('submit', e => {  
+     e.preventDefault()  
+     let emailText = emailForm.elements.namedItem("email").value;
+      const payload = {
+        subscribers: [{
+          email: emailText,
+        }]
+      }
+     fetch(GSscriptURL, { method: 'POST', body: new FormData(emailForm)})  
+        .then(response => console.log('Success!', response))  
+        .catch(error => console.error('Error!', error.message))  
+ 
+       _dcq.push(
+      [
+        "subscribe",
+        {
+          campaign_id: "220285039",
+          fields: {
+            email: emailText
+          }
+        }
+      ]
+       )
+//      _dcq.push(["identify", {
+//         email: emailText,
+//        tags: ["Membership trial cj"],
+//        	user_id: emailText,
+//       }]);
+       emailForm.style.display = "none"
+       emailConfirm.innerText = "Thank you for signing up. You're in."
+       emailForm.reset()       
+     })
+}
+</script>
+
+<!-- ProfitWell -->
+  
+  <script>
+    
+  (function(i,s,o,g,r,a,m){i['ProfitWellObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);
+  })(window,document,'script','https://dna8twue3dlxq.cloudfront.net/js/profitwell.js','profitwell');
+  profitwell('auth_token', '4f6e40e843a41b80cdefe4bae91170f0');
+    
+</script>
+<!-- Beginning of Profitwell Awesomeness Code (which loads totally asynchronously) -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['ProfitWellObject']=r;i[r]=i[r]||function(){  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);  })(window,document,'script','https://dna8twue3dlxq.cloudfront.net/js/profitwell.js','profitwell');
+    
+        profitwell('auth_token', '4f6e40e843a41b80cdefe4bae91170f0');
+      profitwell('user_email', {{customer.email}});
+    </script>
+<!-- End of Profitwell Awesomeness Code. -->
+
+<!-- Styling for ApplePay button in the cart !-->
+
+<style>
+.additional_checkout_buttons{
+  margin-top:10px; 
+}
+.additional-checkout-button--apple-pay{
+  background-color: #67837E !important;
+  border-radius: 0px !important;
+  min-width: 100% !important;
+}
+  
+.alt-payment-list__item--apple-pay .alt-payment-list__item__link {
+  background-color: #67837E !important;
+  border-radius: 0px !important;
+}
+  
+  .promo-banner {
+    display: block !important;
+    width: 100%;
+    height: 35px;
+    background-color: #dc886c;
+    color: #fff;
+    text-align: center;
+  } 
+  .promo-banner p {
+    font-family: 'NB';
+    font-size: 13px;
+    padding-top: 10px;
+    line-height: 16px !important;
+  }
+  
+  .promo-desktop{
+    font-size: 14px !important;
+  }
+    
+/*     @media(max-height: 515px) { 
+      #mobile_menu {
+        height: 400px; !important;
+      }
+    } */
+  }
+  
+</style> 
+
+<script>
+  function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
+  
+  if(typeof getCookie('is_black_friday') !== 'undefined') {
+  	var subscriptionButtons = document.querySelectorAll('.subscribe-to-membership');
+    
+    for(var btnIndx = 0; btnIndx < subscriptionButtons.length; btnIndx++) {
+      subscriptionButtons[btnIndx].classList.remove('subscribe-to-membership-32-45');
+      subscriptionButtons[btnIndx].classList.remove('subscribe-to-membership-43-56');
+      subscriptionButtons[btnIndx].classList.add('subscribe-to-membership-42-55');
+    }
+  }
+  if(typeof getCookie('is_cyber_monday') !== 'undefined') {
+  	var subscriptionButtons = document.querySelectorAll('.subscribe-to-membership');
+    
+    for(var btnIndx = 0; btnIndx < subscriptionButtons.length; btnIndx++) {
+      subscriptionButtons[btnIndx].classList.remove('subscribe-to-membership-32-45');
+      subscriptionButtons[btnIndx].classList.remove('subscribe-to-membership-42-55');
+      subscriptionButtons[btnIndx].classList.add('subscribe-to-membership-43-56');
+    }
+  }
+    
+  if(typeof getCookie('is_free_tote') !== 'undefined') {
+  	var subscriptionButtons = document.querySelectorAll('.subscribe-to-membership');
+    
+    for(var btnIndx = 0; btnIndx < subscriptionButtons.length; btnIndx++) {
+      subscriptionButtons[btnIndx].classList.remove('subscribe-to-membership-32-45');
+      subscriptionButtons[btnIndx].classList.remove('subscribe-to-membership-42-55');
+      subscriptionButtons[btnIndx].classList.remove('subscribe-to-membership-43-56');
+      subscriptionButtons[btnIndx].classList.add('subscribe-to-membership-45-58');
+    }
+  }
+</script>
+
+  <script src="https://dont-run-out-membership.herokuapp.com/public/plans/32/billings/45.js"></script>
+  <script src="https://dont-run-out-membership.herokuapp.com/public/plans/42/billings/55.js"></script>
+  <script src="https://dont-run-out-membership.herokuapp.com/public/plans/43/billings/56.js"></script>
+  <script src="https://dont-run-out-membership.herokuapp.com/public/plans/45/billings/58.js"></script>
+</html>

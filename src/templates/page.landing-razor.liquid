@@ -1,0 +1,87 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div class="deodorant-main-section tp-main-section razor-main-section">
+  <div class="row clearfix">
+    <div class="column_6">
+      <h2 class="margin_bottom_50">Razor Blades</h2>
+      <h1 class="margin_bottom_50 without-padding">Shave down the cost.</h1>
+      <div class="deodorant-thumbnail-mobile razor-thumbnail-mobile">
+      	{{ 'Razor_Blades.png' | asset_url | img_tag }}            
+      </div>
+      <div class="deodorant-price-section">
+      	<p class="margin_bottom_50">Simple but meticulously constructed, our razor
+		blades give a close, comfortable and precise
+		shave at a fraction of the cost. Their compatible
+		with Mach3 handles but also pair with our refillable
+		bamboo razor handle, designed to reduce waste
+		while giving you a controlled, firm grip.</p>
+        <h1 style="display: inline;">$0.99</h1><p style="display:inline"> /4 blades</p><span>  with membership</span>
+        <br><br><br>
+        {% if customer %}
+           <a href="/collections/all-products" style="background-color: black" class="home-shop-btn">Browse Products</a>
+        {% else %}
+          <a style="background-color: black" class="subscribe-to-membership-32-45 subscribe-to-membership home-shop-btn membuttonclick margin_top_30 button inverted button-cta">Get Membership</a>
+        {% endif %}
+        <br><br>
+        <a href="/collections/all-products/products/deodorant">No thanks - I'll pay full price instead</a>
+      </div>
+    </div>
+    <div class="column_6 deodorant-thumbnail-desktop razor-thumbnail-desktop">
+      {{ 'Razor_Blades_Large.png' | asset_url | img_tag }} 
+    </div>
+   <div class="text_center margin_top_50 margin_bottom_70">
+ 
+  
+<!--     <a href="/pages/membership" class="button inverted">Join Today</a> -->
+         
+    </div>   
+    <!--<img src="{{ 'two.png' | asset_url }}" alt=""/>!-->
+  </div>
+</div>
+
+<div class="margin_top_50">
+  <div class="row clearfix" id="product-comments-block">
+    <div class="column_12">
+      <h2 class="margin_top_30">Reviews</h2>
+      <div class="yotpo yotpo-main-widget"
+          data-product-id="2282372033"
+          data-name="Razor Blades"
+          data-url="https://www.publicgoods.com/products/razor-blades-pack"
+          data-image-url="//cdn.shopify.com/s/files/1/0838/7991/products/Razor_Blades_large.png%3Fv=1505962067"
+          data-description="{{ product.description | escape }}">
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="pg-section review-section">
+  <div class="pg-container">
+    <div class="review-section-inner">
+      <div class="pg-row">
+        <div class="pg-col pg-col-3 single-review">
+          	{{ 'go.png' | asset_url | img_tag }}
+            <p>"An obvious yes."</p>
+        </div>
+        <div class="pg-col pg-col-3 single-review">
+            {{ 'cool.png' | asset_url | img_tag }}
+            <p>“Provides simple products <br>and convenience.”</p>
+        </div>
+        <div class="pg-col pg-col-3 single-review">
+            {{ 'detail.png' | asset_url | img_tag }}
+            <p>“The easiest way to restock <br>your bathroom.”</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+

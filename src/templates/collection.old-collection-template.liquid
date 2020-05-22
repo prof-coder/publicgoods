@@ -1,0 +1,850 @@
+<!-- /templates/collection.liquid -->
+<script>
+  {% if customer.tags contains 'B2B' and collection.title == 'All Products' %}
+    if (document.referrer.indexOf("https://www.publicgoods.com/account/login") > -1 || document.referrer.indexOf("https://www.publicgoods.com/account/activate/") > -1) {
+	  window.location.href= '/collections/b2b'
+    }
+  {% endif %}
+  {% if customer.tags contains 'free-product' and collection.title == 'All Products' %}
+    if (document.referrer.indexOf("https://www.publicgoods.com/account/activate/") > -1) {
+	  window.location.href= '/collections/zero-waste-1/products/reusable-cotton-tote-bag'
+    }
+  {% endif %}
+    {% if customer.tags contains 'free-hair-body-bundle' or customer.tags contains 'free-dental-care-membership' or customer.tags contains 'free-italian-bundle' %}
+    if (document.referrer.indexOf("https://www.publicgoods.com/account/activate/") > -1) {
+	  window.location.href= 'https://www.publicgoods.com/pages/free-gift-with-membership'
+    }
+  {% endif %}
+</script>
+
+<style>
+    
+  {% if customer %}
+    @media (max-width: 737px) {
+      body {
+        margin-top: 20px !important;
+      }
+    }
+  {% endif %}
+  
+</style>
+
+{% paginate collection.products by 300 %}
+
+
+
+<div id="collection_hero" 
+     {% if collection.title == 'Gifts' %}class='gift_collection_hero_image'{% endif %}
+     {% if collection.title == "What's New" %}class='whats_new_collection_hero_image'{% endif %}
+     {% if collection.title == 'Dental Care' %}class='dental_hero_image'{% endif %}
+     {% if collection.title == "Travel" %}class='travel_collection_hero_image'{% endif %}
+     {% if collection.title == "Essential Oils" %}class='oils_collection_hero_image'{% endif %}
+     {% if collection.title == "Oils" %}class='oils_collection_hero_image'{% endif %}
+     {% if collection.title == "Tree Free Paper" %}class='tree_free_collection_hero_image'{% endif %}
+     {% if collection.title == "Linens" %}class='linens_collection_hero_image'{% endif %}
+     {% if collection.title == "Personal Care" %}class='personal_care_collection_hero_image'{% endif %}
+     {% if collection.title == "Hair and Body" %}class='personal_care_collection_hero_image'{% endif %}
+     
+     {% if collection.title == "Household" %}class='household_collection_hero_image'{% endif %}
+     {% if collection.title == "Bundles" %}class='household_collection_hero_image'{% endif %}
+     {% if collection.title == "Laundry" %}class='household_collection_hero_image'{% endif %}
+     {% if collection.title == "Kitchen" %}class='household_collection_hero_image'{% endif %}
+     {% if collection.title == "Candles" %}class='household_collection_hero_image'{% endif %}
+     {% if collection.title == "Zero Waste" %}class='household_collection_hero_image'{% endif %}
+     {% if collection.title == "Bathroom" %}class='household_collection_hero_image'{% endif %}
+     {% if collection.title == "Cleaners" %}class='household_collection_hero_image'{% endif %}
+     
+     {% if collection.title == "Pasta and Sauce" %}class='food_hero_image'{% endif %}
+     {% if collection.title == "Soups" %}class='soup_hero_image'{% endif %}
+     {% if collection.title == "Crackers" %}class='food_hero_image'{% endif %}
+     {% if collection.title == "Snacks" %}class='food_hero_image'{% endif %}
+     {% if collection.title == "Condiments" %}class='food_hero_image'{% endif %}
+     {% if collection.title == "Coffee and Tea" %}class='coffee_collection_hero_image'{% endif %}
+     {% if collection.title == "Vegan" %}class='food_hero_image'{% endif %}
+     {% if collection.title == "Vegetarian" %}class='food_hero_image'{% endif %}
+     {% if collection.title == "Gluten Free" %}class='food_hero_image'{% endif %}
+     {% if collection.title == "Food" %}class='food_hero_image'{% endif %}
+     {% if collection.title == "Organic" %}class='food_hero_image'{% endif %}
+     {% if collection.title == "Cereal and Breakfast" %}class='food_hero_image'{% endif %}
+     {% if collection.title == "Oils and Vinegars" %}class='ov_hero_image'{% endif %}
+     >
+  <div class="row clearfix">
+    <h1 id='all-products-shop-all-title'>{{ collection.title }}</h1>
+  </div>
+</div>
+
+
+<!-- <div id='mobile-product-filter'>
+    <p id='mobile-categories-text'>Categories</p>
+    <div id='mobile-filter-display'>
+     {% for link in linklists.collections-filter.links %}
+         {%- comment %}<locksmith:fd10>{% endcomment -%}
+           {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.collections-filter, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+         {%- comment %}</locksmith:fd10>{% endcomment -%}
+         {% if link.type == 'collection_link' %}
+           {% assign linkCollection = link.object %}
+            <div class="filter-collection-item filter-item-all-prod mobile-filter-collection-item">
+                <a href="{{ link.url }}">
+                  {% if linkCollection.image %}
+                      <img src="{{ linkCollection.image.src | img_url: 'master' }}" alt="{{ linkCollection.title | escape  }}" />
+                  {% else %}
+                      <img src="{{ linkCollection.products.first.featured_image.src | product_img_url: 'small' }}" alt="{{ linkCollection.title | escape  }}" />
+                  {% endif %}
+                </a>
+                <h2><a href="{{ link.url }}">{{link.title | upcase}}</a></h2>
+            </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div> -->
+
+
+<div id="page_content">
+ 
+  
+  <div class="row">
+    
+      <div class="column_12">
+      <div class="collections clearfix">
+        {%- comment %}<locksmith:baa9>{% endcomment -%}
+          {%- assign locksmith_9983_forloop__size = 0 %}{% for product in collection.products %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_9983_forloop__size = locksmith_9983_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_9983_forloop__index = nil -%}
+        {%- comment %}</locksmith:baa9>{% endcomment -%}
+        {% for product in collection.products %}
+{%- comment %}<locksmith:0f43>{% endcomment -%}
+  {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_9983_forloop__index == nil %}{% assign locksmith_9983_forloop__index = 1 %}{% assign locksmith_9983_forloop__index0 = 0 %}{% else %}{% assign locksmith_9983_forloop__index = locksmith_9983_forloop__index | plus: 1 %}{% assign locksmith_9983_forloop__index0 = locksmith_9983_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_9983_forloop__index == 1 %}{% assign locksmith_9983_forloop__first = true %}{% else %}{% assign locksmith_9983_forloop__first = false %}{% endif %}{% if locksmith_9983_forloop__index == locksmith_9983_forloop__size %}{% assign locksmith_9983_forloop__last = true %}{% else %}{% assign locksmith_9983_forloop__last = false %}{% endif %}{% assign locksmith_9983_forloop__rindex = locksmith_9983_forloop__size | minus: locksmith_9983_forloop__index | minus: 1 %}{% assign locksmith_9983_forloop__rindex0 = locksmith_9983_forloop__size | minus: locksmith_9983_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+{%- comment %}</locksmith:0f43>{% endcomment -%}
+{%- include 'bold-product-json', product: product -%}
+        
+		<!--   44-137 Code to place filter separator between filtered products and rest of products      -->
+        {% assign indexAt = locksmith_9983_forloop__index0 | plus: 1 %}
+        {% assign endFilter = false %}
+        {% assign once = false %}
+        
+        {% if collection.title == 'Tree Free Paper' %}
+          {% for tag in product.tags %}
+        	{% if tag == 'treefree' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:1a54>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:1a54>{% endcomment -%}    		        		
+        	    {% if tag2 == 'treefree' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+         {% if collection.title == 'Travel' %}
+          {% for tag in product.tags %}
+        	{% if tag == 'travel' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:5e28>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:5e28>{% endcomment -%}    		        		
+        	    {% if tag2 == 'travel' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+        {% if collection.title == 'Oils' %}
+          {% for tag in product.tags %}
+        	{% if tag == 'oil' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:8915>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:8915>{% endcomment -%}    		        		
+        	    {% if tag2 == 'oil' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+        {% if collection.title == 'Linens' %}
+          {% for tag in product.tags %}
+        	{% if tag == 'linen' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:c8fe>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:c8fe>{% endcomment -%}    		        		
+        	    {% if tag2 == 'linen' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+        {% if collection.title == 'Dental Care' %}
+          {% for tag in product.tags %}
+        	{% if tag == 'dental' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:ab47>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:ab47>{% endcomment -%}    		        		
+        	    {% if tag2 == 'dental' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+         {% if collection.title == 'Household' %}
+          {% for tag in product.tags %}
+        	{% if tag == 'household' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:9184>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:9184>{% endcomment -%}    		        		
+        	    {% if tag2 == 'household' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+        {% if collection.title == 'Personal Care' %}
+          {% for tag in product.tags %}
+        	{% if tag == 'personal care' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:c182>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:c182>{% endcomment -%}    		        		
+        	    {% if tag2 == 'personal care' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+        {% if collection.title == 'Gifts' %}
+          {% for tag in product.tags %}
+        	{% if tag == 'gift' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:5798>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:5798>{% endcomment -%}    		        		
+        	    {% if tag2 == 'gift' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+        {% if collection.title == "What's New" %}
+          {% for tag in product.tags %}
+        	{% if tag == 'new' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:48af>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:48af>{% endcomment -%}    		        		
+        	    {% if tag2 == 'new' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+   
+         {% if collection.title == "Hair and Body" %}
+          {% for tag in product.tags %}
+        	{% if tag == 'hair' or tag == 'skin' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:b94d>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:b94d>{% endcomment -%}    		        		
+        	    {% if tag2 == 'hair' or tag2 == 'skin' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+        
+         {% if collection.title == "Bundles" %}
+          {% for tag in product.tags %}
+        	{% if tag == 'bundle' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:5204>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:5204>{% endcomment -%}    		        		
+        	    {% if tag2 == 'bundle' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+         {% if collection.title == "What's New" %}
+          {% for tag in product.tags %}
+        	{% if tag == 'new' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:e178>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:e178>{% endcomment -%}    		        		
+        	    {% if tag2 == 'new' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+         {% if collection.title == "Cleaners" %}
+          {% for tag in product.tags %}
+        	{% if tag == 'cleaners' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:720e>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:720e>{% endcomment -%}    		        		
+        	    {% if tag2 == 'cleaners' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+         {% if collection.title == "Laundry" %}
+          {% for tag in product.tags %}
+        	{% if tag == 'laundry' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:2b95>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:2b95>{% endcomment -%}    		        		
+        	    {% if tag2 == 'laundry' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+         {% if collection.title == "Kitchen" %}
+          {% for tag in product.tags %}
+        	{% if tag == 'kitchen' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:8f48>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:8f48>{% endcomment -%}    		        		
+        	    {% if tag2 == 'kitchen' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+         {% if collection.title == "Bathroom" %}
+          {% for tag in product.tags %}
+        	{% if tag == 'bathroom' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:e320>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:e320>{% endcomment -%}    		        		
+        	    {% if tag2 == 'bathroom' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+         {% if collection.title == "What's New" %}
+          {% for tag in product.tags %}
+        	{% if tag == 'new' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:c494>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:c494>{% endcomment -%}    		        		
+        	    {% if tag2 == 'new' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+         {% if collection.title == "Candles" %}
+          {% for tag in product.tags %}
+        	{% if tag == 'candles' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:fdb2>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:fdb2>{% endcomment -%}    		        		
+        	    {% if tag2 == 'candles' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+         {% if collection.title == "Zero Waste" %}
+          {% for tag in product.tags %}
+        	{% if tag == 'zero-waste' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:78d3>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:78d3>{% endcomment -%}    		        		
+        	    {% if tag2 == 'zero-waste' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+        
+        {% if collection.title == "Coffee and Tea" %}
+          {% for tag in product.tags %}
+        	{% if tag == 'coffee-tea' %}
+              {% assign endFilter = true %}
+        	  {% for tag2 in collection.products[indexAt].tags %}    		        		
+        	    {%- comment %}<locksmith:b872>{% endcomment -%}
+        	      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: tag2, subject_parent: collection.products[indexAt], variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        	    {%- comment %}</locksmith:b872>{% endcomment -%}    		        		
+        	    {% if tag2 == 'coffee-tea' %}
+        		  {% assign once = true %}
+        		{% endif %}
+        	  {% endfor %}
+        	{% endif %}
+          {% endfor %}
+        {% endif %}
+
+			
+          {% assign name = 'product' | append:product.id %}
+          {% assign idNo = name | append:'-no' %}
+          {% assign idYes = name | append:'-yes' %}
+		  
+          {% assign checkedNo = 'checked' %}
+          {% assign checkedYes = '' %}
+          {% assign opacityClass = '' %}
+          {% assign available = true %}
+
+          {% if product.variants[0].inventory_quantity <= 0 %}
+          	{% assign available = false %}
+          {% endif %}
+
+          {% if shop.customer_accounts_enabled %}
+          	{% if customer %}
+        		{% assign checkedNo = 'disabled' %}
+        		{% assign checkedYes = 'checked' %}
+        		{% assign opacityClass = 'opacity-3' %}
+
+        		{% assign available = true %}
+        		{% if product.variants[0].inventory_quantity <= 0 %}
+        			{% assign available = false %}
+        		{% endif %}
+        	{% endif %}
+          {% endif %}
+        
+          <div class="collection" id="{{ product.handle }}">
+            <div class="collection_header">
+              <a href="{{ product.url | within: collection }}">
+                <div class="reveal">
+                  <img src="{{ product.featured_image.src | img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}">
+                  <img class="hidden" src="{{ product.images.last | img_url: 'master' }}" alt="{{ product.images.last.alt | escape }}" />
+                </div>
+              </a>
+              <div class="collection_action" rel="{{name}}">
+                {% if available == true %}
+                	{% if customer %}
+                	   {% if product.variants.first.sku contains "Giftcard" %}
+                          <a href="{{ product.url | within: collection }}">
+                              <div class="collection_update">
+                              </div>
+                          </a>
+                       {% else %}
+                	     <div class="collection_to_cart" rel="{{name}}">ADD TO CART</div>
+                       {% endif %}
+                	{% else %}
+                	  <div class="collection_to_cart subscribe-to-membership subscribe-to-membership-32-45" rel="{{name}}">ADD TO CART</div>
+                	{% endif %}
+                	<div class="collection_update">
+                      <div class="collection_update_spans clearfix">
+                        <span class="collection_minus" rel="{{name}}"></span>
+                        <div>
+                          <span class="collection_count" id="collection_count_{{product.id}}"></span> IN CART
+                        </div>
+                        <span class="collection_plus" rel="{{name}}"></span>
+                      </div>
+                    </div>
+                {% else %}
+                <div class="collection_coming_soon"><a href="{{ product.url | within: collection }}#sold-out">SOLD OUT - GET NOTIFIED</a></div>
+                {% endif %}
+              </div> <!-- Collection Action End !-->
+            </div>
+            <div class="collection_body">
+              
+              <label class="collection_title all-products-product-stars"><a href="{{ product.url | within: collection }}">{{ product.title }}</a> 
+                <a href="{{ product.url | within: collection | append: '#anchor-reviews'}}">  <!--- Star Reviews !--->
+                  <div class="yotpo bottomLine yotpo-small"
+                    data-appkey="1czk4hDZQU9jrmp3MaNi1wqhc05RABHrg6aDSVLd"
+                    data-domain="{{shop.permanent_domain | escape }}"
+                    data-product-id="{{ product.id }}"
+                    data-product-models="{{ product.id }}"
+                    data-name="{{ product.title | escape }}"
+                    data-url="{{ shop.url }}{{ product.url }}"
+                    data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                    data-description="{{ product.description | escape }}"
+                    data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+                  </div>
+                </a>
+              </label>
+      
+			{% comment %}
+              {% for variant in product.variants %}
+                <div><input type="radio"/><span><span class="money" data-product-id="{{ product.id }}">{{ variant.price | money }}</span> <font>{{ variant.title }}</font></span></div>
+              {% endfor %}
+            {% endcomment %}
+
+<!--               <div class="{{opacityClass}}"><input type="radio" rel="{{product.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" {{checkedNo}} checked/><label for="{{idNo}}" onclick="">{{ product.variants[0].price | money }} <font>{{ product.variants[0].title }}</font></label></div> -->
+				
+              {% if customer and product.variants.first.sku != "Giftcard10" %}
+              	<div class="var_checkbox"><input type="hidden" name="{{name}}" id="{{idYes}}" value="{{ product.variants[0].id }}" class="productYes" {{checkedYes}}/><label style="cursor:default;" for="{{idYes}}" onclick="">{{ product.variants[0].price | money }} <font>{{ product.variants[0].title | remove: '(member)'}}<small>{% unless customer %}With membership, from $59 / year{% endunless %}</small></font></label></div>
+              {% else %}
+              	{% if product.variants.first.sku != "Giftcard10" %}
+				  <a class="subscribe-to-membership-32-45 subscribe-to-membership membuttonclick free"><div><input type="hidden" name="{{name}}" id="{{idYes}}" value="{{ product.variants[0].id }}" class="productYes" {{checkedYes}}/><label style="color:#000; " for="{{idYes}}" onclick="">{{ product.variants[0].price | money }} <font>{{ product.variants[0].title }} <small>{% unless customer %}With membership of $59 / year{% endunless %}</small></font></label></div></a>
+                {% endif %}
+              {% endif %}
+             
+              
+              <!--<div><input type="radio"/><span>$24 <font>Non-Member Price</font></span></div>
+              <div><input type="radio"/><span>$3 <font>No Markup (Members Only)<small>With membership, from $10 / month</small></font></span></div>!-->
+            </div>
+          </div>
+        
+		  <!--   Gets placed determined on the filter separator code       -->
+          {% if endFilter == true and once == false %}
+            <div id='filter-separator'>
+              <h1>All Products</h1>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div> <!-- Collections End !-->
+      {% if paginate.pages > 1 %}
+        <div class="pagination">
+          {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+        </div>
+      {% endif %}
+    </div>
+      </div><!-- Row End !-->
+</div> <!-- Page Content End !-->
+
+
+
+
+
+{% endpaginate %}
+
+{% include 'smooth-scroll-all-prod' %}
+{% include 'reactivate-popup' %}
+
+<script type="text/javascript" language="javascript">
+  var member = 0;
+  var idNo_modal = '';
+  var idYes_modal = '';
+
+  {% if shop.customer_accounts_enabled %}
+    {% if customer %}
+      member = 1;
+    {% endif %}
+  {% endif %}
+
+  $(document).ready(function(){
+    var modal = $('#customModal');
+    var modalDom = document.getElementById('customModal');
+
+    var cart_items = {};
+
+    $('.productYes').click(function(){
+      console.log("here2222");
+      if(member == 0){
+        $("a#membership_button_11118").click();
+
+        // modal.show();
+        // $('body').css('overflow', 'hidden');
+
+        var name = $(this).parents('.collection:first').find('.collection_action:first').attr('rel');
+
+        idNo_modal = name + '-no';
+        idYes_modal = name + '-yes';
+        
+        $('#'+idYes_modal).removeAttr('checked');
+        $('#'+idNo_modal).prop('checked',true);
+      }
+    });
+
+    $('.collection_minus').click(function(){
+      var object = $(this).parents('.collection_update_spans:first');
+      var quantity_object = object.find('.collection_count:first');
+      var total_quantity = parseInt(quantity_object.html());
+      var name = $(this).attr('rel');
+      
+      var idNo = name + '-no';
+      var idYes = name + '-yes';
+
+      var variantId = $('#'+idNo).val();
+      if($('#'+idYes).prop('checked'))
+        variantId = $('#'+idYes).val();
+
+      var quantity = find_cart_quantity(variantId, 'minus');
+
+      $.ajax({
+        type:'POST', 
+        url:'/cart/change.js', 
+        data: {id: variantId, quantity: quantity}, 
+        dataType: 'json',
+        success: function(data){
+            setCartItem(variantId, {id: $('#'+idYes).val(), quantity: quantity});
+            if(total_quantity > 1)
+                quantity_object.html(total_quantity-1);
+            else
+                get_cart_items();
+            
+            update_cart_count('minus');
+        }
+      });  
+    });
+
+    $('.collection_plus').click(function(){
+      var object = $(this).parents('.collection_update_spans:first');
+      var quantity_object = object.find('.collection_count:first');
+      var total_quantity = parseInt(quantity_object.html());
+      var name = $(this).attr('rel');
+      
+      var idNo = name + '-no';
+      var idYes = name + '-yes';
+
+      var variantId = $('#'+idNo).val();
+      if($('#'+idYes).prop('checked'))
+        variantId = $('#'+idYes).val();
+
+      var quantity = find_cart_quantity(variantId, 'plus');
+
+      $.ajax({
+        type:'POST', 
+        url:'/cart/change.js', 
+        data: {id: variantId, quantity: quantity}, 
+        dataType: 'json',
+        success: function(data){
+            setCartItem(variantId, {id: $('#'+idYes).val(), quantity: quantity});
+            quantity_object.html(total_quantity+1);
+            update_cart_count('plus');
+        }
+      });  
+    });
+
+    $('.collection_to_cart').click(function(e){
+	
+      e.preventDefault()
+      
+      var name = $(this).attr('rel');
+      
+      var object = $(this).parents('.collection_action:first');
+
+      var idNo = name + '-no';
+      var idYes = name + '-yes';
+
+      var variantId = $('#'+idNo).val();
+      if($('#'+idYes).prop('checked'))
+        variantId = $('#'+idYes).val();
+
+      {% for tag in customer.tags %}
+        {% if tag == 'member' or tag == 'members' %}
+          {% assign nonmember = false %}
+        {% endif %}
+        {% if tag == 'Unsubscribed' or tag == 'unsubscribed' %}
+          {% assign nonmember = true %}
+        {% endif %}
+      {% endfor %}
+      
+      {% if customer.tags contains 'lifetime' %}
+        {% assign nonmember = false %}
+      {% endif %}
+      
+      {% if nonmember == true %}
+      	$('#reactivate-pop-up-wrapper').css('display', 'block')
+        let popupWidth = (window.innerWidth - $('#reactivate-pop-up-wrapper').width()) / 2
+        $('#reactivate-pop-up-wrapper').css('right', popupWidth )
+      {% endif %}
+	
+      {% if nonmember == false %}
+        $.ajax({
+          type:'POST', 
+          url:'/cart/add', 
+          data: {id: variantId}, 
+          dataType: 'json',
+          success: function(data){
+              get_cart_items();
+              update_cart_count('plus');
+              setCartItem(variantId, {id: $('#'+idYes).val(), quantity: 1});
+          }
+        });
+      {% endif %}
+    });
+	
+    $('#boldTrigger').click(function(){
+    	$('.modal-close').click();
+      	$('#checkout_11118 a').click();
+    });
+    
+    $('.modal-close').click(function(){
+      modal.hide();
+      $('body').css('overflow', 'auto');
+
+      if(idYes_modal != '' && idNo_modal != ''){
+        $('#'+idYes_modal).removeAttr('checked');
+        $('#'+idNo_modal).prop('checked',true);
+
+        idYes_modal = '';
+        idNo_modal = '';
+      }
+    });
+
+    $(window).click(function(e){
+      if (e.target == modalDom){
+        modal.hide();
+        $('body').css('overflow', 'auto');
+
+        if(idYes_modal != '' && idNo_modal != ''){
+          $('#'+idYes_modal).removeAttr('checked');
+          $('#'+idNo_modal).prop('checked',true);
+
+          idYes_modal = '';
+          idNo_modal = '';
+        }
+      }
+    });
+
+    function get_cart_items(){
+        $('.collection_to_cart').show();
+        $('.collection_update').hide();
+        $('.collection_update').css('opacity', 0);
+
+        $.ajax({
+          type:'GET', 
+          url:'/cart.js', 
+          dataType: 'json',
+          success: function(data){
+            var items = data.items;
+
+            cart_items = items;
+
+            for(var i in items){
+              var temp = [];
+
+              if(items[i].merged)
+                continue;
+
+              temp.product_id = items[i].product_id;
+              temp.quantity = parseInt(items[i].quantity);
+              items[i].merged = true;
+
+              for(var j in items){
+                if(i >= j || items[j].merged)
+                  continue;
+
+                if(items[i].product_id == items[j].product_id){
+                  temp.quantity += parseInt(items[j].quantity);
+                  items[j].merged = true;
+                }
+              }
+
+              var id = 'collection_count_' + temp.product_id;
+              $('#'+id).html(temp.quantity);
+
+              var object = $('#'+id).parents('.collection_action:first');
+              object.find('.collection_to_cart:first').hide();
+              object.find('.collection_update:first').show();
+              object.find('.collection_update:first').css('opacity', 1);
+            }
+          }
+        });
+    }
+    
+    $('body').on('afterChangeItem.ajaxCart', function(evt, cart) {
+      get_cart_items();
+    });
+
+    $('body').on('afterAddItem.ajaxCart', function(evt, cart) {
+      get_cart_items();
+    });
+
+    function find_cart_quantity(id, action){
+        var quantity = 0;
+        if(cart_items.length > 0){
+            for(var i in cart_items){
+                if(cart_items[i].id == id){
+                    if(action == 'minus')
+                        cart_items[i].quantity -= 1;
+                    else if(action == 'plus')
+                        cart_items[i].quantity += 1;      
+
+                    quantity = cart_items[i].quantity;
+
+                    break;
+                }
+            }
+        }
+
+        return parseInt(quantity);
+    }
+
+    function update_cart_count(action){
+        var quantity = parseInt($('#CartCount').html());
+        
+        if(action == 'minus')
+            quantity--;
+        else if(action == 'plus')
+            quantity++;
+
+        $('#CartCount').html(quantity);
+        $('#CartCount_mobile').html(quantity);
+    }
+
+    get_cart_items();
+    
+    $(window).load(function(){
+      var match = new RegExp('[?&]cart=([^&]*)').exec(window.location.href);
+
+      var param = match && decodeURIComponent(match[1].replace());
+
+      if(param == 'show'){
+          ajaxCart.load();
+          timber.RightDrawer.open()
+      }
+    });
+  });
+
+</script>

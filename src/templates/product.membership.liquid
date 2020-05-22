@@ -1,0 +1,380 @@
+<style>
+  
+  body {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+
+
+</style>
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+{% assign variantNo = product.variants[0] %}
+      {% assign variantYes = product.variants[1] %}
+      {% assign opacityClass = '' %}
+
+      {% assign checkedNo = 'checked' %}
+      {% assign checkedYes = '' %}
+      
+      {% assign available = true %}
+	  {% if product.variants[0].inventory_quantity <= 0 %}
+      	{% assign available = false %}
+      {% endif %}
+      
+      {% if shop.customer_accounts_enabled %}
+        {% if customer %}
+          {% assign checkedNo = 'disabled' %}
+          {% assign checkedYes = 'checked' %}
+          {% assign opacityClass = 'opacity-3' %}
+      	  
+          {% assign available = true %}
+	  	  {% if product.variants[0].inventory_quantity <= 0 %}
+      	  	{% assign available = false %}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+
+<div id="product_detail" itemscope itemtype="http://schema.org/Product">
+  
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+  <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+
+  <div class="row clearfix membership-row">
+    <div class="column_12"><h2 class="margin_bottom_30">{{ product.title }}</h2></div>
+    <div class="column_6">
+      <img src="{{ featured_image | img_url: 'master' }}" class="fullSize" alt=""/>
+    </div>
+    <div class="column_6">
+      <div id="membership_clockdiv" class="clearfix">
+    	<div class="membership_time_item">
+          <span class="days time_item"></span>
+          <div class="smalltext">days</div>
+        </div>
+        
+        <div class="membership_time_item"><strong>:</strong></div>
+        
+        <div class="membership_time_item">
+          <span class="hours time_item"></span>
+          <div class="smalltext">hours</div>
+        </div>
+        
+        <div class="membership_time_item"><strong>:</strong></div>
+        
+        <div class="membership_time_item">
+          <span class="minutes time_item"></span>
+          <div class="smalltext">mins</div>
+        </div>
+        
+        <div class="membership_time_item"><strong>:</strong></div>
+        
+        <div class="membership_time_item">
+          <span class="seconds time_item"></span>
+          <div class="smalltext">secs</div>
+        </div>
+      </div>
+      
+      <h3 class="h1_membership">Who's in luck?</h3>
+      <div class="product_description lifetime_text_above_button">
+        Enter your friend’s email and we’ll get them set with a lifetime membership. They will receive an email notifying them of your gift on Christmas morning.  <a target="_blank" href="http://images.publicgoods.com/email_images/InvitationEmail.pdf">Preview email.</a>
+      </div>
+      
+      <form class="validate-form text_center lifetime_form margin_top_20">
+          <div class="margin_bottom_20 lifetime_form_wrapper">
+          	<div class="margin_bottom_10 lifetime_form_label">
+              <label for="recipient_email">Email Address</label>
+          	</div>
+          	<div class="clearfix">
+              <div class="padding_left_0 lifetime_input_wrapper">
+	              <input type="email" id="recipient_email" name="recipient_email" class="recipient_email">
+                <!--<div class="text-left margin_top_10 margin_bottom_10">Still deciding? No prob, leave this blank and tell us later!</div>-->
+              </div>
+              <div class="margin_top_20 text-left lifetime_text_under_button">
+              	Your friend will receive lifetime access to healthy essentials, mark-up free.
+              </div>
+              <div class="margin_top_30 padding_left_0 lifetime_button_wrapper">
+              		{% if available == true %}
+              			<button class="recipient_add_to_cart lifetime_add_to_cart button" data-variant-id="{{ product.variants[0].id }}" type="button">ADD TO CART</button>
+              		{% else %}
+              			<div class="">SOLD OUT</div>
+              		{% endif %}
+          		</div>
+              <div class="margin_top_30 padding_left_0 text-left lifetime_price">
+                {{ product.variants[0].price | money }}
+                <span class="lifetime_span_grey">Lifetime*</span>
+              </div>
+              <div class="margin_top_20 text-left lifetime_text_under_button">
+              	<span class="lifetime_span_grey">*limit one per customer</span>
+              </div>
+            </div>
+          </div>
+      	</form>
+
+      <div class="clear"></div>
+      <div style="display:block;height:30px;"></div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+var member = 0;
+var cart_items = {};
+var mine = [];
+
+{% if shop.customer_accounts_enabled %}
+  {% if customer %}
+    member = 1;
+  {% endif %}
+{% endif %}
+
+$(document).ready(function(){
+  var product_id = $('#product_id').val();
+
+  var modal = $('#customModal');
+  var modalDom = document.getElementById('customModal');
+
+  $('#productYes').click(function(){
+    if(member == 0){
+        modal.show();
+        $('body').css('overflow', 'hidden');
+      	return false;
+    }
+  });
+  
+  $('#boldTrigger').click(function(){
+    $('.modal-close').click();
+    $('#checkout_11118 a').click();
+  });
+  
+  $('#cartControl_plus').click(function(){
+    var id = $('#productNo').val();
+
+    if($('#productYes').prop("checked"))
+      id = $('#productYes').val();
+
+    $.ajax({
+      type:'POST', 
+      url:'/cart/change.js', 
+      data: {id: id, quantity: mine.quantity+1}, 
+      dataType: 'json',
+      success: function(data){
+          update_mine('plus');
+          update_cart_count('plus');
+          setCartItem(id, {id: $('#productYes').val(), quantity: mine.quantity+1}); 
+      }
+    });  
+  });
+
+  $('#cartControl_minus').click(function(){
+    var id = $('#productNo').val();
+
+    if($('#productYes').prop("checked"))
+      id = $('#productYes').val();
+
+    $.ajax({
+      type:'POST', 
+      url:'/cart/change.js', 
+      data: {id: id, quantity: mine.quantity-1}, 
+      dataType: 'json',
+      success: function(data){
+          update_mine('minus');
+          update_cart_count('minus');
+          setCartItem(id, {id: $('#productYes').val(), quantity: mine.quantity-1});
+      }
+    });  
+  });
+
+  $('#addtocartDiv').click(function(){
+    var id = $('#productNo').val();
+
+    if($('#productYes').prop("checked"))
+      id = $('#productYes').val();
+
+    /*var form = $('#AddToCartForm');
+    form.find('input[name="id"]').val(id);
+
+    form.submit();*/
+
+    $.ajax({
+      type:'POST', 
+      url:'/cart/add', 
+      data: {id: id}, 
+      dataType: 'json',
+      success: function(data){
+          update_mine('plus');
+          update_cart_count('plus');
+          setCartItem(id, {id: $('#productYes').val(), quantity: 1});
+      }
+    });
+  });
+
+  $('.modal-close').click(function(){
+    modal.hide();
+    $('body').css('overflow', 'auto');
+
+    $('#productYes').removeAttr('checked');
+    $('#productNo').prop('checked',true);
+  });
+
+  $(window).click(function(e){
+    if (e.target == modalDom){
+      modal.hide();
+      $('body').css('overflow', 'auto');
+   
+      $('#productYes').removeAttr('checked');
+      $('#productNo').prop('checked',true);
+    }
+  });
+
+  function update_mine(action){
+    if(action == 'plus')
+      mine.quantity++;
+    else if(action == 'minus')
+      mine.quantity--;
+
+
+    if(mine.quantity <= 0){
+      $('#cartControl_con').hide();
+      $('#addtocartDiv').show();
+    }else{
+      $('#cartControl_count').html(mine.quantity);
+      $('#cartControl_con').show();
+      $('#addtocartDiv').hide();
+    }
+  }
+
+  function update_cart_count(action){
+      var quantity = parseInt($('#CartCount').html());
+      
+      if(action == 'minus')
+          quantity--;
+      else if(action == 'plus')
+          quantity++;
+
+      $('#CartCount').html(quantity);
+      $('#CartCount_mobile').html(quantity);
+  }
+
+  get_cart_items();
+
+  function get_cart_items(){
+    $('#addtocartDiv').hide();
+    $('#cartControl_con').hide();
+
+    $.ajax({
+      type:'GET', 
+      url:'/cart.js', 
+      dataType: 'json',
+      success: function(data){
+        var items = data.items;
+
+        cart_items = items;
+
+        mine.quantity = 0;
+
+        for(var i in items){
+          if(product_id == items[i].product_id){
+            mine.quantity += parseInt(items[i].quantity);
+          }
+        }
+
+        if(mine.quantity > 0){
+          $('#cartControl_count').html(mine.quantity);
+          $('#cartControl_con').show();
+          $('#addtocartDiv').hide();
+        }else{
+          $('#addtocartDiv').show();
+        }
+      }
+    });
+  }
+  
+  $('body').on('afterChangeItem.ajaxCart', function(evt, cart) {
+    get_cart_items();
+  });
+  
+  $('body').on('afterAddItem.ajaxCart', function(evt, cart) {
+    get_cart_items();
+  });
+});
+</script>
+
+
+<script>
+  $(document).ready(function(){
+    var is_added_to_cart = false;
+    var is_loading = false;
+    
+    function checkEmail($email) {
+      var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+      $email.removeClass('error');
+      $('.lifetime_invalid_email_text').remove();
+      var check = true;
+      //           if($email.val() == '') {
+      //           	return true;
+      //           }
+      if (!re.test($email.val())) {
+        check = false;
+        $email.addClass('error');
+        $("<div class='lifetime_invalid_email_text margin_bottom_20'><strong>Invalid or empty email</strong></div>").insertAfter('#recipient_email');
+      }
+      return check;
+    }
+    
+    $.ajax({
+      url: '/cart.js',
+      method: 'get',
+      dataType: 'json',
+      success: function(data) {
+        $.each(data.items, function(k, itm){
+          	if(itm.variant_id == 4874082091045) {
+            	is_added_to_cart = true;
+              	$('.lifetime_add_to_cart').addClass('lifetime_disabled');
+            }
+        });
+      }
+    });
+    
+    
+    $('.lifetime_add_to_cart').on('click', function(){
+      	if(is_loading || is_added_to_cart || checkEmail($('.recipient_email')) === false) {
+        	return false;
+        }
+      	var variantId = $(this).data().variantId;        
+      	var $this = $(this);
+          $.ajax({
+            type:'POST', 
+            url:'/cart/add.js', 
+            data: { id: variantId }, 
+            dataType: 'json', 
+            beforeSend: function() {
+            	is_loading = true;
+            },
+            success: function(data, status, xhr){
+              update_cart_count('plus');
+              is_loading = false;
+              is_added_to_cart = true;
+              $this.addClass('lifetime_disabled');
+              
+              window.cart_token = $.cookie('cart');
+              $( document ).trigger( "afterLifetimeProductWasAdded", [ $.cookie('cart') ] );
+            }
+          });
+        });
+    });
+  
+  function update_cart_count(action){
+        var quantity = parseInt($('#CartCount').html());
+        
+        if(action == 'minus')
+            quantity--;
+        else if(action == 'plus')
+            quantity++;
+
+        $('#CartCount').html(quantity);
+        $('#CartCount_mobile').html(quantity);
+    }
+</script>

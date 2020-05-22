@@ -1,0 +1,350 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div id="page_content">
+  <div class="signup-page">
+    <div class="signup-page-content-container" id="dont-run-out-membership-wrapper-46-59">
+<!--           {% comment %}
+      <h2 class="signup-page-header">FREE 30-DAY <span class="line-break">TRIAL MEMBERSHIP</span></h2>
+      <ul class="signup-page-info-points">
+        <li><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/checkmark.png?2088808595971241270" />70% savings on average (vs traditional retail).</li>
+        <li><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/checkmark.png?2088808595971241270" />Only $59/year after your free trial.</li>
+        <li><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/checkmark.png?2088808595971241270" />New products every month.</li>
+        <li><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/checkmark.png?2088808595971241270" />Cancel anytime.</li>
+      </ul>    
+      <div class="popup-membership-wrapper">
+        <form action="https://dont-run-out-membership.herokuapp.com/charges" name="memsh" id="popup-form-membership-46-59" onsubmit="return false;" class="membership_billing-form">
+          <input type="hidden" name="plan" value="32" />
+          <input type="hidden" name="billing" value="45" />
+          <div class="step-one">
+            <div class="mail-wrapper">
+              <input class="popup-email" id="popup-email-46-59" name="stripeEmail" type="email" placeholder="Enter email." />
+              <p class="valid_message"></p>
+            </div>
+            <button type="button" class="btn-step-one">Start Now</button>
+            <div class="already-a-member-section">
+              <strong>Already a member?</strong>
+              <a href="https://morgans-dont-run-out.myshopify.com/account/login">Sign-in to your account.</a>
+            </div>
+          </div>
+          <div class="step-two hidden">
+            <div class="names">
+              <div class="field-wrapper">
+                <label for="popup-first-name-46-59">First Name</label>
+                <input type="text" class="popup-first-name" id="popup-first-name-46-59" />
+              </div>
+              <div class="field-wrapper">
+                <label for="popup-last-name-46-59">Last Name</label>
+                <input type="text" class="popup-last-name" id="popup-last-name-46-59" />
+              </div>
+            </div>
+            <div class="card-wrapper">
+              <div class="field-wrapper card-data">
+                <label for="card-element-46-59">Card Number</label>
+                <div class="card-element StripeElement StripeElement--empty" id="card-element-46-59">
+                </div>
+                <div class="card-field-wrapper cvc-container">
+                  <label for="card-cvc-element-46-59">CVC</label>
+                  <div class="card-cvc-element StripeElement StripeElement--empty" id="card-cvc-element-46-59">
+                  </div>
+                </div>
+                <div class="card-field-wrapper zip-container">
+                  <label for="card-address_zip-element-46-59">Zip Code</label>
+                  <div class="card-address_zip-element StripeElement StripeElement--empty" id="card-address_zip-element-46-59">
+                  </div>
+                </div>
+              </div>
+              <div class="field-wrapper card-data2">
+                <div class="card-field-wrapper">
+                  <label for="card-expiry-element-46-59">Exp Date</label>
+                  <div class="card-expiry-element StripeElement StripeElement--empty" id="card-expiry-element-46-59">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn-step-two" id="btn-step-two-46-59">Join Now<img src="https://cdn.shopify.com/s/files/1/0838/7991/files/Spin1.svg?8476499393379577946" alt="Spin" class="hidden"></button>
+            <div class="popup-footer">
+              <p class="popup-footer-info">Your card will <span>not</span> be charged for 30 days. Cancel anytime.</p>
+              <div class="promo-wrapper hidden">
+                <p class="promo-label">Have a promo code?</p>
+                <div class="promo-form">
+                  <input type="text" name="promo" class="promo-input" id="promo-input-46-59" placeholder="Enter code" />
+                  <button type="button" class="promo-submit">Submit</button>
+                </div>
+              </div>
+            </div>
+            <input type="hidden" name="days" value="0" class="promo_days" id="promo_days-46-59" />
+          </div>
+        </form>
+             {% endcomment %}
+      </div> -->
+      <div id="already-a-member"><strong>Already a member?</strong> <a href="https://morgans-dont-run-out.myshopify.com/account/login">Sign-in to your account.</a></div>
+    </div>
+  </div>
+</div>
+
+
+  
+  
+<script src="https://dont-run-out-membership.herokuapp.com/public/plans/46/billings/59.js"></script>
+  
+<script>
+  $( document ).ready(function() {
+//     let a = document.getElementById('root')
+// //     debugger
+// //     a.firstChild.children[3].children[0].firstChild.placeholder = ""
+//     $(".popup-email").attr("placeholder", "Enter email");
+//     $(".popup-first-name").attr("placeholder", "First Name");
+//     $(".popup-last-name").attr("placeholder", "Last Name");
+//     $(".card-element").attr("placeholder", "Card Number");
+//     $(".card-expiry-element").attr("placeholder", "Exp. Date");
+//     $(".card-csv-element").attr("placeholder", "CVC");
+//     $(".card-address_zip-element").attr("placeholder", "Zip");
+    $("#already-a-member").css("display", "block")
+    $("#already-a-member").insertAfter(".btn-step-one")
+    // $('.btn-step-one').click(function(e) {
+    //   e.preventDefault();
+    //   var email = $('#popup-email-46-59').val();
+    //   console.log('email', email)
+    //   $.getJSON('https://www.publicgoods.com/a/memberships/checkout/customer_profile.json?email='+email)
+    // });
+  })
+ 
+  
+</script>
+  
+  
+<style>
+  
+  
+  .already-a-member-section, #already-a-member {
+    display:none;
+  }
+  
+  .card-element {
+    font-family: 'NB' !important;
+  }
+ 
+  .membership-modal-hide {
+    display: none;
+  }
+  
+  .popup-wrapper {
+    background-color: #e7e7e7;
+    margin-bottom: 0;
+  }
+  
+  .popup-header {
+    margin-bottom: 25px !important;
+  }
+  
+/*   .popup-wrapper .popup-membership-wrapper form label {
+    display: none;
+  } */
+  
+  .card-address_zip-element {
+    border: 0.8px solid #000 !important;
+    padding: 10px !important;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form .step-two .card-data .card-field-wrapper {
+    width: 30%;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form .step-two .names .field-wrapper, .popup-wrapper .popup-membership-wrapper form .step-two .card-wrapper .field-wrapper {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form input {
+    border-color: #000;
+  }
+  
+  .popup-last-name, .card-data {
+/*     margin-top: 10px !important; */
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form .card-element, .popup-wrapper .popup-membership-wrapper form .StripeElement {
+    border-color: #000;
+    background-color: #fff;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form .valid_message {
+    padding: 0;
+  }
+  
+  
+  .line-break {
+    font-family: 'BN';
+  }
+  
+  .signup-page {
+    min-height: calc(100vh - 86px);
+    background-color: #e7e7e7;
+  }
+  
+  .signup-page-content-container {
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 25px;
+  }
+  
+  .signup-page-header {
+    text-align: center;
+    font-size: 28px;
+  }
+  
+  .signup-page-info-points {
+    list-style: none;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    margin-left: 80px;
+  }
+  
+  .signup-page-info-points li {
+    margin: 15px 0;
+    font-size: 16px;
+    font-family: 'NB';
+    line-height: 1.5;
+  }
+  
+  .signup-page-info-points li img {
+    position: relative;
+    top: 2px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+  }
+  
+  .popup-membership-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .popup-membership-wrapper form input {
+    width: 100%;
+    height: 40px;
+    border: 0.8px solid #000;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 0;
+    margin: 0;
+  }
+  
+  .popup-wrapper .popup-membership-wrapper form button {
+    background-color: rgb(220, 136, 108);
+    width: 100%;
+    height: 40px;
+    font-family: NBH;
+    font-size: 16px;
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .btn-step-two {
+    margin-top: 25px;
+  }
+  
+  .popup-membership-wrapper form .step-two .names, .popup-membership-wrapper form .step-two .card-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  
+  .card-wrapper {
+    margin-top: 15px;
+  }
+  
+  .card-data {
+    width: 60%;
+  }
+  
+  .cvc-container {
+    width: 40%;
+    float: left;
+    margin-top: 15px;
+  }
+  
+  .zip-container {
+    width: 40%;
+    float: right;
+    margin-top: 15px;
+  }
+  
+  .popup-footer-info {
+    font-size: 14px;
+    font-family: 'NB';
+    line-height: 1.5;
+/*     margin-top: 15px; */
+  }
+  
+/*   .card-element::-webkit-input-placeholder {
+ color: pink !important;
+}
+.card-element::-moz-placeholder { 
+color: pink !important;
+}
+.card-element:-ms-input-placeholder { 
+color: pink !important;
+}
+.card-element:-moz-placeholder { 
+color: pink !important;
+} */
+  
+  @media (max-width: 625px) {
+    .signup-page-content-container {
+      width: 400px;
+    }
+    
+    .field-wrapper {
+      width: 100%;
+    }
+    
+    .signup-page-info-points {
+      margin-left: 25px;
+    }
+  }
+  
+  @media (max-width: 450px) {
+    .signup-page-content-container {
+      width: 350px;
+      padding-top: 50px;
+    }
+    .popup-wrapper {
+      margin-top: 0;
+      padding: 20px 10px;
+    }
+  }
+  
+  @media (max-width: 415px) {
+    .signup-page-content-container {
+      width: 300px;
+    }
+    
+    .signup-page-header {
+      font-size: 24px;
+    }
+  }
+  
+  @media (max-width: 350px) {
+    .signup-page-content-container {
+      width: 250px;
+/*       padding-top: 100px;/ */
+    }
+    
+    .line-break {
+      display: block;
+      padding-top: 5px;
+    }
+  }
+  
+  @media (max-height: 655px) {
+    .signup-page {
+      height: 800px;
+    }
+  }
+ 
+</style>

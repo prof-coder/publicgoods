@@ -1,0 +1,327 @@
+<div id="mission_hero">
+  <div class="row clearfix">
+    <div class="column_6">
+      <div class="review-stars margin_bottom_20">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/stars_7108681c-242c-4263-aa84-1445b6de6a17.png?26881" style="position:static" />
+      </div>
+       <h1 id="coffee-headline" class="margin_bottom_20">“Blown away by the taste and quality.”</h1>
+      <p id="coffee-reviewer" class="margin_bottom_50 without-padding">- Sarah C.</p>
+      
+        {% unless customer %}<a class="subscribe-to-membership-32-45 subscribe-to-membership button inverted button-cta">Free 14 Day Trial</a>{% endunless %}
+        {% if customer %}<a href="/collections/all-products" class="home-shop-btn">Browse Products</a>{% endif %}
+<!--       <div id="hero-buttons">
+      {% if customer %}
+	     <a href="/collections/all-products" class="home-shop-btn">Browse Products</a>
+      {% else %}
+    	<a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free 30 Day Trial</a>
+        <a href="/collections/all-products" class="home-shop-btn browse-prod-btn">Browse Products</a>
+      {% endif %}
+      </div> -->
+      
+    </div>
+    <div class="text_center margin_top_50 margin_bottom_70">
+   <div id="stick-here" class="stick-here"></div>
+  
+<!--     <a href="/pages/membership" class="button inverted">Join Today</a> -->
+         
+    </div>
+    <!--<img src="{{ 'two.png' | asset_url }}" alt=""/>!-->
+  </div>
+</div>
+
+<div id="sticky-button-bottom">
+  {% if customer %}
+    <div id="stickThis" class="free-tote-second-div" style="width: 100%">
+      <a href="/collections/all-products" class="button inverted">Browse Products</a>
+    </div>
+  {% else %}
+    <div id="stickThis" class="free-tote-second-div" style="width: 100%">
+      <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Start Free Trial</a>
+    </div>
+  {% endif %}
+</div>
+
+    
+  <div class="middle-section">
+    <div class="middle-section-words">
+      <h1>Meticulously selected.<br>
+          Responsibly sourced.<br>
+          Affordably priced.
+      </h1>
+    </div>
+    <div class="shop-by-category-tiles">
+      <div class="spec"><span>FT</span><p>fair<br/>trade</p></div>     
+      <div class="spec"><span>O</span><p><br/>organic</p></div>     
+      <div class="spec"><span>NG</span><p>non<br/>GMO</p></div>      
+    </div>
+  </div>
+
+<div class="whats-new-products">
+        <div class="row">
+        <div class="column_12">
+          <div class="collections clearfix">
+            {% for product in collections.coffee-and-tea.products %}
+			  {%- comment %}<locksmith:0613>{% endcomment -%}
+			    {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections.coffee-and-tea, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+			  {%- comment %}</locksmith:0613>{% endcomment -%}
+			  {% if product.id == 1652815626291 or product.id == 1652818116659 %}
+
+              {% assign name = 'product' | append:product.id %}
+              {% assign idNo = name | append:'-no' %}
+              {% assign idYes = name | append:'-yes' %}
+
+              {% assign checkedNo = 'checked' %}
+              {% assign checkedYes = '' %}
+              {% assign opacityClass = '' %}
+              {% assign available = true %}
+
+              {% if product.variants[0].inventory_quantity <= 0 %}
+                {% assign available = false %}
+              {% endif %}
+
+              {% if shop.customer_accounts_enabled %}
+                {% if customer %}
+                    {% assign checkedNo = 'disabled' %}
+                    {% assign checkedYes = 'checked' %}
+                    {% assign opacityClass = 'opacity-3' %}
+
+                    {% assign available = true %}
+                    {% if product.variants[0].inventory_quantity <= 0 %}
+                        {% assign available = false %}
+                    {% endif %}
+                {% endif %}
+              {% endif %}
+
+              <div class="collection">
+                <div class="collection_header">
+                  <a href="{{ product.url | within: collection }}">
+                    <img src="{{  product.images[0] | img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}">
+                  </a>
+                  <div class="collection_action" rel="{{name}}">
+                    {% if available == true %}
+                        {% if customer %}
+                           {% if product.variants.first.sku == "123" %}
+                              <a href="{{ product.url | within: collection }}">
+                                  <div class="collection_update">
+                                  </div>
+                              </a>
+                           {% else %}
+<!--                              <div class="collection_to_cart" rel="{{name}}">ADD TO CART</div> -->
+                           {% endif %}
+                        {% else %}
+<!--                           <div class="collection_to_cart subscribe-to-membership subscribe-to-membership-32-45" rel="{{name}}">ADD TO CART</div> -->
+                        {% endif %}
+                        <div class="collection_update">
+                          <div class="collection_update_spans clearfix">
+                            <span class="collection_minus" rel="{{name}}"></span>
+                            <div>
+                              <span class="collection_count" id="collection_count_{{product.id}}"></span> IN CART
+                            </div>
+                            <span class="collection_plus" rel="{{name}}"></span>
+                          </div>
+                        </div>
+                    {% else %}
+                        <div class="collection_coming_soon">SOLD OUT</div>
+                    {% endif %}
+                  </div> <!-- Collection Action End !-->
+                </div>
+                <div class="collection_body">
+                  <label class="collection_title">{{ product.title }}</label>
+
+
+                  <div><input type="hidden" rel="{{product.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" {{checkedNo}}/><label for="{{idNo}}" onclick="">{{ product.variants[0].price | money }}</label></div>
+
+                </div>
+              </div>
+            {% endif %}
+            {% endfor %}
+          </div> <!-- Collections End !-->
+          {% if paginate.pages > 1 %}
+            <div class="pagination">
+              {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+            </div>
+          {% endif %}
+        </div>
+      </div><!-- Row End !-->
+    </div>
+
+{{ 'homepage.css' | asset_url | stylesheet_tag }}
+
+<script>
+  $(document).ready(function(){
+     function sticktothebottom() {
+        var h = window.innerHeight;
+        var window_top = $(window).scrollTop();
+        var top = $('#stick-here').offset().top;
+        var panelh = $(".free-tote-second-div").height();
+
+        if(h> top || h + window_top > top + 50) {
+            $('#stickThis').appendTo('body');
+            $('#stickThis').css('position', 'fixed');
+            $('#stickThis').css('bottom', '0');
+        } else {
+            $('#stickThis').appendTo('#stick-here');
+            $('#stickThis').css('position', 'relative');
+            $('#stickThis').css('bottom', 'auto');
+        }
+      }
+
+      var w = window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
+
+      var h = window.innerHeight
+      || document.documentElement.clientHeight
+      || document.body.clientHeight;
+
+
+      $(function() {
+        $(window).scroll(sticktothebottom);
+        sticktothebottom();
+      });
+    
+    
+    const headlines = ["“Blown away by the taste and quality.”", "“Huge fan! Organic/fair trade AND minimal packaging.”", "“Public Goods has knocked it out of the park with their coffee.”", "“This made me realize that I hate the stuff I’ve been drinking.”"]
+    const reviewers = ["- Sarah C.", "- Dan", "- Fred W.", "- LW"]
+    let numOfReviews = headlines.length
+    let idx = 0
+    
+    setInterval(function() {
+      $("#coffee-headline").text(headlines[idx])
+      $("#coffee-reviewer").text(reviewers[idx])
+      idx = (idx + 1) % numOfReviews
+    }, 3000)
+    
+  })
+  
+  
+</script>
+
+
+<style>
+  
+  #mission_hero {
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/coffee_desktop.jpg?26881)
+  }
+  
+  #mission_hero h1 {
+    width: 450px;
+  }
+  
+  .middle-section {
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  .shop-by-category-tiles {
+    margin-top: 100px;
+  }
+
+    .arrow-next {
+/*       top: 4787px; */
+      margin-top: -260px;
+      top: inherit;
+    }
+  
+   .free-tote-second-div {
+    display: none !important;
+  }
+  
+  .review-stars img {
+    width: 200px;
+    margin-right: 0 !important;
+
+  }
+  
+  .spec:hover {
+    opacity: 1;
+  }
+  
+  .collections {
+    justify-content: center
+  }
+  
+  .collection {
+    margin-bottom: 100px;
+  }
+  
+  #hero-buttons {
+    display: block;
+  }
+  @media screen and (max-width: 1000px) {
+    #mission_hero {
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/coffee_mobile.jpg?26881)
+    }
+    
+    #mission_hero h1 {
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
+    
+    #hero-buttons, .row .button-cta {
+      display: none;
+    }
+    .free-tote-second-div {
+      display: block !important;
+    }
+    #stickThis a.button.inverted {
+      margin: 0px !important;
+      width: 100% !important;
+      text-align: center !important;
+    }
+    .popup-wrapper {
+/*       height: 100%; */
+/*       margin-top: 210px; */
+    }
+  }
+
+  #mission_hero h1 {
+    padding-bottom: 0 !important;
+  }
+  
+  @media (max-width: 737px) {
+     #mission_hero h1 {
+        width: 550px;
+     }
+    .review-stars img {
+      width: 150px;
+    }
+  }
+  
+  @media (max-width: 550px) { 
+    #mission_hero h1 {
+      width: 90%;
+	  line-height: 27px;
+    }
+  }
+  
+  
+  @media (max-width: 460px) { 
+     #mission_hero {
+      height: 300px;
+    }
+    #mission_hero h1 {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+  
+    @media (max-width: 450px) { 
+    .arrow-next {
+      margin-top: -244px;
+    }
+   }
+  
+   @media (max-width: 375px) { 
+    .arrow-next {
+          margin-top: -222px;
+    }
+     
+    #mission_hero h1 {
+      width: 100%
+    }
+     
+   }
+  
+</style>
+

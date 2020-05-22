@@ -1,0 +1,144 @@
+{% layout 'theme.hometest' %}
+{% comment %}
+
+  This is the homepage of your site.
+
+  More info on global variables (available on all templates):
+    - http://docs.shopify.com/themes/liquid-variables/global
+{% endcomment %}
+
+<div id="hero">
+  <div class="row clearfix">
+    <div class="column_6">
+      <h1>We make healthy products, minus the unhealthy profits.</h1>
+      <p>Care about your health and the planet, but don't want to pay the inflated price? You've come to the right place.</p>
+      <a class="button margin_bottom_50" id="waitlistBtn">Join Our Waitlist</a>
+    </div>
+  </div>
+</div>
+
+<div id="page_content">
+  <div class="row">
+    <h2 class="text_center margin_bottom_30">The Public Goods Promise</h2>
+    <div class="columnsFlex">
+      <div class="column_flex text_center">
+        <img src="{{ 'star.png' | asset_url }}" alt=""/>
+        <h3 class="margin_top_20 margin_bottom_10">Premium Products At Cost</h3>
+        <p>We create healthy premium products—starting with bathroom essentials—and then sell them to members with zero markup.</p>
+      </div>
+      <div class="column_flex text_center">
+        <img src="{{ 'animal.png' | asset_url }}" alt=""/>
+        <h3 class="margin_top_20 margin_bottom_10">Astounding Savings</h3>
+        <p>We've done the math, and you'll save as much as $70 a month - just with our personal care products.</p>
+      </div>
+      <div class="column_flex text_center">
+        <img src="{{ 'calendar.png' | asset_url }}" alt=""/>
+        <h3 class="margin_top_20 margin_bottom_10">New Goods Every Month</h3>
+        <p>We’re already developing toxin-free household cleaners, baby products and organic cotton linens. The more we add, the more you save.</p>
+      </div>
+    </div>
+    <div class="text_center margin_top_50 margin_bottom_70"><a href="/pages/membership" class="button inverted">Join Today</a></div>
+  </div>
+
+  <div id="woodlot">
+    <div class="row clearfix">
+      <div class="column_6" style="padding-top: 100px; padding-bottom: 100px;">
+        <h2 class="margin_bottom_70">We've done the math</h2>
+        <h1 class="margin_bottom_30">Become a member and save up to $70 every month.</h1>
+        <p>Whether you buy your products at the local health food store or a big box chain—our membership offers you major savings.</p>
+        <img src="{{ 'woodlot.png' | asset_url }}" alt="" class="mobile fullSize margin_top_30"/>
+        <a href="/pages/membership" class="button white margin_top_50">Join Today</a>
+      </div>
+    </div>
+  </div><!-- Woodlot End !-->
+
+  <div class="row clearfix" id="products_con">
+    <div class="column_12"><h2 class="text_center margin_top_30 margin_bottom_70">Shop The Collection</h2></div>
+    <div class="column_12">
+      <div class="products clearfix">
+        {% for product in collections.front-page.products limit:4 %}
+          {%- comment %}<locksmith:a522>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections.front-page, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:a522>{% endcomment -%}
+          <div class="product">
+            <a href="{{ product.url | within: collection }}">
+              <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+            </a>
+            <p>{{ product.title }} - 
+              <label>
+                {% if on_sale %}
+                  {% if product.price_varies %}
+                    {% assign sale_price = product.price | money %}
+                    {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+                  {% else %}
+                    {{ 'products.product.on_sale' | t }}
+                    {{ product.price | money }}
+                  {% endif %}
+                {% else %}
+                  {% if product.price_varies %}
+                    {% assign price = product.price | money %}
+                    {{ 'products.general.from_text_html' | t: price: price }}
+                  {% else %}
+                    {{ product.price | money }}
+                  {% endif %}
+                {% endif %}
+                {% if sold_out %}
+                  {{ 'products.product.sold_out' | t }}
+                {% endif %}
+                {% if on_sale %}
+                  <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+                  <s>{{ product.compare_at_price | money }}</s>
+                {% endif %}
+              </label>
+            </p>
+            <a href="/collections/all-products">SHOP ALL</a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div><!-- Row End !-->
+
+  <div id="brands">
+    <div class="row clearfix">
+      <div class="column_12"><h2 class="text_center margin_bottom_50">The Reviews Are In</h2></div>
+      <div class="columnsFlex">
+        <div class="column_flex text_center">
+          <a href="#"><img src="{{ 'go.png' | asset_url }}" alt=""/></a>
+          <p>“An obvious yes.”</p>
+        </div>
+        <div class="column_flex text_center">
+          <a href="#"><img src="{{ 'cool.png' | asset_url }}" alt=""/></a>
+          <p>“Provides simple products and convenience.”</p>
+        </div>
+        <div class="column_flex text_center">
+          <a href="#"><img src="{{ 'detail.png' | asset_url }}" alt=""/></a>
+          <p>“The easiest way to restock your bathroom.”</p>
+        </div>
+      </div>
+    </div>
+  </div> <!-- Brands End !-->
+</div><!-- Page Content End !-->
+
+<script type="text/javascript" language="javascript">
+  $(document).ready(function(){
+  	var modal = $('#customModalDrip');
+    var modalDom = document.getElementById('customModalDrip');
+    
+    $('#waitlistBtn').click(function(){
+    	modal.show();
+        $('body').css('overflow', 'hidden');
+    });
+    
+    $('.modal-close').click(function(){
+      modal.hide();
+      $('body').css('overflow', 'auto');
+    });
+
+    $(window).click(function(e){
+      if (e.target == modalDom){
+        modal.hide();
+        $('body').css('overflow', 'auto');
+      }
+    });
+  });
+</script>

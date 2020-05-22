@@ -1,0 +1,39 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div id="page_content">
+  <div class="row clearfix">
+  	<div class="column_8" style="position:relative;">
+      
+      
+      <a id="bnt-start" class="btn-start" href="#">How It Works <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/Play-Button.png?3055954034437005564" alt="play" />
+</a>
+      
+      <video id="VL-video" controls="false" poster="https://cdn.shopify.com/s/files/1/0838/7991/files/flower-image.jpg?16817956334275591275" >
+        <source src="https://cdn.shopify.com/s/files/1/0838/7991/files/PublicGoods_no_free_trial.mp4?13766808957290835098" type="video/mp4" />
+      </video>
+
+    </div>
+    <div class="column_4">
+      <h1>We’re the first brand<br /> ever to  offer all our<br /> products at cost.</h1>
+      
+     
+      <p>Our members save an average of over $1,000 annually.</p>
+      <div class="memberships_button margin_top_40" id="checkout_11118"	data-billingid="11118" data-planid="2418" data-approot="https://mem.boldapps.net" data-hash="06ac502d0bd77a332cf0c651ceaed93c" data-label="Join Free for 30 Days" data-domain="morgans-dont-run-out.myshopify.com"></div>
+<!--       <a class="button" href="#">Join Free for 30 Days</a> -->
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $('#bnt-start').on('click', function(ev) {
+ 
+    var vid = document.getElementById("VL-video"); 
+  	vid.play();
+    ev.preventDefault();
+ 	 $('#bnt-start').css("z-index","-1");
+    
+   
+  });
+</script>

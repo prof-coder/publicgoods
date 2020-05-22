@@ -1,0 +1,271 @@
+<!-- /templates/customers/activate_account.liquid -->
+
+<div id="account_page" class="activate_account">
+  <div class="row clearfix">
+    <div class="column_6" style="padding-top: 100px;">
+      <h1>{{ 'customer.activate_account.title' | t }}</h1>
+      <p>{{ 'customer.activate_account.subtext' | t }}</p>
+      {% form 'activate_customer_password' %}
+		<input type="hidden" name="return_to" value="/collections/all-products" />
+        {{ form.errors | default_errors }}
+
+        <div class="form_row clearfix">
+          <input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full" placeholder="{{ 'customer.activate_account.password' | t }}">
+        </div>
+      
+        <div class="form_row clearfix">
+          <input type="password" value="" name="customer[password_confirmation]" id="CustomerPasswordConfirmation" class="input-full" placeholder="{{ 'customer.activate_account.password_confirm' | t }}">
+        </div>
+        
+        <div class="form_row clearfix margin_top_50">
+          <input type="submit" class="btn btn--full" value="{{ 'customer.activate_account.submit' | t }}">
+        </div>
+      
+<!--         <div class="form_row clearfix">
+          <input type="submit" class="btn--secondary btn--full" name="decline" value="{{ 'customer.activate_account.cancel' | t }}">
+        </div> -->
+      {% endform %}
+    </div>
+    <div class="column_6">
+     <img src="{{ 'activation_image.jpg' | asset_url }}" alt="" class="fullSize"/>
+    </div>
+  </div>
+</div>
+
+<img src="https://deeko.io/aai/tracker/vtracker.php?s=morgans-dont-run-out.myshopify.com" width="1" height="1" border="0" alt="" />
+
+<style>
+ 
+  
+  #account_page input {
+    background-color: #fff !important;
+    border: solid #606060 1px !important;
+  }
+  
+  #account_page input[type="submit"] {
+    color: #fff !important;
+    background-color: #dc886c !important;
+    border: none !important;
+  }
+  
+</style>
+
+<script>  
+     
+  
+  $(document).ready(function(){
+    
+      function createCookie(name,value,days) {        if (days) { var date = new Date();
+            date.setTime(date.getTime()+(days*24*60*60*1000));
+            var expires = "; expires="+date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name+"="+value+expires+"; path=/";
+        }
+
+      function readCookie(name) { var nameEQ = name + "=";    var ca = document.cookie.split(';');
+          for(var i=0;i < ca.length;i++) {
+              var c = ca[i];
+              while (c.charAt(0)==' ') c = c.substring(1,c.length);
+              if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+          }
+          return null;
+      }    
+
+      function eraseCookie(name) {     createCookie(name,"",-1);    
+      }
+
+    
+    
+    var getUrlParameter = function getUrlParameter(sParam) {
+          var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+              sURLVariables = sPageURL.split('&'),
+              sParameterName,
+              i;
+
+          for (i = 0; i < sURLVariables.length; i++) {
+              sParameterName = sURLVariables[i].split('=');
+
+              if (sParameterName[0] === sParam) {
+                  return sParameterName[1] === undefined ? true : sParameterName[1];
+              }
+          }
+      };
+    
+	var pn = getUrlParameter('pn');
+    
+      function getRandomArbitrary(min, max) {
+    		      return Math.random() * (max - min) + min;
+      }
+
+      var custEmail = readCookie("custEmail");
+        
+    
+    
+    console.log(pn);
+    eraseCookie("custEmail");
+      var randomID = Math.round(getRandomArbitrary(10000, 999999999));
+    
+    if(pn=='Free 30 Days Trial' || pn=='Free%2030%20Days%20Trial')
+    {
+//       pg.logEvent('membership success',{'membership type':'trial'});
+      
+      
+       console.log('trial membership script working .... '); 
+          
+         /* ------------  GOOGLE ANALYTICS EVENTS ------------   */ 
+          ga('send', {
+            hitType: 'event',
+            eventCategory: 'Purchase',
+            eventAction: 'Membership',
+            eventLabel: 'withTrial'
+          });
+         
+          ga('send', {
+            hitType: 'event',
+            eventCategory: 'Purchase',
+            eventAction: 'Membership',
+            eventLabel: 'any'
+          });
+   
+
+   	    fbq('track', 'Activation');
+
+      
+//       fuelx("purchase", {
+//         orderId:"{{randomID}}",
+//         orderValue:"59.00",
+//         products:""
+//       });
+      
+      snaptr('track', 'PURCHASE', {'currency': 'USD', 'price': '00.00', 'item_category': 'Trial', 'number_items': 1 });
+    
+    	 _dcq.push(["identify", {
+        email: custEmail,
+        tags: ["Membership trial cj"],
+        user_id: randomID,
+        success: function(data){
+            console.log(data);
+          
+			//randomID = data.visitor_uuid; 
+            var cj_event_val = readCookie("cjevent");
+          	var iframe = '<iframe height="1" width="1" frameborder="0" scrolling="no"'+
+            'src="https://www.emjcd.com/tags/c?containerTagId=22866&CID=1544695&OID='+randomID+'&'+
+            'TYPE=399225&AMOUNT=0"'+
+            'name="cj_conversion" ></iframe>';
+            console.log(iframe);
+	     	$("body").prepend(iframe);
+//           	eraseCookie("cjevent");
+          
+            // Brandxads pixel
+//             var iframe_brandxads  = '<iframe src="https://t1.webbconnected.com/p.ashx?a=245&e=262&t='+randomID+'" height="1" width="1" frameborder="0"></iframe>';
+//             console.log(iframe_brandxads);
+//             $("body").prepend(iframe_brandxads);
+
+        },
+        failer: function(data){
+            console.log(data);
+        }
+      }]);
+      
+      //   Pinterest tracking
+  pintrk('track', 'signup');
+  
+      
+      
+//       <!--SteelHouse Conversion Pixel-->
+//       <!-- Install ONLY on conversion page/event-->
+      (function(){var x=null,p,q,m,
+      o="22941",
+      l=randomID,
+      i="00",
+      c="",
+      k="",
+      g="",
+      j="",
+      u="",
+      shadditional="";
+      try{p=top.document.referer!==""?encodeURIComponent(top.document.referrer.substring(0,512)):""}catch(n){p=document.referrer!==null?document.referrer.toString().substring(0,512):""}try{q=window&&window.top&&document.location&&window.top.location===document.location?document.location:window&&window.top&&window.top.location&&""!==window.top.location?window.top.location:document.location}catch(b){q=document.location}try{m=parent.location.href!==""?encodeURIComponent(parent.location.href.toString().substring(0,512)):""}catch(z){try{m=q!==null?encodeURIComponent(q.toString().substring(0,512)):""}catch(h){m=""}}var A,y=document.createElement("script"),w=null,v=document.getElementsByTagName("script"),t=Number(v.length)-1,r=document.getElementsByTagName("script")[t];if(typeof A==="undefined"){A=Math.floor(Math.random()*100000000000000000)}w="dx.steelhousemedia.com/spx?conv=1&shaid="+o+"&tdr="+p+"&plh="+m+"&cb="+A+"&shoid="+l+"&shoamt="+i+"&shocur="+c+"&shopid="+k+"&shoq="+g+"&shoup="+j+"&shpil="+u+shadditional;y.type="text/javascript";y.src=("https:"===document.location.protocol?"https://":"http://")+w;r.parentNode.insertBefore(y,r)}());
+      
+    }    
+    
+    else if(pn=='Membership')
+    {
+      
+      console.log('membership script working .... ');
+      /* ------------  GOOGLE ANALYTICS EVENTS ------------  */  
+          ga('send', {
+            hitType: 'event',
+            eventCategory: 'Purchase',
+            eventAction: 'Membership',
+            eventLabel: 'noTrial'
+          });
+         
+          ga('send', {
+            hitType: 'event',
+            eventCategory: 'Purchase',
+            eventAction: 'Membership',
+            eventLabel: 'any'
+          });
+         /* ------------  END GOOGLE ANALYTICS EVENTS ------------  */  
+      /* ------------  FACEBOOK EVENTS ------------  */         
+           fbq('track', 'Activation');
+           /* ------------  END FACEBOOK EVENTS ------------  */    
+
+
+      function getRandomArbitrary(min, max) {
+          return Math.random() * (max - min) + min;
+      }
+
+      
+      var randomID = Math.round(getRandomArbitrary(1000000, 99999999));
+
+      
+      var iframe = '<iframe height="1" width="1" frameborder="0" scrolling="no"'+
+            'src="https://digitalremedy.servecvr.com/?nid=50&oid=9442&transaction_id='+randomID+'"'+
+            'name="digital remedy pixel" ></iframe>';
+      console.log('digital remedy pixel');
+          console.log(iframe);
+	     $("body").prepend(iframe); 
+      
+      console.log("RandomID");
+      console.log(randomID);
+      fuelx("purchase", {
+        orderId:randomID,
+        orderValue:"59.00",
+        products:""
+      });
+      
+      snaptr('track', 'PURCHASE', {'currency': 'USD', 'price': 59.00, 'item_category': 'Paid', 'number_items': 1, 'transaction_id': randomID });
+      
+      
+      _dcq.push(["identify", {
+        email: custEmail,
+        tags: ["Membership cj"],
+        user_id: randomID,
+        success: function(data){
+            console.log(data);
+          
+			//randomID = data.visitor_uuid;
+          	var cj_event_val = readCookie("cjevent");
+          	var iframe = '<iframe height="1" width="1" frameborder="0" scrolling="no"'+
+            'src="https://www.emjcd.com/tags/c?containerTagId=23208&CID=1544695&OID='+randomID+'&'+
+            'TYPE=399743&CURRENCY=USD&AMT1=59.00&ITEM1=membership&QTY1=1"'+
+            'name="cj_conversion" ></iframe>';
+          	console.log(iframe);
+	     	$("body").prepend(iframe);  
+			eraseCookie("cjevent");
+        },
+        failer: function(data){
+            console.log(data);
+        }
+      }]);
+      
+    }
+  })
+</script>
+
+<img height="1" width="1" style="display:none;" alt="" src="https://ct.pinterest.com/v3/?tid=2612414959587&event=signup&noscript=1" />
+<!-- <img height="1" width="1" style="display:none;" alt="" src="https://ct.pinterest.com/v3/?tid=2613930601070&event=signup&noscript=1" /> -->
+
+

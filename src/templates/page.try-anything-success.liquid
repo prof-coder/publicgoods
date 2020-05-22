@@ -1,0 +1,357 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div id="page_content">
+  <div id="mission_hero">
+  <img id="mission_hero_background" class='lazyload heroImage' src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-expand="-10" data-src='https://cdn.shopify.com/s/files/1/0838/7991/files/1-brand-general_ef43fc77-93b1-4bc7-9c61-581947c533c2-min.jpg?51079' />
+    <img id="mission_hero_background" class='lazyload heroImageMobile' src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-expand="-10" data-src='https://cdn.shopify.com/s/files/1/0838/7991/files/homepage_image.jpg?19094' />
+
+  <div class="row clearfix">
+    <div class="column_6">
+       <h1 class="margin_bottom_50">Welcome! <br>Here’s your code.</h1>
+      <p class="margin_bottom_50 without-padding">Use code <span class="tasb-bold">myfreegoods</span> at checkout.
+                                                  <br>We’ll apply a $10 credit to get you started
+                                                  <br>with a free item. Enjoy!</p>
+      
+<!--         {% unless customer %}<a id="free-trial-dt" class="subscribe-to-membership-32-45 subscribe-to-membership button inverted button-cta">Free Trial</a>{% endunless %} -->
+        <a href="/collections/all-products" class="home-shop-btn">Shop Now</a>
+<!--       <div id="hero-buttons">
+      {% if customer %}
+	     <a href="/collections/all-products" class="home-shop-btn">Browse Products</a>
+      {% else %}
+    	<a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free 30 Day Trial</a>
+        <a href="/collections/all-products" class="home-shop-btn browse-prod-btn">Browse Products</a>
+      {% endif %}
+      </div> -->
+      
+    </div>
+    <div class="text_center margin_top_50 margin_bottom_70">
+   <div id="stick-here" class="stick-here"></div>
+  
+<!--     <a href="/pages/membership" class="button inverted">Join Today</a> -->
+         
+    </div>
+    <!--<img src="{{ 'two.png' | asset_url }}" alt=""/>!-->
+  </div>
+</div>
+
+	<div id="sticky-button-bottom">
+        <div id="stickThis" class="free-tote-second-div" style="width: 100%">
+          <a href="/collections/all-products" class="button inverted">Shop Now</a>
+        </div>
+    </div>
+  
+  <div id="try-anything-success-bottom">
+    
+    <div class="tasb-words">
+      <p>Don’t know where to start? Here’s some of our favorites categories.</p>
+    </div>
+    
+ 	<div class="main-categories">
+        <div class="main-categories-tile main-categories-pc">
+          <a class="no-decor" href="https://www.publicgoods.com/collections/personal-care">
+            <div class="main-categories-words">
+              <h2>Personal Care</h2>
+              <a href="https://www.publicgoods.com/collections/personal-care">shop all</a>
+            </div>
+          </a>
+        </div>
+        <div class="main-categories-tile main-categories-household">
+          <a class="no-decor" href="https://www.publicgoods.com/collections/household">
+            <div class="main-categories-words">
+              <h2>Home Essentials</h2>
+              <a href="https://www.publicgoods.com/collections/household">shop all</a>
+            </div>
+          </a>
+        </div>
+        <div class="main-categories-tile main-categories-food">
+          <a class="no-decor" href="https://www.publicgoods.com/collections/grocery">
+            <div class="main-categories-words">
+              <h2>Healthy Food</h2>
+              <a href="https://www.publicgoods.com/collections/grocery">shop all</a>
+            </div>
+          </a>
+        </div>
+         <div class="main-categories-tile main-categories-vitamins">
+           <a class="no-decor" href="https://www.publicgoods.com/collections/vitamins-and-supplements">
+            <div class="main-categories-words">
+              <h2>Vitamins and Supplements</h2>
+              <a href="https://www.publicgoods.com/collections/vitamins-and-supplements">shop all</a>
+            </div>
+           </a>
+        </div>
+    </div>
+    
+    <div class="tasb-button">
+       <a href="/collections/all-products" class="home-shop-btn">Shop Now</a>
+    </div>
+    
+  </div>
+  
+</div>
+
+
+<style>
+
+  #stickThis {
+    display: none;
+  }
+  
+  .home-shop-btn {
+    color: #fff !important;
+    background-color: #dc876c !important;
+  }
+  
+  .tasb-words {
+    width: 350px;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 75px;
+  }
+  
+  .tasb-bold {
+    font-family: "NBH";
+  }
+  
+  #try-anything-success-bottom {
+    padding: 100px 40px;
+  }
+  
+   .shop-by-category {
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  .main-categories {
+    display: flex;
+    height: 230px;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
+
+  .main-categories-tile {
+    width: 24%;
+    background-size: cover;
+    background-position-y: 100%;
+    cursor: default;
+  }
+
+  .main-categories-pc {
+    background-image: url("https://cdn.shopify.com/s/files/1/0838/7991/files/tile_personal_care.jpg?12413255820896601983")
+  }
+
+  .main-categories-household {
+    background-image: url("https://cdn.shopify.com/s/files/1/0838/7991/files/tile_household.jpg?12413255820896601983")
+  }
+
+  .main-categories-food {
+    background-image: url("https://cdn.shopify.com/s/files/1/0838/7991/files/tile_food.jpg?12413255820896601983")  
+  }
+
+  .main-categories-vitamins {
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/tile_vitamins_retouch.jpg?41730);
+    background-position-x: 85%;
+  }
+
+  .main-categories-words {
+    margin-top: 120px;
+    text-align: center;
+  }
+
+  .main-categories-words a {
+    color: #000;
+    text-decoration: underline;
+    margin-top: 5px;
+  }
+
+  .main-categories-words h2 {
+    margin-bottom: 5px;
+    line-height: 24px;
+  }
+  
+  .no-decor {
+        text-decoration: none !important;
+  }
+  
+  .tasb-button {
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  @media (max-width: 1300px) {
+    .main-categories-household {
+      background-position-x: 35%;
+    }
+    .main-categories-food {
+      background-position-x: 75%;
+    }
+  }
+  
+  @media (max-width: 1000px) {
+    #mission_hero {
+      height: 700px;
+    }
+    
+    #mission_hero_background {
+     background-position: right center;
+    }
+    
+    .main-categories {
+      display: block;
+      height: auto;
+      text-align: -webkit-center;
+      text-align: -moz-center;
+    }
+
+    .main-categories-household {
+      margin: 50px 0;
+    }
+
+    .main-categories-vitamins {
+      margin-top: 50px;
+    }
+
+    .main-categories-tile {
+      width: 75%;
+      height: 300px;
+    }
+
+    .main-categories-words {
+      margin-top: 0;
+      padding-top: 140px;
+    }
+    
+    .heroImageMobile {
+      top: -122px;
+      height: 114%;
+   }
+  
+  }
+  
+  @media (max-width: 737px) {
+    #mission_hero h1 {
+      padding-bottom: 0px;
+    }
+    
+   p {
+    font-size: 16px;
+    line-height: 22px;
+   }
+    
+    .tasb-words {
+      width: 250px;
+    }
+    
+    .heroImageMobile {
+      top: 0px;
+      height: 100%;
+    }
+  }
+  
+  @media (max-width: 600px) {
+   .main-categories-tile {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 460px) {
+    .main-categories-tile {
+      background-position: bottom;
+    }
+    
+    #mission_hero {
+      padding-top: 160px;
+      height: 430px !important;
+    }
+    
+     #mission_hero {
+      height: 300px;
+    }
+    
+    #mission_hero .home-shop-btn {
+      display: none;
+    }
+  }
+  
+    @media screen and (max-width: 950px) {
+    #hero-buttons, .row .button-cta {
+      display: none;
+    }
+    .free-tote-second-div {
+      display: block !important;
+    }
+    #stickThis a.button.inverted {
+      margin: 0px !important;
+      width: 100% !important;
+      text-align: center !important;
+    }
+    .popup-wrapper {
+/*       height: 100%; */
+/*       margin-top: 210px; */
+    }
+      
+    html {
+      height: 100% !important;
+      overflow-y: scroll !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+  
+    body {
+      height: 100% !important;
+      overflow-y: scroll !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+     
+    #stickThis {
+      display: block;
+    }  
+        
+    #free-trial-dt {
+	  display: none;    
+    }
+  }
+  
+
+</style>
+
+
+
+<script>
+  
+   $(document).ready(function(){ 
+          function sticktothebottom() {
+        var h = window.innerHeight;
+        var window_top = $(window).scrollTop();
+        var top = $('#stick-here').offset().top;
+        var panelh = $(".free-tote-second-div").height();
+
+        if(h> top || h + window_top > top + 50) {
+            $('#stickThis').appendTo('body');
+            $('#stickThis').css('position', 'fixed');
+            $('#stickThis').css('bottom', '0');
+        } else {
+            $('#stickThis').appendTo('#stick-here');
+            $('#stickThis').css('position', 'relative');
+            $('#stickThis').css('bottom', 'auto');
+        }
+      }
+
+      var w = window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
+
+      var h = window.innerHeight
+      || document.documentElement.clientHeight
+      || document.body.clientHeight;
+
+
+      $(function() {
+        $(window).scroll(sticktothebottom);
+        sticktothebottom();
+      });
+   })
+   
+</script>

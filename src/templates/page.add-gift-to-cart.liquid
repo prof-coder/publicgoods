@@ -1,0 +1,625 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<script>console.log({{ customer.tags | json }})</script>
+
+<!-- /templates/page.liquid -->
+<div id="page_content">
+  <div class="row clearfix">
+  	<div class="column_12">
+      <div class="free-bundle-content">
+        <div class="free-bundle-words">
+          <h1>Thanks! Here’s your  free gift.</h1>
+          <p>Just add it to your cart and it’s yours for free when you spend $40+. No code needed.</p>
+        </div>
+        <div class="rte">
+          <div class="row">
+            <div class="column_12">
+              <div class="collections clearfix">
+                {% for product in collections.free-product-with-membership.products %}
+
+                  {%- comment %}<locksmith:015d>{% endcomment -%}
+                    {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections.free-product-with-membership, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                  {%- comment %}</locksmith:015d>{% endcomment -%}
+
+                  {% if product.id == 1793096712243 and customer.tags contains 'free-hair-body-bundle' %}
+
+                   {% assign name = 'product' | append:product.id %}
+                  {% assign idNo = name | append:'-no' %}
+                  {% assign idYes = name | append:'-yes' %}
+
+                  {% assign checkedNo = 'checked' %}
+                  {% assign checkedYes = '' %}
+                  {% assign opacityClass = '' %}
+                  {% assign available = true %}
+
+                  {% if product.variants[0].inventory_quantity <= 0 %}
+                    {% assign available = false %}
+                  {% endif %}
+
+                  {% if shop.customer_accounts_enabled %}
+                    {% if customer %}
+                        {% assign checkedNo = 'disabled' %}
+                        {% assign checkedYes = 'checked' %}
+                        {% assign opacityClass = 'opacity-3' %}
+
+                        {% assign available = true %}
+                        {% if product.variants[0].inventory_quantity <= 0 %}
+                            {% assign available = false %}
+                        {% endif %}
+                    {% endif %}
+                  {% endif %}
+
+                  <div class="collection">
+                    <div class="collection_header">
+                      <a href="{{ product.url | within: collection }}">
+                        <img src="{{  product.images[0] | img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}">
+                      </a>
+                      <div class="collection_action" rel="{{name}}">
+                         {% if available == true %}
+                            {% if customer %}
+                               {% if product.variants.first.sku == "123" %}
+                                  <a href="{{ product.url | within: collection }}">
+                                      <div class="collection_update">
+                                      </div>
+                                  </a>
+                               {% else %}
+                                 <div class="collection_to_cart" rel="{{name}}">ADD TO CART</div>
+                               {% endif %}
+                            {% else %}
+                              <div class="collection_to_cart subscribe-to-membership subscribe-to-membership-32-45" rel="{{name}}">ADD TO CART</div>
+                            {% endif %}
+                            <div class="collection_update">
+                              <div class="collection_update_spans clearfix">
+                                <span class="collection_minus" rel="{{name}}"></span>
+                                <div>
+                                  <span class="collection_count" id="collection_count_{{product.id}}"></span> IN CART
+                                </div>
+                                <span class="collection_plus" rel="{{name}}"></span>
+                              </div>
+                            </div>
+                        {% else %}
+                            <div class="collection_coming_soon">SOLD OUT</div>
+                        {% endif %}
+                      </div> <!-- Collection Action End !-->
+                    </div>
+                    <div class="collection_body">
+                      <label class="collection_title">{{ product.title }}</label>
+
+
+                      <div><input type="hidden" rel="{{product.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" {{checkedNo}}/><label for="{{idNo}}" onclick="">{{ product.variants[0].price | money }}</label></div>
+
+                    </div>
+                  </div>
+                {% endif %}
+                
+                 {% if product.id == 1794744713267 and customer.tags contains 'free-dental-care-membership' %}
+
+                   {% assign name = 'product' | append:product.id %}
+                  {% assign idNo = name | append:'-no' %}
+                  {% assign idYes = name | append:'-yes' %}
+
+                  {% assign checkedNo = 'checked' %}
+                  {% assign checkedYes = '' %}
+                  {% assign opacityClass = '' %}
+                  {% assign available = true %}
+
+                  {% if product.variants[0].inventory_quantity <= 0 %}
+                    {% assign available = false %}
+                  {% endif %}
+
+                  {% if shop.customer_accounts_enabled %}
+                    {% if customer %}
+                        {% assign checkedNo = 'disabled' %}
+                        {% assign checkedYes = 'checked' %}
+                        {% assign opacityClass = 'opacity-3' %}
+
+                        {% assign available = true %}
+                        {% if product.variants[0].inventory_quantity <= 0 %}
+                            {% assign available = false %}
+                        {% endif %}
+                    {% endif %}
+                  {% endif %}
+
+                  <div class="collection">
+                    <div class="collection_header">
+                      <a href="{{ product.url | within: collection }}">
+                        <img src="{{  product.images[0] | img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}">
+                      </a>
+                      <div class="collection_action" rel="{{name}}">
+                         {% if available == true %}
+                            {% if customer %}
+                               {% if product.variants.first.sku == "123" %}
+                                  <a href="{{ product.url | within: collection }}">
+                                      <div class="collection_update">
+                                      </div>
+                                  </a>
+                               {% else %}
+                                 <div class="collection_to_cart" rel="{{name}}">ADD TO CART</div>
+                               {% endif %}
+                            {% else %}
+                              <div class="collection_to_cart subscribe-to-membership subscribe-to-membership-32-45" rel="{{name}}">ADD TO CART</div>
+                            {% endif %}
+                            <div class="collection_update">
+                              <div class="collection_update_spans clearfix">
+                                <span class="collection_minus" rel="{{name}}"></span>
+                                <div>
+                                  <span class="collection_count" id="collection_count_{{product.id}}"></span> IN CART
+                                </div>
+                                <span class="collection_plus" rel="{{name}}"></span>
+                              </div>
+                            </div>
+                        {% else %}
+                            <div class="collection_coming_soon">SOLD OUT</div>
+                        {% endif %}
+                      </div> <!-- Collection Action End !-->
+                    </div>
+                    <div class="collection_body">
+                      <label class="collection_title">{{ product.title }}</label>
+
+
+                      <div><input type="hidden" rel="{{product.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" {{checkedNo}}/><label for="{{idNo}}" onclick="">{{ product.variants[0].price | money }}</label></div>
+
+                    </div>
+                  </div>
+                {% endif %}
+                
+                 {% if product.id == 1794746777651 and customer.tags contains 'free-italian-bundle' %}
+
+                   {% assign name = 'product' | append:product.id %}
+                  {% assign idNo = name | append:'-no' %}
+                  {% assign idYes = name | append:'-yes' %}
+
+                  {% assign checkedNo = 'checked' %}
+                  {% assign checkedYes = '' %}
+                  {% assign opacityClass = '' %}
+                  {% assign available = true %}
+
+                  {% if product.variants[0].inventory_quantity <= 0 %}
+                    {% assign available = false %}
+                  {% endif %}
+
+                  {% if shop.customer_accounts_enabled %}
+                    {% if customer %}
+                        {% assign checkedNo = 'disabled' %}
+                        {% assign checkedYes = 'checked' %}
+                        {% assign opacityClass = 'opacity-3' %}
+
+                        {% assign available = true %}
+                        {% if product.variants[0].inventory_quantity <= 0 %}
+                            {% assign available = false %}
+                        {% endif %}
+                    {% endif %}
+                  {% endif %}
+
+                  <div class="collection">
+                    <div class="collection_header">
+                      <a href="{{ product.url | within: collection }}">
+                        <img src="{{  product.images[0] | img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}">
+                      </a>
+                      <div class="collection_action" rel="{{name}}">
+                         {% if available == true %}
+                            {% if customer %}
+                               {% if product.variants.first.sku == "123" %}
+                                  <a href="{{ product.url | within: collection }}">
+                                      <div class="collection_update">
+                                      </div>
+                                  </a>
+                               {% else %}
+                                 <div class="collection_to_cart" rel="{{name}}">ADD TO CART</div>
+                               {% endif %}
+                            {% else %}
+                              <div class="collection_to_cart subscribe-to-membership subscribe-to-membership-32-45" rel="{{name}}">ADD TO CART</div>
+                            {% endif %}
+                            <div class="collection_update">
+                              <div class="collection_update_spans clearfix">
+                                <span class="collection_minus" rel="{{name}}"></span>
+                                <div>
+                                  <span class="collection_count" id="collection_count_{{product.id}}"></span> IN CART
+                                </div>
+                                <span class="collection_plus" rel="{{name}}"></span>
+                              </div>
+                            </div>
+                        {% else %}
+                            <div class="collection_coming_soon">SOLD OUT</div>
+                        {% endif %}
+                      </div> <!-- Collection Action End !-->
+                    </div>
+                    <div class="collection_body">
+                      <label class="collection_title">{{ product.title }}</label>
+
+
+                      <div><input type="hidden" rel="{{product.variants[0].inventory_quantity}}" name="{{name}}" id="{{idNo}}" value="{{ product.variants[0].id }}" class="productNo" {{checkedNo}}/><label for="{{idNo}}" onclick="">{{ product.variants[0].price | money }}</label></div>
+
+                    </div>
+                  </div>
+                {% endif %}
+                {% endfor %}
+              </div> <!-- Collections End !-->
+              {% if paginate.pages > 1 %}
+                <div class="pagination">
+                  {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+                </div>
+              {% endif %}
+            </div>
+          </div><!-- Row End !-->
+        </div>
+      </div>
+      
+      <div class="search-bottom-section">
+        <p class="search-bottom-words">Browse some of our favorites.</p>
+        <p class="search-bottom-favorites"><a href="/collections/personal-care">Personal Care</a></p>  
+        <p class="search-bottom-favorites"><a href="/collections/household">Household</a></p>  
+        <p class="search-bottom-favorites"><a href="/collections/grocery">Healthy Food</a></p>
+        <p class="search-bottom-favorites"><a href="/collections/coffee-and-tea">Coffee and Tea</a></p>  
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" language="javascript">
+  var member = 0;
+  var idNo_modal = '';
+  var idYes_modal = '';
+
+  {% if shop.customer_accounts_enabled %}
+    {% if customer %}
+      member = 1;
+    {% endif %}
+  {% endif %}
+
+  $(document).ready(function(){
+    var modal = $('#customModal');
+    var modalDom = document.getElementById('customModal');
+
+    var cart_items = {};
+
+    $('.productYes').click(function(){
+      console.log("here2222");
+      if(member == 0){
+        $("a#membership_button_11118").click();
+
+        // modal.show();
+        // $('body').css('overflow', 'hidden');
+
+        var name = $(this).parents('.collection:first').find('.collection_action:first').attr('rel');
+
+        idNo_modal = name + '-no';
+        idYes_modal = name + '-yes';
+        
+        $('#'+idYes_modal).removeAttr('checked');
+        $('#'+idNo_modal).prop('checked',true);
+      }
+    });
+
+    $('.collection_minus').click(function(){
+      var object = $(this).parents('.collection_update_spans:first');
+      var quantity_object = object.find('.collection_count:first');
+      var total_quantity = parseInt(quantity_object.html());
+      var name = $(this).attr('rel');
+      
+      var idNo = name + '-no';
+      var idYes = name + '-yes';
+
+      var variantId = $('#'+idNo).val();
+      if($('#'+idYes).prop('checked'))
+        variantId = $('#'+idYes).val();
+
+      var quantity = find_cart_quantity(variantId, 'minus');
+
+      $.ajax({
+        type:'POST', 
+        url:'/cart/change.js', 
+        data: {id: variantId, quantity: quantity}, 
+        dataType: 'json',
+        success: function(data){
+            setCartItem(variantId, {id: $('#'+idYes).val(), quantity: quantity});
+            if(total_quantity > 1)
+                quantity_object.html(total_quantity-1);
+            else
+                get_cart_items();
+            
+            update_cart_count('minus');
+        }
+      });  
+    });
+
+    $('.collection_plus').click(function(){
+      var object = $(this).parents('.collection_update_spans:first');
+      var quantity_object = object.find('.collection_count:first');
+      var total_quantity = parseInt(quantity_object.html());
+      var name = $(this).attr('rel');
+      
+      var idNo = name + '-no';
+      var idYes = name + '-yes';
+
+      var variantId = $('#'+idNo).val();
+      if($('#'+idYes).prop('checked'))
+        variantId = $('#'+idYes).val();
+
+      var quantity = find_cart_quantity(variantId, 'plus');
+
+      $.ajax({
+        type:'POST', 
+        url:'/cart/change.js', 
+        data: {id: variantId, quantity: quantity}, 
+        dataType: 'json',
+        success: function(data){
+            setCartItem(variantId, {id: $('#'+idYes).val(), quantity: quantity});
+            quantity_object.html(total_quantity+1);
+            update_cart_count('plus');
+        }
+      });  
+    });
+
+    $('.collection_to_cart').click(function(e){
+	
+      e.preventDefault()
+      
+      var name = $(this).attr('rel');
+      
+      var object = $(this).parents('.collection_action:first');
+
+      var idNo = name + '-no';
+      var idYes = name + '-yes';
+
+      var variantId = $('#'+idNo).val();
+      if($('#'+idYes).prop('checked'))
+        variantId = $('#'+idYes).val();
+
+      {% for tag in customer.tags %}
+        {% if tag == 'member' or tag == 'members' %}
+          {% assign nonmember = false %}
+        {% endif %}
+        {% if tag == 'Unsubscribed' or tag == 'unsubscribed' %}
+          {% assign nonmember = true %}
+        {% endif %}
+      {% endfor %}
+      
+      {% if nonmember == true %}
+      	$('#reactivate-pop-up-wrapper').css('display', 'block')
+        let popupWidth = (window.innerWidth - $('#reactivate-pop-up-wrapper').width()) / 2
+        $('#reactivate-pop-up-wrapper').css('right', popupWidth )
+      {% endif %}
+	
+      {% if nonmember == false %}
+        $.ajax({
+          type:'POST', 
+          url:'/cart/add', 
+          data: {id: variantId}, 
+          dataType: 'json',
+          success: function(data){
+              get_cart_items();
+              update_cart_count('plus');
+              setCartItem(variantId, {id: $('#'+idYes).val(), quantity: 1});
+          }
+        });
+      {% endif %}
+    });
+	
+    $('#boldTrigger').click(function(){
+    	$('.modal-close').click();
+      	$('#checkout_11118 a').click();
+    });
+    
+    $('.modal-close').click(function(){
+      modal.hide();
+      $('body').css('overflow', 'auto');
+
+      if(idYes_modal != '' && idNo_modal != ''){
+        $('#'+idYes_modal).removeAttr('checked');
+        $('#'+idNo_modal).prop('checked',true);
+
+        idYes_modal = '';
+        idNo_modal = '';
+      }
+    });
+
+    $(window).click(function(e){
+      if (e.target == modalDom){
+        modal.hide();
+        $('body').css('overflow', 'auto');
+
+        if(idYes_modal != '' && idNo_modal != ''){
+          $('#'+idYes_modal).removeAttr('checked');
+          $('#'+idNo_modal).prop('checked',true);
+
+          idYes_modal = '';
+          idNo_modal = '';
+        }
+      }
+    });
+
+    function get_cart_items(){
+        $('.collection_to_cart').show();
+        $('.collection_update').hide();
+        $('.collection_update').css('opacity', 0);
+
+        $.ajax({
+          type:'GET', 
+          url:'/cart.js', 
+          dataType: 'json',
+          success: function(data){
+            var items = data.items;
+
+            cart_items = items;
+
+            for(var i in items){
+              var temp = [];
+
+              if(items[i].merged)
+                continue;
+
+              temp.product_id = items[i].product_id;
+              temp.quantity = parseInt(items[i].quantity);
+              items[i].merged = true;
+
+              for(var j in items){
+                if(i >= j || items[j].merged)
+                  continue;
+
+                if(items[i].product_id == items[j].product_id){
+                  temp.quantity += parseInt(items[j].quantity);
+                  items[j].merged = true;
+                }
+              }
+
+              var id = 'collection_count_' + temp.product_id;
+              $('#'+id).html(temp.quantity);
+
+              var object = $('#'+id).parents('.collection_action:first');
+              object.find('.collection_to_cart:first').hide();
+              object.find('.collection_update:first').show();
+              object.find('.collection_update:first').css('opacity', 1);
+            }
+          }
+        });
+    }
+    
+    $('body').on('afterChangeItem.ajaxCart', function(evt, cart) {
+      get_cart_items();
+    });
+
+    $('body').on('afterAddItem.ajaxCart', function(evt, cart) {
+      get_cart_items();
+    });
+
+    function find_cart_quantity(id, action){
+        var quantity = 0;
+        if(cart_items.length > 0){
+            for(var i in cart_items){
+                if(cart_items[i].id == id){
+                    if(action == 'minus')
+                        cart_items[i].quantity -= 1;
+                    else if(action == 'plus')
+                        cart_items[i].quantity += 1;      
+
+                    quantity = cart_items[i].quantity;
+
+                    break;
+                }
+            }
+        }
+
+        return parseInt(quantity);
+    }
+
+    function update_cart_count(action){
+        var quantity = parseInt($('#CartCount').html());
+        
+        if(action == 'minus')
+            quantity--;
+        else if(action == 'plus')
+            quantity++;
+
+        $('#CartCount').html(quantity);
+        $('#CartCount_mobile').html(quantity);
+    }
+
+    get_cart_items();
+    
+    $(window).load(function(){
+      var match = new RegExp('[?&]cart=([^&]*)').exec(window.location.href);
+
+      var param = match && decodeURIComponent(match[1].replace());
+
+      if(param == 'show'){
+          ajaxCart.load();
+          timber.RightDrawer.open()
+      }
+    });
+  });
+
+</script>
+
+<style>
+  
+  .column_12 {
+    padding: 0;
+  }
+  
+  .free-bundle-content {
+    width: 750px;
+    margin: 0 auto;
+    text-align:center;
+  }
+  
+  .free-bundle-words {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+  
+   .free-bundle-content h1 {
+     padding-bottom: 20px;
+   }
+  
+  .collection {
+    width: 400px;
+    margin:0 auto;
+  }
+  
+   .search-bottom-section {
+    text-align: center;
+    height: 300px;
+    width: 85%;
+    margin: 0 auto;
+  }
+  
+  .search-bottom-words {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  
+  .search-bottom-favorites {
+    color: #8c8c8c;
+  }
+  
+  .search-bottom-favorites a:hover {
+    color: #000;
+  }
+  
+  @media (max-width: 737px) {
+    .free-bundle-content {
+      width: 550px;
+    }
+    .free-bundle-words {
+      margin-top: 90px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .free-bundle-content {
+      width: 350px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .free-bundle-content {
+      width: 300px;
+    }
+    
+    .free-bundle-content h1 {
+      font-size: 20px;
+    }
+    
+    .collection {
+      width: 300px;
+    }
+  }
+  
+    @media (max-width: 335px) {
+    .free-bundle-content {
+      width: 260px;
+    }
+    
+    .free-bundle-content h1 {
+      font-size: 16px;
+    }
+    
+    .collection {
+      width: 260px;
+    }
+  }
+</style>

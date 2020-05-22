@@ -1,0 +1,22 @@
+<script>
+  
+  let submit = document.getElementById('copy-exp-email-form')
+  let text1 = document.getElementsByClassName('copy-exp-subsection-header')[0].children[0]
+  let text2 = document.getElementsByClassName('copy-exp-subsection-body')[0].children[0]
+  let shopBtn = document.getElementById('copy-exp-post-signup-button')
+  let emailInput = document.getElementsByClassName('exp-input')[0]
+  let emailSubmitBtn = document.getElementsByClassName('exp-submit')[0]
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbz2ZvNa4G-vr8bHW3JQqbRzaxIaKYaD9Ojm-5ngTj50Xcd-Wdk/exec'
+
+  submit.addEventListener('submit', event => {
+    event.preventDefault()
+    text1.innerText = "You're in!"
+    text2.innerText = "Check your inbox for good news." + "\n" + "Welcome to Public Goods."
+    emailInput.style.display = "none"
+    emailSubmitBtn.style.display = "none"
+    shopBtn.style.display = ""
+    fetch(scriptURL, { method: 'POST', body: new FormData(submit)})  
+       .then(response => console.log('Success!', response))  
+       .catch(error => console.error('Error!', error.message))  
+  })
+</script>

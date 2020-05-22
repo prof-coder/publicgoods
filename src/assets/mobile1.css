@@ -1,0 +1,69 @@
+#membership_hero .column_5{ min-width: 538px; }
+#thanks_hero .column_5{ min-width: 538px; }
+.desktopSpace { padding-top: 10px; }
+@media all and (max-width: 950px){
+	#membership_hero h1{ padding-right: 0; }
+	#membership_hero .column_5{ min-width: 0; width: 100%; text-align: center; float: none !important; }
+
+	#thanks_hero h1{ padding-right: 0; }
+	#thanks_hero .column_5{ min-width: 0; width: 100%; text-align: center; float: none !important; }
+
+	.columnsFlex{ display: block; }
+	.columnsFlex .column_flex { width: 100%; margin-bottom: 70px; padding: 0 30%;}
+}
+
+@media all and (max-width: 737px){
+	.desktopSpace { padding-top: 0; }
+	.mobile{ display:block; }
+	.desktop { display: none; }
+	
+	body{ font-size: 12px; }
+
+	.btn#lang_cancel_10642{ padding: 0 7px 0 0 !important; }
+	.btn-bold-main { padding: 10px 15px !important; }
+
+	h1{ font-size: 24px; line-height: 30px;}
+	h2 { font-size: 18px; }
+	h3 { font-size: 12px; line-height: 18px;}
+
+	p{ font-size: 12px; line-height: 18px;}
+	#membership_hero p.small { font-size: 12px; line-height: 18px; }
+	#thanks_hero p.small { font-size: 12px; line-height: 18px; }
+
+	.sticky_header {position: fixed; top: 0; left: 0; z-index: 1; width: 100%; background-color: white; border-bottom: 1px solid #efefef;}
+	header { height: 50px; padding: 0;}
+	header a#logo { width: 57px; height: 30px; }
+
+	.column_7, .column_5 { width: 100%; float: none !important; }
+	
+	.columnsFlex .column_flex{ padding: 0 30px; margin-bottom: 30px;}
+	.columnsFlex .column_flex img{ width: 30px; }
+	
+	#membership_hero{ padding: 50px 0 0 0; background-image: url('membership_hero_mobile.jpg'); background-position: bottom center;}
+	#membership_hero .column_5{ max-width: 450px; margin: 0 auto; padding: 0 20px; padding-bottom: 280px; }
+
+	#thanks_hero{ padding: 50px 0 0 0; background-image: url('membership_hero_mobile.jpg'); background-position: bottom center;}
+	#thanks_hero .column_5{ max-width: 450px; margin: 0 auto; padding: 0 20px; padding-bottom: 280px; }
+
+	.button{ font-size: 14px; }
+	
+	footer { padding-top: 30px; }
+	footer .column_12{ text-align: center; }
+	footer label{ font-size: 10px; }
+	footer p{ font-size: 10px; }
+	footer p.desc { line-height: 16px; }
+	footer form{ margin: 0 auto; }
+	footer form input[type="email"]{ font-size: 10px; }
+	footer form div{ font-size: 12px; }
+	footer .column_6{ width: 100%; text-align: center; float: none !important; }
+	footer .footer_menu a{ padding-bottom: 10px; display: inline-block; font-size: 10px;}
+	footer .footer_social{ margin-top: 50px; }
+	footer .copyright{ margin-top: 30px; }
+	footer .copyright p{ font-size: 12px; }
+}
+
+@media all and (max-width: 599px){
+}
+
+@media all and (max-width: 479px){
+}

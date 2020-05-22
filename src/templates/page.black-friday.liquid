@@ -1,0 +1,372 @@
+{% layout 'theme.black-friday' %}
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div class="bf-wrapper">
+  <div class="copy-exp-landing1-main bf-main" style="height:33% !important" >
+    <div class="row clearfix">
+      <div class="column_12" style=" width: 100%; background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/heronew-1_1.jpg?12958472770103794068); background-size:cover; background-position:right;" >
+        <div>
+          <div class="copy-exp-main-words">
+            <p class="without-padding">Half off memberships.</p>
+            <div class="black-friday-words-div">
+              <p class="black-friday-words">Today only, annual memberships are half the cost. An entire year of saving for a lower-than-ever one-time fee.</p>
+            </div>
+          </div>
+          <div class="copy-exp-buttons">
+            <a href="/collections/all-products" style="background-color: #EB8364; color: white;" class="home-shop-btn">Browse Products</a>
+            <a style="background-color: #EB8364; color: white;" class="subscribe-to-membership-42-55 subscribe-to-membership home-shop-btn membuttonclick margin_top_30 button inverted button-cta">Get Half Off</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="copy-exp-landing1-subsection" style="height:33% !important" >
+    <div class"row clearfix">
+      <div class="column_12">
+        <div class="copy-exp-subsection-header">
+          <p>"Public Goods wants to bring a new model to healthy, affordable everyday basics that are packaged in natural and recycled materials.” </p>
+        </div>
+      </div>
+      <div class="copy-exp-subsection-body">
+          <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/forbes.png?10384084351562429956" alt='Forbes'/>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="black-friday-bottom-section" style="height:33% !important" >
+    <div class="black-friday-reviews">
+      <div class="bf-left-review">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/starz3.png?14175916445677503279" alt="reviews" style="margin-top: 100px;"/>
+        <p class="bf-review-words">“High-end but cost a fraction of the price. I value the simplicity of the whole experience, from ordering and delivery to packaging design.”</p>
+        <p class="bf-review-name">Isa</p>
+      </div>
+      <div class="bf-right-review">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/starz3.png?14175916445677503279" alt="reviews" style="margin-top: 100px;"/>
+        <p class="bf-review-words">“Imagine all the benefits you like of top natural brands without all the BS. To me, that’s Public Goods.”</p>
+        <p class="bf-review-name">Christian</p>
+      </div>
+      <div class="bf-bottom-button">
+        <a style="background-color: #fff; color: #EB8364; margin-bottom:25px;" class="subscribe-to-membership-42-55 subscribe-to-membership home-shop-btn membuttonclick margin_top_30 button inverted button-cta">Get Half Off</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+/*   
+  .bf-wrapper {
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;
+  } */
+  
+  .black-friday-words-div {
+    position: relative;
+    width: 450px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .black-friday-words {
+    position: relative;
+    font-size: 24px !important;
+    font-family: 'NB' !important;
+    line-height: 28px !important;
+    margin-top: 50px;
+  }
+  
+  .copy-exp-main-words {
+    position: relative;
+  }
+  
+  .copy-exp-buttons {
+    position: relative;
+/*     top: 400px; */
+  }
+  
+  .copy-exp-landing1-subsection {
+    width: 600px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+    margin-top: 100px;
+  }
+  
+  .black-friday-bottom-section {
+    background-color: rgb(220, 136, 108);
+    width: 90%;
+    height: 500px;
+    margin: auto;
+    margin-bottom: 100px;
+  }
+  
+  .black-friday-reviews {
+    position: relative;
+    width:100%
+  }
+  .bf-left-review {
+    float: left;
+    width: 50%;
+    text-align: center;
+  }
+  .bf-right-review {
+    float: right;
+    width: 50%;
+    text-align: center;
+  } 
+  .bf-review-words {
+    color: #fff;
+    font-family: 'NBH';
+    font-size: 24px;
+    margin: auto;
+    width: 60%;
+    margin-top: 75px;
+  }
+  .bf-review-name {
+    color:#fff;
+    margin-top: 50px;
+  }
+  .bf-bottom-button {
+    margin: auto;
+    width: fit-content;
+  }
+  
+   @media (max-width: 1590px) {
+    .copy-exp-buttons {
+      top: 600px;
+    }
+  }
+  
+  @media (max-width: 1480px) {
+    .copy-exp-buttons {
+      top: 550px;
+    }
+  }
+  
+  @media (max-width: 1340px) {
+    .copy-exp-buttons {
+      top: 450px;
+    }
+  }
+    
+  @media (max-width: 1240px) {
+    .copy-exp-buttons {
+      top: 450px;
+    }
+  }
+    
+  @media (max-width: 1180px) {
+    .copy-exp-buttons {
+      top: 300px;
+    }
+  }
+  
+  @media (max-width: 1080px) {
+    .copy-exp-buttons {
+      top: 250px;      
+    }
+  }
+    
+  @media (max-width: 980px) {
+    .copy-exp-buttons {
+      top: 200px;
+    }
+/*     .bf-main {
+      background-image: url("https://cdn.shopify.com/s/files/1/0838/7991/files/hero_mobile_14c1cf0e-6f1a-42f6-bdc2-10fc90eb1908.jpg?14175916445677503279") !important;
+    } */
+  }
+    
+  @media (max-width: 900px) {
+    .copy-exp-buttons {
+     top: 485px;
+    }
+  }
+    
+  @media (max-width: 850px) {
+    .copy-exp-buttons {
+      top: 425px;
+    }
+    .copy-exp-subsection-header p {
+    line-height: 30px;
+    }
+  }
+      
+  @media (max-width: 775px) {
+    .copy-exp-buttons {
+      top: 385px;
+    }
+    
+    .bf-left-review {
+      float: none;
+      width: 100%;
+    }
+    
+    .bf-right-review {
+       float: none;
+      width: 100%;
+    }
+    
+    .bf-review-words {
+      margin-top:50px;
+      line-height: 32px;
+    }
+    
+    .bf-bottom-button {
+      margin-bottom: 50px;
+      margin-top: 100px;
+    }
+  }
+  
+    @media (max-width: 725px) {
+      .copy-exp-buttons {
+        top: 290px;
+    }
+  }
+  @media (max-width: 650px) {
+    
+    .copy-exp-buttons {
+      top: 250px;
+    }
+    
+   .black-friday-words-div {
+     width: 100%;
+   }
+  }
+
+  @media (max-width: 600px) {
+    .copy-exp-buttons {
+      top: 370px;
+    }
+    
+      .copy-exp-landing1-subsection {
+    width: 100%
+  }
+    
+    .copy-exp-main-words {
+      margin-top: 100px;
+    }
+    
+  }
+  
+  @media (max-width: 550px) {
+    .copy-exp-buttons {
+      top: 315px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .copy-exp-buttons {
+      top: 260px;
+    }
+  }
+  
+  @media (max-width: 460px) {
+    .copy-exp-buttons {
+      top: 210px;
+    }
+    .copy-exp-main-words {
+      margin-top: 50px;
+    }
+  }
+  
+   @media (max-width: 455px) {
+    .copy-exp-buttons {
+      top: 140px;
+    }
+  }
+  
+    @media (max-width: 415px) {
+    .black-friday-words {
+      font-size: 16px !important;
+    }
+  }
+  
+  @media (max-width: 385px) {
+    .copy-exp-buttons {
+      top: 125px;
+    }
+    
+    .black-friday-words {
+      margin-top: 20px;
+    }
+  }
+  
+   @media (max-width: 365px) {
+    .copy-exp-buttons {
+      top: 45px;
+    }
+     
+     .without-padding {
+       margin-top: 25px !important;
+     }
+     
+     .black-friday-words {
+      margin-top: 45px !important;
+    }
+  }
+  
+    @media (max-width: 320px) {
+    .copy-exp-buttons {
+      top: 0px;
+    }
+     
+     .black-friday-words {
+      margin-top: 25px !important;
+    }
+  }
+  
+   @media (max-width: 285px) {
+    .copy-exp-buttons {
+      top: -45px;
+    }
+  }
+ 
+</style>
+
+<!-- <script>
+  $('#bf-button').click(function() {
+ 	console.log(popupTitles[0])
+    popupTitles[0].innerText = '50% off membership'
+  })
+  let popupTitles = document.getElementsByClassName('popup-title')
+</script> -->
+
+<script>
+  $(function(){
+     function setCookie(name, value, options) {
+      options = options || {};
+
+      var expires = options.expires;
+
+      if (typeof expires == "number" && expires) {
+        var d = new Date();
+        d.setTime(d.getTime() + expires * 1000);
+        expires = options.expires = d;
+      }
+      if (expires && expires.toUTCString) {
+        options.expires = expires.toUTCString();
+      }
+
+      value = encodeURIComponent(value);
+
+      var updatedCookie = name + "=" + value;
+
+      for (var propName in options) {
+        updatedCookie += "; " + propName;
+        var propValue = options[propName];
+        if (propValue !== true) {
+          updatedCookie += "=" + propValue;
+        }
+      }
+
+      document.cookie = updatedCookie;
+    }
+    
+    setCookie('is_black_friday', true, { expires: 24*3600, path: '/' })
+  })
+</script>

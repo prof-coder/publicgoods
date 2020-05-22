@@ -1,0 +1,956 @@
+{%- comment %}<locksmith:5bba>{% endcomment -%}
+  {%- include 'locksmith' -%}
+{%- comment %}</locksmith:5bba>{% endcomment -%}
+
+<!doctype html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+
+
+  
+<head rel="dns-prefetch"defer="defer" >
+ 
+          <!-- DNS Prefetching -->
+<link rel='dns-prefetch' href='//publicgoods.com' />
+<link rel='dns-prefetch' href='//cdn.shopify.com' />
+<link rel='dns-prefetch' href='//cdnjs.cloudflare.com' />
+<link rel='dns-prefetch' href='//code.jquery.com' />
+<link rel='dns-prefetch' href='//staticw2.yotpo.com' />
+<link rel='dns-prefetch' href='//use.fontawesome.com' />
+<link rel='dns-prefetch' href='//cdn.codeblackbelt.com' />
+<link rel='dns-prefetch' href='//shopifyorderlimits.s3.amazonaws.com' />
+<link rel='dns-prefetch' href='//dont-run-out-membership.herokuapp.com' />
+<link rel='dns-prefetch' href='//tag.getdrip.com' />
+<link rel='dns-prefetch' href='//s.pinimg.com' />
+<link rel='dns-prefetch' href='//amplify.outbrain.com' />
+<link rel='dns-prefetch' href='//connect.facebook.net' />
+<link rel='dns-prefetch' href='//www.google-analytics.com' />
+<link rel='dns-prefetch' href='//v.shopify.com' />
+<link rel='dns-prefetch' href='//ct.pinterest.com' />
+<link rel='dns-prefetch' href='//js.stripe.com' />
+<link rel='dns-prefetch' href='/www.facebook.com' />
+<link rel='dns-prefetch' href='//q.stripe.com' />
+<link rel='dns-prefetch' href='//call.chatra.io' />
+<link rel='dns-prefetch' href='//chat.chatra.io' />
+<link rel='dns-prefetch' href='//cdn.jsdelivr.net' />
+  
+  
+      <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NZB6XKR');</script>
+    <!-- End Google Tag Manager -->
+
+
+  <script type="text/javascript" defer>
+  (function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/1czk4hDZQU9jrmp3MaNi1wqhc05RABHrg6aDSVLd/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+</script>
+  
+  {% include 'forURL' %}
+  
+  <script>
+    if (window.location.href === "https://www.publicgoods.com/collections/all") {
+	  window.location.href= '/collections/all-products'
+    }
+    
+
+  </script>
+  
+
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--   <meta http-equiv="Expires" content="30" />  -->
+  
+
+  {% if settings.favicon_enable %}
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+  {% endif %}
+
+  <!-- Title and description ================================================== -->
+  <title>
+  {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+  {%- comment %}<locksmith:4b41>{% endcomment -%}
+    {%- capture var %}{% render 'locksmith-variables', variable: 'transparent', hiding_scope: 'resource' %}{% endcapture %}{% if var == 'true' %}<meta name="description" content="{{ page_description | escape }}">{% endif -%}
+    {%- comment %}original: <meta name="description" content="{{ page_description | escape }}">{%- endcomment %}
+  {%- comment %}</locksmith:4b41>{% endcomment -%}
+  {% endif %}
+
+  <!-- Helpers ================================================== -->
+  <meta name="google-site-verification" content="_642FcdSEReLMugk6pedBGIGaIMQqKL5txx_zY7HAX4" />
+  {% include 'social-meta-tags' %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+  
+  <meta name="p:domain_verify" content="b627fe1a4f62e419b87cdb6b2106454b"/>
+   
+ 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
+  {% include 'oldIE-js' %}
+  {{ '//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js' | script_tag }}
+  {{ '//code.jquery.com/jquery-migrate-1.4.1.js' | script_tag }}
+  
+
+  {% comment %}
+    If you store has customer accounts disabled, you can remove the following JS file
+  {% endcomment %}
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {% endif %}
+  
+
+  <div class="dont-run-out-membership-wrapper" data-button="subscribe-to-membership-32-45" data-wrapper-id="dont-run-out-membership-wrapper-32-45" id="dont-run-out-membership-wrapper-32-45"></div>
+  <div 
+  data-button="subscribe-to-membership-42-55" 
+  data-wrapper-id="dont-run-out-membership-wrapper-42-55" 
+  id="dont-run-out-membership-wrapper-42-55" class="dont-run-out-membership-wrapper"></div>
+    <div 
+  data-button="subscribe-to-membership-43-56" 
+  data-wrapper-id="dont-run-out-membership-wrapper-43-56" 
+  id="dont-run-out-membership-wrapper-43-56" class="dont-run-out-membership-wrapper"></div>
+    
+  <div 
+  data-button="subscribe-to-membership-45-58" 
+  data-wrapper-id="dont-run-out-membership-wrapper-45-58" 
+  id="dont-run-out-membership-wrapper-45-58" class="dont-run-out-membership-wrapper"></div>
+
+  <!-- Amazon Plan  -->
+  <div 
+  data-button="subscribe-to-membership-51-64" 
+  data-wrapper-id="dont-run-out-membership-wrapper-51-64" 
+  id="dont-run-out-membership-wrapper-51-64" class="dont-run-out-membership-wrapper"></div>
+
+
+<script type="text/javascript" defer>
+  // functions for cookie, cj
+  function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+    
+    for (i = 0; i < sURLVariables.length; i++) {
+      sParameterName = sURLVariables[i].split('=');
+      
+      if (sParameterName[0] === sParam) {
+        return sParameterName[1] === undefined ? true : sParameterName[1];
+      }
+    }
+  };
+  function printCookie() {
+  	var theCookies = document.cookie.split(';');
+    var aString = '';
+    for (var i = 1 ; i <= theCookies.length; i++) {
+        aString += i + ' ' + theCookies[i-1] + "\n";
+    }
+    console.log(aString);
+  };
+  function createCookie(name,value,days) {        
+    if (days) { 
+      var date = new Date();
+      date.setTime(date.getTime()+(days*24*60*60*1000));
+      var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    console.log("cookie", name+"="+value+expires+"; path=/");
+    document.cookie = name+"="+value+expires+"; path=/";
+  };
+  function readCookie(name) { 
+    var nameEQ = name + "=";    
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+  };  
+  function eraseCookie(name) {     
+    createCookie(name,"",-1);    
+  };
+  $(document).ready(function(){
+  	var cj_event = getUrlParameter("cjevent=abC124nfhs");
+    cj_event === undefined ? console.log("cj_event undefined") : createCookie("cjevent", cj_event, 28);
+  });
+</script> 
+  
+    <!-- Start VWO Async Smartcode -->
+    <script type='text/javascript'>
+    window._vwo_code = window._vwo_code || (function(){
+    var account_id=242739,
+    settings_tolerance=2000,
+    library_tolerance=2500,
+    use_existing_jquery=false,
+    is_spa=1,
+    hide_element='body',
+
+    /* DO NOT EDIT BELOW THIS LINE */
+    f=false,d=document,code={use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){
+    window.settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.createElement('style'),b=hide_element?hide_element+'{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}':'',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&f='+(+is_spa)+'&r='+Math.random());return settings_timer; }};window._vwo_settings_timer = code.init(); return code; }());
+    </script>
+    <!-- End VWO Async Smartcode -->
+
+  {% if canonical_url contains '/collections/all' %}
+      <meta name="robots" content="noindex">
+  {% endif %}
+  
+  {% if handle contains 'kpi-dashboard' %}
+     <meta name="robots" content="noindex">
+  {% endif %}
+  
+  {% if handle contains 'b2b-signup' %}
+     <meta name="robots" content="noindex">
+  {% endif %}
+  
+  {{ 'lazysizes.min.js' | asset_url | script_tag }}
+  <style>.lazyload,.lazyloading{opacity:0}.lazyloaded{opacity:1;transition:opacity.3s}</style>
+
+  <!-- CSS ================================================== -->
+  {% if handle contains 'healthy-and-sustainable' %}
+  	{{ 'healthy-flow.scss.css' | asset_url | stylesheet_tag }}
+  {% endif %}
+  {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'slick.css' | asset_url | stylesheet_tag }}
+  {{ 'slick-theme.css' | asset_url | stylesheet_tag }}
+  {{ 'style.css' | asset_url | stylesheet_tag }}
+  {{ 'mobile.css' | asset_url | stylesheet_tag }}
+  {%comment%}{{ 'mobile.css.liquid' | asset_url | stylesheet_tag }} {%endcomment%}
+  {{ 'collections-filter.css' | asset_url | stylesheet_tag }}
+
+{% assign nowts = "now" | date: "%s" %}{% assign metats = shop.metafields._ls_meta.check %}{% assign timediff = nowts | minus: metats %}{% if timediff < 604800 %}<script async="async" src="https://livesearch.okasconcepts.com/js/livesearch.init.min.js?v=2&shop=morgans-dont-run-out.myshopify.com"></script>{% endif %}
+
+
+{%- assign yotpo_offload_content = shop.metafields.yotpo.yotpo_offload_content %}
+{%- assign time_now = 'now' | date: '%s' %}
+{%- assign yotpo_live_time = shop.metafields.yotpo.yotpo_live | date: '%s' %}
+{%- assign diffSeconds = time_now | minus: yotpo_live_time %}
+{%- if yotpo_offload_content == 'yes' and diffSeconds < 86400 -%}
+{{ 'yotpo-full-css.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+  
+    <!-- Global site tag (gtag.js) - Google Ads: 952834162 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-952834162"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-952834162');
+</script>
+
+
+</head>
+{% comment %}
+  Add the page template as a class for easy page or template specific styling.
+{% endcomment %}
+<body id="{{ page_title | handle }}" class="free_trial {% if customer %}customer-logged-in {% else %} no-customer {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}">
+  
+  
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZB6XKR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  
+<!-- End Google Tag Manager (noscript) -->
+  
+  <style>
+    #promo-banner3, #promo-banner-2, .promo-banner2-mobile {
+      display: none;
+    }
+    
+  </style>
+
+{% assign member = 0 %}
+{% if shop.customer_accounts_enabled %}
+  {% if customer %}
+    {% assign member = 1 %}
+  {% endif %}
+{% endif %}
+  
+{% for tag in customer.tags %}
+  {% if tag == 'member' or tag == 'members' %}
+    {% assign nonmember = false %}
+  {% endif %}
+  {% if tag == 'Unsubscribed' or tag == 'unsubscribed' %}
+    {% assign nonmember = true %}
+  {% endif %}
+{% endfor %}
+  
+  
+  {% if customer.tags contains 'b2b' or customer.tags contains 'B2B' %}
+  	{% assign b2bMember = true %}
+  {% endif %}
+  
+  
+
+  
+<!-- Bold: Memberships -->
+{% if customer %}
+<div class="bold_customer_id" hidden>{{ customer.id }}</div>
+{% endif %}
+<!-- end Bold code -->  
+  
+  
+  {% if settings.ajax_cart_method == "drawer" %}
+    <div id="CartDrawer" class="drawer drawer--right">
+      <div class="drawer__header">
+        <div class="drawer__title h3">{{ 'cart.general.title' | t }}</div>
+        <div class="drawer__close js-drawer-close">
+          <button type="button" class="icon-fallback-text">
+            <span class="icon icon-x" aria-hidden="true"></span>
+            <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+          </button>
+        </div>
+      </div>
+      <div id="CartContainer"></div>
+    </div>
+  {% endif %}
+
+  <div class="is-moved-by-drawer sticky_header publicgoods-header">
+
+    
+    <div id="promo-banner3" class="promo-banner">
+          <p>$10 off first purchase with code "peoplehype"</p>
+<!--           <p class="promo-mobile" style="display:none">Free gift! Until 12/25 a free tote will be added to every order.</p>
+ 		  <p class="promo-desktop">Free gift! From now until Christmas a free tote will be added to every order.</p> -->
+      </div>
+    
+<!--     <div id="promo-banner-2" class="promo-banner">
+      <a class="promo-banner2-dt" href="https://www.publicgoods.com/collections/chocolate-and-sweets/products/chocolate-variety-pack"><p>Happy Valentine's Day. Free variety pack of chocolate all weekend. Use code <span style="font-family:'NBH'">'XOXO.'</span></p></a>
+      <a class="promo-banner2-mobile" href="https://www.publicgoods.com/collections/chocolate-and-sweets/products/chocolate-variety-pack"><p>Free variety pack of chocolate. Use code <span style="font-family:'NBH'">'XOXO.'</span></p></a>
+    </div>  -->
+
+    {% unless customer %}
+      <div id="first-time-promo" class="promo-banner">
+        <p>$10 off first purchase with code "winter10"</p>
+      </div>
+    {% endunless %}
+    
+    <header>
+      <div id="mobile_menu_trigger"><div id="mobile_menu_trigger_inner"></div></div>
+      <ul class="left_nav">
+          {% if template == "collection" %}
+              {% for link in linklists.collection-menu.links %}
+              {%- comment %}<locksmith:277a>{% endcomment -%}
+                {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.collection-menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+              {%- comment %}</locksmith:277a>{% endcomment -%}
+              {% unless b2bMember %}
+                <li>
+                  <a class='shop-products-btn' href="https://www.publicgoods.com/collections/all-products" style="padding: 20px 0;">Shop</a>
+                </li>   
+              {% endunless %}
+              {% if b2bMember %}<li><a href="https://www.publicgoods.com/collections/b2b">Shop Bulk</a></li>{% endif %}
+              <li><a href="/pages/about-us">About</a></li>
+              {% unless b2bMember %}{% unless nonmember %}<li><a href='http://blog.publicgoods.com/'>Blog</a></li>{% endunless %}{% endunless %}
+	          <li><a href="/pages/FAQ">FAQ</a></li>
+<!--               {% unless customer %}<li><a href="https://www.publicgoods.com/pages/b2b-signup">B2B</a></li>{% endunless %} -->
+       		  {% if nonmember %}<li><a href="https://www.publicgoods.com/pages/contact">Reactivate Account</a></li>{% endif %}
+              {% unless b2bMember %}{% if customer %}<li><a href="https://www.publicgoods.com/pages/share?tkbl_campaign_id=1159669">Get $10</a></li>{% endif %}{% endunless %}
+<!--               {% unless b2bMember %}{% if customer %}<li><a href="https://www.publicgoods.com/?tkbl_expand=true&traffic_source=header">Get $10</a></li>{% endif %}{% endunless %} -->
+              {% endfor %}
+          {% else %}
+              {% for link in linklists.sub-menu.links %}
+              {%- comment %}<locksmith:5e68>{% endcomment -%}
+                {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.sub-menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+              {%- comment %}</locksmith:5e68>{% endcomment -%}
+              {% unless b2bMember %}
+                <li {% if link.active %}class="site-nav--active"{% endif %}>
+                  <a class='shop-products-btn' href="/collections/all-products" style="padding: 15px 0;">Shop</a>
+                </li>
+              {% endunless %}
+              {% if b2bMember %}<li><a href="https://www.publicgoods.com/collections/b2b">Shop Bulk</a></li>{% endif %}
+              <li><a href="/pages/about-us">About</a></li>
+              {% unless b2bMember %}{% unless nonmember %}<li><a href='http://blog.publicgoods.com/'>Blog</a></li>{% endunless %}{% endunless %}
+	          <li><a href="/pages/FAQ">FAQ</a></li>
+<!--         	  {% unless customer %}<li><a href="https://www.publicgoods.com/pages/b2b-signup">B2B</a></li>{% endunless %} -->
+              {% unless b2bMember %}{% if customer %}<li><a href="https://www.publicgoods.com/pages/share?tkbl_campaign_id=1159669">Get $10</a></li>{% endif %}{% endunless %}
+<!--         	  {% unless b2bMember %}{% if customer %}<li><a href="https://www.publicgoods.com/?tkbl_expand=true&traffic_source=header">Get $10</a></li>{% endif %}{% endunless %} -->
+        	  {% if nonmember %}<li><a href="/pages/contact">Reactivate Account</a></li>{% endif %}
+              {% endfor %}
+          {% endif %}
+     
+      </ul>
+      
+      <a href="/" id="logo"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo"></a>
+      
+      <ul class="right_nav">       
+
+          <li class="desktop-search-li">
+            <form action="/search" method="get" class="input-group search-bar" role="search">
+              <span class="input-group-btn desktop-input-group-btn">
+                <button type="submit" class="btn icon-fallback-text desktop-mag-btn">
+                  <span class="magnifying-glass" aria-hidden="true"><img class='lazyload'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-expand="-10" data-src="https://cdn.shopify.com/s/files/1/0838/7991/files/magnify_2_30x.png?2583" style="width:20px;" alt="search icon" /></span>
+                </button>
+              </span>
+              <input type="hidden" name="type" value="product">
+              <div class='border-around-search desktop-search-container' style="display:none">
+                <button class="desktop-search-btn" type="submit">
+                  <span class="magnifying-glass-2 magnifying-glass-2-desktop" style="display:none" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/magnify_2_30x.png?2583" style="width:20px;" alt="search icon" /></span>
+                </button>
+                <input style="display:none;" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search" class="input-group-field -search-bar snize-exclude-input" aria-label="{{ 'general.search.placeholder' | t }}">
+              </div>
+            </form>
+            <span aria-hidden="true" class="magnifying-glass-for-tablet" style="display:none"><img class='lazyload'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-expand="-10" data-src="https://cdn.shopify.com/s/files/1/0838/7991/files/magnify_2_30x.png?2583" style="width:20px;" alt="search icon" /></span>
+          </li>
+
+        <li id="free-trial-btn" class="free-trial-btn-li">
+          <a class="free-trial-btn margin_top_30 button-cta">Free Trial</a>
+        </li>
+        {% if template.suffix != 'altindex' and template.suffix != 'membership-trial' and template != 'product'  and template != 'collection'  %}
+          <div style="display:none;" class="memberships_button margin_top_40" id="checkout_11118" data-billingid="11118" data-planid="2418" data-approot="https://mem.boldapps.net" data-hash="06ac502d0bd77a332cf0c651ceaed93c" data-label="Free 30 Day Trial" data-domain="morgans-dont-run-out.myshopify.com"></div>
+        {% else %}
+          <div style="display:none;" class="memberships_button margin_top_40" id="checkout_10641" data-billingid="10641" data-planid="2237" data-approot="https://mem.boldapps.net" data-hash="e992ecb473cb61b97834158fa7750167" data-label="Join now" data-domain="morgans-dont-run-out.myshopify.com"></div>
+        {% endif %}
+        {% if shop.customer_accounts_enabled %}
+          {% if customer %}
+            <li><a data-cust-email={{ customer.email }} id="custAccountLink" href="/account">{{ 'layout.customer.account' | t }}</a></li>
+            <li>{{ 'layout.customer.log_out' | t | customer_logout_link }}</li>
+          {% else %}
+          {% if collection.handle == 'imperfect-goods' %}
+              <li>{{ 'layout.customer.create_account' | t | customer_register_link }}</li>
+          {% endif %}
+            <li><a href="https://www.publicgoods.com/account/login">Log In</a></li>
+          {% endif %}
+        {% endif %}
+        <li><a href="/cart" class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">{{ 'layout.cart.title' | t }} <span id="CartCount" style="color:black;">{{ cart.item_count }}</span></a></li>
+      </ul>
+        <div id="mobile_header_cart">
+          {% unless template == 'search' %}
+
+          <span class="input-group-btn mobile-input-group-btn">
+            <button type="" class="btn icon-fallback-text mobile-mag-icon">
+              <span class="mobile-search-icon" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0838/7991/files/magnify_2_30x.png?2583" style="width:20px;" alt="search icon" /></span>
+            </button>
+          </span>
+	
+           {% endunless %}
+          {% unless customer %}<a  class="mobile_login" href="https://www.publicgoods.com/account/login">Log In</a>{% endunless %}
+          <a href="/cart" class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">{{ 'layout.cart.title' | t }} <span id="CartCount_mobile">{{ cart.item_count }}</span></a>
+        </div>
+    </header>
+
+     <div id="mobile-search-input">
+      <form action="/search" method="get" class="input-group search-bar" role="search">
+        <input type="hidden" name="type" value="product">
+        <div class="close-search-mobile">
+          <span class="mobile-search-exit"><img class='lazyload'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-expand="-10" data-src="https://cdn.shopify.com/s/files/1/0838/7991/files/x_2.png?14102756025552087246" id="mobile-search-exit-img" style="width:20px; display:none;" alt="search exit icon" /></span>
+        </div>
+        <div class='border-around-search mobile-search-container' style="display:none">
+          <button type="submit">
+            <span class="magnifying-glass-2" aria-hidden="true"><img class='lazyload'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-expand="-10" data-src="https://cdn.shopify.com/s/files/1/0838/7991/files/magnify_2_30x.png?2583" style="width:20px;" alt="search icon" /></span>
+          </button>
+          <input style="display:none;" autofocus type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search" class="input-group-field mobile-search-bar snize-exclude-input" aria-label="{{ 'general.search.placeholder' | t }}">
+        </div>
+      </form>
+    </div>
+
+    <div class='header-filter header-filter-desktop hide-filter'>
+      <div class="categories-container-desktop" style='display:flex'>
+        
+        <div class="store-categories-desktop personal-care-category-div">
+          <a style="color: #000;" href="https://www.publicgoods.com/collections/personal-care">
+            <p class="dt-category-title dt-personal-care-title">Personal Care</p></a>
+            {% for link in linklists.personal-care.links %}
+               {%- comment %}<locksmith:d470>{% endcomment -%}
+                 {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.personal-care, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+               {%- comment %}</locksmith:d470>{% endcomment -%}
+               {% if link.type == 'collection_link' %}
+                 {% assign linkCollection = link.object %}
+                   <div class="filter-collection-item desktop-filter-collection-item">
+                      <h2 class='desktop-menu-filter-text'><a href="{{ link.url }}">{{link.title }}</a></h2>
+                  </div>
+              {% endif %}
+            {% endfor %}
+        </div>
+        
+         <div class="store-categories-desktop household-category-div">
+          <a style="color: #000;" href="https://www.publicgoods.com/collections/household">
+            <p class="dt-category-title dt-household-title">Household</p></a>
+            {% for link in linklists.household.links %}
+               {%- comment %}<locksmith:2633>{% endcomment -%}
+                 {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.household, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+               {%- comment %}</locksmith:2633>{% endcomment -%}
+               {% if link.type == 'collection_link' %}
+                 {% assign linkCollection = link.object %}
+                   <div class="filter-collection-item desktop-filter-collection-item">
+                      <h2 class='desktop-menu-filter-text'><a href="{{ link.url }}">{{link.title }}</a></h2>
+                  </div>
+              {% endif %}
+            {% endfor %}
+        </div>
+       
+        <div class="store-categories-desktop food-category-div">
+           <a style="color: #000;" href="https://www.publicgoods.com/collections/grocery">
+             <p class="dt-category-title dt-food-title">Grocery</p></a>
+              {% for link in linklists.grocery.links %}
+                 {%- comment %}<locksmith:ff3a>{% endcomment -%}
+                   {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.grocery, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                 {%- comment %}</locksmith:ff3a>{% endcomment -%}
+                 {% if link.type == 'collection_link' %}
+                   {% assign linkCollection = link.object %}
+                     <div class="filter-collection-item desktop-filter-collection-item">
+                        <h2 class='desktop-menu-filter-text'><a href="{{ link.url }}">{{link.title}}</a></h2>
+                    </div>
+                {% endif %}
+              {% endfor %}
+        </div>
+        
+         <div class="store-categories-desktop vitamins-category-div">
+           <a style="color: #000;" href="https://www.publicgoods.com/collections/vitamins-and-supplements">
+             <p class="dt-category-title dt-vitamins-title">Vitamins and Supplements</p></a>
+              {% for link in linklists.vitamins-and-supplements.links %}
+                 {%- comment %}<locksmith:a72d>{% endcomment -%}
+                   {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.vitamins-and-supplements, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                 {%- comment %}</locksmith:a72d>{% endcomment -%}
+                 {% if link.type == 'collection_link' %}
+                   {% assign linkCollection = link.object %}
+                     <div class="filter-collection-item desktop-filter-collection-item">
+                        <h2 class='desktop-menu-filter-text'><a href="{{ link.url }}">{{link.title}}</a></h2>
+                    </div>
+                {% endif %}
+              {% endfor %}
+        </div>
+        
+      </div>
+            
+    </div>
+
+    
+    <div id="mobile_menu">
+      <ul id="mobile-categories-container">
+<!--         <li class="free-trial-btn-li">
+		  <a class="subscribe-to-membership-32-45 subscribe-to-membership free-trial-btn membuttonclick margin_top_30 button-cta">Free Trial</a>
+        </li> -->
+        <div class="categories-container-mobile">
+          <ul class="categories-container-mobile">
+            <li class="store-categories-mobile nav-personal-care-title">Personal Care</li>
+            <li class="store-categories-mobile nav-household-title">Household</li>
+            <li class="store-categories-mobile nav-food-title">Grocery</li>
+            <li class="store-categories-mobile nav-vitamins-title">Vitamins and Supplements</li>
+          </ul>
+        </div>
+
+<!--           {% for link in linklists.main-menu.links %}
+            {%- comment %}<locksmith:3782>{% endcomment -%}
+              {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.main-menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+            {%- comment %}</locksmith:3782>{% endcomment -%}
+            <li {% if link.active %}class="site-nav--active"{% endif %}>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>  
+          {% endfor %} -->
+          <li id='mobile-menu-product-filter-li'>
+            
+            <div class='header-filter mobile-header-filter'>
+              
+              <div class="mobile-nav-personal-care">
+                <div class="filter-collection-item mobile-filter-collection-item">
+                  <h2 class='mobile-menu-filter-text'><a href="https://www.publicgoods.com/collections/personal-care">All Personal Care</a></h2>
+                </div>
+                {% for link in linklists.personal-care.links %}
+                   {%- comment %}<locksmith:4304>{% endcomment -%}
+                     {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.personal-care, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                   {%- comment %}</locksmith:4304>{% endcomment -%}
+                   {% if link.type == 'collection_link' %}
+                     {% assign linkCollection = link.object %}
+                       <div class="filter-collection-item mobile-filter-collection-item">
+                          <h2 class='mobile-menu-filter-text'><a href="{{ link.url }}">{{link.title }}</a></h2>
+                      </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            
+              <div class="mobile-nav-food">
+                <div class="filter-collection-item mobile-filter-collection-item">
+                 <h2 class='mobile-menu-filter-text'><a href="https://www.publicgoods.com/collections/grocery">All Grocery</a></h2>
+                </div>
+				{% for link in linklists.grocery.links %}
+                   {%- comment %}<locksmith:fd6e>{% endcomment -%}
+                     {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.grocery, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                   {%- comment %}</locksmith:fd6e>{% endcomment -%}
+                   {% if link.type == 'collection_link' %}
+                     {% assign linkCollection = link.object %}
+                       <div class="filter-collection-item mobile-filter-collection-item">
+                          <h2 class='mobile-menu-filter-text'><a href="{{ link.url }}">{{link.title }}</a></h2>
+                      </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              <div class="mobile-nav-household">
+                 <div class="filter-collection-item mobile-filter-collection-item">
+                  <h2 class='mobile-menu-filter-text'><a href="https://www.publicgoods.com/collections/household">All Household</a></h2>
+                </div>
+                {% for link in linklists.household.links %}
+                   {%- comment %}<locksmith:d7b6>{% endcomment -%}
+                     {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.household, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                   {%- comment %}</locksmith:d7b6>{% endcomment -%}
+                   {% if link.type == 'collection_link' %}
+                     {% assign linkCollection = link.object %}
+                       <div class="filter-collection-item mobile-filter-collection-item">
+                          <h2 class='mobile-menu-filter-text'><a href="{{ link.url }}">{{link.title }}</a></h2>
+                      </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              
+               <div class="mobile-nav-vitamins">
+                 <div class="filter-collection-item mobile-filter-collection-item">
+                  <h2 class='mobile-menu-filter-text'><a href="https://www.publicgoods.com/collections/vitamins-and-supplements">All Vitamins and Supplements</a></h2>
+                </div>
+                {% for link in linklists.vitamins-and-supplements.links %}
+                   {%- comment %}<locksmith:3d58>{% endcomment -%}
+                     {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: linklists.vitamins-and-supplements, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                   {%- comment %}</locksmith:3d58>{% endcomment -%}
+                   {% if link.type == 'collection_link' %}
+                     {% assign linkCollection = link.object %}
+                       <div class="filter-collection-item mobile-filter-collection-item">
+                          <h2 class='mobile-menu-filter-text'><a href="{{ link.url }}">{{link.title }}</a></h2>
+                      </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              
+              <span id="mobile-nav-arrow"><img class='lazyload'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-expand="-10" data-src="https://cdn.shopify.com/s/files/1/0838/7991/files/arrown_down.png?2224" /></span>
+            </div>
+          </li>			
+
+        {% if shop.customer_accounts_enabled %}
+          {% if customer %}
+        	{% if nonmember %}<li><a href="/pages/contact">Reactivate Account</a></li>{% endif %}
+            <li><a href='http://blog.publicgoods.com/'>Blog</a></li>
+        <li><a href="/pages/FAQ">FAQ</a></li>
+            <li><a href="https://www.publicgoods.com/pages/share?tkbl_campaign_id=1159669">Get $10</a></li>
+            <li><a href="/account">{{ 'layout.customer.account' | t }}</a></li>
+            <li>{{ 'layout.customer.log_out' | t | customer_logout_link }}</li>
+          {% else %}
+            <!--<li>{{ 'layout.customer.create_account' | t | customer_register_link }}</li>!-->
+            <li><a href='/pages/about-us'>About</a></li>
+            <li><a href="/pages/FAQ">FAQ</a></li>
+<!--             <li><a href="https://www.publicgoods.com/pages/b2b-signup">B2B</a></li> -->
+        	<li><a href='http://blog.publicgoods.com/'>Blog</a></li>
+            <li><a href="https://www.publicgoods.com/account/login">Log In</a></li>
+          {% endif %}
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+
+  <div id="PageContainer" class="is-moved-by-drawer">
+    <div class="mobile" id="forMenu"></div>
+
+    <main role="main">
+      {{ content_for_layout }}
+    </main>
+
+    <footer>
+      <!-- REMOVE THE EMAIL CAPTURE IN THE FOOTER IF A CUSTOMER IS LOGGED IN !-->
+     
+      {% unless customer %} 
+      <div class="row clearfix margin_bottom_30">
+        <div class="column_12 margin_bottom_20">
+          <label>Connect with us</label>
+          
+           <form id="email-submit-footer" name="email-capture"class="validate-form footer_submit_form">
+          <input name="email" id="emailinput"  value="" placeholder="Enter your email" class="drip-text-field" type="email" required>
+          <div id="drip-errors-for-email-27436" class="drip-errors" style="display: none"></div>
+          <input name="submit" value="Subscribe" id="drip-submit-27436" class="drip-submit-button submit-capture" type="submit">
+
+          <div id="drip-success-panel-27436" class="drip-success drip-panel" style="display: none">
+            <p>Thank you.</p>          
+          </div>
+
+        </form>
+          
+        <p id="email-footer-confirmation"></p>
+        </div>
+        <a name='homepage-footer'></a>
+        <div class="column_6" id="email-success">
+          <p style='line-height: 18px;'>By clicking Sign Up you agree to receive<br/>marketing emails from PUBLIC GOODS</p>
+        </div>
+        
+         <div id='instagram-logo-and-link' class='column_6'>
+            <a href='https://www.instagram.com/publicgoods/'><i class="fab fa-instagram"></i></a>
+            <a href='https://www.instagram.com/publicgoods/' id='instagram-footer'>Instagram</a> 
+          </div>
+        
+        <div class="column_6 footer_social" style="display:none">
+          <a href="#"><img class='lazyload'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-expand="-10" data-src="{{ 'pinterest.png' | asset_url }}" alt=""/></a>
+          <a href="#"><img class='lazyload'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-expand="-10" data-src="{{ 'facebook.png' | asset_url }}" alt=""/></a>
+          <a href="#"><img class='lazyload'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-expand="-10" data-src="{{ 'twitter.png' | asset_url }}" alt=""/></a>
+          <a href="#"><img class='lazyload'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-expand="-10" data-src="{{ 'instagram.png' | asset_url }}" alt=""/></a>
+        </div>
+      </div>
+      {% endunless %} 
+      <div class="row clearfix">
+        <div class="column_7 footer_menu">
+          <a href="/pages/contact">Contact</a>
+          {% if customer %}<a href="/pages/about-us">About</a>{% endif %}
+          <a href="/pages/shipping">Shipping</a>
+          <a href="/pages/careers">Careers</a>
+<!--           <a href="/pages/b2b-signup">B2B</a> -->
+          <a href="/pages/privacy-policy">Privacy Policy</a>
+          <a href="/pages/terms-and-conditions">Terms and Service</a>
+        </div>
+        <div class="column_5 copyright">
+          <p>&copy; 2020 PUBLIC GOODS – All Rights Reserved</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+
+  <style>
+  
+    .free-trial-btn {
+    display: none;
+  }
+    
+   @media (max-width: 600px) {
+     .promo-banner2-mobile {
+       display: inline;
+     }
+     .promo-banner2-dt {
+       display: none;
+     }
+   }
+  
+  </style>
+
+  {% comment %}
+    Template-specific js
+  {% endcomment %}
+  <script defer>
+    {% if resetPassword %}
+      $(function() {
+        timber.resetPasswordSuccess();
+      });
+    {% endif %}
+  </script>
+  {% comment %}
+    Ajaxify your cart with this plugin.
+    Documentation:
+      - http://shopify.com/timber#ajax-cart
+  {% endcomment %}
+  {% if settings.ajax_cart_method == "drawer" %}
+  <script src=" {{ 'handlebars.min.js' | asset_url }}" defer></script>
+    {% if customer %}
+      {% include 'ajax-cart-template' %}
+    {% else %}
+      {% include 'ajax-cart-template', checkout_type: 'unauthenticated' %}
+    {% endif %}
+ {{ 'ajax-cart.js' | asset_url | script_tag }}
+    <script defer>
+      jQuery(function($) {
+        ajaxCart.init({
+          formSelector: '#AddToCartForm',
+          cartContainer: '#CartContainer',
+          addToCartSelector: '#AddToCart',
+          cartCountSelector: '#CartCount',
+          cartCostSelector: '#CartCost',
+          moneyFormat: {{ shop.money_format | json }}
+        });
+      });
+
+      jQuery(document.body).on('afterCartLoad.ajaxCart', function(evt, cart) {
+        // Bind to 'afterCartLoad.ajaxCart' to run any javascript after the cart has loaded in the DOM
+        timber.RightDrawer.open();
+      });
+    </script>
+  {% endif %}
+  
+  {% include 'homepage-search-bar' %}
+  {% include 'product-filter-desktop' %}
+  {% include 'out-of-stock-check' %}
+  {% include 'New-Mem-Popup' %}
+<!--BeginCFFPersistentCartCart-->
+{% if customer %}
+<script>
+
+    window.cffCustomer = {
+        name: '{{customer.name}}',
+        email: '{{customer.email}}',
+        hasAccount: '{{customer.has_account}}',
+        id: '{{customer.id}}'
+    };
+
+
+</script>
+
+{% endif %}
+
+  <script src="//cdn.codeblackbelt.com/js/modules/also-bought/main.min.js?shop=morgans-dont-run-out.myshopify.com"></script>
+
+<!--    -->
+
+  
+
+  
+
+<script>
+    window.cffPCLiquidPlaced = true
+</script>
+
+<!--EndCFFPersistentCartCart-->
+  
+  <script src=" {{ 'fastclick.min.js' | asset_url }}" defer></script>
+  <script src="  {{ 'timber.js' | asset_url }}" defer></script>
+  <script src="  {{ 'jquery.cookie.js' | asset_url  }}"></script>
+  <script src="  {{ 'jquery.initialize.js' | asset_url  }}"></script>
+  <script src="  {{ 'script.js' | asset_url}}" defer></script>
+  {% include 'talkable-partial' %}
+  {% include 'minmaxify-head' %}
+
+ {{ 'modernizr.min.js' | asset_url | script_tag }}
+
+
+   {{ '//ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js' | script_tag }}
+ 
+  {% if template contains 'cart' %}
+ {{ '//checkout.stripe.com/checkout.js' }}
+  {%endif%}
+  
+<script id="stripe_scr" src="https://js.stripe.com/v3"></script>
+  
+{% include 'special-offers' %}
+
+
+{%comment%}{% include 'swymSnippet' %}{%endcomment%}
+  
+  
+<script type="text/javascript" src="{{ 'slick.min.js' | asset_url }}"></script>
+
+<!-- CRITEO START -->
+{% include 'criteo-tracking' %}
+<!-- CRITEO END -->
+  <script defer>
+
+      function hasHtml5Validation () {
+        return typeof document.createElement('input').checkValidity === 'function';
+      }
+
+      if (hasHtml5Validation()) {
+        $('.validate-form').submit(function (e) {
+          if (!this.checkValidity()) {
+            e.preventDefault();
+            $(this).addClass('invalid');
+          } else {
+            $(this).removeClass('invalid');
+          }
+        });
+      }
+      
+      
+  
+      
+//       $('.footer_submit_form ').submit(function (e) {
+//         console.log("good");
+//         fbq('track', 'Lead');
+//       });
+      $("#slideshow > div:gt(0)").hide();
+  
+</script>
+
+<!-- For email capture to google sheet -->
+<script defer>
+   
+    const emailForm = document.forms['email-capture']  
+//     let emailInput = document.getElementById('emailinput').value
+	let emailConfirm = document.getElementById('email-footer-confirmation')
+    
+    let footerEmail = document.getElementById('email-success')
+    let subscribeButton = document.getElementById('drip-submit-27436')
+  if (document.forms['email-capture']) {
+    emailForm.addEventListener('submit', e => {  
+     e.preventDefault()  
+     let emailText = emailForm.elements.namedItem("email").value;
+     
+ 
+       _dcq.push(
+      [
+        "subscribe",
+        {
+          campaign_id: "220285039",
+          fields: {
+            email: emailText
+          }
+        }
+      ]
+       )
+//      _dcq.push(["identify", {
+//         email: emailText,
+//        tags: ["Membership trial cj"],
+//        	user_id: emailText,
+//       }]);
+       emailForm.style.display = "none"
+       emailConfirm.innerText = "Thank you for signing up. You're in."
+       emailForm.reset()       
+     })
+}
+</script>
+
+
+<script defer>
+   $(document).ready(function(){
+     $("#loadOverlay").css("display","none");
+   })
+   
+  function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
+  
+  if (document.URL === "https://www.publicgoods.com/collections/all-products?utm_source=paid&utm_medium=social&utm_campaign=free-tote") {
+    sessionStorage.setItem('PGfreetote', 'true');
+  }
+  
+ //Promo banner for new customers
+  if (localStorage.getItem("PGvisits") === null) {
+    localStorage.setItem("PGvisits", "1")
+  }
+
+  if (parseInt(localStorage.getItem("PGvisits")) <= 2) {
+    sessionStorage.setItem("PGvisitPromo", "true")
+    let localInt = parseInt(localStorage.getItem("PGvisits"))
+    localInt++
+    localStorage.setItem("PGvisits", localInt.toString())
+  } else {
+    sessionStorage.setItem("PGvisitPromo", "false")
+  }
+  
+  if (sessionStorage.getItem("PGvisitPromo") == "true") {
+    $("#first-time-promo").show()
+  }
+  
+  if ((document.URL.includes('peoplehype') && $("#first-time-promo").is(":hidden")) || ($("#first-time-promo").is(":hidden") && document.URL.includes('blackbird'))) {
+     $("#promo-banner3").show()   
+  }
+  
+  if ($("#promo-banner3").is(":hidden")) {
+    $("#promo-banner-2").show()  
+  }
+  
+  
+ 
+</script>
+ <script src="https://dont-run-out-membership.herokuapp.com/public/plans/32/billings/45.js"></script>
+
+   <script src="  {{ 'ajaxinate.js' | asset_url}}" defer></script> 
+
+<!-- Back in Stock helper snippet -->
+{% render 'back-in-stock-helper' %}
+<!-- End Back in Stock helper snippet -->
+</body>
+
+</html>
+

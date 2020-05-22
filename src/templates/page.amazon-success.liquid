@@ -1,0 +1,236 @@
+
+<div id="main-container">
+  <div id="amazon">
+    <div class="amazon-header">
+      <h1>Thanks. <br>You did it.</h1>
+    </div>
+    <div class="amazon-words">
+      <p>You’ve provided vital aid to offset the damage of the Amazon fires. We’ve sent you a link to activate your account, now let’s make it official. Just click 'activate' in the email and you can begin shopping at Public Goods.</p>
+    </div>
+	<div clss="amazon-input">
+      <form id="test-form">
+        
+        <div>
+          <input type="hidden" name="email" value={{ customer.email }} />
+        </div>
+        
+        <div>
+          <label>Optional: Plant trees in my name.</label><br>
+          <input type="text" id="amazon-email" name="name" placeholder="Enter name."/>
+          <button type="submit" id="submit-form">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div id="amazon-email-success">
+      <p>Thank you.</p>
+    </div>
+    <div id="start-membership-dt">
+      <a class="button inverted button-cta" href="https://www.publicgoods.com/collections/all-products">Browse products</a>
+    </div>
+  </div>
+  <div id="start-membership-mobile">
+    <a class="button inverted button-cta" href="https://www.publicgoods.com/collections/all-products">Browse products</a>
+  </div>
+
+</div>
+
+<style>
+  #main-container {
+    padding-top: 86px;
+  }
+  
+  #amazon {
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/trees_desktop.jpg?48985);
+    background-size: cover;
+    height: 80vh;
+  }
+  
+  h1, h3, p, button {
+    color: #fff;
+  }
+  
+  label {
+    font-family: 'NB';
+  }
+  
+  .amazon-header, .amazon-words, #start-membership-dt, .amazon-input, #test-form {
+    max-width: 679px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .amazon-header {
+    padding-top: 125px;
+    padding-bottom: 75px;
+  }
+  
+/*   .amazon-header h1 {
+    padding-bottom: 25px;
+  } */
+  
+  .amazon-words p:first-child {
+    padding-bottom: 50px;
+  }
+  
+  .amazon-words span {
+    font-family: 'NBH';
+  }
+
+  #test-form {
+    color: #fff;
+  }
+  
+  #test-form label {
+    margin-left: -17px;
+  }
+  
+  #submit-form {
+    background-color: #dc876c;
+    height: 45px;
+    width: 62px;
+    font-family: 'NBH';
+    margin-left: -4px;
+  }
+  
+  #amazon-email {
+    height: 44px;
+    border: 0;
+    margin-top: 7px;
+    width: 165px;
+    padding-left: 5px;
+    line-height: .5;
+  }
+  
+  #amazon-email::placeholder, #submit-form::placeholder {
+    padding-top: 5px;
+  }
+  
+    #start-membership-dt {
+    padding-top: 75px;
+  }
+  
+  #start-membership-mobile {
+    display: none;
+  }
+  
+  #start-membership-mobile a {
+    width: 100% !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+  }
+  
+  #amazon-email-success {
+    display: none;
+    text-align: center;
+  }
+  
+  
+  @media (max-width: 737px) {
+    
+   h3, p {
+     font-size: 16px;
+     line-height: 20px;
+   }
+    
+    #main-container {
+      padding-top: 72px;
+    }
+	
+   .amazon-header, .amazon-words, #start-membership-dt {
+     max-width: 465px;
+   }
+    
+   #test-form label {
+     font-size: 14px;
+   }
+    
+       #start-membership-mobile {
+     display: block;
+   }
+    
+   #start-membership-dt {
+     display: none;;
+   }
+    
+    a.button.inverted {
+      margin: 0 !important;
+    }
+    
+ 
+  }
+  
+  @media (max-width: 550px) {
+    
+    
+    #main-container {
+      padding-top: 0px;
+    }
+    
+    #amazon {
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/trees_mobile.jpg?48985);
+    }
+    
+    .amazon-words, #start-membership-dt {
+      max-width: 350px;
+    }
+    
+    .amazon-header {
+      max-width: 315px;
+      padding-bottom: 50px;
+    }
+    
+  }
+  
+  @media (max-width: 400px) {
+    
+    .amazon-words {
+      max-width: 270px;
+    }
+  }
+  
+  @media (max-height: 737px) {
+     #amazon {
+      height: 100vh;
+    }
+  }
+  
+  @media (max-width: 550px) {
+     #amazon {
+      height: 90vh;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    
+    #amazon {
+      height: 92vh;
+    }
+  }
+  
+  @media (max-height: 500px) {
+    #amazon { height: 500px;  }
+  }
+  
+  
+  
+</style>
+
+<script>
+  
+var $form = $('form#test-form'),
+    url = 'https://script.google.com/macros/s/AKfycbwTYFt4Xx65SbKsYrBB7_fPoON2IQHLImxJYIwQ1U8V6xlla9s/exec'
+
+$('#submit-form').on('click', function(e) {
+  e.preventDefault();
+  var jqxhr = $.ajax({
+    url: url,
+    method: "GET",
+    dataType: "json",
+    data: $form.serializeArray(),
+    success:function(data) {
+      $form.hide()
+      $("#amazon-email-success").show()
+    }
+  })
+})
+</script>

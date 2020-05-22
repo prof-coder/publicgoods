@@ -1,0 +1,21 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div id="page_content">
+  <div class="row clearfix">
+  	<div class="column_12">
+      <div class="rte">
+      	{{ page.content }}
+      </div>
+      <div id="talkable-offer"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+.column_12 {
+    padding-top: 50px !important;
+}
+</style>

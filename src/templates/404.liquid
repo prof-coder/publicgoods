@@ -1,0 +1,33 @@
+<!-- /templates/404.liquid -->
+<div id="page_404_error">
+  <div class="row clearfix">
+  	<div class="column_12">
+      <h1 class="margin_bottom_30">{{ 'general.404.title' | t }}</h1>
+      <div class="rte">
+        <div class="page-404-content">
+      		{{ 'general.404.subtext_html' | t }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+  	$('#page_404_error').css('height', ($(window).height() - ($('header').outerHeight()+$('footer').outerHeight()))+'px');
+  });
+</script>
+
+
+<style>
+
+    #page_404_error {
+      padding-top:200px;
+    }
+
+  @media (max-width:737px) {
+ #page_404_error {
+      height:500px !important;
+    }
+  }
+</style>

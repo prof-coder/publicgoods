@@ -1,0 +1,196 @@
+<!-- /templates/customers/account.liquid -->
+
+<!-- Bold: Memberships (accounts) -->
+{% include 'bold-memberships-salt' %}
+<!-- end Bold code -->
+ 
+{% assign member_tag = false %}
+{% for tag in customer.tags %}
+    {% if tag == 'lifetime' %}
+    	{% assign member_tag = true %}
+    	{% break %}
+    {% endif %}
+{% endfor %}
+{% for tag in customer.tags %}
+	{% if tag == 'membershipPendingConfirmation' %}
+      <script src="https://dont-run-out-membership.herokuapp.com/public/plans/44/billings/57.js"></script>
+      <div style="display:block;" data-email="{{ customer.email }}" data-button="subscribe-to-membership-44-57" 
+      data-wrapper-id="dont-run-out-membership-wrapper-44-57" 
+      id="dont-run-out-membership-wrapper-44-57" class="dont-run-out-membership-wrapper"></div>
+  	{% break %}
+  {% endif %}
+{% endfor %}
+
+
+<div id="account_details_page">
+<div id="account_page">
+  <div class="row">
+    <div class="column_12">
+   
+
+      <!--!-->
+      <div class="grid">
+
+        <div class="grid__item one-third medium-down--one-whole">
+          <h2 class="h4">{{ 'customer.account.details' | t }}</h2>
+
+
+
+          <h3 class="h5">{{ customer.name }}{% if member_tag %} - Lifetime Membership{% endif %}</h3>
+
+          {% if customer.default_address != nil %}
+            <p>
+            {{ customer.default_address.address1 }}<br>
+
+            {% if customer.default_address.address2 != "" %}
+              {{ customer.default_address.address2 }}<br>
+            {% endif %}
+
+            {% if customer.default_address.city != "" %}
+              {{ customer.default_address.city }}<br>
+            {% endif %}
+
+            {% if customer.default_address.province_code != "" %}
+              {{ customer.default_address.province_code | upcase }}<br>
+            {% endif %}
+
+            {% if customer.default_address.zip != "" %}
+              {{ customer.default_address.zip | upcase }}<br>
+            {% endif %}
+
+            {% if customer.default_address.country != "" %}
+              {{ customer.default_address.country }}<br>
+            {% endif %}
+
+            {% if customer.default_address.phone != "" %}
+              {{ customer.default_address.phone }}
+            {% endif %}
+            </p>
+
+          {% endif %}
+
+          <p><a href="/account/addresses" class="add-address-btn address-button">Manage Default Address</a>{% unless customer.tags contains 'lifetime' %}<br><a href="https://www.publicgoods.com/account?view=cardUpdate" class="add-address-btn">Manage Credit Card</a>{% endunless %}</p>
+
+        </div>
+        
+        <script id="dont-run-out-membership-list-js" src="http://dont-run-out-membership.herokuapp.com/public/memberships/{{ customer.id }}.js?shopify_domain=morgans-dont-run-out.myshopify.com"></script>
+      </div>
+    
+ 
+      <div class="responsive_buttons">
+        
+        {% if member_tag %}
+        
+        {% else %}
+        <!-- Bold: Memberships (manage memberships) -->         
+<!--         <a class="button margin_bottom_20"  href="/apps/memberships/accountDetails/?id={{customer.id}}&h={{bold_memberships_hash}}" style="margin-right:10px;">Manage Membership</a> -->
+  		<!--  end Bold code -->  
+        {% endif %}
+       		              
+  		{% if customer.tags contains 'active_subscriber' %}               
+<!--         <a class="button margin_bottom_20" href="/tools/checkout/front_end/login">Manage Recurring Shipments</a> -->
+        {% else %}
+ 	 	{% endif %}  
+     
+      </div>
+      
+      <p style='margin-top: 25px;'><a href='/pages/email-type-form'>Email Management Form</a></p>
+   
+    <p style='margin-top: 25px;'><a href='/pages/my-referrals'>Referrals Dashboard</a></p>
+    
+      
+      <h3 class="margin_top_30 margin_bottom_30 color_white">Order History</h3>
+      {% paginate customer.orders by 20 %}
+        {% if customer.orders.size != 0 %}
+          <div id="order_history">
+            <table>
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Date</th>
+                  <th>Payment Status</th>
+                  <th>Fulfillment Status</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in customer.orders %}
+                  <tr>
+                    <td>{{ order.name | link_to: order.customer_url }}</td>
+                    <td><a style="font-size:14px; padding-left: 25px" href="/cart/{% for line_item in order.line_items %}{{ line_item.variant_id }}:{{ line_item.quantity }}{% unless forloop.last %},{% endunless %}{% endfor %}">Reorder</a></td>
+                    <td>{{ order.created_at | date: format: 'month_day_year' }}</td>
+                    <td>{{ order.financial_status_label }}</td>
+                    <td>{{ order.fulfillment_status_label }}</td>
+                    <td>{{ order.total_price | money }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <p>{{ 'customer.orders.none' | t }}</p>
+        {% endif %}
+        {% if paginate.pages > 1 %}
+          <hr/>
+          <div class="pagination">
+            {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+          </div>
+        {% endif %}
+      {% endpaginate %}
+        {% comment %}<p style='margin-top: 100px; font-size: 14px'><a href='/pages/contact'>Having account issues? Please contact our customer service team.</a></p>{% endcomment %}
+      	
+      {% unless customer.tags contains 'lifetime' or customer.tags contains 'SelfCancellation' or customer.tags contains 'AcceptedCancelOffer' or customer.tags contains 'Unsubscribed' %}<p class='cancel_line'><a class="cancel_button" href="/pages/cancel-membership">Cancel membership</a></p>{% endunless %}
+
+    </div> <!-- Column End !-->
+  </div> <!-- Row End !-->
+  
+</div>
+</div>
+
+<style>
+  
+  #account_page {
+    padding-top: 125px;
+  }
+  
+  #order_history {
+    overflow-y: scroll;
+    max-height: 400px;
+  }
+  
+  #account_page .grid {
+    background-color: #E7E7E7 !important;
+/*     color: #000 !important; */
+  }
+  
+  #account_page table, #account_page tr, #account_page th, #account_page thead, #account_page tbody, #account_page td, #account_page a, #account_page h2, #account_page h3, #account_page h4, #account_page h5, #account_page p {
+    color: #000 !important;
+  }
+  
+/*   .add-address-btn {
+    background-color: #dc886c !important;
+    color: #fff !important;
+  }
+   */
+  
+ #account p.cancel_line a.cancel_button {
+   font-size: 12px !important;
+   padding-top: 200px !important;
+ }
+  
+    @media (max-width: 607px) {
+    .address-button {
+      margin-bottom: 15px !important;
+    }
+    .add-address-btn {
+      width: 180px;
+      font-size: 14px !important;
+    }
+  }
+  
+</style>
+
+
+
+
+

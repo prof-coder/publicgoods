@@ -1,0 +1,167 @@
+
+<div id="payment-failed-pop-up-wrapper"> 
+  <div id="payment-failed-pop-up-contents">
+    <div id="payment-failed-pop-top-div">
+      <h3 id="payment-failed-pop-header">Please update your payment method.</h3><img src="{{ 'X.svg' | asset_url }}" id="payment-failed-pop-up-close" />
+    </div>
+    <div id="payment-failed-pop-middle-div">
+      <h4>Please update your card to resume your membership.</h4>
+    </div>
+    <div>
+      <a id="payment-failed-pop-bottom-div" href="https://www.publicgoods.com/account?view=cardUpdate">Update Now</a>
+      <p id="failed-need-help">Need help?</p>
+      <a id="failed-contact" href="/pages/contact">contact us.</a>
+    </div>
+  </div>
+</div>
+  
+
+
+
+<style>
+  
+  .is-moved-by-drawer {
+    -webkit-transform: none;
+    will-change: auto;
+  }
+  
+  #payment-failed-pop-up-wrapper {
+    display: none;
+    height: 300px;
+    width: 75%;
+    max-width: 700px;
+    top: 25%;
+    position: fixed;
+    z-index: 101;
+    background-color: rgb(220, 136, 108);
+    -webkit-box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+    box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+  }
+  
+  #payment-failed-pop-middle-div {
+    padding-top: 40px;
+    padding-bottom: 45px;
+    width: 80%;
+    font-family: 'NB';
+    font-size: 16px;
+    line-height: 22px;
+  }
+  
+  #payment-failed-pop-up-contents {
+    height: 100%;
+    text-align: center;
+    color: #fff;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+  }
+  
+  #payment-failed-pop-header {
+    height: 25%;
+    padding-top: 40px;
+    display: inline-block;
+    font-size: 26px;
+  }
+  
+  #payment-failed-pop-bottom-div {
+    color: rgb(220, 136, 108);
+    font-family: 'NBH';
+    padding: 15px 25px;
+    background-color: #fff;
+  }
+  
+  #payment-failed-pop-up-close {
+    position: absolute;
+    right: 50px;
+    top: 40px;
+    width: 20px;
+    cursor: pointer;
+  }
+  
+  #failed-need-help {
+    margin-top: 30px;
+  }
+  
+  #failed-contact {
+    font-family: 'NBH';
+    text-decoration: underline;
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  @media (max-width: 900px) {
+    
+    #payment-failed-pop-up-wrapper {
+      height: 400px;
+    }
+    
+    
+    #payment-failed-pop-header {
+	  width: 250px;
+      line-height: 26px;
+    }
+    
+    #payment-failed-pop-middle-div {
+      font-size: 20px;
+      line-height: 26px;
+      padding-bottom: 45px;
+    }
+  }
+  
+  @media (max-width: 550px) {
+     #payment-failed-pop-up-close {
+      right: 30px;
+      top: 25px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+     #payment-failed-pop-up-wrapper {
+       height: 400px;
+       width: 90%;
+       top: 15%;
+       left: 7%;
+    }
+    
+    #payment-failed-pop-bottom-div {
+      padding: 20px;
+      font-size: 14px;
+    }
+    #payment-failed-pop-middle-div {
+      padding-bottom: 65px;
+      width: 90%
+    }
+  }
+  
+  @media (max-width: 385px) {
+    #payment-failed-pop-header {
+      width: 200px;
+    }
+    #payment-failed-pop-header {
+      font-size: 20px;
+    }
+    #payment-failed-pop-middle-div {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    #payment-failed-pop-up-wrapper {
+      height: 400px;
+    }
+     #payment-failede-pop-up-close {
+      right: 25px;
+      top: 20px;
+    }
+  }
+  
+  @media (max-width: 385px) {
+    #payment-failed-pop-up-wrapper {
+      height: 400px;
+    }
+  }
+
+</style>
+
+<script>
+  $("#payment-failed-pop-up-close").click(function() {
+    $("#payment-failed-pop-up-wrapper").css("display", "none")
+  })
+</script>

@@ -1,0 +1,45 @@
+<script>
+  (function checkForOutOfStock() {
+    let outOfStock = []
+    jQuery.getJSON('/cart.js', function(cart) {
+    }).then(function(cart){
+         for (item of cart.items) {
+          jQuery.getJSON('/products/'+item.handle+'.js', function(productInfo) {
+            if (productInfo.variants[0].inventory_quantity < 10) {
+              outOfStock.push(productInfo)
+            }
+          })
+      }
+      setTimeout(function () {
+        changeCartQuantity(outOfStock)
+      }, 500)
+    })
+  })()
+  
+  function changeCartQuantity(outOfStock) {
+    for (item of outOfStock) {
+      $.ajax({
+        type:'POST', 
+        url:'/cart/change', 
+        data: { 
+          quantity: 0,
+          id: item.variants[0].id
+        },  
+        dataType: 'json',
+        success: function(data){
+//           sessionStorage.reloadAfterPageLoad = true;
+          alert( title + ' was removed from your cart because it is now sold out.' );
+          document.location.reload(true)
+        }
+      });
+      
+    }
+  }
+  
+//   function alertAfterReload(title) {
+//     if ( sessionStorage.reloadAfterPageLoad ) {
+//       alert( title + ' was removed from your cart because it is now sold out.' );
+//       sessionStorage.reloadAfterPageLoad = false;
+//     }
+//   }
+</script>

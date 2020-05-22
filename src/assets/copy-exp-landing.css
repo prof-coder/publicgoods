@@ -1,0 +1,166 @@
+#copy-exp-landing-footer .row {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+header a.copy-exp-logo {
+  margin: 0 auto;
+}
+
+.copy-exp-landing1-main {
+  width: 100%; 
+  background-image: url('https://cdn.shopify.com/s/files/1/0838/7991/files/hero-desktop_7132fefd-22c8-4889-93a3-8294dae4ddde.jpg?15327206255124946806');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 0;
+  padding-top: 66.64%; 
+  position: relative;
+}
+
+.copy-exp-landing1-main .column_12 p {
+  font-size: 36px;
+  font-family: 'NBH';
+  line-height: 45px;
+}
+
+.copy-exp-landing1-main .column_12 {
+  position:absolute; 
+  top:0; 
+  bottom:0; 
+  left:0; 
+  right:0;
+  text-align: center;
+}
+
+.copy-exp-landing1-main .home-shop-btn {
+  padding: 12px 15px 10px 15px;
+  font-size: 14px;
+}
+
+.copy-exp-main-words {
+  margin-bottom: 75px;
+  margin-top: 50px;
+}
+
+
+.copy-exp-subsection-header p {
+  font-size: 24px;
+  font-family: 'NBH';
+}
+
+.copy-exp-landing1-subsection .column_12 {
+  text-align: center;
+}
+
+.copy-exp-subsection-body {
+  padding-top: 43.75px;
+  padding-bottom: 43.75px;
+}
+
+.copy-exp-bottom-section {
+  margin-bottom: 70px;
+}
+
+#copy-exp-post-signup-button {
+  margin-right: 0;
+  font-size: 14px;
+  padding: 12px 15px 10px 15px;
+  letter-spacing: 0px;
+}
+
+.home-shop-btn:hover {
+  opacity: .90;
+}
+
+
+
+#copy-exp-email-form{color: white; clear:both; position: relative; width:400px; max-width: 100%; margin: 0 auto;}
+#copy-exp-email-form input[type="email"]{ width: 100%; height: 40px; border: 1px solid black; color: black; box-sizing: border-box; padding: 10px;}
+#copy-exp-email-form input[type="submit"]{ font-family:'NBH'; background-color: black; color: white; border: none; padding: 0 23px; height: 100%; position: absolute; top: 0; right:0; }
+#copy-exp-email-form p{ font-size: 12px; font-family: 'NB' !important; font-weight: 300; color:#999;}
+
+@media (max-width: 900px) {
+  .copy-exp-landing1-main {
+    background-image: url('https://cdn.shopify.com/s/files/1/0838/7991/files/hero-tab.jpg?8245459439011062125');
+    padding-top: 100%;
+  }
+  .copy-exp-subsection-header {
+    margin-top: 70px;
+  }
+   #copy-exp-landing-footer .row {
+    flex-direction: column;
+    align-items: center;
+  }
+  footer .footer_social {
+    margin-top: 0px;
+    padding-bottom: 30px;
+  }
+  header a.copy-exp-logo {
+    margin: 0 auto !important; 
+  }
+}
+
+@media (max-width: 600px) {
+  .copy-exp-landing1-main {
+    background-image: url('https://cdn.shopify.com/s/files/1/0838/7991/files/hero-mobile_51d995a7-c2dd-46e7-9dbe-0f4e13253480.jpg?8245459439011062125');
+    padding-top: 100%;
+    padding-bottom: 40%;
+    background-size: contain;
+  }
+  .copy-exp-landing1-main .home-shop-btn {
+    padding: 12px 15px 10px 15px !important;
+    font-size: 12px !important;
+    min-width: 0px;
+    display: inline !important;
+  }
+  a.button.inverted {
+    margin: 0;
+  }
+  .home-shop-btn {
+    width: 200px !important;
+  }
+}
+
+@media (max-width: 425px) {
+  #copy-exp-email-form input[type="submit"] {
+    padding: 0 12px;
+    font-size: 12px;
+  }
+  #copy-exp-email-form input[type="email"] {
+    font-size: 12px;
+  }
+  .copy-exp-landing1-main .home-shop-btn {
+    display: inline-block !important;
+    padding: 10px 5px !important;
+  }
+  .copy-exp-landing1-main .copy-exp-buttons {
+    margin-top: -45px;
+  }
+  .copy-exp-landing1-main .column_12 p {
+    font-size: 30px;
+  }
+  .copy-exp-landing1-main a.button.inverted {
+    margin: 5px;
+  }
+}
+
+@media (max-width: 365px) {
+  .copy-exp-landing1-main .home-shop-btn {
+    display: inline-block !important;
+    margin: 10px;
+  }
+  .copy-exp-main-words {
+    margin-bottom: 35px;
+  }
+  .copy-exp-landing1-main .column_12 p {
+  	font-size: 24px;
+    line-height: 30px !important;
+    margin-top: -20px;
+  }
+  .copy-exp-landing1-main .copy-exp-buttons {
+    margin-top: 0px;
+  }
+  
+}
+

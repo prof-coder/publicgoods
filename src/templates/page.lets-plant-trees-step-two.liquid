@@ -1,0 +1,233 @@
+{%- comment %}<locksmith:0a20>{% endcomment -%}
+  {%- capture var %}{% render 'locksmith-variables', variable: 'transparent', hiding_scope: 'resource' %}{% endcapture %}{% if var == 'true' %}<meta property="og:description"
+      content="I planted a tree with Public Goods. It takes less than 10 seconds to visit their site, supply your email and they’ll plant one on your behalf with no cost to you and with no strings attached."/>{% endif -%}
+  {%- comment %}original: <meta property="og:description"
+      content="I planted a tree with Public Goods. It takes less than 10 seconds to visit their site, supply your email and they’ll plant one on your behalf with no cost to you and with no strings attached."/>{%- endcomment %}
+{%- comment %}</locksmith:0a20>{% endcomment -%}
+
+<div id="page-content">
+  <div id="trees-top">
+    <div id="trees-top-content">
+      <h1>Our goal: 100,000 trees.</h1>
+      <div id="trees-progress">
+        <div id="progress-bar"><div id="inside-bar"></div></div>
+        <div id="trees-goals">
+          <h2>0</h2>
+          <h2 id="trees-planted">52,326<br>Trees Planted</h2>
+          <h2>100,000</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="trees-bottom">
+    <div id="trees-bottom-content">
+      <h1>Share with friends to plant more trees.</h1>
+      <p id="sharing-subheader">One of the most effective ways to fight<br> climate change. Let’s work together!</p>
+      <div id="share-section">
+        <p>Share with:</p>
+        <div id="social-icons">
+         <a class="fa fa-envelope" href="mailto:someone@example.com?Subject=Plant A Tree In Less Than 10 Seconds.&body=Hey!%0D%0A%0D%0AI planted a tree today with Public Goods. Takes less than 10 seconds and they’ll plant a tree on your behalf — no cost to you — and, it's a great way to fight climate change.%0D%0A%0D%0ACheck out:%0D%0Ahttps://www.publicgoods.com/pages/lets-plant-trees" target="_blank" style="font-size:24px"></a>
+          <a class="fab fa-twitter" href="https://twitter.com/intent/tweet?text=I planted a tree today with Public Goods. Takes less than 10 seconds and they’ll plant a tree on your behalf — no cost to you — and, it's a great way to fight climate change.%0D%0ACheck out: https://www.publicgoods.com/pages/lets-plant-trees" target="_blank" style="font-size:24px"></a>
+          <a class="fab fa-facebook-f" href="https://www.facebook.com/sharer.php?u=https://www.publicgoods.com/pages/lets-plant-trees" target="_blank" style="font-size:24px"></a>
+        </div>
+          <p id="link-to-copy">publicgoods.com/pages/lets-plant-trees</p>
+          <a onClick="copyToClipboard('#link-to-copy')" id="copy-link" href="#">copy link</a>
+          <p id="link-copied">Link copied to clipboard!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #page-content {
+    height: 1000px;
+  }
+  
+  #trees-top {
+    padding-top: 150px;
+    height: 20%;
+    background-color: #eaeaea;
+    text-align: center;
+  }
+  
+  #trees-top-content {
+    width: 500px;
+    margin: 0 auto;
+  }
+  
+  #progress-bar {
+    height: 11px;
+    width: 100%;
+    border: 2px solid black;
+    padding: 5px;
+  }
+  
+  #inside-bar {
+    background-color: #58847f;
+    width: 48%;
+    height: 10px;
+    max-width: 375px !important;
+  }
+  
+  #trees-progress {
+    margin-top: 30px;
+  }
+  
+  #trees-goals {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  
+  #trees-goals h2 {
+    font-size: 30px;
+    line-height: 26px;
+  }
+  
+  #trees-bottom {
+    height: 71%;
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/tree_desk_half_1.jpg?v=1579808255);
+    background-size: cover;
+  }
+  
+  #trees-bottom-content {
+    text-align: center;
+    color: #fff;
+    padding-top: 75px;
+  }
+  
+  #sharing-subheader {
+    padding: 50px 0;
+  }
+  
+  #social-icons {
+    padding: 20px 0;
+  }
+  
+  #social-icons .fa, #social-icons .fab  {
+    padding: 10px;
+    background-color: #f5886b;
+    border-radius: 50%;
+    margin: 0 15px;
+    color: #fff
+  }
+  
+  #social-icons i:hover, #social-icons a:hover {
+    cursor: pointer;
+  }
+  
+  .fa-facebook-f {
+    padding: 10px 16px !important;
+  }
+  
+  #copy-link {
+    font-family: 'NBH';
+    font-size: 18px;
+    text-decoration: underline;
+    color: #fff;
+    display: inline-block;
+    margin: 5px 0;
+  }
+  
+  #link-copied {
+    display: none;
+    font-size: 16px;
+  }
+  
+  @media (max-width: 737px) {
+    p, a {
+      font-size: 16px !important;
+    }
+    .fa-facebook-f {
+      padding: 10px 15px !important;
+    }
+    #trees-bottom {
+      background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/tree_mobile_half_519537e4-d394-4c50-ab40-e4d5aef25dfb.jpg?v=1579808255);
+    }
+  }
+  
+  @media (max-width: 600px) {
+    #trees-top-content {
+      width: 400px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    #page-content {
+      height: 800px;
+    }
+    #trees-top {
+      height: 20%;
+    }
+    #trees-top-content {
+      width: 300px;
+    }
+    #trees-goals h2 {
+      font-size: 24px;
+      line-height: 26px;
+    }
+    #trees-bottom-content {
+      width: 300px;
+      margin: 0 auto;
+      padding-top: 70px;
+    }
+    #trees-progress {
+      margin-top: 20px;
+    }
+  }
+  
+  @media (max-width: 350px) {
+    #trees-top-content {
+      width: 277px;
+    }
+    #trees-goals h2 {
+      font-size: 21px;
+      line-height: 22px;
+    }
+    #trees-progress {
+      width: 95%;
+    }
+  }
+  
+</style>
+
+<script>
+  
+  if (localStorage.getItem("PG-trees")) {
+    let treesPlanted = localStorage.getItem("PG-trees")
+    if (parseInt($("#trees-planted")[0].innerText.split("Trees")[0].replace(",","")) < treesPlanted) {
+      let toNum = parseInt(treesPlanted)
+      let newString1 = toNum.toLocaleString() + "\n" + "Trees Planted"
+      $("#trees-planted")[0].innerText = newString1
+    }
+  }
+  
+  function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+    $("#link-copied").show()
+  }
+  
+  let randomNum = 10
+  let newWidth;
+  
+  setInterval(function() {
+    randomNum = Math.floor(Math.random() * 25)
+    let newPlanted = parseInt($("#trees-planted")[0].innerText.split("Trees")[0].replace(",","")) + 1
+    if (newPlanted % 5 === 0) {
+      newWidth = $("#inside-bar").width() + 1
+      $("#inside-bar").css("width", newWidth)
+    }
+    let newString = newPlanted.toLocaleString() + "\n" + "Trees Planted"
+    $("#trees-planted")[0].innerText = newString
+    localStorage.setItem("PG-trees", newPlanted)
+  }, randomNum * 1000)
+  
+  
+
+</script>

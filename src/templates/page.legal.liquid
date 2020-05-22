@@ -1,0 +1,21 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div id="page_content">
+  <div class="row clearfix">
+  	<div class="column_12">
+      <div class="rte">
+      	{{ page.content }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #page_content {
+    padding-top: 150px;
+    margin-top: 0;
+  }
+</style>

@@ -1,0 +1,235 @@
+<!-- /templates/page.liquid -->
+
+
+<div id="mission_hero">
+  <div class="row clearfix">
+    <div class="column_6">
+      <h2 class="margin_bottom_50">Our Mission</h2>
+      <h1 class="margin_bottom_50 without-padding">Make healthy products affordable to all.</h1>
+      {% if customer %}
+	     <a href="/collections/all-products" class="home-shop-btn">Browse Products</a>
+      {% else %}
+    	<a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free Trial</a>
+        <a href="/collections/all-products" class="home-shop-btn browse-prod-btn">Browse Products</a>
+      {% endif %}
+      
+    </div>
+    <div class="text_center margin_top_50 margin_bottom_70">
+  
+  
+<!--     <a href="/pages/membership" class="button inverted">Join Today</a> -->
+         
+    </div>
+    <!--<img src="{{ 'two.png' | asset_url }}" alt=""/>!-->
+  </div>
+</div>
+
+<div class="press-quotes-section">
+  <div class="press-quotes">
+    <img class="pq-desktop" src="https://cdn.shopify.com/s/files/1/0838/7991/files/desktop.png?6247" />
+    <img class="pq-mobile" src="https://cdn.shopify.com/s/files/1/0838/7991/files/mobile.png?6247" />
+  </div>
+</div>
+
+
+<div id="page_content">
+  <div class="row" id="mission_top_text">
+    {% section 'member-favorites' %}
+  </div>
+  <div class="section_block_text_column">
+    <div id="shopify-section-home-text-mision-top" class="shopify-section"><div class="row" id="home_text_mision_top">
+      <div class="column_12">
+        <h2 class="text_center">How We're Doing It</h2>
+      </div>
+      <div class="column_6 align_center block_text_phone_home" style="float: none;">
+        <p class="text_center font_nb margin_top_30 margin_bottom_50">Most brands go through four suppliers before selling you soap. That adds cost at every step. But we’re changing the supply chain: One flat annual membership fee gets you zero retail markups.</p>
+        {% if customer %}
+    	  <a href="/collections/all-products" class="margin_bottom_20 margin_top_10 button inverted membuttonclick button-cta">Shop products</a>
+        {% else %}
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free Trial</a>
+        {% endif %}
+        
+      </div>
+      <div class="clear"></div>
+    </div></div>
+  </div>
+
+
+  <div id="flows">
+    <!--<div class="mobile">
+      <h2>INFOGRAPHIC</h2>
+    </div>!-->
+    <div id="current_flow">
+      <div class="row">
+        <div class="column_12">
+          <img src="{{ 'old_flow1.png' | asset_url }}" alt=""/>
+        </div>
+        <img src="{{ 'labelnew.png' | asset_url }}" alt="" class="labelImage" />
+      </div>
+    </div>
+    <div id="old_flow">
+      <div class="row">
+        <div class="column_12">
+          <img src="{{ 'new_flow.png' | asset_url }}" alt=""/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="flows-mobile">
+      <div class="row">
+        <div class="column_12">
+          <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/mobile.jpg?11718027169943468730" alt=""/>
+        </div>
+      </div>
+  </div>
+
+  <div class="row margin_bottom_50">
+    <h2 class="text_center" id="difference_header">Our Product Difference</h2>
+    <div class="difference_pack">
+      <div class="column_7">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/package.jpg?15711509899398966051" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">Obsessive<br/>formulations.</h2>
+        <p>It took us over a year to develop our first products. We reviewed over 100 labs. Consulted with clean beauty experts. Hired the most reputable chemists. Then we had our friends, family, and the pickiest people we could find to test every single product.</p>
+        {% if customer %}
+    	  <a href="/collections/all-products" class="margin_bottom_20 margin_top_10 button inverted membuttonclick button-cta">Shop products</a>
+        {% else %}
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free Trial</a>
+        {% endif %}
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+
+      <div class="column_7" style="float:right;">
+        <img src="https://cdn.shopify.com/s/files/1/0838/7991/files/ingredients.jpg?15711509899398966051" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">Healthy,<br/>not harmful.</h2>
+        <p>Did you know that there are over 1,000 unhealthy ingredients banned in Europe that are used in products here in the US? Did you know they’re linked to cancer, hormone disruption, and a host of other harmful effects? Don’t get scared—get informed. At Public Goods you’re protected, because we use only safe and healthy ingredients.</p>
+        {% if customer %}
+    	  <a href="/collections/all-products" class="margin_bottom_20 margin_top_10 button inverted membuttonclick button-cta">Shop products</a>
+        {% else %}
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free Trial</a>
+        {% endif %}
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+      
+      <div class="column_7">
+        <img src="{{ 'bath.jpg' | asset_url }}" alt="" class="fullSize"/>
+      </div>
+      <div class="column_5">
+        <h2 class="margin_top_70 margin_bottom_10">Designed for<br/>your home.</h2>
+        <p>Call us snobs, but we can’t stand the badly designed, bright bottles that most brands use. They look like that because they’re made to stand out at the drugstore, not sit beautifully in your bathroom. Our packaging is clean and simple—designed to complement your space, not visually assault it.</p>
+        {% if customer %}
+    	  <a href="/collections/all-products" class="margin_bottom_20 margin_top_10 button inverted membuttonclick button-cta">Shop products</a>
+        {% else %}
+          <a class="subscribe-to-membership-32-45 subscribe-to-membership margin_top_30 button inverted button-cta">Free Trial</a>
+        {% endif %}
+
+      </div>
+      <div class="clear margin_bottom_70"></div>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function(){
+      $(".button.inverted").click(function(e){
+        event.stopPropagation();
+        console.log($("#memberships_button_11118"));
+        console.log($("#memberships_button_11118")[0]);
+//        $("#memberships_button_11118").click();
+      })
+    });
+  </script>
+
+  <!--<div class="row">
+    <div class="column_12"><h2 class="text_center margin_bottom_50">Show Us Your Goods</h2></div>
+    <div class="column_12">
+      <div class="goods">
+        {% for product in collections.featured-goods.products limit:10 %}
+          {%- comment %}<locksmith:a205>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections.featured-goods, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:a205>{% endcomment -%}
+          <div class="good">
+            <a href="{{ product.url | within: collection }}"><img src="{{ product.featured_image.src | img_url: 'medium' }}" alt=""/></a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="column_12">
+      <p class="text_center" id="publicgoods">#publicgoods</p>
+    </div>
+  </div>!--><!-- Row End !-->
+</div> <!-- Page Content End !-->
+
+<script>
+  $(document).ready(function(){
+//     $(".button-cta").click(function(){
+//        var eventName = $(this).attr("data-label");
+//        eventName = eventName.replace(/\s/g, '').toLowerCase(); 
+//       console.log(eventName);
+//       amplitude.getInstance().logEvent('home cta '+eventName);
+//         amplitude.getInstance().logEvent('home any cta');
+//     });
+    $(".btn.membuttonclick").click(function(){
+      amplitude.getInstance().logEvent('home cta join now');
+        amplitude.getInstance().logEvent('home any cta');
+    });
+    
+    
+    function createCookie(name,value,days) {        if (days) { var date = new Date();
+            date.setTime(date.getTime()+(days*24*60*60*1000));
+            var expires = "; expires="+date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name+"="+value+expires+"; path=/";
+        }
+    createCookie("free_trial_button", "true", 30);
+  })
+</script>
+{{ 'memberships-response.js' | asset_url | script_tag }}
+
+<style>
+  
+    #mission_hero {
+    background-image: url(https://cdn.shopify.com/s/files/1/0838/7991/files/1-brand-general.jpg?12408051355996058938);
+  }
+  
+  
+  .press-quotes-section {
+    padding: 100px 40px 50px 40px;
+  }
+  .pq-mobile {
+    display: none;
+  }
+  
+  @media (max-width: 950px) {
+    .pq-mobile {
+      display: block;
+      margin: 0 auto;
+      width: 500px; 
+    }
+    .pq-desktop {
+      display: none;
+    }
+    .press-quotes-section {
+      padding: 100px 0px 50px 0px;
+    }
+  }
+  
+    @media (max-width: 737px) {
+    #mission_hero {
+          background-position-x: 70%;
+    }
+  }
+  
+  
+   @media (max-width: 575px) {
+    .press-quotes-section {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+   }
+</style>

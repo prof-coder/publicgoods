@@ -1,0 +1,198 @@
+
+<div id="try-anything-page">
+  
+  <div id="try-anything-top">
+    <h1 id="try-anything-header"><span class="orange">Free</span> goods for life.<br>Every month.</h1>
+    <p id="try-anything-words">Get one free item from our biodegradable menstrual care collection. We’ll email you a link for your menstrual care every month, for the lifetime of your membership.</p>
+    <form id="try-anything-form">
+      <div>
+        <input type="email" id="amazon-email" name="email" placeholder="Enter email."/>
+        <button type="submit" id="submit-form">Claim your gift</button>
+      </div>
+    </form>
+  </div>
+  
+  <div id="try-anything-bottom">
+	<img id="try-anything-dt-image" src="https://cdn.shopify.com/s/files/1/0838/7991/files/pads-and-razors-desktop.png?52564" />
+    <img id="try-anything-mobile-image" src="https://cdn.shopify.com/s/files/1/0838/7991/files/pads-and-razors_mobile.png?52564" />
+  </div>
+  
+</div>
+
+
+<style>
+  
+  #try-anything-page {
+    padding-top: 100px;
+    text-align: center;
+    background-color: #e7e7e7;
+  }
+  
+  #try-anything-top {
+    width: 475px;
+    margin: 100px auto;
+    margin-bottom: 0;
+  }
+  
+  .orange {
+    color: #dc876c;
+    font-family: 'NBH';
+  }
+  
+  #try-anything-words {
+    padding: 50px 0;
+  }
+  
+  #try-anything-words span {
+    font-family: 'NBH';
+  }
+  
+  #submit-form {
+    background-color: #dc876c;
+    height: 46px;
+    width: 125px;
+    color: #fff;
+    font-family: 'NBH';
+    margin-left: -4px;
+    font-size: 13px;
+  }
+  
+  #submit-form:hover {
+    opacity: .8;
+    -webkit-transition: font-size 0.3s, opacity 0.3s;
+  }
+  
+  #amazon-email {
+    height: 44px;
+    border: 0;
+    margin-top: 7px;
+    width: 245px;
+    padding-left: 5px;
+    line-height: .5;
+    border: 1px solid #dc876c;
+  }
+  
+  #amazon-email::placeholder, #submit-form::placeholder {
+    padding-top: 5px;
+  }
+  
+  #try-anything-bottom {
+  }
+  
+  #try-anything-bottom img {
+	width: 90%;
+    margin: 0 auto;
+    max-width: 800px;
+  }
+  
+  #try-anything-mobile-image {
+    display: none;
+  }
+  
+  #try-anything-bottom p {
+    font-size: 12px;
+    padding: 50px 0 75px 0;
+  }
+  
+  @media (max-width: 1400px) {
+    #try-anything-top {
+        margin: 50px auto;
+        margin-bottom: 0;
+    }
+  }
+  
+  @media (max-width: 737px) {
+    #try-anything-top {
+      width: 400px;
+      margin: 20px auto;
+    }
+    
+    #try-anything-words {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    
+    #submit-form {
+      width: 110px;
+      font-size: 14px;
+    }
+    
+    #try-anything-bottom {
+      margin-top: 100px;
+    }
+    
+    #try-anything-mobile-image {
+      display: block;
+    }
+    
+    #try-anything-dt-image {
+      display: none;
+    }
+    
+    input, input:focus {
+      font-size: 16px !important;
+    }
+  }
+  
+  @media (max-width: 460px) {
+    #try-anything-top {
+      width: 375px;
+    }
+    
+    #try-anything-words {
+      font-size: 16px;
+      line-height: 21px;
+      width: 90%;
+      margin: 0 auto; 
+    }
+    
+    #amazon-email {
+      height: 40px;
+      width: 190px;
+    }
+    
+    #submit-form {
+      height: 42px;
+    }
+    
+    #try-anything-bottom img {
+      width: 100%;
+    }
+    
+    @media (max-width: 370px) {
+      #try-anything-words {
+        width: 270px;
+        margin: 0 auto;
+      }
+      
+     #try-anything-top {
+      width: 307px;
+     }
+    }
+    
+    @media (max-width: 340px) {
+      #try-anything-bottom {
+        margin-top: 50px;
+      }
+    }
+  }
+  
+</style>
+
+<script>
+  
+  $(document).ready(function(){
+  	
+    let emailCapture = document.getElementById("submit-form")
+    let tryAnythingForm = document.getElementById('try-anything-form')
+  	
+     tryAnythingForm.addEventListener('submit', e => {  
+       e.preventDefault()  
+
+       let emailText = tryAnythingForm.elements.namedItem("email").value;
+
+       window.location.href = 'https://www.publicgoods.com/pages/free-menstrual-step-two?email=' + emailText
+     })
+       
+  })
+</script>

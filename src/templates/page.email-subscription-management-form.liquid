@@ -1,0 +1,149 @@
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+
+<!-- /templates/page.liquid -->
+<div id="page_content" class="email-management-page">
+  <div class="row clearfix">
+  	<div class="column_12">
+
+      <div class="rte">
+      	     	 
+  <form id='email-management-form' action="https://www.getdrip.com/forms/988841941/submissions" method="post" data-drip-embedded-form="988841941">
+    <h3 data-drip-attribute="headline">Manage Email Subscription</h3>
+    <div data-drip-attribute="description"></div>
+      <div class='email-management-email'>
+          <label style='font-size:20px; padding-right: 10px;' for="drip-email">Email Address</label>
+          <input type="email" id="drip-email" name="fields[email]" value="" required/>
+      </div>
+      <h3 style='padding-bottom:10px;'>Which type of emails would you like to receive?</h3>
+      <div class='email-management-checkboxes'>
+          <input type="hidden" name="fields[community]" value="no" />
+          <input class='email-management-checkbox' type="checkbox" name="fields[community]" value="yes" checked/>
+        <label class='email-management-label' for="drip-community">Community / Blog Newsletter</label>
+      </div>
+      <div class='email-management-checkboxes'>
+          <input type="hidden" name="fields[news_and_info]" value="no" />
+          <input class='email-management-checkbox' type="checkbox" name="fields[news_and_info]" value="yes" checked/>
+          <label class='email-management-label' for="drip-news-and-info">News and Info</label>
+      </div>
+      <div class='email-management-checkboxes'>
+          <input type="hidden" name="fields[new_products]" value="no" />
+          <input class='email-management-checkbox' type="checkbox" name="fields[new_products]" value="yes" checked/>
+          <label class='email-management-label' for="drip-new-products">New Products</label>
+      </div>
+    <div>
+      <input class='email-management-submit' type="submit" value="Update" data-drip-attribute="sign-up-button" />
+    </div>
+  </form>
+  
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .email-management-page {
+    height: 100vh;
+  }
+  
+  #email-management-form {
+  	margin-top: 80px;
+  }
+  
+  .email-management-label {
+    padding-left: 10px;
+    font-size: 20px;
+  }
+  
+  .email-management-email {
+ 	margin-top: 40px;
+  }
+  .email-management-checkboxes {
+    margin-top: 15px;
+  }
+  .email-management-submit {
+    margin-top: 35px;
+    margin-bottom: 35px;
+    padding: 15px 18px 13px 18px;
+    width: 150px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin-right: 15px;
+    background-color: #DC886C;
+    color: #fff;
+    font-family: 'NBH';
+  }
+  .email-management-checkbox {
+    -webkit-appearance: none !important;
+	background-color: #fafafa;
+	border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	padding: 9px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+  }
+  
+  .email-management-checkbox:active, .email-management-checkbox:checked:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .email-management-checkbox:checked {
+      background-color: #fff;
+      border: 1px solid #adb8c0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+      color: #99a1a7;
+  }
+  input[type="checkbox"] {
+    padding: 6px 10px !important;
+    border-radius: 100%;
+    width: 25px;
+    height: 25px;
+  }
+  .email-management-checkbox:checked:after {
+	content: '\25cf';
+	font-size: 34px;
+	position: absolute;
+	top: -10px;
+	left: 0px;
+	color: #000;
+  }
+  
+  .email-management-email input {
+    font-size: 15px;
+    height: 25px;
+  }
+  
+  @media (max-width: 737px) {
+    input[type="checkbox"] {
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+    }
+    
+    .email-management-checkbox:checked:after {
+      top: -11px;
+      left: -1px;
+      font-size: 36px;
+    }
+  }
+  
+  @media (max-width: 370px) {
+     #email-management-form label {
+      font-size: 14px !important;
+    }
+    
+  }
+  
+  @media (max-height: 550px) {
+    .email-management-page {
+      height: 450px;
+    }
+    
+  }
+  
+  
+</style>
